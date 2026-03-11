@@ -136,6 +136,7 @@ def test_reset():
             "inline": ["text"],
             "inline2": ["balance_pairs", "fragments_join"],
         }
+    # 退出 with 块后规则应该恢复到之前的状态
     assert md.get_active_rules() == {
         "block": ["paragraph"],
         "core": ["normalize", "block", "inline", "text_join"],
@@ -143,7 +144,7 @@ def test_reset():
         "inline2": ["balance_pairs", "fragments_join"],
     }
 
-
+# markdown-it 的 inline-only 模式，不会进行块级解析，即不会把 > xyz 解析成 blockquote，而是当做普通文本解析
 def test_parseInline():
     md = MarkdownIt()
     tokens = md.parseInline("abc\n\n> xyz")
@@ -226,7 +227,10 @@ def test_parseInline():
         )
     ]
 
-
+# renderInline() 只走 inline 规则链：
+# 某个行内规则启用且匹配成功 → 按规则渲染（例如 *x* → <em>x</em>）
+# 规则未启用或不匹配 → 标记符号当普通文本保留
+# zero preset 中没有启用任何行内规则（见 get_active_rules()），因此 renderInline() 不会进行任何行内解析，输入字符串会原样输出
 def test_renderInline():
     md = MarkdownIt("zero")
     tokens = md.renderInline("abc\n\n*xyz*")
