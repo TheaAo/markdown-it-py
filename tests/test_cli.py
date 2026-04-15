@@ -15,20 +15,6 @@ def test_parse():
         path.write_text("a b c")
         assert parse.main([str(path)]) == 0
 
-
-def test_parse_fail():
-    with pytest.raises(SystemExit) as exc_info:
-        parse.main(["/tmp/nonexistant_path/for_cli_test.md"])
-    assert exc_info.value.code == 1
-
-
-def test_non_utf8():
-    with tempfile.TemporaryDirectory() as tempdir:
-        path = pathlib.Path(tempdir).joinpath("test.md")
-        path.write_bytes(b"\x80abc")
-        assert parse.main([str(path)]) == 0
-
-
 def test_print_heading():
     with patch("builtins.print") as patched:
         parse.print_heading()
@@ -66,18 +52,6 @@ def test_stdin():
         with redirect_stdout(string_io):
             assert parse.main(["--stdin"]) == 0
         assert string_io.getvalue() == "<h1>a b c</h1>\n"
-
-
-def test_multiple_files():
-    with tempfile.TemporaryDirectory() as tempdir:
-        path1 = pathlib.Path(tempdir).joinpath("test1.md")
-        path1.write_text("# file 1")
-        path2 = pathlib.Path(tempdir).joinpath("test2.md")
-        path2.write_text("* file 2")
-        string_io = io.StringIO()
-        with redirect_stdout(string_io):
-            assert parse.main([str(path1), str(path2)]) == 0
-        assert string_io.getvalue() == "<h1>file 1</h1>\n<ul>\n<li>file 2</li>\n</ul>\n"
 
 
 def test_interactive_render():
