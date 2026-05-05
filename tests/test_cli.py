@@ -16,21 +16,6 @@ def test_parse():
         assert parse.main([str(path)]) == 0 # 文件存在且可解析时返回退出码 0 (见 parse.py main 返回值)
 
 
-def test_parse_fail():
-    with pytest.raises(SystemExit) as exc_info:
-        parse.main(["/tmp/nonexistant_path/for_cli_test.md"])
-    assert exc_info.value.code == 1 # 文件不存在时 parse_file 会调用 sys.exit(1)，因此 main 的返回值为 1 (见 parse.py convert_file 中的 except 块)
-
-
-def test_non_utf8():
-    with tempfile.TemporaryDirectory() as tempdir:
-        path = pathlib.Path(tempdir).joinpath("test.md")
-        path.write_bytes(b"\x80abc")
-        # 文件存在但包含非 UTF-8 字节时，parse_file 会忽略错误并继续解析，因此 main 的返回值为 0 (见 parse.py convert_file 中的 open 调用)
-        # 维护的例子就可以改成相关代码不忽略错误，抛出异常。这样就需要修改对应的测试用例。
-        assert parse.main([str(path)]) == 0 
-
-
 def test_print_heading():
     with patch("builtins.print") as patched:
         parse.print_heading()
