@@ -13,7 +13,7 @@ def test_parse():
     with tempfile.TemporaryDirectory() as tempdir:
         path = pathlib.Path(tempdir).joinpath("test.md")
         path.write_text("a b c")
-        assert parse.main([str(path)]) == 0 # 文件存在且可解析时返回退出码 0 (见 parse.py main 返回值)
+        assert parse.main([str(path)]) == 0  # File exists and parses successfully, returns exit code 0
 
 
 def test_print_heading():
@@ -43,12 +43,12 @@ def test_parse_output():
         path.write_text("# a b c")
         string_io = io.StringIO()
         with redirect_stdout(string_io):
-            # 测试整个解析过程是否顺利，当前情况（存在可解析的文件）应该正确
+            # Test that parsing works correctly when file exists and is valid
             assert parse.main([str(path)]) == 0
-        # 测试解析结果是否正确，# a b c 正好对应 <h1>a b c</h1>\n
+        # Verify rendered output: "# a b c" should render to "<h1>a b c</h1>\n"
         assert string_io.getvalue() == "<h1>a b c</h1>\n"
 
-# 测试从标准输入解析的情况，test_parse_output 是测试从文件解析
+# Test parsing from stdin; test_parse_output tests parsing from files
 def test_stdin():
     with patch("sys.stdin", io.StringIO("# a b c")):
         string_io = io.StringIO()
