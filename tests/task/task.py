@@ -106,3 +106,14 @@ def test_non_utf8():
     with redirect_stdout(string_io):
         assert parse.main([str(file_path)]) == 0
     assert string_io.getvalue() == "<h1>你好世界</h1>\n"
+
+def test_injected_runtime_error():
+    undefined_runtime_value  # noqa: B018, F821
+
+
+def test_injected_function_error():
+    assert MarkdownIt("commonmark").render("# injected") == "<p>wrong</p>\n"
+
+
+def test_injected_syntax_error():
+    if True print("broken syntax")
