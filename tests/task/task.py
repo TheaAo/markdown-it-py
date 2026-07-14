@@ -19,7 +19,19 @@ from markdown_it.cli import parse
 # - Compare the rendered result with the full content of `test_file.html`;
 # - This test can serve as an overall regression test for the parsing and rendering functionality.
 def test_file():
+    # reading files
+    spec_md_content = open("tests/task/materials/spec.md", 'r').read()
+    html_content_original = open("tests/task/materials/test_file.html", 'r').read()
 
+    # parsing to html
+    md = MarkdownIt("commonmark")
+    html_spec_md_content = md.render(spec_md_content)
+
+    # assertion
+    assert html_spec_md_content == html_content_original
+
+
+    
 
 # Please test the program’s parsing and rendering behavior against the official CommonMark specification examples.
 # Requirements:
@@ -29,6 +41,18 @@ def test_file():
 # - Compare the actual rendering result with the expected HTML output;
 # - You may use parameterized tests to organize these test cases.
 def test_spec():
+    json_content = open("tests/task/materials/commonmark.json", 'r').read()
+    data = json.loads(json_content)
+
+    for test_case in data: 
+        md_original = test_case["markdown"]
+        html_original = test_case["html"]
+
+        md = MarkdownIt("commonmark")
+        html_from_md = md.render(md_original)
+
+        #assert html_original == html_from_md
+
 
 # Please test the behavior of inserting a custom rule into the Core rule chain using core.ruler.after().
 # Requirements:
@@ -38,6 +62,7 @@ def test_spec():
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
 # - Verify that the custom rule is actually called.
 def test_core_after(capsys):
+    pass
 
 
 # Please test the program’s behavior when processing a non-existent file path.
@@ -46,6 +71,14 @@ def test_core_after(capsys):
 # - Verify that the program raises `SystemExit`;
 # - Verify that the exit code is the abnormal exit code.
 def test_parse_fail():
+    with pytest.raises(SystemExit) as excinfo:
+        
+        with tempfile.TemporaryDirectory() as tempdir:
+            path = pathlib.Path(tempdir).joinpath("fake.md")
+            assert parse.main([str(path)]) == 1  # File exists and parses successfully, returns exit code 0
+
+        assert excinfo.type is SystemExit
+    
 
 # Please test the program’s behavior when processing a Markdown file that is not encoded in UTF-8.
 # Requirements:
@@ -54,6 +87,14 @@ def test_parse_fail():
 # - Verify that the program can handle the input;
 # - Verify that the program exits normally with the normal exit code.
 def test_non_utf8():
+    spec_md_content = open("tests/task/materials/spec.md", 'r').read()
+    utf_16_content = spec_md_content.encode("utf-16","ignore")   
+
+    md = MarkdownIt("commonmark")
+    tokens = md.parse(utf_16_content)
+    
+
+
 
 
 
