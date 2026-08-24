@@ -165,13 +165,26 @@ def _top_level_block_starts(lines: list[str]) -> list[tuple[int, str | None]]:
 
 def _split_test_file(test_path: Path) -> tuple[str, list[TestBlock]]:
     lines = test_path.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
-    starts = _top_level_block_starts(lines)
     test_ranges: list[tuple[int, int, str]] = []
 
-    for position, (start, name) in enumerate(starts):
-        end = starts[position + 1][0] if position + 1 < len(starts) else len(lines)
-        if name and name.startswith("test_"):
-            test_ranges.append((start, end, name))
+    try:
+        tree = ast.parse("".join(lines), filename=str(test_path))
+    except SyntaxError:
+        starts = _top_level_block_starts(lines)
+        for position, (start, name) in enumerate(starts):
+            end = starts[position + 1][0] if position + 1 < len(starts) else len(lines)
+            if name and name.startswith("test_"):
+                test_ranges.append((start, end, name))
+    else:
+        for node in tree.body:
+            if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                continue
+            if not node.name.startswith("test_"):
+                continue
+            decorator_lines = [decorator.lineno for decorator in node.decorator_list]
+            start = min([node.lineno, *decorator_lines]) - 1
+            end = node.end_lineno or node.lineno
+            test_ranges.append((start, end, node.name))
 
     support_lines = lines[:]
     for start, end, _name in reversed(test_ranges):
