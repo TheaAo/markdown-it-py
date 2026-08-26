@@ -5,8 +5,9 @@ import json
 import subprocess
 import sys
 import tempfile
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from pathlib import Path
+from typing import Any
 
 try:
     from scripts.collect_error_rates import (
@@ -14,6 +15,7 @@ try:
         _ensure_pytest_available,
         _split_test_file,
         _write_batch_test_files,
+        ErrorRateReport,
         TestCaseResult,
         collect_error_rates,
     )
@@ -23,6 +25,7 @@ except ModuleNotFoundError:  # pragma: no cover - used when run as a script
         _ensure_pytest_available,
         _split_test_file,
         _write_batch_test_files,
+        ErrorRateReport,
         TestCaseResult,
         collect_error_rates,
     )
@@ -49,6 +52,7 @@ class CoverageReport:
     invalid_tests_excluded: int
     participant_tests_only: CoverageScope | None
     all_tests_combined: CoverageScope
+    error_rates: ErrorRateReport | None = None
 
 
 def _run(
@@ -272,7 +276,14 @@ def collect_coverage(
         invalid_tests_excluded=invalid_count,
         participant_tests_only=participant_tests_only,
         all_tests_combined=all_tests_combined,
+        error_rates=error_report,
     )
+
+
+def _report_payload(report: CoverageReport) -> dict[str, Any]:
+    payload = asdict(report)
+    error_rates = payload.pop("error_rates")
+    return {"error_rates": error_rates, "coverage": payload}
 
 
 def _print_scope(name: str, scope: CoverageScope) -> None:
@@ -344,6 +355,12 @@ def main(argv: list[str] | None = None) -> int:
         default=120.0,
         help="Timeout in seconds for classification and coverage commands.",
     )
+    parser.add_argument(
+        "--format",
+        choices=("text", "json"),
+        default="text",
+        help="Output format (default: text).",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -361,7 +378,10 @@ def main(argv: list[str] | None = None) -> int:
         print(str(exc), file=sys.stderr)
         return 2
 
-    _print_report(report)
+    if args.format == "json":
+        print(json.dumps(_report_payload(report), ensure_ascii=False, indent=2))
+    else:
+        _print_report(report)
     return 0
 
 

@@ -45,6 +45,24 @@ The report contains two levels:
 Parameterized tests are counted as separate generated test cases after pytest
 expands them. For example, `test_spec[test_case217]` is one test case.
 
+Collect statement and branch coverage together with the error-rate classification:
+
+```bash
+venv/bin/python scripts/collect_coverage.py \
+  tests/task/task.py \
+  --repo-root . \
+  --python venv/bin/python \
+  --source markdown_it \
+  --project-tests tests \
+  --timeout 120 \
+  --format json \
+  > coverage_metrics.json
+```
+
+Omit `--format json` for a human-readable terminal report. The JSON output contains
+both `error_rates` and `coverage`, so error-rate classification is not run a second
+time by the batch collector.
+
 ## Error Metrics
 
 The case-level classifications are mutually exclusive:
@@ -77,6 +95,25 @@ valid_test_count
 Coverage, mutation, assertion, and maintainability metrics should subsequently be
 computed only from tests classified as `valid`.
 
+## Coverage Metrics
+
+Coverage is measured with branch tracking enabled and only valid participant tests
+are included in the participant scope:
+
+- participant statement coverage is the proportion of executable source statements
+  executed by valid participant tests;
+- participant branch coverage is the proportion of measured control-flow branches
+  executed by valid participant tests;
+- all-tests-combined coverage runs the original project tests together with valid
+  participant tests, making it possible to compare participant-only coverage with
+  the complete regression suite;
+- `valid_tests_included` and `invalid_tests_excluded` document exactly how many
+  generated participant cases contributed to coverage.
+
+Each coverage metric stores `covered`, `total`, and `rate`. CSV rate values use the
+range 0 to 1. A participant with no valid tests has empty participant-only coverage
+cells; this must not be interpreted as zero coverage.
+
 ## All Participant Branches
 
 Participant submissions use the remote branches `experiment-01` through
@@ -92,9 +129,22 @@ venv/bin/python scripts/collect_all_branches.py \
   --timeout 120
 ```
 
+Coverage collection is enabled by default. The command invokes
+`collect_coverage.py` once per participating branch and obtains both error-rate and
+coverage JSON from that invocation. Use `--skip-coverage` only for a faster,
+error-rate-only diagnostic run:
+
+```bash
+venv/bin/python scripts/collect_all_branches.py \
+  --baseline origin/experiment-base \
+  --output-dir results/error_rates \
+  --timeout 120 \
+  --skip-coverage
+```
+
 The batch collector does not switch the current working tree. It creates a detached
-temporary Git worktree for each participant, invokes the error-rate collector from
-`pilot-metric`, writes the result, and removes the worktree. This preserves
+temporary Git worktree for each participant, invokes the configured metric collector
+from `pilot-metric`, writes the result, and removes the worktree. This preserves
 participant-added test materials and avoids disturbing local uncommitted changes.
 
 Collection is serial to keep execution deterministic and to avoid resource
@@ -119,6 +169,7 @@ Each raw file contains:
 - participant commit;
 - baseline ref and commit;
 - full suite-level and case-level metrics;
+- participant-only and all-tests-combined statement and branch coverage;
 - detailed classification for every expanded pytest item.
 
 `collection_manifest.json` records the collector and baseline commits, the Python
@@ -143,6 +194,47 @@ The command exits with code `0` only when all participating branches are collect
 and participants 13 and 15 are recorded as `not_participated`. Other statuses are
 preserved in the manifest and produce exit code `1` so that missing or invalid data
 cannot be overlooked.
+
+## Summary CSV Files
+
+Convert the collection manifest into analysis-ready CSV files without rerunning the
+participant tests:
+
+```bash
+venv/bin/python scripts/summarize_metrics.py \
+  results/error_rates/collection_manifest.json \
+  --output-dir results/error_rates/summary
+```
+
+This creates:
+
+```text
+results/error_rates/summary/
+├── error_rates.csv
+└── coverage.csv
+```
+
+CSV does not support workbook tabs, so each metric family is written to a separate,
+focused table. Both tables use only `participant_number` and `status` as common
+identity columns. `error_rates.csv` contains suite collectability, generated-test
+counts, classification counts, and the three error rates. `coverage.csv` contains
+the numbers of valid and invalid participant tests together with participant-only
+and all-tests-combined statement and branch coverage rates.
+
+Participants who did not participate and branches that could not be collected
+remain in both tables, but their metric cells are empty rather than zero. Select
+rows with `status` equal to `collected` before calculating descriptive statistics.
+
+Provenance fields such as branch names, commits, changed files, output paths, and
+collection timestamps remain in `collection_manifest.json` and raw JSON instead of
+being repeated in the analysis tables. When a new metric family is implemented, it
+must receive its own focused CSV file with the same two common columns rather than
+adding more columns to the existing tables.
+
+All rate columns are numeric proportions from `0.000000` to `1.000000`, not
+percentages. For example, `0.250000` represents 25%. The summarizer recomputes rates
+from the counts and rejects a manifest when the four classification counts do not
+sum to `total_generated_test_cases`.
 
 ## Reproducibility
 
