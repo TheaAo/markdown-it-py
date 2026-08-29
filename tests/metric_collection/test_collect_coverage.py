@@ -78,5 +78,6 @@ def test_json_payload_separates_error_rates_and_coverage() -> None:
     payload = _report_payload(report)
 
     assert payload["error_rates"] is None
+    assert payload["assertion_score"] is None
     assert payload["coverage"]["valid_tests_included"] == 0
     assert payload["coverage"]["all_tests_combined"]["statement"]["covered"] == 90

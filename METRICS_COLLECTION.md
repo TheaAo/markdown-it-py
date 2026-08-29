@@ -1,6 +1,6 @@
 # Experiment Metrics Collection
 
-This document describes how to collect syntax, runtime, and function error-rate
+This document describes how to collect error-rate, coverage, and assertion-score
 metrics from participant test submissions.
 
 ## Environment
@@ -60,8 +60,19 @@ venv/bin/python scripts/collect_coverage.py \
 ```
 
 Omit `--format json` for a human-readable terminal report. The JSON output contains
-both `error_rates` and `coverage`, so error-rate classification is not run a second
-time by the batch collector.
+`error_rates`, `coverage`, and `assertion_score`, so error-rate classification is not
+run a second time by the batch collector.
+
+Collect assertion score without coverage with:
+
+```bash
+venv/bin/python scripts/collect_assertion_score.py \
+  tests/task/task.py \
+  --repo-root . \
+  --python venv/bin/python \
+  --timeout 120 \
+  > assertion_score.json
+```
 
 ## Error Metrics
 
@@ -114,6 +125,45 @@ Each coverage metric stores `covered`, `total`, and `rate`. CSV rate values use 
 range 0 to 1. A participant with no valid tests has empty participant-only coverage
 cells; this must not be interpreted as zero coverage.
 
+## Assertion Score
+
+Assertion score estimates the proportion of eligible source test functions that
+contain at least one non-trivial oracle related to `markdown_it`:
+
+```text
+Assertion Score =
+Non-trivial Source Tests / Eligible Source Tests
+```
+
+Unlike Error Rate, Assertion Score uses the five fixed source test functions
+`test_file`, `test_spec`, `test_core_after`, `test_parse_fail`, and
+`test_non_utf8` as its units of analysis. Pytest parameter instances are grouped
+back into their source function. A missing function, or a function with any
+instance not classified as `valid` by Error Rate, is `invalid` and excluded from
+the denominator. When no eligible source tests remain, the score is unavailable
+(`null`) rather than zero.
+
+The collector performs conservative static analysis over each submitted test and
+its local helpers. It tracks imported `markdown_it` symbols, assignments, returned
+values, method calls, simple helper transformations, `pytest.raises` and
+`pytest.warns` contexts, assertion methods, and captured output. Each valid test is
+classified into exactly one category:
+
+- `invalid`: at least one generated parameter instance did not pass Error Rate;
+- `non_trivial`: at least one oracle has a detected backward dependency on the SUT;
+- `trivial`: all detected assertions are constants, self-comparisons, generic
+  type/`None` checks, or otherwise unrelated to the SUT;
+- `assertionless`: no supported assertion or exception oracle is present;
+- `uncertain`: the SUT is executed or an oracle is present, but the dependency
+  cannot be resolved confidently by the static analysis.
+
+The five classifications are mutually exclusive. `eligible source tests` equals
+`non_trivial + trivial + assertionless + uncertain`; `invalid` is excluded. The
+reported score is a conservative lower bound because `uncertain` remains in the
+denominator but not the numerator. Raw JSON records each source test, its generated
+node IDs, classification, source line, oracle type, and reason. Review all
+`uncertain` cases manually before final statistical analysis.
+
 ## All Participant Branches
 
 Participant submissions use the remote branches `experiment-01` through
@@ -129,10 +179,11 @@ venv/bin/python scripts/collect_all_branches.py \
   --timeout 120
 ```
 
-Coverage collection is enabled by default. The command invokes
-`collect_coverage.py` once per participating branch and obtains both error-rate and
-coverage JSON from that invocation. Use `--skip-coverage` only for a faster,
-error-rate-only diagnostic run:
+Coverage and assertion-score collection are enabled by default. The command invokes
+`collect_coverage.py` once per participating branch and obtains error-rate, coverage,
+and assertion-score JSON from that invocation. Assertion analysis reuses the
+error-rate result and does not execute pytest again. Use `--skip-coverage` only for
+a faster, error-rate-only diagnostic run:
 
 ```bash
 venv/bin/python scripts/collect_all_branches.py \
@@ -170,6 +221,7 @@ Each raw file contains:
 - baseline ref and commit;
 - full suite-level and case-level metrics;
 - participant-only and all-tests-combined statement and branch coverage;
+- assertion score and per-node assertion evidence;
 - detailed classification for every expanded pytest item.
 
 `collection_manifest.json` records the collector and baseline commits, the Python
@@ -210,20 +262,30 @@ This creates:
 
 ```text
 results/error_rates/summary/
+├── assertion_score.csv
 ├── error_rates.csv
 └── coverage.csv
 ```
 
 CSV does not support workbook tabs, so each metric family is written to a separate,
-focused table. Both tables use only `participant_number` and `status` as common
+focused table. All tables use only `participant_number` and `status` as common
 identity columns. `error_rates.csv` contains suite collectability, generated-test
 counts, classification counts, and the three error rates. `coverage.csv` contains
 the numbers of valid and invalid participant tests together with participant-only
 and all-tests-combined statement and branch coverage rates.
 
+`assertion_score.csv` contains one row per participant and one column for each of
+the five fixed test functions. Every test-function cell contains exactly one of
+`invalid`, `non_trivial`, `trivial`, `assertionless`, or `uncertain`. The final
+`assertion_score` column contains the participant-level score. The table also keeps
+the total source-test count and the number of tests in each of the five
+classifications. Generate it from a manifest collected by the default cross-branch
+command without `--skip-coverage`.
+
 Participants who did not participate and branches that could not be collected
-remain in both tables, but their metric cells are empty rather than zero. Select
-rows with `status` equal to `collected` before calculating descriptive statistics.
+remain in all three tables, but their metric cells are empty rather than zero.
+Select rows with `status` equal to `collected` before calculating descriptive
+statistics.
 
 Provenance fields such as branch names, commits, changed files, output paths, and
 collection timestamps remain in `collection_manifest.json` and raw JSON instead of

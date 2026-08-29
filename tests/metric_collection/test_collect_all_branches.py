@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from scripts.collect_all_branches import (
+    _assertion_score_summary,
     _branch_ref,
     _collect_branch,
     _coverage_summary,
@@ -68,3 +69,27 @@ def test_coverage_summary_uses_rates_from_covered_counts() -> None:
     assert participant_scope["statement"]["rate"] == 0.6
     assert participant_scope["branch"]["rate"] == 0.4
     assert summary["all_tests_combined"]["statement"]["rate"] == 0.9
+
+
+def test_assertion_score_summary_uses_valid_tests_as_denominator() -> None:
+    summary = _assertion_score_summary(
+        {
+            "total_source_tests": 5,
+            "invalid_test_count": 1,
+            "eligible_test_count": 4,
+            "non_trivial_test_count": 2,
+            "trivial_test_count": 1,
+            "assertionless_test_count": 0,
+            "uncertain_test_count": 1,
+            "test_cases": [
+                {"source_test": "test_file", "classification": "non_trivial"},
+                {"source_test": "test_spec", "classification": "non_trivial"},
+                {"source_test": "test_core_after", "classification": "invalid"},
+                {"source_test": "test_parse_fail", "classification": "trivial"},
+                {"source_test": "test_non_utf8", "classification": "uncertain"},
+            ],
+        }
+    )
+
+    assert summary["score"] == 0.5
+    assert summary["test_statuses"]["test_core_after"] == "invalid"

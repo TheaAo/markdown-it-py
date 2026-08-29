@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 from scripts.summarize_metrics import (
+    ASSERTION_SCORE_COLUMNS,
     COVERAGE_COLUMNS,
     ERROR_RATE_COLUMNS,
     summarize_metrics,
@@ -39,6 +40,23 @@ def _collected_participant(number: int) -> dict[str, object]:
                     "branch": {"covered": 40, "total": 50, "rate": 0.8},
                 },
             },
+            "assertion_score": {
+                "total_source_tests": 5,
+                "invalid_test_count": 4,
+                "eligible_test_count": 1,
+                "non_trivial_test_count": 1,
+                "trivial_test_count": 0,
+                "assertionless_test_count": 0,
+                "uncertain_test_count": 0,
+                "score": 1.0,
+                "test_statuses": {
+                    "test_file": "non_trivial",
+                    "test_spec": "invalid",
+                    "test_core_after": "invalid",
+                    "test_parse_fail": "invalid",
+                    "test_non_utf8": "invalid",
+                },
+            },
         },
     }
 
@@ -63,7 +81,7 @@ def test_summary_writes_separate_focused_metric_tables(tmp_path: Path) -> None:
         ],
     )
 
-    error_rate_path, coverage_path = summarize_metrics(
+    error_rate_path, coverage_path, assertion_score_path = summarize_metrics(
         manifest_path, tmp_path / "summary"
     )
 
@@ -85,6 +103,18 @@ def test_summary_writes_separate_focused_metric_tables(tmp_path: Path) -> None:
     assert coverage_rows[0]["combined_branch_coverage"] == "0.800000"
     assert coverage_rows[1]["participant_statement_coverage"] == ""
 
+    assertion_columns, assertion_rows = _read_rows(assertion_score_path)
+    assert assertion_columns == list(ASSERTION_SCORE_COLUMNS)
+    assert [row["participant_number"] for row in assertion_rows] == ["2", "13"]
+    assert assertion_rows[0]["total_source_tests"] == "5"
+    assert "eligible_test_count" not in assertion_columns
+    assert assertion_rows[0]["invalid_test_count"] == "4"
+    assert assertion_rows[0]["non_trivial_test_count"] == "1"
+    assert assertion_rows[0]["test_file"] == "non_trivial"
+    assert assertion_rows[0]["test_spec"] == "invalid"
+    assert assertion_rows[0]["assertion_score"] == "1.000000"
+    assert assertion_rows[1]["assertion_score"] == ""
+
 
 def test_summary_keeps_coverage_empty_for_old_manifest(tmp_path: Path) -> None:
     participant = _collected_participant(1)
@@ -94,13 +124,28 @@ def test_summary_keeps_coverage_empty_for_old_manifest(tmp_path: Path) -> None:
     manifest_path = tmp_path / "collection_manifest.json"
     _write_manifest(manifest_path, [participant])
 
-    _error_rate_path, coverage_path = summarize_metrics(
+    _error_rate_path, coverage_path, _assertion_score_path = summarize_metrics(
         manifest_path, tmp_path / "summary"
     )
 
     _columns, rows = _read_rows(coverage_path)
     assert rows[0]["status"] == "collected"
     assert rows[0]["valid_tests_included"] == ""
+
+
+def test_summary_rejects_missing_assertion_score(tmp_path: Path) -> None:
+    participant = _collected_participant(1)
+    summary = participant["summary"]
+    assert isinstance(summary, dict)
+    summary.pop("assertion_score")
+    manifest_path = tmp_path / "collection_manifest.json"
+    _write_manifest(manifest_path, [participant])
+
+    with pytest.raises(
+        ValueError,
+        match=r"assertion_score is missing; rerun collect_all_branches.py",
+    ):
+        summarize_metrics(manifest_path, tmp_path / "summary")
 
 
 def test_summary_rejects_inconsistent_classification_total(tmp_path: Path) -> None:

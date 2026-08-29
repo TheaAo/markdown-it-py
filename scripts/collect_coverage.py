@@ -10,6 +10,10 @@ from pathlib import Path
 from typing import Any
 
 try:
+    from scripts.collect_assertion_score import (
+        AssertionScoreReport,
+        collect_assertion_score,
+    )
     from scripts.collect_error_rates import (
         _copy_materials,
         _ensure_pytest_available,
@@ -20,6 +24,10 @@ try:
         collect_error_rates,
     )
 except ModuleNotFoundError:  # pragma: no cover - used when run as a script
+    from collect_assertion_score import (  # type: ignore[no-redef]
+        AssertionScoreReport,
+        collect_assertion_score,
+    )
     from collect_error_rates import (  # type: ignore[no-redef]
         _copy_materials,
         _ensure_pytest_available,
@@ -53,6 +61,7 @@ class CoverageReport:
     participant_tests_only: CoverageScope | None
     all_tests_combined: CoverageScope
     error_rates: ErrorRateReport | None = None
+    assertion_score: AssertionScoreReport | None = None
 
 
 def _run(
@@ -227,6 +236,13 @@ def collect_coverage(
     all_results = error_report.case_level.test_cases
     valid_results = [item for item in all_results if item.classification == "valid"]
     invalid_count = len(all_results) - len(valid_results)
+    assertion_report = collect_assertion_score(
+        test_path=test_path,
+        repo_root=repo_root,
+        python_executable=python_executable,
+        timeout=timeout,
+        error_report=error_report,
+    )
 
     with tempfile.TemporaryDirectory(prefix="coverage-valid-tests-") as temp_dir:
         temp_root = Path(temp_dir)
@@ -277,13 +293,19 @@ def collect_coverage(
         participant_tests_only=participant_tests_only,
         all_tests_combined=all_tests_combined,
         error_rates=error_report,
+        assertion_score=assertion_report,
     )
 
 
 def _report_payload(report: CoverageReport) -> dict[str, Any]:
     payload = asdict(report)
     error_rates = payload.pop("error_rates")
-    return {"error_rates": error_rates, "coverage": payload}
+    assertion_score = payload.pop("assertion_score")
+    return {
+        "error_rates": error_rates,
+        "coverage": payload,
+        "assertion_score": assertion_score,
+    }
 
 
 def _print_scope(name: str, scope: CoverageScope) -> None:
@@ -312,6 +334,17 @@ def _print_report(report: CoverageReport) -> None:
     else:
         _print_scope("Participant tests only", report.participant_tests_only)
     _print_scope("All tests combined", report.all_tests_combined)
+    if report.assertion_score is not None:
+        score = report.assertion_score.assertion_score
+        display_score = "unavailable" if score is None else f"{score:.2%}"
+        print(f"\nAssertion score: {display_score}")
+        print(
+            "  Non-trivial eligible source tests: "
+            f"{report.assertion_score.non_trivial_test_count}/"
+            f"{report.assertion_score.eligible_test_count}"
+        )
+        print(f"  Invalid source tests: {report.assertion_score.invalid_test_count}")
+        print(f"  Uncertain valid tests: {report.assertion_score.uncertain_test_count}")
 
 
 def main(argv: list[str] | None = None) -> int:

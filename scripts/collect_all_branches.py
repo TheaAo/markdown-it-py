@@ -14,6 +14,20 @@ PARTICIPANT_NUMBERS = tuple(range(1, 17))
 NOT_PARTICIPATED = frozenset({13, 15})
 TASK_PATH = Path("tests/task/task.py")
 PROTECTED_PATHS = ("markdown_it/", "pyproject.toml", "tox.ini")
+ASSERTION_TEST_FUNCTIONS = (
+    "test_file",
+    "test_spec",
+    "test_core_after",
+    "test_parse_fail",
+    "test_non_utf8",
+)
+ASSERTION_CLASSIFICATIONS = (
+    "invalid",
+    "non_trivial",
+    "trivial",
+    "assertionless",
+    "uncertain",
+)
 
 
 def _run(
@@ -168,6 +182,93 @@ def _coverage_summary(coverage: dict[str, Any]) -> dict[str, Any]:
             else None
         ),
         "all_tests_combined": _coverage_scope_summary(combined),
+    }
+
+
+def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
+    count_fields = (
+        "invalid_test_count",
+        "non_trivial_test_count",
+        "trivial_test_count",
+        "assertionless_test_count",
+        "uncertain_test_count",
+    )
+    total = assertion.get("total_source_tests")
+    eligible = assertion.get("eligible_test_count")
+    counts = {field: assertion.get(field) for field in count_fields}
+    if (
+        isinstance(total, bool)
+        or not isinstance(total, int)
+        or total < 0
+        or isinstance(eligible, bool)
+        or not isinstance(eligible, int)
+        or eligible < 0
+        or any(
+            isinstance(value, bool) or not isinstance(value, int) or value < 0
+            for value in counts.values()
+        )
+    ):
+        raise ValueError("assertion-score counts must be non-negative integers")
+    classified_total = sum(counts.values())
+    if classified_total != total:
+        message = (
+            f"assertion-score classified total {classified_total} "
+            f"does not equal {total}"
+        )
+        raise ValueError(message)
+    expected_eligible = total - counts["invalid_test_count"]
+    if eligible != expected_eligible:
+        raise ValueError(
+            f"assertion-score eligible total {eligible} does not equal "
+            f"{expected_eligible}"
+        )
+    test_cases = assertion.get("test_cases")
+    if not isinstance(test_cases, list):
+        raise ValueError("assertion-score test_cases must be an array")
+    test_statuses: dict[str, str] = {}
+    for test_case in test_cases:
+        if not isinstance(test_case, dict):
+            raise ValueError("assertion-score test case must be an object")
+        source_test = test_case.get("source_test")
+        classification = test_case.get("classification")
+        if source_test not in ASSERTION_TEST_FUNCTIONS:
+            raise ValueError(f"unexpected assertion test function: {source_test}")
+        if classification not in ASSERTION_CLASSIFICATIONS:
+            raise ValueError(
+                f"invalid assertion classification for {source_test}: "
+                f"{classification}"
+            )
+        if source_test in test_statuses:
+            raise ValueError(f"duplicate assertion test function: {source_test}")
+        test_statuses[source_test] = classification
+    missing_tests = set(ASSERTION_TEST_FUNCTIONS) - test_statuses.keys()
+    if missing_tests:
+        raise ValueError(
+            "assertion-score is missing test functions: "
+            + ", ".join(sorted(missing_tests))
+        )
+    status_counts = {
+        classification: sum(
+            status == classification for status in test_statuses.values()
+        )
+        for classification in ASSERTION_CLASSIFICATIONS
+    }
+    for classification, count_field in zip(
+        ASSERTION_CLASSIFICATIONS, count_fields, strict=True
+    ):
+        if status_counts[classification] != counts[count_field]:
+            raise ValueError(
+                f"assertion-score {classification} status count does not match "
+                f"{count_field}"
+            )
+    return {
+        "total_source_tests": total,
+        "eligible_test_count": eligible,
+        **counts,
+        "test_statuses": test_statuses,
+        "score": (
+            counts["non_trivial_test_count"] / eligible if eligible else None
+        ),
     }
 
 
@@ -341,16 +442,23 @@ def _collect_branch(
             )
             return record
         coverage: dict[str, Any] | None = None
+        assertion_score: dict[str, Any] | None = None
         if coverage_collector_path is None:
             metrics = collector_output
         else:
             metrics = collector_output.get("error_rates")
             coverage = collector_output.get("coverage")
-            if not isinstance(metrics, dict) or not isinstance(coverage, dict):
+            assertion_score = collector_output.get("assertion_score")
+            if (
+                not isinstance(metrics, dict)
+                or not isinstance(coverage, dict)
+                or not isinstance(assertion_score, dict)
+            ):
                 record.update(
                     status="invalid_collector_output",
                     reason=(
-                        "Coverage collector output is missing error_rates or coverage."
+                        "Combined collector output is missing error_rates, coverage, "
+                        "or assertion_score."
                     ),
                 )
                 return record
@@ -359,6 +467,8 @@ def _collect_branch(
             summary = _error_rate_summary(metrics)
             if coverage is not None:
                 summary["coverage"] = _coverage_summary(coverage)
+            if assertion_score is not None:
+                summary["assertion_score"] = _assertion_score_summary(assertion_score)
         except (KeyError, TypeError, ValueError) as exc:
             record.update(status="invalid_metric_totals", reason=str(exc))
             return record
@@ -374,6 +484,8 @@ def _collect_branch(
         }
         if coverage is not None:
             raw_payload["coverage"] = coverage
+        if assertion_score is not None:
+            raw_payload["assertion_score"] = assertion_score
         _write_json(raw_path, raw_payload)
         record.update(
             status="collected",
