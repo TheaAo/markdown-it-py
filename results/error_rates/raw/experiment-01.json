@@ -1,0 +1,215 @@
+{
+  "participant_id": "experiment-01",
+  "branch": "origin/experiment-01",
+  "participant_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "metrics": {
+    "test_path": "tests/task/task.py",
+    "suite_level": {
+      "collectable": true,
+      "collection_returncode": 0,
+      "collection_error": null,
+      "collected_nodeids": [
+        "tests/task/task.py::test_file",
+        "tests/task/task.py::test_spec",
+        "tests/task/task.py::test_core_after",
+        "tests/task/task.py::test_parse_fail",
+        "tests/task/task.py::test_non_utf8"
+      ]
+    },
+    "case_level": {
+      "total_generated_test_cases": 5,
+      "syntax_error_count": 0,
+      "runtime_error_count": 0,
+      "function_error_count": 0,
+      "valid_test_count": 5,
+      "syntax_error_rate": 0.0,
+      "runtime_error_rate": 0.0,
+      "function_error_rate": 0.0,
+      "test_cases": [
+        {
+          "nodeid": "tests/task/task.py::test_file",
+          "source_test": "test_file",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_spec",
+          "source_test": "test_spec",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_core_after",
+          "source_test": "test_core_after",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_parse_fail",
+          "source_test": "test_parse_fail",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_non_utf8",
+          "source_test": "test_non_utf8",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-01/tests/task/task.py",
+    "source": "markdown_it",
+    "valid_tests_included": 5,
+    "invalid_tests_excluded": 0,
+    "participant_tests_only": {
+      "statement": {
+        "covered": 2488,
+        "total": 3457,
+        "percent": 71.96991611223605
+      },
+      "branch": {
+        "covered": 829,
+        "total": 1326,
+        "percent": 62.51885369532428
+      }
+    },
+    "all_tests_combined": {
+      "statement": {
+        "covered": 3312,
+        "total": 3457,
+        "percent": 95.80561180214059
+      },
+      "branch": {
+        "covered": 1218,
+        "total": 1326,
+        "percent": 91.8552036199095
+      }
+    }
+  },
+  "assertion_score": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-01/tests/task/task.py",
+    "total_source_tests": 5,
+    "invalid_test_count": 0,
+    "eligible_test_count": 5,
+    "non_trivial_test_count": 5,
+    "trivial_test_count": 0,
+    "assertionless_test_count": 0,
+    "uncertain_test_count": 0,
+    "assertion_score": 1.0,
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/task.py::test_file"
+        ],
+        "generated_test_count": 1,
+        "classification": "non_trivial",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 28,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ]
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [
+          "tests/task/task.py::test_spec"
+        ],
+        "generated_test_count": 1,
+        "classification": "non_trivial",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 51,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ]
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [
+          "tests/task/task.py::test_core_after"
+        ],
+        "generated_test_count": 1,
+        "classification": "non_trivial",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 67,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ]
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [
+          "tests/task/task.py::test_parse_fail"
+        ],
+        "generated_test_count": 1,
+        "classification": "non_trivial",
+        "assertion_count": 2,
+        "non_trivial_assertion_count": 2,
+        "evidence": [
+          {
+            "line": 76,
+            "oracle_type": "pytest_context",
+            "classification": "non_trivial",
+            "reason": "expected exception or warning is produced by markdown_it execution"
+          },
+          {
+            "line": 80,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ]
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [
+          "tests/task/task.py::test_non_utf8"
+        ],
+        "generated_test_count": 1,
+        "classification": "non_trivial",
+        "assertion_count": 2,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 96,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 99,
+            "oracle_type": "assert",
+            "classification": "uncertain",
+            "reason": "SUT was executed, but data dependency to this assertion is unclear"
+          }
+        ]
+      }
+    ]
+  }
+}

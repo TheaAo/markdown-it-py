@@ -1,0 +1,145 @@
+{
+  "participant_id": "experiment-08",
+  "branch": "origin/experiment-08",
+  "participant_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "metrics": {
+    "test_path": "tests/task/task.py",
+    "suite_level": {
+      "collectable": true,
+      "collection_returncode": 0,
+      "collection_error": null,
+      "collected_nodeids": [
+        "tests/task/task.py::test_file",
+        "tests/task/task.py::test_spec"
+      ]
+    },
+    "case_level": {
+      "total_generated_test_cases": 2,
+      "syntax_error_count": 0,
+      "runtime_error_count": 0,
+      "function_error_count": 1,
+      "valid_test_count": 1,
+      "syntax_error_rate": 0.0,
+      "runtime_error_rate": 0.0,
+      "function_error_rate": 0.5,
+      "test_cases": [
+        {
+          "nodeid": "tests/task/task.py::test_file",
+          "source_test": "test_file",
+          "classification": "valid",
+          "returncode": 0,
+          "reason": "passed on original SUT"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_spec",
+          "source_test": "test_spec",
+          "classification": "function_error",
+          "returncode": 1,
+          "reason": "test executed but assertion failed on the original SUT"
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-08/tests/task/task.py",
+    "source": "markdown_it",
+    "valid_tests_included": 1,
+    "invalid_tests_excluded": 1,
+    "participant_tests_only": {
+      "statement": {
+        "covered": 1985,
+        "total": 3457,
+        "percent": 57.419728087937514
+      },
+      "branch": {
+        "covered": 515,
+        "total": 1326,
+        "percent": 38.83861236802414
+      }
+    },
+    "all_tests_combined": {
+      "statement": {
+        "covered": 3255,
+        "total": 3457,
+        "percent": 94.15678333815447
+      },
+      "branch": {
+        "covered": 1168,
+        "total": 1326,
+        "percent": 88.08446455505279
+      }
+    }
+  },
+  "assertion_score": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-08/tests/task/task.py",
+    "total_source_tests": 5,
+    "invalid_test_count": 4,
+    "eligible_test_count": 1,
+    "non_trivial_test_count": 0,
+    "trivial_test_count": 0,
+    "assertionless_test_count": 0,
+    "uncertain_test_count": 1,
+    "assertion_score": 0.0,
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/task.py::test_file"
+        ],
+        "generated_test_count": 1,
+        "classification": "uncertain",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 0,
+        "evidence": [
+          {
+            "line": 39,
+            "oracle_type": "assert",
+            "classification": "uncertain",
+            "reason": "SUT was executed, but data dependency to this assertion is unclear"
+          }
+        ]
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [
+          "tests/task/task.py::test_spec"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [],
+        "generated_test_count": 0,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [],
+        "generated_test_count": 0,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [],
+        "generated_test_count": 0,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      }
+    ]
+  }
+}

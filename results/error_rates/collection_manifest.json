@@ -1,0 +1,964 @@
+{
+  "generated_at": "2026-08-29T15:01:12.769908+00:00",
+  "repository": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/scripts/collect_error_rates.py",
+  "coverage_collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/scripts/collect_coverage.py",
+  "python_executable": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/venv/bin/python",
+  "participants": [
+    {
+      "participant_id": "experiment-01",
+      "participant_number": 1,
+      "branch": "origin/experiment-01",
+      "participant_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/materials/test.md",
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-01.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2488,
+              "total": 3457,
+              "rate": 0.7196991611223604
+            },
+            "branch": {
+              "covered": 829,
+              "total": 1326,
+              "rate": 0.6251885369532428
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "branch": "origin/experiment-02",
+      "participant_commit": "a48fb91cabdeb1829841a8491419c9727baf75ff",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2488,
+              "total": 3457,
+              "rate": 0.7196991611223604
+            },
+            "branch": {
+              "covered": 829,
+              "total": 1326,
+              "rate": 0.6251885369532428
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "branch": "origin/experiment-03",
+      "participant_commit": "cf6fa5479cc12d618e80da82dbe7b92a33af3013",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2488,
+              "total": 3457,
+              "rate": 0.7196991611223604
+            },
+            "branch": {
+              "covered": 829,
+              "total": 1326,
+              "rate": 0.6251885369532428
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "branch": "origin/experiment-04",
+      "participant_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/materials/compounds.txt",
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "suite_collectable": false,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 4,
+        "runtime_error_count": 1,
+        "function_error_count": 0,
+        "valid_test_count": 0,
+        "syntax_error_rate": 0.8,
+        "runtime_error_rate": 0.2,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 0,
+          "invalid_tests_excluded": 5,
+          "participant_tests_only": null,
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3238,
+              "total": 3457,
+              "rate": 0.9366502748047439
+            },
+            "branch": {
+              "covered": 1154,
+              "total": 1326,
+              "rate": 0.8702865761689291
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 0,
+          "invalid_test_count": 5,
+          "non_trivial_test_count": 0,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "invalid",
+            "test_spec": "invalid",
+            "test_core_after": "invalid",
+            "test_parse_fail": "invalid",
+            "test_non_utf8": "invalid"
+          },
+          "score": null
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "branch": "origin/experiment-05",
+      "participant_commit": "fcd99f9b82ddcce8aa2a5a02da7b73491aff8b12",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "test_gbk.md",
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2471,
+              "total": 3457,
+              "rate": 0.7147816025455598
+            },
+            "branch": {
+              "covered": 827,
+              "total": 1326,
+              "rate": 0.6236802413273002
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3309,
+              "total": 3457,
+              "rate": 0.9571883135666763
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 3,
+          "trivial_test_count": 2,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "trivial",
+            "test_non_utf8": "trivial"
+          },
+          "score": 0.6
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-06",
+      "participant_number": 6,
+      "branch": "origin/experiment-06",
+      "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
+      "commits_ahead_of_baseline": 2,
+      "changed_files": [
+        "tests/task/html_test1.html",
+        "tests/task/task.py",
+        "tests/task/test.ipynb"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-06.json",
+      "summary": {
+        "suite_collectable": false,
+        "total_generated_test_cases": 1,
+        "syntax_error_count": 0,
+        "runtime_error_count": 1,
+        "function_error_count": 0,
+        "valid_test_count": 0,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 1.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 0,
+          "invalid_tests_excluded": 1,
+          "participant_tests_only": null,
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3238,
+              "total": 3457,
+              "rate": 0.9366502748047439
+            },
+            "branch": {
+              "covered": 1154,
+              "total": 1326,
+              "rate": 0.8702865761689291
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 0,
+          "invalid_test_count": 5,
+          "non_trivial_test_count": 0,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "invalid",
+            "test_spec": "invalid",
+            "test_core_after": "invalid",
+            "test_parse_fail": "invalid",
+            "test_non_utf8": "invalid"
+          },
+          "score": null
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "branch": "origin/experiment-07",
+      "participant_commit": "975d8b5a07fdb8fd6b186368f6b88c43e935323a",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2489,
+              "total": 3457,
+              "rate": 0.7199884292739369
+            },
+            "branch": {
+              "covered": 830,
+              "total": 1326,
+              "rate": 0.6259426847662142
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "branch": "origin/experiment-08",
+      "participant_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "1.html",
+        "2.html",
+        "output.html",
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 2,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 1,
+        "valid_test_count": 1,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.5,
+        "coverage": {
+          "valid_tests_included": 1,
+          "invalid_tests_excluded": 1,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 1985,
+              "total": 3457,
+              "rate": 0.5741972808793752
+            },
+            "branch": {
+              "covered": 515,
+              "total": 1326,
+              "rate": 0.38838612368024134
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3255,
+              "total": 3457,
+              "rate": 0.9415678333815447
+            },
+            "branch": {
+              "covered": 1168,
+              "total": 1326,
+              "rate": 0.8808446455505279
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 1,
+          "invalid_test_count": 4,
+          "non_trivial_test_count": 0,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 1,
+          "test_statuses": {
+            "test_file": "uncertain",
+            "test_spec": "invalid",
+            "test_core_after": "invalid",
+            "test_parse_fail": "invalid",
+            "test_non_utf8": "invalid"
+          },
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "branch": "origin/experiment-09",
+      "participant_commit": "db7aac28703727cccb04a098580e0a71dc62882d",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 2,
+        "function_error_count": 0,
+        "valid_test_count": 3,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.4,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 3,
+          "invalid_tests_excluded": 2,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 1143,
+              "total": 3457,
+              "rate": 0.33063349725195257
+            },
+            "branch": {
+              "covered": 165,
+              "total": 1326,
+              "rate": 0.1244343891402715
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3238,
+              "total": 3457,
+              "rate": 0.9366502748047439
+            },
+            "branch": {
+              "covered": 1154,
+              "total": 1326,
+              "rate": 0.8702865761689291
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 2,
+          "invalid_test_count": 3,
+          "non_trivial_test_count": 0,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 2,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "invalid",
+            "test_spec": "invalid",
+            "test_core_after": "invalid",
+            "test_parse_fail": "assertionless",
+            "test_non_utf8": "assertionless"
+          },
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-10",
+      "participant_number": 10,
+      "branch": "origin/experiment-10",
+      "participant_commit": "f69c01b1ec004842add4ff533b4fbd035a7c7d5d",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-10.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2489,
+              "total": 3457,
+              "rate": 0.7199884292739369
+            },
+            "branch": {
+              "covered": 830,
+              "total": 1326,
+              "rate": 0.6259426847662142
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-11",
+      "participant_number": 11,
+      "branch": "origin/experiment-11",
+      "participant_commit": "18f0f69f73c5dde0cb60e77dece882a6fd59b93a",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-11.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 656,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 656,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 656,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2488,
+              "total": 3457,
+              "rate": 0.7196991611223604
+            },
+            "branch": {
+              "covered": 829,
+              "total": 1326,
+              "rate": 0.6251885369532428
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "branch": "origin/experiment-12",
+      "participant_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 5,
+          "invalid_tests_excluded": 0,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2488,
+              "total": 3457,
+              "rate": 0.7196991611223604
+            },
+            "branch": {
+              "covered": 829,
+              "total": 1326,
+              "rate": 0.6251885369532428
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 5,
+          "invalid_test_count": 0,
+          "non_trivial_test_count": 5,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 0,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "non_trivial",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "non_trivial"
+          },
+          "score": 1.0
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-13",
+      "participant_number": 13,
+      "branch": "origin/experiment-13",
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-14",
+      "participant_number": 14,
+      "branch": "origin/experiment-14",
+      "participant_commit": "ecaec5f05aecb0de2a9367740daade7508fe3435",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-14.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 4,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 1,
+        "valid_test_count": 3,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.25,
+        "coverage": {
+          "valid_tests_included": 3,
+          "invalid_tests_excluded": 1,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 1995,
+              "total": 3457,
+              "rate": 0.5770899623951403
+            },
+            "branch": {
+              "covered": 522,
+              "total": 1326,
+              "rate": 0.3936651583710407
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3255,
+              "total": 3457,
+              "rate": 0.9415678333815447
+            },
+            "branch": {
+              "covered": 1168,
+              "total": 1326,
+              "rate": 0.8808446455505279
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 3,
+          "invalid_test_count": 2,
+          "non_trivial_test_count": 2,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 1,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "invalid",
+            "test_core_after": "non_trivial",
+            "test_parse_fail": "assertionless",
+            "test_non_utf8": "invalid"
+          },
+          "score": 0.6666666666666666
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-15",
+      "participant_number": 15,
+      "branch": "origin/experiment-15",
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-16",
+      "participant_number": 16,
+      "branch": "origin/experiment-16",
+      "participant_commit": "1cc970e97affd8d64684909799afa1a33a8d06e7",
+      "commits_ahead_of_baseline": 1,
+      "changed_files": [
+        "tests/task/task.py"
+      ],
+      "status": "collected",
+      "output_file": "raw/experiment-16.json",
+      "summary": {
+        "suite_collectable": true,
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 1,
+        "function_error_count": 0,
+        "valid_test_count": 4,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.2,
+        "function_error_rate": 0.0,
+        "coverage": {
+          "valid_tests_included": 4,
+          "invalid_tests_excluded": 1,
+          "participant_tests_only": {
+            "statement": {
+              "covered": 2477,
+              "total": 3457,
+              "rate": 0.7165172114550188
+            },
+            "branch": {
+              "covered": 826,
+              "total": 1326,
+              "rate": 0.6229260935143288
+            }
+          },
+          "all_tests_combined": {
+            "statement": {
+              "covered": 3312,
+              "total": 3457,
+              "rate": 0.9580561180214059
+            },
+            "branch": {
+              "covered": 1218,
+              "total": 1326,
+              "rate": 0.918552036199095
+            }
+          }
+        },
+        "assertion_score": {
+          "total_source_tests": 5,
+          "eligible_test_count": 4,
+          "invalid_test_count": 1,
+          "non_trivial_test_count": 2,
+          "trivial_test_count": 0,
+          "assertionless_test_count": 2,
+          "uncertain_test_count": 0,
+          "test_statuses": {
+            "test_file": "non_trivial",
+            "test_spec": "assertionless",
+            "test_core_after": "assertionless",
+            "test_parse_fail": "non_trivial",
+            "test_non_utf8": "invalid"
+          },
+          "score": 0.5
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+participant_number,status,suite_collectable,total_generated_test_cases,valid_test_count,syntax_error_count,runtime_error_count,function_error_count,syntax_error_rate,runtime_error_rate,function_error_rate
+1,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+2,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+3,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+4,collected,false,5,0,4,1,0,0.800000,0.200000,0.000000
+5,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+6,collected,false,1,0,0,1,0,0.000000,1.000000,0.000000
+7,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+8,collected,true,2,1,0,0,1,0.000000,0.000000,0.500000
+9,collected,true,5,3,0,2,0,0.000000,0.400000,0.000000
+10,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+11,collected,true,656,656,0,0,0,0.000000,0.000000,0.000000
+12,collected,true,5,5,0,0,0,0.000000,0.000000,0.000000
+13,not_participated,,,,,,,,,
+14,collected,true,4,3,0,0,1,0.000000,0.000000,0.250000
+15,not_participated,,,,,,,,,
+16,collected,true,5,4,0,1,0,0.000000,0.200000,0.000000

@@ -1,0 +1,17 @@
+participant_number,status,valid_tests_included,invalid_tests_excluded,participant_statement_coverage,participant_branch_coverage,combined_statement_coverage,combined_branch_coverage
+1,collected,5,0,0.719699,0.625189,0.958056,0.918552
+2,collected,5,0,0.719699,0.625189,0.958056,0.918552
+3,collected,5,0,0.719699,0.625189,0.958056,0.918552
+4,collected,0,5,,,0.936650,0.870287
+5,collected,5,0,0.714782,0.623680,0.957188,0.918552
+6,collected,0,1,,,0.936650,0.870287
+7,collected,5,0,0.719988,0.625943,0.958056,0.918552
+8,collected,1,1,0.574197,0.388386,0.941568,0.880845
+9,collected,3,2,0.330633,0.124434,0.936650,0.870287
+10,collected,5,0,0.719988,0.625943,0.958056,0.918552
+11,collected,656,0,0.719699,0.625189,0.958056,0.918552
+12,collected,5,0,0.719699,0.625189,0.958056,0.918552
+13,not_participated,,,,,,
+14,collected,3,1,0.577090,0.393665,0.941568,0.880845
+15,not_participated,,,,,,
+16,collected,4,1,0.716517,0.622926,0.958056,0.918552

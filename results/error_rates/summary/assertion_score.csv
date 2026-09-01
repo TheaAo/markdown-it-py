@@ -1,0 +1,17 @@
+participant_number,status,total_source_tests,invalid_test_count,non_trivial_test_count,trivial_test_count,assertionless_test_count,uncertain_test_count,test_file,test_spec,test_core_after,test_parse_fail,test_non_utf8,assertion_score
+1,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+2,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+3,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+4,collected,5,5,0,0,0,0,invalid,invalid,invalid,invalid,invalid,
+5,collected,5,0,3,2,0,0,non_trivial,non_trivial,non_trivial,trivial,trivial,0.600000
+6,collected,5,5,0,0,0,0,invalid,invalid,invalid,invalid,invalid,
+7,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+8,collected,5,4,0,0,0,1,uncertain,invalid,invalid,invalid,invalid,0.000000
+9,collected,5,3,0,0,2,0,invalid,invalid,invalid,assertionless,assertionless,0.000000
+10,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+11,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+12,collected,5,0,5,0,0,0,non_trivial,non_trivial,non_trivial,non_trivial,non_trivial,1.000000
+13,not_participated,,,,,,,,,,,,
+14,collected,5,2,2,0,1,0,non_trivial,invalid,non_trivial,assertionless,invalid,0.666667
+15,not_participated,,,,,,,,,,,,
+16,collected,5,1,2,0,2,0,non_trivial,assertionless,assertionless,non_trivial,invalid,0.500000

@@ -1,0 +1,151 @@
+{
+  "participant_id": "experiment-04",
+  "branch": "origin/experiment-04",
+  "participant_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "metrics": {
+    "test_path": "tests/task/task.py",
+    "suite_level": {
+      "collectable": false,
+      "collection_returncode": 2,
+      "collection_error": "pytest reported SyntaxError",
+      "collected_nodeids": []
+    },
+    "case_level": {
+      "total_generated_test_cases": 5,
+      "syntax_error_count": 4,
+      "runtime_error_count": 1,
+      "function_error_count": 0,
+      "valid_test_count": 0,
+      "syntax_error_rate": 0.8,
+      "runtime_error_rate": 0.2,
+      "function_error_rate": 0.0,
+      "test_cases": [
+        {
+          "nodeid": "tests/task/task.py::test_file",
+          "source_test": "test_file",
+          "classification": "syntax_error",
+          "returncode": null,
+          "reason": "SyntaxError at line 29: invalid syntax"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_spec",
+          "source_test": "test_spec",
+          "classification": "syntax_error",
+          "returncode": null,
+          "reason": "SyntaxError at line 41: invalid syntax"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_core_after",
+          "source_test": "test_core_after",
+          "classification": "syntax_error",
+          "returncode": null,
+          "reason": "SyntaxError at line 68: expected an indented block after function definition on line 1"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_non_utf8",
+          "source_test": "test_non_utf8",
+          "classification": "syntax_error",
+          "returncode": null,
+          "reason": "SyntaxError at line 89: invalid syntax"
+        },
+        {
+          "nodeid": "tests/task/task.py::test_parse_fail",
+          "source_test": "test_parse_fail",
+          "classification": "runtime_error",
+          "returncode": 1,
+          "reason": "pytest setup failed"
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-04/tests/task/task.py",
+    "source": "markdown_it",
+    "valid_tests_included": 0,
+    "invalid_tests_excluded": 5,
+    "participant_tests_only": null,
+    "all_tests_combined": {
+      "statement": {
+        "covered": 3238,
+        "total": 3457,
+        "percent": 93.6650274804744
+      },
+      "branch": {
+        "covered": 1154,
+        "total": 1326,
+        "percent": 87.02865761689291
+      }
+    }
+  },
+  "assertion_score": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-04/tests/task/task.py",
+    "total_source_tests": 5,
+    "invalid_test_count": 5,
+    "eligible_test_count": 0,
+    "non_trivial_test_count": 0,
+    "trivial_test_count": 0,
+    "assertionless_test_count": 0,
+    "uncertain_test_count": 0,
+    "assertion_score": null,
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/task.py::test_file"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [
+          "tests/task/task.py::test_spec"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [
+          "tests/task/task.py::test_core_after"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [
+          "tests/task/task.py::test_parse_fail"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [
+          "tests/task/task.py::test_non_utf8"
+        ],
+        "generated_test_count": 1,
+        "classification": "invalid",
+        "assertion_count": 0,
+        "non_trivial_assertion_count": 0,
+        "evidence": []
+      }
+    ]
+  }
+}
