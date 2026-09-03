@@ -50,11 +50,14 @@ def convert_file(filename: str) -> None:
     Parse a Markdown file and dump the output to stdout.
     """
     try:
-        with open(filename, encoding="utf8", errors="ignore") as fin:
+        with open(filename, encoding="utf8") as fin:
             rendered = MarkdownIt().render(fin.read())
             print(rendered, end="")
     except OSError:
         sys.stderr.write(f'Cannot open file "{filename}".\n')
+        sys.exit(1)
+    except UnicodeDecodeError:
+        sys.stderr.write(f'Cannot decode file "{filename}" as UTF-8.\n')
         sys.exit(1)
 
 
