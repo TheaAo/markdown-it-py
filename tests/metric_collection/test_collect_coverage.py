@@ -1,4 +1,4 @@
-from scripts.collect_coverage import (
+from scripts.metric_collection.collect_coverage import (
     CoverageMetric,
     CoverageReport,
     CoverageScope,

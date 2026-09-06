@@ -9,7 +9,7 @@ import sys
 from typing import Literal, Sequence
 
 try:
-    from scripts.collect_error_rates import (
+    from scripts.metric_collection.collect_error_rates import (
         _ensure_pytest_available,
         _split_test_file,
         ErrorRateReport,
@@ -115,9 +115,7 @@ def _sut_aliases(trees: list[ast.Module]) -> set[str]:
                     if imported.name == "markdown_it" or imported.name.startswith(
                         "markdown_it."
                     ):
-                        aliases.add(
-                            imported.asname or imported.name.split(".", 1)[0]
-                        )
+                        aliases.add(imported.asname or imported.name.split(".", 1)[0])
             elif isinstance(node, ast.ImportFrom) and node.module:
                 if node.module == "markdown_it" or node.module.startswith(
                     "markdown_it."
@@ -130,8 +128,7 @@ def _sut_aliases(trees: list[ast.Module]) -> set[str]:
 
 def _contains_name(node: ast.AST, names: set[str]) -> bool:
     return any(
-        isinstance(child, ast.Name) and child.id in names
-        for child in ast.walk(node)
+        isinstance(child, ast.Name) and child.id in names for child in ast.walk(node)
     )
 
 
@@ -325,8 +322,8 @@ class TestAnalyzer:
         }
 
     def _record_assertion_method(self, call: ast.Call) -> None:
-        receiver_tainted = (
-            isinstance(call.func, ast.Attribute) and self._is_tainted(call.func.value)
+        receiver_tainted = isinstance(call.func, ast.Attribute) and self._is_tainted(
+            call.func.value
         )
         arguments_tainted = any(self._is_tainted(argument) for argument in call.args)
         if receiver_tainted or arguments_tainted:
@@ -500,9 +497,7 @@ def _report_from_results(
         test_cases.append(
             AssertionTestResult(
                 source_test=source_test,
-                generated_nodeids=[
-                    result.nodeid for result in source_results or []
-                ],
+                generated_nodeids=[result.nodeid for result in source_results or []],
                 generated_test_count=len(source_results or []),
                 classification=classification,
                 assertion_count=len(evidence),
@@ -535,9 +530,7 @@ def _report_from_results(
         trivial_test_count=counts["trivial"],
         assertionless_test_count=counts["assertionless"],
         uncertain_test_count=counts["uncertain"],
-        assertion_score=(
-            counts["non_trivial"] / eligible if eligible else None
-        ),
+        assertion_score=(counts["non_trivial"] / eligible if eligible else None),
         test_cases=test_cases,
     )
 

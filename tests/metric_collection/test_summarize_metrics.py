@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.summarize_metrics import (
+from scripts.metric_collection.summarize_metrics import (
     ASSERTION_SCORE_COLUMNS,
     COVERAGE_COLUMNS,
     ERROR_RATE_COLUMNS,

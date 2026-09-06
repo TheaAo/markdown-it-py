@@ -235,8 +235,7 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
             raise ValueError(f"unexpected assertion test function: {source_test}")
         if classification not in ASSERTION_CLASSIFICATIONS:
             raise ValueError(
-                f"invalid assertion classification for {source_test}: "
-                f"{classification}"
+                f"invalid assertion classification for {source_test}: {classification}"
             )
         if source_test in test_statuses:
             raise ValueError(f"duplicate assertion test function: {source_test}")
@@ -266,9 +265,7 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
         "eligible_test_count": eligible,
         **counts,
         "test_statuses": test_statuses,
-        "score": (
-            counts["non_trivial_test_count"] / eligible if eligible else None
-        ),
+        "score": (counts["non_trivial_test_count"] / eligible if eligible else None),
     }
 
 
@@ -609,7 +606,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("results/error_rates"),
+        default=Path("results/metric_collection/error_rates"),
         help="Directory for raw participant JSON files and the manifest.",
     )
     parser.add_argument(

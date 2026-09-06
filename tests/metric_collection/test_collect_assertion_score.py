@@ -2,8 +2,10 @@ from pathlib import Path
 
 import pytest
 
-from scripts.collect_assertion_score import _report_from_results
-from scripts.collect_error_rates import TestCaseResult as ErrorTestCaseResult
+from scripts.metric_collection.collect_assertion_score import _report_from_results
+from scripts.metric_collection.collect_error_rates import (
+    TestCaseResult as ErrorTestCaseResult,
+)
 
 
 def _valid(nodeid: str, source_test: str) -> ErrorTestCaseResult:
