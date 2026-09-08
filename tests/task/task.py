@@ -65,14 +65,16 @@ def test_spec():
 			)
 # Please test the behavior of inserting a custom rule into the Core rule chain using core.ruler.after().
 # Requirements:
-# - Define a custom Core rule function. This function should take a `state` parameter and be used to mark that “the rule has been executed”, for example by printing a fixed string;
+# - Define a custom Core rule function. This function should take a `state` parameter and record that the rule has been executed;
 # - Define a plugin function, and in the plugin, insert the custom rule after the `normalize` rule;
 # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
-# - Verify that the custom rule is actually called.
-def test_core_after(capsys):
+# - Verify that the custom rule is called after `normalize`.
+def test_core_after():
+	execution_order = []
+
 	def core_rule(state) -> None:
-		print("core-rule-called")
+		execution_order.append("core_rule")
 
 	def plugin(md: MarkdownIt) -> None:
 		md.core.ruler.after("normalize", "core_rule_test", core_rule)
@@ -80,8 +82,9 @@ def test_core_after(capsys):
 	md = MarkdownIt().use(plugin)
 	md.parse("Just a test.")
 
-	captured = capsys.readouterr()
-	assert "core-rule-called" in captured.out
+	core_rules = md.get_all_rules()["core"]
+	assert execution_order == ["core_rule"]
+	assert core_rules.index("core_rule_test") == core_rules.index("normalize") + 1
 
 # Please test the program’s behavior when processing a non-existent file path.
 # Requirements:
@@ -97,15 +100,21 @@ def test_parse_fail():
 # Requirements:
 # - Construct or provide a non-UTF-8 encoded Markdown file;
 # - Invoke the command-line parsing functionality to process the file;
-# - Verify that the program can handle the input;
-# - Verify that the program exits normally with the normal exit code.
-def test_non_utf8(tmp_path: Path):
+# - Verify that the program raises `SystemExit`;
+# - Verify that the exit code is the abnormal exit code;
+# - Verify that the UTF-8 decoding error is written to stderr.
+def test_non_utf8(tmp_path: Path, capsys):
 	file_path = tmp_path / "non_utf8.md"
-	file_path.write_bytes(b"Valid ASCII\nInvalid byte: \xff\xfe\n")
+	file_path.write_bytes(
+		b"Valid ASCII\nInvalid byte: " + bytes([0xFF, 0xFE]) + b"\n"
+	)
 
-	exit_code = parse.main([str(file_path)])
+	with pytest.raises(SystemExit) as excinfo:
+		parse.convert_file(str(file_path))
 
-	assert exit_code == 0
+	assert excinfo.value.code == 1
+	captured = capsys.readouterr()
+	assert f'Cannot decode file "{file_path}" as UTF-8.' in captured.err
 
 
 
