@@ -60,7 +60,12 @@ def summarize_execution_times(manifest_path: Path, output_path: Path) -> None:
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=COLUMNS, extrasaction="ignore")
+        writer = csv.DictWriter(
+            stream,
+            fieldnames=COLUMNS,
+            extrasaction="ignore",
+            lineterminator="\n",
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(
