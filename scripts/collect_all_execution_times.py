@@ -49,7 +49,7 @@ def _summary(report: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(timing, dict):
             raise ValueError("collected execution-time output is missing summary")
         execution_time = timing.get("execution_time_seconds")
-        if not isinstance(execution_time, (int, float)) or execution_time <= 0:
+        if not isinstance(execution_time, int | float) or execution_time <= 0:
             raise ValueError("execution_time_seconds must be positive")
     elif status == "no_valid_tests":
         if timing is not None:
@@ -210,6 +210,7 @@ def collect_all_execution_times(
     timeout: float,
     warmups: int,
     measurements: int,
+    participant_numbers: tuple[int, ...] = PARTICIPANT_NUMBERS,
 ) -> dict[str, Any]:
     baseline_commit = _git(repo_root, "rev-parse", f"{baseline_ref}^{{commit}}")
     collector_commit = _git(repo_root, "rev-parse", "HEAD^{commit}")
@@ -217,7 +218,7 @@ def collect_all_execution_times(
     participants: list[dict[str, Any]] = []
     with tempfile.TemporaryDirectory(prefix="execution-time-branches-") as directory:
         worktree_parent = Path(directory)
-        for participant_number in PARTICIPANT_NUMBERS:
+        for participant_number in participant_numbers:
             participant_id = f"experiment-{participant_number:02d}"
             print(f"Collecting {participant_id}...", file=sys.stderr)
             record = _collect_participant(
@@ -272,6 +273,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--warmups", type=int, default=3)
     parser.add_argument("--measurements", type=int, default=15)
+    parser.add_argument(
+        "--participants",
+        type=int,
+        nargs="+",
+        choices=PARTICIPANT_NUMBERS,
+        default=list(PARTICIPANT_NUMBERS),
+        help="Participant numbers to collect; defaults to all participants.",
+    )
     args = parser.parse_args(argv)
 
     try:
@@ -287,6 +296,7 @@ def main(argv: list[str] | None = None) -> int:
             timeout=args.timeout,
             warmups=args.warmups,
             measurements=args.measurements,
+            participant_numbers=tuple(dict.fromkeys(args.participants)),
         )
         _write_json(
             (repo_root / args.output_dir).resolve() / "collection_manifest.json",

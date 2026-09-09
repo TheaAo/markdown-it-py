@@ -225,6 +225,10 @@ venv/bin/python scripts/collect_all_execution_times.py \
   --measurements 15
 ```
 
+For a timing pilot, add `--participants` followed by the fixed representative
+participant numbers. Do not choose or replace participants after inspecting timing
+results.
+
 Create the focused CSV without rerunning participant tests:
 
 ```bash
