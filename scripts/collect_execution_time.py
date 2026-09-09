@@ -56,6 +56,8 @@ class ExecutionTimeSummary:
     interquartile_range_seconds: float
     median_absolute_deviation_seconds: float
     coefficient_of_variation: float | None
+    cv_review_threshold: float
+    cv_review_required: bool
 
 
 @dataclass(frozen=True)
@@ -134,7 +136,9 @@ def _timed_pytest(
     )
 
 
-def _summarize(measurements: list[TimedRun]) -> ExecutionTimeSummary:
+def _summarize(
+    measurements: list[TimedRun], cv_review_threshold: float = 0.05
+) -> ExecutionTimeSummary:
     values = [run.elapsed_seconds for run in measurements]
     median = statistics.median(values)
     mean = statistics.fmean(values)
@@ -146,6 +150,7 @@ def _summarize(measurements: list[TimedRun]) -> ExecutionTimeSummary:
     else:
         first_quartile = third_quartile = values[0]
     absolute_deviations = [abs(value - median) for value in values]
+    coefficient_of_variation = standard_deviation / mean if mean else None
     return ExecutionTimeSummary(
         execution_time_seconds=median,
         measurement_count=len(values),
@@ -157,7 +162,12 @@ def _summarize(measurements: list[TimedRun]) -> ExecutionTimeSummary:
         third_quartile_seconds=third_quartile,
         interquartile_range_seconds=third_quartile - first_quartile,
         median_absolute_deviation_seconds=statistics.median(absolute_deviations),
-        coefficient_of_variation=(standard_deviation / mean if mean else None),
+        coefficient_of_variation=coefficient_of_variation,
+        cv_review_threshold=cv_review_threshold,
+        cv_review_required=(
+            coefficient_of_variation is not None
+            and coefficient_of_variation > cv_review_threshold
+        ),
     )
 
 
@@ -169,6 +179,7 @@ def collect_execution_time(
     timeout: float,
     warmup_count: int,
     measurement_count: int,
+    cv_review_threshold: float = 0.05,
 ) -> ExecutionTimeReport:
     if warmup_count < 0:
         raise ValueError("warmup_count must be non-negative")
@@ -176,6 +187,8 @@ def collect_execution_time(
         raise ValueError("measurement_count must be positive")
     if timeout <= 0:
         raise ValueError("timeout must be positive")
+    if not 0 < cv_review_threshold < 1:
+        raise ValueError("cv_review_threshold must be between 0 and 1")
 
     test_path = test_path.resolve()
     repo_root = repo_root.resolve()
@@ -304,7 +317,7 @@ def collect_execution_time(
         warmup_count=warmup_count,
         requested_measurement_count=measurement_count,
         timeout_seconds=timeout,
-        summary=_summarize(measurements),
+        summary=_summarize(measurements, cv_review_threshold),
         warmups=warmups,
         measurements=measurements,
     )
@@ -320,6 +333,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--warmups", type=int, default=3)
     parser.add_argument("--measurements", type=int, default=15)
+    parser.add_argument("--cv-review-threshold", type=float, default=0.05)
     args = parser.parse_args(argv)
 
     report = collect_execution_time(
@@ -329,6 +343,7 @@ def main(argv: list[str] | None = None) -> int:
         timeout=args.timeout,
         warmup_count=args.warmups,
         measurement_count=args.measurements,
+        cv_review_threshold=args.cv_review_threshold,
     )
     json.dump(asdict(report), sys.stdout, indent=2)
     sys.stdout.write("\n")

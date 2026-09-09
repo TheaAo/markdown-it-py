@@ -34,6 +34,8 @@ def test_summary_uses_median_as_execution_time() -> None:
     assert summary.minimum_seconds == 1.0
     assert summary.maximum_seconds == 9.0
     assert summary.median_absolute_deviation_seconds == 1.0
+    assert summary.cv_review_threshold == 0.05
+    assert summary.cv_review_required is True
 
 
 def test_controlled_environment_removes_external_pytest_options(

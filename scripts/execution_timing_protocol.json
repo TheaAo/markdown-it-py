@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-09-10",
+  "primary_metric": "execution_time_seconds",
+  "estimator": "median",
+  "warmup_count": 3,
+  "measurement_count": 15,
+  "cv_review_threshold": 0.05,
+  "outlier_policy": "retain_all_observations",
+  "automatic_rerun_policy": "never_replace_failed_or_slow_observations",
+  "pilot": {
+    "participants": [8, 1, 11],
+    "selection_basis": "low, medium, and high valid expanded test counts",
+    "valid_test_counts": [1, 5, 656],
+    "coefficient_of_variation": [
+      0.004828365776768485,
+      0.025620947084075342,
+      0.012767136200733612
+    ]
+  }
+}

@@ -78,6 +78,7 @@ def _collect_participant(
     timeout: float,
     warmups: int,
     measurements: int,
+    cv_review_threshold: float,
     worktree_parent: Path,
 ) -> dict[str, Any]:
     record = _participant_record(participant_number, remote, branch_prefix)
@@ -154,6 +155,8 @@ def _collect_participant(
             str(warmups),
             "--measurements",
             str(measurements),
+            "--cv-review-threshold",
+            str(cv_review_threshold),
         ]
         collector_timeout = timeout * (warmups + measurements + 2) + 300
         completed = _run(command, cwd=repo_root, timeout=collector_timeout)
@@ -210,6 +213,7 @@ def collect_all_execution_times(
     timeout: float,
     warmups: int,
     measurements: int,
+    cv_review_threshold: float = 0.05,
     participant_numbers: tuple[int, ...] = PARTICIPANT_NUMBERS,
 ) -> dict[str, Any]:
     baseline_commit = _git(repo_root, "rev-parse", f"{baseline_ref}^{{commit}}")
@@ -234,6 +238,7 @@ def collect_all_execution_times(
                 timeout=timeout,
                 warmups=warmups,
                 measurements=measurements,
+                cv_review_threshold=cv_review_threshold,
                 worktree_parent=worktree_parent,
             )
             participants.append(record)
@@ -249,6 +254,7 @@ def collect_all_execution_times(
         "warmup_count": warmups,
         "measurement_count": measurements,
         "timeout_seconds": timeout,
+        "cv_review_threshold": cv_review_threshold,
         "participants": participants,
     }
 
@@ -273,6 +279,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--timeout", type=float, default=120.0)
     parser.add_argument("--warmups", type=int, default=3)
     parser.add_argument("--measurements", type=int, default=15)
+    parser.add_argument("--cv-review-threshold", type=float, default=0.05)
     parser.add_argument(
         "--participants",
         type=int,
@@ -296,6 +303,7 @@ def main(argv: list[str] | None = None) -> int:
             timeout=args.timeout,
             warmups=args.warmups,
             measurements=args.measurements,
+            cv_review_threshold=args.cv_review_threshold,
             participant_numbers=tuple(dict.fromkeys(args.participants)),
         )
         _write_json(

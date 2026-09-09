@@ -24,6 +24,8 @@ COLUMNS = (
     "interquartile_range_seconds",
     "median_absolute_deviation_seconds",
     "coefficient_of_variation",
+    "cv_review_threshold",
+    "cv_review_required",
 )
 
 

@@ -184,6 +184,12 @@ pytest cache provider, and runs serially. Do not run formal timing collection wh
 mutation testing, coverage collection, IDE indexing, backups, or other CPU- or
 disk-intensive work is active.
 
+The protocol was frozen after a three-participant pilot representing one, five, and
+656 valid expanded test cases. Their coefficients of variation were 0.48%, 2.56%,
+and 1.28%. Formal collection therefore retains three warm-ups and fifteen measured
+runs, with `coefficient_of_variation > 0.05` triggering manual review. Crossing the
+threshold does not remove, replace, or automatically rerun any observation.
+
 Collect a single submission with:
 
 ```bash
