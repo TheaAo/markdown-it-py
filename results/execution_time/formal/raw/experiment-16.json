@@ -3,9 +3,9 @@
   "branch": "origin/experiment-16",
   "participant_commit": "1cc970e97affd8d64684909799afa1a33a8d06e7",
   "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
-  "collector_commit": "ee23d0711daca9f6c9b49d8a33f1117c6aa2fffb",
+  "collector_commit": "b952625054f5747c041fd79d87c68cf9d76cd470",
   "execution_time": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/execution-time-branches-6t5rgkzg/experiment-16/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/execution-time-branches-nw827643/experiment-16/tests/task/task.py",
     "status": "collected",
     "valid_tests_included": 4,
     "invalid_tests_excluded": 1,
@@ -13,17 +13,17 @@
     "requested_measurement_count": 15,
     "timeout_seconds": 120.0,
     "summary": {
-      "execution_time_seconds": 0.302133125,
+      "execution_time_seconds": 0.305843708,
       "measurement_count": 15,
-      "mean_seconds": 0.3035137332,
-      "standard_deviation_seconds": 0.003458002082832561,
-      "minimum_seconds": 0.29866425,
-      "maximum_seconds": 0.310721083,
-      "first_quartile_seconds": 0.300628625,
-      "third_quartile_seconds": 0.305878437,
-      "interquartile_range_seconds": 0.00524981200000002,
-      "median_absolute_deviation_seconds": 0.0020158750000000003,
-      "coefficient_of_variation": 0.011393231029035231,
+      "mean_seconds": 0.30886838046666665,
+      "standard_deviation_seconds": 0.010835559069054996,
+      "minimum_seconds": 0.300741583,
+      "maximum_seconds": 0.336256708,
+      "first_quartile_seconds": 0.303440354,
+      "third_quartile_seconds": 0.30786079200000005,
+      "interquartile_range_seconds": 0.0044204380000000265,
+      "median_absolute_deviation_seconds": 0.002455457999999966,
+      "coefficient_of_variation": 0.03508147727094512,
       "cv_review_threshold": 0.05,
       "cv_review_required": false
     },
@@ -31,7 +31,7 @@
       {
         "phase": "warmup",
         "index": 1,
-        "elapsed_nanoseconds": 322907083,
+        "elapsed_nanoseconds": 301560292,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -39,7 +39,7 @@
       {
         "phase": "warmup",
         "index": 2,
-        "elapsed_nanoseconds": 299826542,
+        "elapsed_nanoseconds": 301078417,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -47,7 +47,7 @@
       {
         "phase": "warmup",
         "index": 3,
-        "elapsed_nanoseconds": 298597667,
+        "elapsed_nanoseconds": 300983791,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -57,7 +57,7 @@
       {
         "phase": "measurement",
         "index": 1,
-        "elapsed_nanoseconds": 300319083,
+        "elapsed_nanoseconds": 307332792,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -65,7 +65,7 @@
       {
         "phase": "measurement",
         "index": 2,
-        "elapsed_nanoseconds": 300604083,
+        "elapsed_nanoseconds": 336256708,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -73,7 +73,7 @@
       {
         "phase": "measurement",
         "index": 3,
-        "elapsed_nanoseconds": 300653167,
+        "elapsed_nanoseconds": 300741583,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -81,7 +81,7 @@
       {
         "phase": "measurement",
         "index": 4,
-        "elapsed_nanoseconds": 298664250,
+        "elapsed_nanoseconds": 305843708,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -89,7 +89,7 @@
       {
         "phase": "measurement",
         "index": 5,
-        "elapsed_nanoseconds": 301780833,
+        "elapsed_nanoseconds": 306884667,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -97,7 +97,7 @@
       {
         "phase": "measurement",
         "index": 6,
-        "elapsed_nanoseconds": 305781083,
+        "elapsed_nanoseconds": 304399833,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -105,7 +105,7 @@
       {
         "phase": "measurement",
         "index": 7,
-        "elapsed_nanoseconds": 305975791,
+        "elapsed_nanoseconds": 304491250,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -113,7 +113,7 @@
       {
         "phase": "measurement",
         "index": 8,
-        "elapsed_nanoseconds": 310721083,
+        "elapsed_nanoseconds": 300762708,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -121,7 +121,7 @@
       {
         "phase": "measurement",
         "index": 9,
-        "elapsed_nanoseconds": 307143708,
+        "elapsed_nanoseconds": 333254833,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -129,7 +129,7 @@
       {
         "phase": "measurement",
         "index": 10,
-        "elapsed_nanoseconds": 304149000,
+        "elapsed_nanoseconds": 307233833,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -137,7 +137,7 @@
       {
         "phase": "measurement",
         "index": 11,
-        "elapsed_nanoseconds": 300308084,
+        "elapsed_nanoseconds": 303388250,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -145,7 +145,7 @@
       {
         "phase": "measurement",
         "index": 12,
-        "elapsed_nanoseconds": 304927083,
+        "elapsed_nanoseconds": 303492458,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -153,7 +153,7 @@
       {
         "phase": "measurement",
         "index": 13,
-        "elapsed_nanoseconds": 301614125,
+        "elapsed_nanoseconds": 301743917,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -161,7 +161,7 @@
       {
         "phase": "measurement",
         "index": 14,
-        "elapsed_nanoseconds": 302133125,
+        "elapsed_nanoseconds": 308810375,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -169,7 +169,7 @@
       {
         "phase": "measurement",
         "index": 15,
-        "elapsed_nanoseconds": 307931500,
+        "elapsed_nanoseconds": 308388792,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null

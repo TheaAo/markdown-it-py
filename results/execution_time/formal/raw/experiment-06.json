@@ -3,9 +3,9 @@
   "branch": "origin/experiment-06",
   "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
   "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
-  "collector_commit": "ee23d0711daca9f6c9b49d8a33f1117c6aa2fffb",
+  "collector_commit": "b952625054f5747c041fd79d87c68cf9d76cd470",
   "execution_time": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/execution-time-branches-6t5rgkzg/experiment-06/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/execution-time-branches-nw827643/experiment-06/tests/task/task.py",
     "status": "no_valid_tests",
     "valid_tests_included": 0,
     "invalid_tests_excluded": 1,
