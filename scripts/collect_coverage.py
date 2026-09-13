@@ -238,10 +238,7 @@ def collect_coverage(
     invalid_count = len(all_results) - len(valid_results)
     assertion_report = collect_assertion_score(
         test_path=test_path,
-        repo_root=repo_root,
-        python_executable=python_executable,
-        timeout=timeout,
-        error_report=error_report,
+        error_results=error_report.case_level.test_cases,
     )
 
     with tempfile.TemporaryDirectory(prefix="coverage-valid-tests-") as temp_dir:

@@ -23,6 +23,7 @@ ASSERTION_CLASSIFICATIONS = {
     "assertionless",
     "uncertain",
 }
+ASSERTION_VALIDITIES = {"fully_valid", "partially_valid", "invalid"}
 
 ERROR_RATE_COLUMNS = (
     *COMMON_COLUMNS,
@@ -55,7 +56,17 @@ ASSERTION_SCORE_COLUMNS = (
     "trivial_test_count",
     "assertionless_test_count",
     "uncertain_test_count",
-    *ASSERTION_TEST_FUNCTIONS,
+    *(
+        column
+        for test_function in ASSERTION_TEST_FUNCTIONS
+        for column in (
+            test_function,
+            f"{test_function}_validity",
+            f"{test_function}_valid_instance_count",
+            f"{test_function}_total_instance_count",
+            f"{test_function}_generated_nodeids",
+        )
+    ),
     "assertion_score",
 )
 
@@ -218,9 +229,12 @@ def _assertion_score_values(
             f"{expected_eligible}"
         )
     test_statuses = assertion.get("test_statuses")
+    test_provenance = assertion.get("test_provenance")
     if not isinstance(test_statuses, dict):
         raise ValueError(f"{assertion_context}.test_statuses must be an object")
-    statuses: dict[str, str] = {}
+    if not isinstance(test_provenance, dict):
+        raise ValueError(f"{assertion_context}.test_provenance must be an object")
+    trace_values: dict[str, Any] = {}
     for test_function in ASSERTION_TEST_FUNCTIONS:
         test_status = test_statuses.get(test_function)
         if test_status not in ASSERTION_CLASSIFICATIONS:
@@ -228,14 +242,73 @@ def _assertion_score_values(
                 f"{assertion_context}.test_statuses.{test_function} "
                 "must be a supported assertion classification"
             )
-        statuses[test_function] = test_status
+        provenance = test_provenance.get(test_function)
+        provenance_context = (
+            f"{assertion_context}.test_provenance.{test_function}"
+        )
+        if not isinstance(provenance, dict):
+            raise ValueError(f"{provenance_context} must be an object")
+        classification = provenance.get("classification")
+        if classification != test_status:
+            raise ValueError(
+                f"{provenance_context}.classification must match test_statuses"
+            )
+        validity = provenance.get("validity")
+        if validity not in ASSERTION_VALIDITIES:
+            raise ValueError(
+                f"{provenance_context}.validity must be a supported source validity"
+            )
+        valid_instance_count = _required_int(
+            provenance, "valid_instance_count", provenance_context
+        )
+        total_instance_count = _required_int(
+            provenance, "total_instance_count", provenance_context
+        )
+        generated_nodeids = provenance.get("generated_nodeids")
+        if (
+            not isinstance(generated_nodeids, list)
+            or any(
+                not isinstance(nodeid, str) or not nodeid
+                for nodeid in generated_nodeids
+            )
+        ):
+            raise ValueError(
+                f"{provenance_context}.generated_nodeids must be an array of strings"
+            )
+        if valid_instance_count > total_instance_count:
+            raise ValueError(
+                f"{provenance_context}.valid_instance_count exceeds total"
+            )
+        if total_instance_count != len(generated_nodeids):
+            raise ValueError(
+                f"{provenance_context}.generated_nodeids count does not match total"
+            )
+        if valid_instance_count == 0:
+            expected_validity = "invalid"
+        elif valid_instance_count == total_instance_count:
+            expected_validity = "fully_valid"
+        else:
+            expected_validity = "partially_valid"
+        if validity != expected_validity:
+            raise ValueError(
+                f"{provenance_context}.validity must be {expected_validity}"
+            )
+        trace_values.update(
+            {
+                test_function: test_status,
+                f"{test_function}_validity": validity,
+                f"{test_function}_valid_instance_count": valid_instance_count,
+                f"{test_function}_total_instance_count": total_instance_count,
+                f"{test_function}_generated_nodeids": generated_nodeids,
+            }
+        )
     return {
         "total_source_tests": total,
         **{
             source_field: counts[csv_field]
             for csv_field, source_field in count_fields.items()
         },
-        **statuses,
+        **trace_values,
         "assertion_score": (
             counts["non_trivial"] / eligible if eligible else None
         ),
@@ -290,6 +363,8 @@ def _csv_value(value: Any) -> Any:
         return str(value).lower()
     if isinstance(value, float):
         return f"{value:.6f}"
+    if isinstance(value, list):
+        return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
     return value
 
 

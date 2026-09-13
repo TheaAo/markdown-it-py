@@ -74,9 +74,7 @@ Collect assertion score without coverage with:
 ```bash
 venv/bin/python scripts/collect_assertion_score.py \
   tests/task/task.py \
-  --repo-root . \
-  --python venv/bin/python \
-  --timeout 120 \
+  --error-rates metrics.json \
   > assertion_score.json
 ```
 
@@ -156,11 +154,18 @@ Non-trivial Source Tests / Eligible Source Tests
 Unlike Error Rate, Assertion Score uses the five fixed source test functions
 `test_file`, `test_spec`, `test_core_after`, `test_parse_fail`, and
 `test_non_utf8` as its units of analysis. Pytest parameter instances are grouped
-back into their source function. A missing function, or a function with no instance
-classified as `valid` by Error Rate, is `invalid` and excluded from the denominator.
-A function with at least one valid instance remains eligible. Each record preserves
-`valid_instance_count`, `total_instance_count`, and `validity`. When no eligible
-source tests remain, the score is unavailable (`null`) rather than zero.
+back into their source function and are used only to determine that function's
+validity from existing Error Rate JSON:
+
+- `fully_valid`: every generated instance is `valid`;
+- `partially_valid`: at least one, but not every, generated instance is `valid`;
+- `invalid`: zero generated instances are `valid`, including a missing function.
+
+Both `fully_valid` and `partially_valid` functions enter the Assertion Score
+denominator. Only `invalid` functions are excluded. When no eligible source tests
+remain, the score is unavailable (`null`) rather than zero. The Assertion Score
+collector never reruns pytest; standalone collection requires an existing Error
+Rate JSON file through `--error-rates`.
 
 The collector performs conservative static analysis over each submitted test and
 its local helpers. It tracks imported `markdown_it` symbols, assignments, returned
@@ -179,8 +184,9 @@ source test is classified into exactly one category:
 The five classifications are mutually exclusive. `eligible source tests` equals
 `non_trivial + trivial + assertionless + uncertain`; `invalid` is excluded. The
 reported score is a conservative lower bound because `uncertain` remains in the
-denominator but not the numerator. Raw JSON records each source test, its generated
-node IDs, classification, source line, oracle type, and reason. Review all
+denominator but not the numerator. Raw JSON records each source test's
+`generated_nodeids`, `valid_instance_count`, `total_instance_count`, `validity`,
+assertion classification, source line, oracle type, and reason. Review all
 `uncertain` cases manually before final statistical analysis.
 
 ## Test Smell
@@ -461,7 +467,9 @@ the five fixed test functions. Every test-function cell contains exactly one of
 `invalid`, `non_trivial`, `trivial`, `assertionless`, or `uncertain`. The final
 `assertion_score` column contains the participant-level score. The table also keeps
 the total source-test count and the number of tests in each of the five
-classifications. Generate it from a manifest collected by the default cross-branch
+classifications. Each function also has adjacent `validity`,
+`valid_instance_count`, `total_instance_count`, and `generated_nodeids` columns for
+traceability. Generate it from a manifest collected by the default cross-branch
 command without `--skip-coverage`.
 
 `test_smell.csv` contains eligibility counts, confirmed and uncertain pair counts,

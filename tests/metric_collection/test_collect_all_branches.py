@@ -82,14 +82,67 @@ def test_assertion_score_summary_uses_valid_tests_as_denominator() -> None:
             "assertionless_test_count": 0,
             "uncertain_test_count": 1,
             "test_cases": [
-                {"source_test": "test_file", "classification": "non_trivial"},
-                {"source_test": "test_spec", "classification": "non_trivial"},
-                {"source_test": "test_core_after", "classification": "invalid"},
-                {"source_test": "test_parse_fail", "classification": "trivial"},
-                {"source_test": "test_non_utf8", "classification": "uncertain"},
+                {
+                    "source_test": "test_file",
+                    "classification": "non_trivial",
+                    "generated_nodeids": ["task.py::test_file[a]"],
+                    "generated_test_count": 1,
+                    "valid_instance_count": 1,
+                    "total_instance_count": 1,
+                    "validity": "fully_valid",
+                },
+                {
+                    "source_test": "test_spec",
+                    "classification": "non_trivial",
+                    "generated_nodeids": [
+                        "task.py::test_spec[a]",
+                        "task.py::test_spec[b]",
+                    ],
+                    "generated_test_count": 2,
+                    "valid_instance_count": 1,
+                    "total_instance_count": 2,
+                    "validity": "partially_valid",
+                },
+                {
+                    "source_test": "test_core_after",
+                    "classification": "invalid",
+                    "generated_nodeids": [],
+                    "generated_test_count": 0,
+                    "valid_instance_count": 0,
+                    "total_instance_count": 0,
+                    "validity": "invalid",
+                },
+                {
+                    "source_test": "test_parse_fail",
+                    "classification": "trivial",
+                    "generated_nodeids": ["task.py::test_parse_fail"],
+                    "generated_test_count": 1,
+                    "valid_instance_count": 1,
+                    "total_instance_count": 1,
+                    "validity": "fully_valid",
+                },
+                {
+                    "source_test": "test_non_utf8",
+                    "classification": "uncertain",
+                    "generated_nodeids": ["task.py::test_non_utf8"],
+                    "generated_test_count": 1,
+                    "valid_instance_count": 1,
+                    "total_instance_count": 1,
+                    "validity": "fully_valid",
+                },
             ],
         }
     )
 
     assert summary["score"] == 0.5
     assert summary["test_statuses"]["test_core_after"] == "invalid"
+    assert summary["test_provenance"]["test_spec"] == {
+        "classification": "non_trivial",
+        "generated_nodeids": [
+            "task.py::test_spec[a]",
+            "task.py::test_spec[b]",
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 2,
+        "validity": "partially_valid",
+    }

@@ -56,6 +56,46 @@ def _collected_participant(number: int) -> dict[str, object]:
                     "test_parse_fail": "invalid",
                     "test_non_utf8": "invalid",
                 },
+                "test_provenance": {
+                    "test_file": {
+                        "classification": "non_trivial",
+                        "generated_nodeids": [
+                            "task.py::test_file[a]",
+                            "task.py::test_file[b]",
+                        ],
+                        "valid_instance_count": 1,
+                        "total_instance_count": 2,
+                        "validity": "partially_valid",
+                    },
+                    "test_spec": {
+                        "classification": "invalid",
+                        "generated_nodeids": ["task.py::test_spec"],
+                        "valid_instance_count": 0,
+                        "total_instance_count": 1,
+                        "validity": "invalid",
+                    },
+                    "test_core_after": {
+                        "classification": "invalid",
+                        "generated_nodeids": [],
+                        "valid_instance_count": 0,
+                        "total_instance_count": 0,
+                        "validity": "invalid",
+                    },
+                    "test_parse_fail": {
+                        "classification": "invalid",
+                        "generated_nodeids": ["task.py::test_parse_fail"],
+                        "valid_instance_count": 0,
+                        "total_instance_count": 1,
+                        "validity": "invalid",
+                    },
+                    "test_non_utf8": {
+                        "classification": "invalid",
+                        "generated_nodeids": [],
+                        "valid_instance_count": 0,
+                        "total_instance_count": 0,
+                        "validity": "invalid",
+                    },
+                },
             },
         },
     }
@@ -111,6 +151,12 @@ def test_summary_writes_separate_focused_metric_tables(tmp_path: Path) -> None:
     assert assertion_rows[0]["invalid_test_count"] == "4"
     assert assertion_rows[0]["non_trivial_test_count"] == "1"
     assert assertion_rows[0]["test_file"] == "non_trivial"
+    assert assertion_rows[0]["test_file_validity"] == "partially_valid"
+    assert assertion_rows[0]["test_file_valid_instance_count"] == "1"
+    assert assertion_rows[0]["test_file_total_instance_count"] == "2"
+    assert assertion_rows[0]["test_file_generated_nodeids"] == (
+        '["task.py::test_file[a]","task.py::test_file[b]"]'
+    )
     assert assertion_rows[0]["test_spec"] == "invalid"
     assert assertion_rows[0]["assertion_score"] == "1.000000"
     assert assertion_rows[1]["assertion_score"] == ""

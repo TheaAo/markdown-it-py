@@ -28,6 +28,7 @@ ASSERTION_CLASSIFICATIONS = (
     "assertionless",
     "uncertain",
 )
+ASSERTION_VALIDITIES = ("fully_valid", "partially_valid", "invalid")
 
 
 def _run(
@@ -226,6 +227,7 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(test_cases, list):
         raise ValueError("assertion-score test_cases must be an array")
     test_statuses: dict[str, str] = {}
+    test_provenance: dict[str, dict[str, Any]] = {}
     for test_case in test_cases:
         if not isinstance(test_case, dict):
             raise ValueError("assertion-score test case must be an object")
@@ -240,7 +242,74 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
             )
         if source_test in test_statuses:
             raise ValueError(f"duplicate assertion test function: {source_test}")
+        generated_nodeids = test_case.get("generated_nodeids")
+        valid_instance_count = test_case.get("valid_instance_count")
+        total_instance_count = test_case.get("total_instance_count")
+        generated_test_count = test_case.get("generated_test_count")
+        validity = test_case.get("validity")
+        if (
+            not isinstance(generated_nodeids, list)
+            or any(
+                not isinstance(nodeid, str) or not nodeid
+                for nodeid in generated_nodeids
+            )
+        ):
+            raise ValueError(
+                f"invalid generated node IDs for assertion test {source_test}"
+            )
+        if len(set(generated_nodeids)) != len(generated_nodeids):
+            raise ValueError(
+                f"duplicate generated node IDs for assertion test {source_test}"
+            )
+        if any(
+            isinstance(value, bool) or not isinstance(value, int) or value < 0
+            for value in (
+                valid_instance_count,
+                total_instance_count,
+                generated_test_count,
+            )
+        ):
+            raise ValueError(
+                f"invalid instance counts for assertion test {source_test}"
+            )
+        if valid_instance_count > total_instance_count:
+            raise ValueError(
+                f"valid instances exceed total instances for {source_test}"
+            )
+        if total_instance_count != len(generated_nodeids):
+            raise ValueError(
+                f"generated node IDs do not match total instances for {source_test}"
+            )
+        if generated_test_count != total_instance_count:
+            raise ValueError(
+                f"generated test count does not match total instances for {source_test}"
+            )
+        if validity not in ASSERTION_VALIDITIES:
+            raise ValueError(
+                f"invalid source validity for {source_test}: {validity}"
+            )
+        if valid_instance_count == 0:
+            expected_validity = "invalid"
+        elif valid_instance_count == total_instance_count:
+            expected_validity = "fully_valid"
+        else:
+            expected_validity = "partially_valid"
+        if validity != expected_validity:
+            raise ValueError(
+                f"source validity for {source_test} must be {expected_validity}"
+            )
+        if (classification == "invalid") != (validity == "invalid"):
+            raise ValueError(
+                f"assertion classification and validity disagree for {source_test}"
+            )
         test_statuses[source_test] = classification
+        test_provenance[source_test] = {
+            "classification": classification,
+            "generated_nodeids": generated_nodeids,
+            "valid_instance_count": valid_instance_count,
+            "total_instance_count": total_instance_count,
+            "validity": validity,
+        }
     missing_tests = set(ASSERTION_TEST_FUNCTIONS) - test_statuses.keys()
     if missing_tests:
         raise ValueError(
@@ -261,11 +330,29 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
                 f"assertion-score {classification} status count does not match "
                 f"{count_field}"
             )
+    validity_counts = {
+        validity: sum(
+            item["validity"] == validity for item in test_provenance.values()
+        )
+        for validity in ASSERTION_VALIDITIES
+    }
+    if validity_counts["invalid"] != counts["invalid_test_count"]:
+        raise ValueError(
+            "assertion-score invalid validity count does not match "
+            "invalid_test_count"
+        )
+    if eligible != (
+        validity_counts["fully_valid"] + validity_counts["partially_valid"]
+    ):
+        raise ValueError(
+            "assertion-score eligible total does not match full and partial validity"
+        )
     return {
         "total_source_tests": total,
         "eligible_test_count": eligible,
         **counts,
         "test_statuses": test_statuses,
+        "test_provenance": test_provenance,
         "score": (
             counts["non_trivial_test_count"] / eligible if eligible else None
         ),

@@ -1,8 +1,13 @@
+import json
 from pathlib import Path
 
 import pytest
 
-from scripts.collect_assertion_score import _report_from_results
+from scripts.collect_assertion_score import (
+    _error_results_from_json,
+    _report_from_results,
+    collect_assertion_score,
+)
 from scripts.collect_error_rates import TestCaseResult as ErrorTestCaseResult
 
 
@@ -16,7 +21,9 @@ def _valid(nodeid: str, source_test: str) -> ErrorTestCaseResult:
     )
 
 
-def test_assertion_score_classifies_valid_generated_items(tmp_path: Path) -> None:
+def test_assertion_score_classifies_fully_valid_generated_items(
+    tmp_path: Path,
+) -> None:
     test_path = tmp_path / "test_participant.py"
     test_path.write_text(
         """\
@@ -113,7 +120,7 @@ def test_uncertain():
     }
 
 
-def test_assertion_score_is_unavailable_without_valid_tests(tmp_path: Path) -> None:
+def test_zero_valid_source_is_invalid(tmp_path: Path) -> None:
     test_path = tmp_path / "test_empty.py"
     test_path.write_text("def test_nothing():\n    pass\n", encoding="utf-8")
 
@@ -122,9 +129,15 @@ def test_assertion_score_is_unavailable_without_valid_tests(tmp_path: Path) -> N
     assert report.total_source_tests == 1
     assert report.invalid_test_count == 1
     assert report.assertion_score is None
+    result = report.test_cases[0]
+    assert result.generated_nodeids == []
+    assert result.valid_instance_count == 0
+    assert result.total_instance_count == 0
+    assert result.validity == "invalid"
+    assert result.classification == "invalid"
 
 
-def test_parameterized_source_is_eligible_if_any_instance_is_valid(
+def test_partially_valid_parameterized_source_remains_eligible(
     tmp_path: Path,
 ) -> None:
     test_path = tmp_path / "test_parameterized.py"
@@ -156,11 +169,16 @@ def test_render(source):
     assert report.invalid_test_count == 0
     assert report.eligible_test_count == 1
     assert report.assertion_score == 1.0
-    assert report.test_cases[0].classification == "non_trivial"
-    assert report.test_cases[0].generated_test_count == 2
-    assert report.test_cases[0].valid_instance_count == 1
-    assert report.test_cases[0].total_instance_count == 2
-    assert report.test_cases[0].validity == "partially_valid"
+    result = report.test_cases[0]
+    assert result.classification == "non_trivial"
+    assert result.generated_nodeids == [
+        "test_parameterized.py::test_render[a]",
+        "test_parameterized.py::test_render[b]",
+    ]
+    assert result.generated_test_count == 2
+    assert result.valid_instance_count == 1
+    assert result.total_instance_count == 2
+    assert result.validity == "partially_valid"
 
 
 def test_missing_expected_test_is_invalid(tmp_path: Path) -> None:
@@ -184,3 +202,65 @@ def test_missing_expected_test_is_invalid(tmp_path: Path) -> None:
         "non_trivial",
         "invalid",
     ]
+    assert [item.validity for item in report.test_cases] == [
+        "fully_valid",
+        "invalid",
+    ]
+
+
+def test_collection_uses_only_five_fixed_source_functions(tmp_path: Path) -> None:
+    test_path = tmp_path / "task.py"
+    test_path.write_text(
+        "from markdown_it import MarkdownIt\n\n"
+        "def test_file():\n"
+        "    assert MarkdownIt().render('text')\n\n"
+        "def test_extra():\n"
+        "    assert MarkdownIt().render('extra')\n",
+        encoding="utf-8",
+    )
+
+    report = collect_assertion_score(
+        test_path,
+        [
+            _valid("task.py::test_file", "test_file"),
+            _valid("task.py::test_extra", "test_extra"),
+        ],
+    )
+
+    assert [item.source_test for item in report.test_cases] == [
+        "test_file",
+        "test_spec",
+        "test_core_after",
+        "test_parse_fail",
+        "test_non_utf8",
+    ]
+
+
+def test_error_results_are_loaded_from_existing_json(tmp_path: Path) -> None:
+    error_path = tmp_path / "metrics.json"
+    error_path.write_text(
+        json.dumps(
+            {
+                "metrics": {
+                    "case_level": {
+                        "test_cases": [
+                            {
+                                "nodeid": "tests/task/task.py::test_file[a]",
+                                "source_test": "test_file",
+                                "classification": "valid",
+                                "returncode": 0,
+                                "reason": "passed on original SUT",
+                            }
+                        ]
+                    }
+                }
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    results = _error_results_from_json(error_path)
+
+    assert len(results) == 1
+    assert results[0].nodeid == "tests/task/task.py::test_file[a]"
+    assert results[0].classification == "valid"

@@ -6,25 +6,19 @@ from dataclasses import asdict, dataclass
 import json
 from pathlib import Path
 import sys
-from typing import Literal, Sequence
+from typing import Any, Literal, Sequence
 
 try:
     from scripts.collect_error_rates import (
-        _ensure_pytest_available,
         _split_test_file,
-        ErrorRateReport,
         TestBlock,
         TestCaseResult,
-        collect_error_rates,
     )
 except ModuleNotFoundError:  # pragma: no cover - used when run as a script
     from collect_error_rates import (  # type: ignore[no-redef]
-        _ensure_pytest_available,
         _split_test_file,
-        ErrorRateReport,
         TestBlock,
         TestCaseResult,
-        collect_error_rates,
     )
 
 
@@ -559,24 +553,46 @@ def _report_from_results(
 
 def collect_assertion_score(
     test_path: Path,
-    repo_root: Path,
-    python_executable: str,
-    timeout: float,
-    error_report: ErrorRateReport | None = None,
+    error_results: Sequence[TestCaseResult],
 ) -> AssertionScoreReport:
     test_path = test_path.resolve()
-    if error_report is None:
-        error_report = collect_error_rates(
-            test_path=test_path,
-            repo_root=repo_root,
-            python_executable=python_executable,
-            timeout=timeout,
-        )
     return _report_from_results(
         test_path,
-        error_report.case_level.test_cases,
+        list(error_results),
         expected_tests=EXPECTED_TEST_FUNCTIONS,
     )
+
+
+def _error_results_from_json(path: Path) -> list[TestCaseResult]:
+    payload: Any = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict) and isinstance(payload.get("metrics"), dict):
+        payload = payload["metrics"]
+    if isinstance(payload, dict) and isinstance(payload.get("error_rates"), dict):
+        payload = payload["error_rates"]
+    if not isinstance(payload, dict) or not isinstance(payload.get("case_level"), dict):
+        raise ValueError("error-rate JSON is missing case_level")
+    raw_cases = payload["case_level"].get("test_cases")
+    if not isinstance(raw_cases, list):
+        raise ValueError("error-rate JSON is missing case_level.test_cases")
+    results: list[TestCaseResult] = []
+    for index, raw_case in enumerate(raw_cases):
+        if not isinstance(raw_case, dict):
+            raise ValueError(f"error-rate test case {index} must be an object")
+        try:
+            results.append(
+                TestCaseResult(
+                    nodeid=raw_case["nodeid"],
+                    source_test=raw_case["source_test"],
+                    classification=raw_case["classification"],
+                    returncode=raw_case.get("returncode"),
+                    reason=raw_case["reason"],
+                )
+            )
+        except KeyError as exc:
+            raise ValueError(
+                f"error-rate test case {index} is missing {exc.args[0]}"
+            ) from exc
+    return results
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -584,18 +600,18 @@ def main(argv: list[str] | None = None) -> int:
         description="Collect a conservative non-trivial assertion score."
     )
     parser.add_argument("test_path", type=Path, help="Participant pytest file.")
-    parser.add_argument("--repo-root", type=Path, default=Path.cwd())
-    parser.add_argument("--python", default=sys.executable)
-    parser.add_argument("--timeout", type=float, default=60.0)
+    parser.add_argument(
+        "--error-rates",
+        type=Path,
+        required=True,
+        help="Existing Error Rate JSON; pytest is not executed.",
+    )
     args = parser.parse_args(argv)
 
     try:
-        _ensure_pytest_available(args.python, args.repo_root.resolve())
         report = collect_assertion_score(
             test_path=args.test_path,
-            repo_root=args.repo_root,
-            python_executable=args.python,
-            timeout=args.timeout,
+            error_results=_error_results_from_json(args.error_rates.resolve()),
         )
     except (OSError, RuntimeError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
