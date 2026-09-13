@@ -1,0 +1,23 @@
+[
+  {
+    "test_smell_type": "Conditional Test Logic",
+    "method_name": "test_spec",
+    "lines": [
+      81
+    ]
+  },
+  {
+    "test_smell_type": "Exception Handling",
+    "method_name": "test_non_utf8",
+    "lines": [
+      117
+    ]
+  },
+  {
+    "test_smell_type": "Redundant Print",
+    "method_name": "test_core_after",
+    "lines": [
+      94
+    ]
+  }
+]

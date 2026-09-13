@@ -1,0 +1,8 @@
+/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-zkcj2025/test_participant.py [AST PACKAGE]
+CLASSES:
+
+METHODS/FUNCTIONS:
+test_parse_fail(54~59) - function or procedure
+test_non_utf8(62~67) - function or procedure
+
+__TEMPY_JSON__[{"test_smell_type": "Conditional Test Logic", "method_name": "test_parse_fail", "lines": [56]}, {"test_smell_type": "Exception Handling", "method_name": "test_non_utf8", "lines": [64]}, {"test_smell_type": "Unknown Test", "method_name": "test_parse_fail", "lines": [54]}, {"test_smell_type": "Unknown Test", "method_name": "test_non_utf8", "lines": [62]}]

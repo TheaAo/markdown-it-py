@@ -1,0 +1,157 @@
+{
+  "participant_id": "experiment-06",
+  "participant_number": 6,
+  "branch": "origin/experiment-06",
+  "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
+  "error_rate_input": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/error_rates/raw/experiment-06.json",
+  "error_rate_collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "test_smell": {
+    "protocol_version": "1.0.0",
+    "rule_version": "1.0.0",
+    "test_path": "tests/task/task.py",
+    "analysis_unit": "source_test_function",
+    "total_source_tests": 5,
+    "eligible_test_count": 0,
+    "invalid_test_count": 5,
+    "smelly_test_count": 0,
+    "confirmed_pair_count": 0,
+    "uncertain_pair_count": 0,
+    "smelly_test_rate": null,
+    "mean_smells_per_test": null,
+    "test_smell_density": null,
+    "per_smell": {
+      "assertion_roulette": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "magic_number_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "unknown_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "conditional_test_logic": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "eager_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "duplicate_assert": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      },
+      "exception_handling": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": null
+      }
+    },
+    "tools": {
+      "pytest-smell": {
+        "status": "not_run",
+        "version": "1.0.5",
+        "supported_smells": [
+          "assertion_roulette",
+          "magic_number_test",
+          "unknown_test",
+          "conditional_test_logic",
+          "eager_test",
+          "duplicate_assert",
+          "exception_handling"
+        ],
+        "reason": "no eligible source tests",
+        "command": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "",
+        "detections": [],
+        "artifacts": {}
+      },
+      "TEMPY": {
+        "status": "not_run",
+        "version": "4c945d121d645b52fefb8f1b4f3e6caeec7c9095",
+        "supported_smells": [
+          "conditional_test_logic",
+          "exception_handling",
+          "unknown_test"
+        ],
+        "reason": "no eligible source tests",
+        "command": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "",
+        "detections": [],
+        "artifacts": {}
+      }
+    },
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/task.py::test_file"
+        ],
+        "valid_instance_count": 0,
+        "total_instance_count": 1,
+        "validity": "invalid",
+        "eligible": false,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": []
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [],
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
+        "eligible": false,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": []
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [],
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
+        "eligible": false,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": []
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [],
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
+        "eligible": false,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": []
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [],
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
+        "eligible": false,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": []
+      }
+    ]
+  }
+}

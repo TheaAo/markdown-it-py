@@ -1,0 +1,13 @@
+/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-yoso_n69/test_participant.py [AST PACKAGE]
+CLASSES:
+
+METHODS/FUNCTIONS:
+normalize_html(22~25) - function or procedure
+load_commonmark_cases(30~34) - function or procedure
+test_file(73~84) - function or procedure
+test_spec(92~95) - function or procedure
+test_core_after(98~106) - function or procedure
+test_parse_fail(109~113) - function or procedure
+test_non_utf8(116~130) - function or procedure
+
+__TEMPY_JSON__[{"test_smell_type": "Redundant Print", "method_name": "test_core_after", "lines": [100]}]

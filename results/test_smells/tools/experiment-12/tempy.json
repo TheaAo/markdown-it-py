@@ -1,0 +1,38 @@
+[
+  {
+    "test_smell_type": "Conditional Test Logic",
+    "method_name": "test_spec",
+    "lines": [
+      84
+    ]
+  },
+  {
+    "test_smell_type": "Conditional Test Logic",
+    "method_name": "test_spec",
+    "lines": [
+      98
+    ]
+  },
+  {
+    "test_smell_type": "Conditional Test Logic",
+    "method_name": "test_spec",
+    "lines": [
+      104
+    ]
+  },
+  {
+    "test_smell_type": "Redundant Print",
+    "method_name": "test_core_after",
+    "lines": [
+      125
+    ]
+  },
+  {
+    "test_smell_type": "Verbose Test",
+    "method_name": "test_spec",
+    "lines": [
+      70,
+      119
+    ]
+  }
+]

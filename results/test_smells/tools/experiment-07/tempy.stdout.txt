@@ -1,0 +1,12 @@
+/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-6rmml4c9/test_participant.py [AST PACKAGE]
+CLASSES:
+
+METHODS/FUNCTIONS:
+normalize_html(31~34) - function or procedure
+test_file(61~71) - function or procedure
+test_spec(74~89) - function or procedure
+test_core_after(92~103) - function or procedure
+test_parse_fail(106~109) - function or procedure
+test_non_utf8(112~124) - function or procedure
+
+__TEMPY_JSON__[{"test_smell_type": "Conditional Test Logic", "method_name": "test_spec", "lines": [81]}, {"test_smell_type": "Exception Handling", "method_name": "test_non_utf8", "lines": [117]}, {"test_smell_type": "Redundant Print", "method_name": "test_core_after", "lines": [94]}]
