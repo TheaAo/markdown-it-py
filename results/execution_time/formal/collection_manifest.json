@@ -1,0 +1,393 @@
+{
+  "generated_at": "2026-09-11T00:12:58.392974+00:00",
+  "repository": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "b952625054f5747c041fd79d87c68cf9d76cd470",
+  "collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution/scripts/collect_execution_time.py",
+  "python_executable": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution/.tox/py310/bin/python",
+  "warmup_count": 3,
+  "measurement_count": 15,
+  "timeout_seconds": 120.0,
+  "cv_review_threshold": 0.05,
+  "participants": [
+    {
+      "participant_id": "experiment-01",
+      "participant_number": 1,
+      "branch": "origin/experiment-01",
+      "participant_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+      "status": "collected",
+      "output_file": "raw/experiment-01.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.217666333,
+          "measurement_count": 15,
+          "mean_seconds": 0.21941679993333332,
+          "standard_deviation_seconds": 0.006877806894325429,
+          "minimum_seconds": 0.214694167,
+          "maximum_seconds": 0.242409584,
+          "first_quartile_seconds": 0.2155742705,
+          "third_quartile_seconds": 0.219989687,
+          "interquartile_range_seconds": 0.004415416499999991,
+          "median_absolute_deviation_seconds": 0.002439541999999989,
+          "coefficient_of_variation": 0.03134585362841475,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "branch": "origin/experiment-02",
+      "participant_commit": "a48fb91cabdeb1829841a8491419c9727baf75ff",
+      "status": "collected",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.223280083,
+          "measurement_count": 15,
+          "mean_seconds": 0.22342931393333335,
+          "standard_deviation_seconds": 0.0015023929161774138,
+          "minimum_seconds": 0.220657208,
+          "maximum_seconds": 0.226199709,
+          "first_quartile_seconds": 0.222715438,
+          "third_quartile_seconds": 0.2242847295,
+          "interquartile_range_seconds": 0.001569291500000014,
+          "median_absolute_deviation_seconds": 0.0008203739999999848,
+          "coefficient_of_variation": 0.006724242623891763,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "branch": "origin/experiment-03",
+      "participant_commit": "cf6fa5479cc12d618e80da82dbe7b92a33af3013",
+      "status": "collected",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.223847708,
+          "measurement_count": 15,
+          "mean_seconds": 0.22423345553333332,
+          "standard_deviation_seconds": 0.0017441050773670593,
+          "minimum_seconds": 0.221323209,
+          "maximum_seconds": 0.227558291,
+          "first_quartile_seconds": 0.2232880835,
+          "third_quartile_seconds": 0.2255272705,
+          "interquartile_range_seconds": 0.002239186999999976,
+          "median_absolute_deviation_seconds": 0.0013197080000000028,
+          "coefficient_of_variation": 0.007778076974369197,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "branch": "origin/experiment-04",
+      "participant_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+      "status": "collected",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "metric_status": "no_valid_tests",
+        "valid_tests_included": 0,
+        "invalid_tests_excluded": 5,
+        "execution_time": null
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "branch": "origin/experiment-05",
+      "participant_commit": "fcd99f9b82ddcce8aa2a5a02da7b73491aff8b12",
+      "status": "collected",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.386794125,
+          "measurement_count": 15,
+          "mean_seconds": 0.3869014972,
+          "standard_deviation_seconds": 0.0018667402390365757,
+          "minimum_seconds": 0.38479125,
+          "maximum_seconds": 0.389532,
+          "first_quartile_seconds": 0.385142229,
+          "third_quartile_seconds": 0.3886559375,
+          "interquartile_range_seconds": 0.00351370849999999,
+          "median_absolute_deviation_seconds": 0.0017148750000000046,
+          "coefficient_of_variation": 0.004824846252976908,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-06",
+      "participant_number": 6,
+      "branch": "origin/experiment-06",
+      "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
+      "status": "collected",
+      "output_file": "raw/experiment-06.json",
+      "summary": {
+        "metric_status": "no_valid_tests",
+        "valid_tests_included": 0,
+        "invalid_tests_excluded": 1,
+        "execution_time": null
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "branch": "origin/experiment-07",
+      "participant_commit": "975d8b5a07fdb8fd6b186368f6b88c43e935323a",
+      "status": "collected",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.219932958,
+          "measurement_count": 15,
+          "mean_seconds": 0.21983203899999998,
+          "standard_deviation_seconds": 0.0010717755701958177,
+          "minimum_seconds": 0.218375417,
+          "maximum_seconds": 0.22180975,
+          "first_quartile_seconds": 0.2190064585,
+          "third_quartile_seconds": 0.22047618749999998,
+          "interquartile_range_seconds": 0.0014697289999999752,
+          "median_absolute_deviation_seconds": 0.0008943759999999745,
+          "coefficient_of_variation": 0.004875429328096337,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "branch": "origin/experiment-08",
+      "participant_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 1,
+        "invalid_tests_excluded": 1,
+        "execution_time": {
+          "execution_time_seconds": 0.183420125,
+          "measurement_count": 15,
+          "mean_seconds": 0.18377518066666668,
+          "standard_deviation_seconds": 0.0021917785655531244,
+          "minimum_seconds": 0.181332959,
+          "maximum_seconds": 0.189492917,
+          "first_quartile_seconds": 0.1820416045,
+          "third_quartile_seconds": 0.18487739600000003,
+          "interquartile_range_seconds": 0.002835791500000018,
+          "median_absolute_deviation_seconds": 0.001507582999999979,
+          "coefficient_of_variation": 0.011926412247846433,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "branch": "origin/experiment-09",
+      "participant_commit": "db7aac28703727cccb04a098580e0a71dc62882d",
+      "status": "collected",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 3,
+        "invalid_tests_excluded": 2,
+        "execution_time": {
+          "execution_time_seconds": 0.123509125,
+          "measurement_count": 15,
+          "mean_seconds": 0.12395720833333333,
+          "standard_deviation_seconds": 0.0014805737385298948,
+          "minimum_seconds": 0.121880375,
+          "maximum_seconds": 0.126568792,
+          "first_quartile_seconds": 0.1227323545,
+          "third_quartile_seconds": 0.1251538545,
+          "interquartile_range_seconds": 0.002421499999999993,
+          "median_absolute_deviation_seconds": 0.0011163329999999971,
+          "coefficient_of_variation": 0.011944232678655395,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-10",
+      "participant_number": 10,
+      "branch": "origin/experiment-10",
+      "participant_commit": "f69c01b1ec004842add4ff533b4fbd035a7c7d5d",
+      "status": "collected",
+      "output_file": "raw/experiment-10.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.219952458,
+          "measurement_count": 15,
+          "mean_seconds": 0.22030399713333332,
+          "standard_deviation_seconds": 0.0018204842511422522,
+          "minimum_seconds": 0.21717225,
+          "maximum_seconds": 0.224020333,
+          "first_quartile_seconds": 0.2192160205,
+          "third_quartile_seconds": 0.221728979,
+          "interquartile_range_seconds": 0.0025129584999999954,
+          "median_absolute_deviation_seconds": 0.0014061659999999865,
+          "coefficient_of_variation": 0.008263509853797391,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-11",
+      "participant_number": 11,
+      "branch": "origin/experiment-11",
+      "participant_commit": "18f0f69f73c5dde0cb60e77dece882a6fd59b93a",
+      "status": "collected",
+      "output_file": "raw/experiment-11.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 656,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.77843375,
+          "measurement_count": 15,
+          "mean_seconds": 0.7830571279333333,
+          "standard_deviation_seconds": 0.012208267516719632,
+          "minimum_seconds": 0.770986459,
+          "maximum_seconds": 0.806820042,
+          "first_quartile_seconds": 0.7732536249999999,
+          "third_quartile_seconds": 0.7870337705,
+          "interquartile_range_seconds": 0.013780145500000063,
+          "median_absolute_deviation_seconds": 0.006599832999999999,
+          "coefficient_of_variation": 0.015590519620120234,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "branch": "origin/experiment-12",
+      "participant_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+      "status": "collected",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.225664167,
+          "measurement_count": 15,
+          "mean_seconds": 0.22561358053333333,
+          "standard_deviation_seconds": 0.002003192792371071,
+          "minimum_seconds": 0.222413459,
+          "maximum_seconds": 0.228772417,
+          "first_quartile_seconds": 0.2240730625,
+          "third_quartile_seconds": 0.227254854,
+          "interquartile_range_seconds": 0.003181791500000003,
+          "median_absolute_deviation_seconds": 0.0016726669999999888,
+          "coefficient_of_variation": 0.008878866190748251,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-13",
+      "participant_number": 13,
+      "branch": "origin/experiment-13",
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-14",
+      "participant_number": 14,
+      "branch": "origin/experiment-14",
+      "participant_commit": "ecaec5f05aecb0de2a9367740daade7508fe3435",
+      "status": "collected",
+      "output_file": "raw/experiment-14.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 3,
+        "invalid_tests_excluded": 1,
+        "execution_time": {
+          "execution_time_seconds": 0.184702167,
+          "measurement_count": 15,
+          "mean_seconds": 0.1848180862,
+          "standard_deviation_seconds": 0.001362876993343293,
+          "minimum_seconds": 0.182135917,
+          "maximum_seconds": 0.18758725,
+          "first_quartile_seconds": 0.18438937500000002,
+          "third_quartile_seconds": 0.1851270835,
+          "interquartile_range_seconds": 0.0007377084999999894,
+          "median_absolute_deviation_seconds": 0.0004079999999999917,
+          "coefficient_of_variation": 0.007374153803694636,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-15",
+      "participant_number": 15,
+      "branch": "origin/experiment-15",
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-16",
+      "participant_number": 16,
+      "branch": "origin/experiment-16",
+      "participant_commit": "1cc970e97affd8d64684909799afa1a33a8d06e7",
+      "status": "collected",
+      "output_file": "raw/experiment-16.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 4,
+        "invalid_tests_excluded": 1,
+        "execution_time": {
+          "execution_time_seconds": 0.305843708,
+          "measurement_count": 15,
+          "mean_seconds": 0.30886838046666665,
+          "standard_deviation_seconds": 0.010835559069054996,
+          "minimum_seconds": 0.300741583,
+          "maximum_seconds": 0.336256708,
+          "first_quartile_seconds": 0.303440354,
+          "third_quartile_seconds": 0.30786079200000005,
+          "interquartile_range_seconds": 0.0044204380000000265,
+          "median_absolute_deviation_seconds": 0.002455457999999966,
+          "coefficient_of_variation": 0.03508147727094512,
+          "cv_review_threshold": 0.05,
+          "cv_review_required": false
+        }
+      }
+    }
+  ]
+}

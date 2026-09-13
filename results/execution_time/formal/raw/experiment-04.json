@@ -1,0 +1,20 @@
+{
+  "participant_id": "experiment-04",
+  "branch": "origin/experiment-04",
+  "participant_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "b952625054f5747c041fd79d87c68cf9d76cd470",
+  "execution_time": {
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/execution-time-branches-nw827643/experiment-04/tests/task/task.py",
+    "status": "no_valid_tests",
+    "valid_tests_included": 0,
+    "invalid_tests_excluded": 5,
+    "warmup_count": 3,
+    "requested_measurement_count": 15,
+    "timeout_seconds": 120.0,
+    "summary": null,
+    "warmups": [],
+    "measurements": [],
+    "reason": "No test cases passed on the original SUT."
+  }
+}

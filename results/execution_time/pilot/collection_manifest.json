@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-09-09T22:39:58.952716+00:00",
+  "repository": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "collector_commit": "d3a42afe8aedcbb2a2a188e856293100b9ebdc45",
+  "collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution/scripts/collect_execution_time.py",
+  "python_executable": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-execution/.tox/py310/bin/python",
+  "warmup_count": 3,
+  "measurement_count": 15,
+  "timeout_seconds": 120.0,
+  "participants": [
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "branch": "origin/experiment-08",
+      "participant_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 1,
+        "invalid_tests_excluded": 1,
+        "execution_time": {
+          "execution_time_seconds": 0.177805541,
+          "measurement_count": 15,
+          "mean_seconds": 0.17810380006666668,
+          "standard_deviation_seconds": 0.00085995029295431,
+          "minimum_seconds": 0.176624833,
+          "maximum_seconds": 0.17926925,
+          "first_quartile_seconds": 0.177664063,
+          "third_quartile_seconds": 0.1789197495,
+          "interquartile_range_seconds": 0.0012556864999999917,
+          "median_absolute_deviation_seconds": 0.0008297080000000123,
+          "coefficient_of_variation": 0.004828365776768485
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-01",
+      "participant_number": 1,
+      "branch": "origin/experiment-01",
+      "participant_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+      "status": "collected",
+      "output_file": "raw/experiment-01.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 5,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.214978,
+          "measurement_count": 15,
+          "mean_seconds": 0.21703098893333334,
+          "standard_deviation_seconds": 0.0055605394830654745,
+          "minimum_seconds": 0.212814042,
+          "maximum_seconds": 0.234336666,
+          "first_quartile_seconds": 0.21416968749999998,
+          "third_quartile_seconds": 0.2165945835,
+          "interquartile_range_seconds": 0.0024248960000000097,
+          "median_absolute_deviation_seconds": 0.0008339579999999958,
+          "coefficient_of_variation": 0.025620947084075342
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-11",
+      "participant_number": 11,
+      "branch": "origin/experiment-11",
+      "participant_commit": "18f0f69f73c5dde0cb60e77dece882a6fd59b93a",
+      "status": "collected",
+      "output_file": "raw/experiment-11.json",
+      "summary": {
+        "metric_status": "collected",
+        "valid_tests_included": 656,
+        "invalid_tests_excluded": 0,
+        "execution_time": {
+          "execution_time_seconds": 0.767044917,
+          "measurement_count": 15,
+          "mean_seconds": 0.7700379999333333,
+          "standard_deviation_seconds": 0.009831180024889367,
+          "minimum_seconds": 0.760167667,
+          "maximum_seconds": 0.790220458,
+          "first_quartile_seconds": 0.7626498125000001,
+          "third_quartile_seconds": 0.7725807705000001,
+          "interquartile_range_seconds": 0.00993095799999999,
+          "median_absolute_deviation_seconds": 0.0044857919999999885,
+          "coefficient_of_variation": 0.012767136200733612
+        }
+      }
+    }
+  ]
+}

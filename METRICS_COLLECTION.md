@@ -1,7 +1,7 @@
 # Experiment Metrics Collection
 
-This document describes how to collect error-rate, coverage, assertion-score, and
-test-smell metrics from participant test submissions.
+This document describes how to collect error-rate, coverage, assertion-score,
+test-smell, and execution-time metrics from participant test submissions.
 
 Test Smell research documents:
 
@@ -246,6 +246,85 @@ type are Assertion Roulette 5, Magic Number Test 0, Unknown Test 5, Conditional
 Test Logic 10, Eager Test 0, Duplicate Assert 0, and Exception Handling 2. No pair
 was marked uncertain. Participants 04 and 06 have zero eligible source tests, so
 their three aggregate metric values are `null`.
+
+## Execution Time
+
+Execution time measures the complete wall-clock duration of a fresh pytest process
+running only participant test cases classified as `valid`. It includes Python and
+pytest startup, collection, fixture setup, test execution, teardown, and process
+exit. It excludes error-rate classification, isolation-file generation, worktree
+creation, coverage instrumentation, and mutation testing.
+
+The primary field is `execution_time_seconds`; it is the median of the measured
+runs. The raw JSON also preserves every duration as integer nanoseconds and reports
+the mean, standard deviation, minimum, maximum, quartiles, interquartile range,
+median absolute deviation, and coefficient of variation.
+
+The default protocol performs one untimed validity check, three unreported warm-up
+runs, and fifteen measured runs. Every run starts a new Python process. The
+collector removes external `PYTEST_ADDOPTS`, fixes `PYTHONHASHSEED=0`, disables the
+pytest cache provider, and runs serially. Do not run formal timing collection while
+mutation testing, coverage collection, IDE indexing, backups, or other CPU- or
+disk-intensive work is active.
+
+The protocol was frozen after a three-participant pilot representing one, five, and
+656 valid expanded test cases. Their coefficients of variation were 0.48%, 2.56%,
+and 1.28%. Formal collection therefore retains three warm-ups and fifteen measured
+runs, with `coefficient_of_variation > 0.05` triggering manual review. Crossing the
+threshold does not remove, replace, or automatically rerun any observation.
+
+Collect a single submission with:
+
+```bash
+venv/bin/python scripts/collect_execution_time.py \
+  tests/task/task.py \
+  --repo-root . \
+  --python venv/bin/python \
+  --timeout 120 \
+  --warmups 3 \
+  --measurements 15 \
+  > execution_time.json
+```
+
+If no valid test cases remain, `execution_time_seconds` is unavailable rather than
+zero. If a validation, warm-up, or measured run fails, the report preserves the
+failure and does not silently replace that observation.
+
+The execution-efficiency denominators use this same median time:
+
+```text
+Statement Execution Efficiency = Participant Statement Coverage / Execution Time
+Branch Execution Efficiency    = Participant Branch Coverage / Execution Time
+Mutation Execution Efficiency  = Mutation Score / Execution Time
+```
+
+Mutation execution efficiency uses ordinary execution time on the original SUT,
+not the duration of the mutation campaign. Calculate the efficiency ratios only
+after coverage and mutation policies are frozen, and retain the component score and
+execution time alongside each ratio.
+
+Collect all participant branches later, when the machine is otherwise idle:
+
+```bash
+venv/bin/python scripts/collect_all_execution_times.py \
+  --baseline origin/experiment-base \
+  --output-dir results/execution_time \
+  --timeout 120 \
+  --warmups 3 \
+  --measurements 15
+```
+
+For a timing pilot, add `--participants` followed by the fixed representative
+participant numbers. Do not choose or replace participants after inspecting timing
+results.
+
+Create the focused CSV without rerunning participant tests:
+
+```bash
+venv/bin/python scripts/summarize_execution_times.py \
+  results/execution_time/collection_manifest.json \
+  --output results/execution_time/summary/execution_time.csv
+```
 
 ## All Participant Branches
 
