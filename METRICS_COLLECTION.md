@@ -1,7 +1,13 @@
 # Experiment Metrics Collection
 
-This document describes how to collect error-rate, coverage, assertion-score, and
-execution-time metrics from participant test submissions.
+This document describes how to collect error-rate, coverage, assertion-score,
+test-smell, and execution-time metrics from participant test submissions.
+
+Test Smell research documents:
+
+- [TEST_SMELL_PILOT.md](TEST_SMELL_PILOT.md): pilot evidence and tool choice;
+- [TEST_SMELL_HANDOFF.md](TEST_SMELL_HANDOFF.md): implementation handoff.
+- [TEST_SMELL_AUDIT.md](TEST_SMELL_AUDIT.md): frozen-rule participant audit.
 
 ## Environment
 
@@ -103,8 +109,20 @@ valid_test_count
 = total_generated_test_cases
 ```
 
-Coverage, mutation, assertion, and maintainability metrics should subsequently be
-computed only from tests classified as `valid`.
+Execution metrics such as coverage and mutation score use only generated pytest
+instances classified as `valid`. Source-level maintenance metrics aggregate those
+instances back to each source function: `fully_valid` means all instances are
+valid, `partially_valid` means at least one but not all are valid, and `invalid`
+means none are valid. Both `fully_valid` and `partially_valid` source functions are
+eligible for Assertion Score and Test Smell analysis.
+
+The raw unit must not be conflated with the participant-level output. Error Rate
+and per-test Execution Time classify expanded pytest items. Assertion Score and
+Test Smell classify the five source functions because parameterization does not
+create additional test code. Coverage and Mutation Score are execution-set
+metrics: valid pytest items determine the executed set, but covered statements,
+branches, and killed mutants are aggregated over that set rather than averaged as
+independent item scores. Every metric is finally summarized once per participant.
 
 ## Coverage Metrics
 
@@ -138,18 +156,19 @@ Non-trivial Source Tests / Eligible Source Tests
 Unlike Error Rate, Assertion Score uses the five fixed source test functions
 `test_file`, `test_spec`, `test_core_after`, `test_parse_fail`, and
 `test_non_utf8` as its units of analysis. Pytest parameter instances are grouped
-back into their source function. A missing function, or a function with any
-instance not classified as `valid` by Error Rate, is `invalid` and excluded from
-the denominator. When no eligible source tests remain, the score is unavailable
-(`null`) rather than zero.
+back into their source function. A missing function, or a function with no instance
+classified as `valid` by Error Rate, is `invalid` and excluded from the denominator.
+A function with at least one valid instance remains eligible. Each record preserves
+`valid_instance_count`, `total_instance_count`, and `validity`. When no eligible
+source tests remain, the score is unavailable (`null`) rather than zero.
 
 The collector performs conservative static analysis over each submitted test and
 its local helpers. It tracks imported `markdown_it` symbols, assignments, returned
 values, method calls, simple helper transformations, `pytest.raises` and
-`pytest.warns` contexts, assertion methods, and captured output. Each valid test is
-classified into exactly one category:
+`pytest.warns` contexts, assertion methods, and captured output. Each eligible
+source test is classified into exactly one category:
 
-- `invalid`: at least one generated parameter instance did not pass Error Rate;
+- `invalid`: no generated parameter instance passed Error Rate;
 - `non_trivial`: at least one oracle has a detected backward dependency on the SUT;
 - `trivial`: all detected assertions are constants, self-comparisons, generic
   type/`None` checks, or otherwise unrelated to the SUT;
@@ -163,6 +182,70 @@ reported score is a conservative lower bound because `uncertain` remains in the
 denominator but not the numerator. Raw JSON records each source test, its generated
 node IDs, classification, source line, oracle type, and reason. Review all
 `uncertain` cases manually before final statistical analysis.
+
+## Test Smell
+
+The fixed protocol analyzes seven smells: Assertion Roulette, Magic Number Test,
+Unknown Test, Conditional Test Logic, Eager Test, Duplicate Assert, and Exception
+Handling. Test Maverick is excluded because the experiment uses function-style
+pytest tests without a uniform class-level setup model.
+
+A versioned AST rule engine scans every eligible source function for all seven
+smells. pytest-smell 1.0.5 supplies external evidence, and pinned TEMPY supplies an
+independent cross-check for Conditional Test Logic, Unknown Test, and Exception
+Handling. External alerts do not restrict the AST scan and are not averaged or
+voted into the result. See [TEST_SMELL_PILOT.md](TEST_SMELL_PILOT.md) for frozen
+definitions and executed per-smell validation.
+
+```text
+Smelly Test Rate = Smelly Eligible Source Tests / Eligible Source Tests
+
+Mean Smells per Test = Confirmed (Source Test, Smell Type) Pairs
+                       / Eligible Source Tests
+
+Test Smell Density = Confirmed (Source Test, Smell Type) Pairs
+                     / (Eligible Source Tests * 7 Formal Smell Types)
+```
+
+One smell type counts at most once per source function. `smelly_test_rate` and
+`test_smell_density` are bounded proportions in `[0, 1]`; `mean_smells_per_test`
+retains the interpretable unnormalized result in `[0, 7]`. All three are `null`
+when there are no eligible source functions. Raw tool alerts, AST evidence,
+reasons, uncertain decisions, and rule/tool versions must be retained.
+
+The formal collector never imports or executes participant code. It reads the
+existing Error Rate JSON, obtains the exact participant source from its recorded
+Git commit, and analyzes an isolated copy containing only eligible target tests and
+static support code. Use:
+
+```bash
+python3 scripts/collect_test_smells_all_branches.py \
+  --error-manifest results/error_rates/collection_manifest.json \
+  --output-dir results/test_smells \
+  --pytest-smell /path/to/pytest-smell \
+  --tempy-root /path/to/TEMPY \
+  --python /path/to/python \
+  --timeout 60
+
+python3 scripts/summarize_test_smells.py \
+  results/test_smells/collection_manifest.json \
+  --output results/test_smells/summary/test_smell.csv
+```
+
+pytest-smell must be version `1.0.5`. TEMPY must be checked out at commit
+`4c945d121d645b52fefb8f1b4f3e6caeec7c9095`; a mismatched checkout is recorded as
+a failure. A missing tool, failed tool, successful zero-alert run, and a skipped
+run caused by zero eligible tests are distinct states. Neither external result
+changes the versioned AST decision.
+
+The completed collection produced 50 eligible source tests across the 14
+participating submissions. Eighteen tests contain at least one confirmed smell and
+there are 22 confirmed `(source test, smell type)` pairs: Smelly Test Rate `0.36`,
+Mean Smells per Test `0.44`, and normalized Test Smell Density `0.062857`. Counts by
+type are Assertion Roulette 5, Magic Number Test 0, Unknown Test 5, Conditional
+Test Logic 10, Eager Test 0, Duplicate Assert 0, and Exception Handling 2. No pair
+was marked uncertain. Participants 04 and 06 have zero eligible source tests, so
+their three aggregate metric values are `null`.
 
 ## Execution Time
 
@@ -293,7 +376,27 @@ results/error_rates/
     └── ...
 ```
 
-Each raw file contains:
+Test Smell uses a separate result tree so it can reuse the frozen Error Rate data
+without rerunning Assertion Score or any participant test:
+
+```text
+results/test_smells/
+├── collection_manifest.json
+├── raw/
+│   └── experiment-XX.json
+├── summary/
+│   └── test_smell.csv
+└── tools/
+    └── experiment-XX/
+        ├── pytest-smell.csv
+        ├── pytest-smell.stdout.txt
+        ├── pytest-smell.stderr.txt
+        ├── tempy.json
+        ├── tempy.stdout.txt
+        └── tempy.stderr.txt
+```
+
+Each Error Rate raw file contains:
 
 - participant ID and branch;
 - participant commit;
@@ -360,6 +463,20 @@ the five fixed test functions. Every test-function cell contains exactly one of
 the total source-test count and the number of tests in each of the five
 classifications. Generate it from a manifest collected by the default cross-branch
 command without `--skip-coverage`.
+
+`test_smell.csv` contains eligibility counts, confirmed and uncertain pair counts,
+per-smell counts and rates, Smelly Test Rate, Mean Smells per Test, and normalized
+Test Smell Density. The corresponding raw JSON retains all eligible
+source-test/smell decisions with line evidence and reasons, plus invalid source
+records, validity counts, and external-tool agreement or disagreement.
+
+The existing Assertion Score result files were not regenerated during Test Smell
+collection. Because the current protocol admits `partially_valid` source tests,
+the owning workflow must eventually regenerate Assertion Score to add the new
+validity provenance before a combined final dataset is frozen. The saved dataset
+contains no partially-valid source function, so this protocol change does not alter
+any existing Assertion Score value. It also does not invalidate the saved Error
+Rate, Coverage, or Test Smell results.
 
 Participants who did not participate and branches that could not be collected
 remain in all three tables, but their metric cells are empty rather than zero.

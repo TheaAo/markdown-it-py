@@ -1,0 +1,6 @@
+test_suite,test_name,smell,metric_value
+test_participant.py,test_spec,Conditional Logic,1
+test_participant.py,test_spec,Unknown Test,0
+test_participant.py,test_core_after,Unknown Test,0
+test_participant.py,test_parse_fail,Magic Number,1
+test_participant.py,test_file,Assertion Roullete,2

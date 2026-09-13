@@ -1,0 +1,16 @@
+[
+  {
+    "test_smell_type": "Conditional Test Logic",
+    "method_name": "test_spec",
+    "lines": [
+      85
+    ]
+  },
+  {
+    "test_smell_type": "Redundant Print",
+    "method_name": "test_core_after",
+    "lines": [
+      100
+    ]
+  }
+]

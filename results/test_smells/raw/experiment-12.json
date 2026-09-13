@@ -1,0 +1,600 @@
+{
+  "participant_id": "experiment-12",
+  "participant_number": 12,
+  "branch": "origin/experiment-12",
+  "participant_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+  "error_rate_input": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/error_rates/raw/experiment-12.json",
+  "error_rate_collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "test_smell": {
+    "protocol_version": "1.0.0",
+    "rule_version": "1.0.0",
+    "test_path": "tests/task/task.py",
+    "analysis_unit": "source_test_function",
+    "total_source_tests": 5,
+    "eligible_test_count": 5,
+    "invalid_test_count": 0,
+    "smelly_test_count": 2,
+    "confirmed_pair_count": 2,
+    "uncertain_pair_count": 0,
+    "smelly_test_rate": 0.4,
+    "mean_smells_per_test": 0.4,
+    "test_smell_density": 0.05714285714285714,
+    "per_smell": {
+      "assertion_roulette": {
+        "confirmed_count": 1,
+        "uncertain_count": 0,
+        "rate": 0.2
+      },
+      "magic_number_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "unknown_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "conditional_test_logic": {
+        "confirmed_count": 1,
+        "uncertain_count": 0,
+        "rate": 0.2
+      },
+      "eager_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "duplicate_assert": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "exception_handling": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      }
+    },
+    "tools": {
+      "pytest-smell": {
+        "status": "completed",
+        "version": "1.0.5",
+        "supported_smells": [
+          "assertion_roulette",
+          "magic_number_test",
+          "unknown_test",
+          "conditional_test_logic",
+          "eager_test",
+          "duplicate_assert",
+          "exception_handling"
+        ],
+        "reason": null,
+        "command": [
+          "/private/tmp/test-smell-pilot-tools/pytest-smell-venv/bin/pytest-smell",
+          "--tests_path",
+          "/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-m14ag3u7",
+          "--out_path",
+          "/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-m14ag3u7/pytest-smell-output",
+          "--verbose"
+        ],
+        "returncode": 0,
+        "stdout": "",
+        "stderr": "",
+        "detections": [
+          {
+            "source_test": "test_file",
+            "smell": "conditional_test_logic"
+          },
+          {
+            "source_test": "test_non_utf8",
+            "smell": "magic_number_test"
+          },
+          {
+            "source_test": "test_parse_fail",
+            "smell": "assertion_roulette"
+          },
+          {
+            "source_test": "test_parse_fail",
+            "smell": "conditional_test_logic"
+          },
+          {
+            "source_test": "test_parse_fail",
+            "smell": "magic_number_test"
+          },
+          {
+            "source_test": "test_spec",
+            "smell": "conditional_test_logic"
+          }
+        ],
+        "artifacts": {
+          "stdout": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/pytest-smell.stdout.txt",
+          "stderr": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/pytest-smell.stderr.txt",
+          "csv": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/pytest-smell.csv"
+        }
+      },
+      "TEMPY": {
+        "status": "completed",
+        "version": "4c945d121d645b52fefb8f1b4f3e6caeec7c9095",
+        "supported_smells": [
+          "conditional_test_logic",
+          "exception_handling",
+          "unknown_test"
+        ],
+        "reason": null,
+        "command": [
+          "/usr/local/bin/python3",
+          "-c",
+          "import json,sys;sys.path.insert(0,sys.argv[1]);from python_parser import PythonParser;p=PythonParser(sys.argv[2]);xs=p.start() if p.ast_parser else p.start2();print('__TEMPY_JSON__'+json.dumps([vars(x) for x in xs]))",
+          "/private/tmp/test-smell-pilot-tools/TEMPY/assets",
+          "/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-m14ag3u7/test_participant.py"
+        ],
+        "returncode": 0,
+        "stdout": "/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-m14ag3u7/test_participant.py [AST PACKAGE]\nCLASSES:\n\nMETHODS/FUNCTIONS:\ntest_file(52~67) - function or procedure\ntest_spec(70~119) - function or procedure\ntest_core_after(122~135) - function or procedure\ntest_parse_fail(138~149) - function or procedure\ntest_non_utf8(152~169) - function or procedure\n\n__TEMPY_JSON__[{\"test_smell_type\": \"Conditional Test Logic\", \"method_name\": \"test_spec\", \"lines\": [84]}, {\"test_smell_type\": \"Conditional Test Logic\", \"method_name\": \"test_spec\", \"lines\": [98]}, {\"test_smell_type\": \"Conditional Test Logic\", \"method_name\": \"test_spec\", \"lines\": [104]}, {\"test_smell_type\": \"Redundant Print\", \"method_name\": \"test_core_after\", \"lines\": [125]}, {\"test_smell_type\": \"Verbose Test\", \"method_name\": \"test_spec\", \"lines\": [70, 119]}]\n",
+        "stderr": "",
+        "detections": [
+          {
+            "source_test": "test_spec",
+            "smell": "conditional_test_logic"
+          }
+        ],
+        "artifacts": {
+          "stdout": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/tempy.stdout.txt",
+          "stderr": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/tempy.stderr.txt",
+          "json": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/test_smells/tools/experiment-12/tempy.json"
+        }
+      }
+    },
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/task.py::test_file"
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "eligible": true,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": [
+          {
+            "smell": "assertion_roulette",
+            "decision": "not_detected",
+            "lines": [
+              37
+            ],
+            "reason": "fewer than two assert statements lack an explicit message",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "magic_number_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no assertion contains a non-exempt numeric literal",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "unknown_test",
+            "decision": "not_detected",
+            "lines": [
+              37
+            ],
+            "reason": "a supported oracle is reachable from the source test",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "conditional_test_logic",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no statement-level conditional or loop logic is present",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "eager_test",
+            "decision": "not_detected",
+            "lines": [
+              37
+            ],
+            "reason": "fewer than two distinct production methods feed independent oracles",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "duplicate_assert",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "normalized assertion conditions are unique",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "exception_handling",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no manual try/except handling is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          }
+        ]
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [
+          "tests/task/task.py::test_spec"
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "eligible": true,
+        "has_confirmed_smell": true,
+        "confirmed_smell_count": 1,
+        "smells": [
+          {
+            "smell": "assertion_roulette",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "fewer than two assert statements lack an explicit message",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "magic_number_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no assertion contains a non-exempt numeric literal",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "unknown_test",
+            "decision": "not_detected",
+            "lines": [
+              88
+            ],
+            "reason": "a supported oracle is reachable from the source test",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "conditional_test_logic",
+            "decision": "confirmed",
+            "lines": [
+              60,
+              74,
+              80
+            ],
+            "reason": "statement-level conditional or loop logic is present",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": true
+            }
+          },
+          {
+            "smell": "eager_test",
+            "decision": "not_detected",
+            "lines": [
+              88
+            ],
+            "reason": "fewer than two distinct production methods feed independent oracles",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "duplicate_assert",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "normalized assertion conditions are unique",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "exception_handling",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no manual try/except handling is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          }
+        ]
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [
+          "tests/task/task.py::test_core_after"
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "eligible": true,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": [
+          {
+            "smell": "assertion_roulette",
+            "decision": "not_detected",
+            "lines": [
+              116
+            ],
+            "reason": "fewer than two assert statements lack an explicit message",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "magic_number_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no assertion contains a non-exempt numeric literal",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "unknown_test",
+            "decision": "not_detected",
+            "lines": [
+              116
+            ],
+            "reason": "a supported oracle is reachable from the source test",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "conditional_test_logic",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no statement-level conditional or loop logic is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "eager_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "fewer than two distinct production methods feed independent oracles",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "duplicate_assert",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "normalized assertion conditions are unique",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "exception_handling",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no manual try/except handling is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          }
+        ]
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [
+          "tests/task/task.py::test_parse_fail"
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "eligible": true,
+        "has_confirmed_smell": true,
+        "confirmed_smell_count": 1,
+        "smells": [
+          {
+            "smell": "assertion_roulette",
+            "decision": "confirmed",
+            "lines": [
+              128,
+              134
+            ],
+            "reason": "at least two assert statements have no explicit message",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "magic_number_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no assertion contains a non-exempt numeric literal",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "unknown_test",
+            "decision": "not_detected",
+            "lines": [
+              128,
+              130,
+              134
+            ],
+            "reason": "a supported oracle is reachable from the source test",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "conditional_test_logic",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no statement-level conditional or loop logic is present",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "eager_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "fewer than two distinct production methods feed independent oracles",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "duplicate_assert",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "normalized assertion conditions are unique",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "exception_handling",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no manual try/except handling is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          }
+        ]
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [
+          "tests/task/task.py::test_non_utf8"
+        ],
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "eligible": true,
+        "has_confirmed_smell": false,
+        "confirmed_smell_count": 0,
+        "smells": [
+          {
+            "smell": "assertion_roulette",
+            "decision": "not_detected",
+            "lines": [
+              159
+            ],
+            "reason": "fewer than two assert statements lack an explicit message",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "magic_number_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no assertion contains a non-exempt numeric literal",
+            "external_evidence": {
+              "pytest-smell": true,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "unknown_test",
+            "decision": "not_detected",
+            "lines": [
+              159
+            ],
+            "reason": "a supported oracle is reachable from the source test",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "conditional_test_logic",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no statement-level conditional or loop logic is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          },
+          {
+            "smell": "eager_test",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "fewer than two distinct production methods feed independent oracles",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "duplicate_assert",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "normalized assertion conditions are unique",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": null
+            }
+          },
+          {
+            "smell": "exception_handling",
+            "decision": "not_detected",
+            "lines": [],
+            "reason": "no manual try/except handling is present",
+            "external_evidence": {
+              "pytest-smell": false,
+              "TEMPY": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

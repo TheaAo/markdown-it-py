@@ -1,0 +1,12 @@
+/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-wgt0d7h0/test_participant.py [AST PACKAGE]
+CLASSES:
+
+METHODS/FUNCTIONS:
+_normalize_html(19~22) - function or procedure
+test_file(60~70) - function or procedure
+test_spec(73~88) - function or procedure
+test_core_after(91~102) - function or procedure
+test_parse_fail(105~109) - function or procedure
+test_non_utf8(112~118) - function or procedure
+
+__TEMPY_JSON__[{"test_smell_type": "Conditional Test Logic", "method_name": "test_spec", "lines": [79]}, {"test_smell_type": "Conditional Test Logic", "method_name": "test_spec", "lines": [83]}, {"test_smell_type": "Redundant Print", "method_name": "test_core_after", "lines": [93]}]

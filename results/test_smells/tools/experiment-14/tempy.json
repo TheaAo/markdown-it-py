@@ -1,0 +1,9 @@
+[
+  {
+    "test_smell_type": "Unknown Test",
+    "method_name": "test_parse_fail",
+    "lines": [
+      79
+    ]
+  }
+]

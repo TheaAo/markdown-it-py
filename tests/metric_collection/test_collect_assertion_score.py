@@ -102,6 +102,9 @@ def test_uncertain():
     direct_result = report.test_cases[0]
     assert direct_result.classification == "non_trivial"
     assert direct_result.generated_test_count == 2
+    assert direct_result.valid_instance_count == 2
+    assert direct_result.total_instance_count == 2
+    assert direct_result.validity == "fully_valid"
     exception_result = report.test_cases[1]
     assert exception_result.non_trivial_assertion_count == 2
     assert {item.oracle_type for item in exception_result.evidence} == {
@@ -121,7 +124,7 @@ def test_assertion_score_is_unavailable_without_valid_tests(tmp_path: Path) -> N
     assert report.assertion_score is None
 
 
-def test_parameterized_source_is_invalid_if_any_instance_is_invalid(
+def test_parameterized_source_is_eligible_if_any_instance_is_valid(
     tmp_path: Path,
 ) -> None:
     test_path = tmp_path / "test_parameterized.py"
@@ -150,11 +153,14 @@ def test_render(source):
     report = _report_from_results(test_path, results)
 
     assert report.total_source_tests == 1
-    assert report.invalid_test_count == 1
-    assert report.eligible_test_count == 0
-    assert report.assertion_score is None
-    assert report.test_cases[0].classification == "invalid"
+    assert report.invalid_test_count == 0
+    assert report.eligible_test_count == 1
+    assert report.assertion_score == 1.0
+    assert report.test_cases[0].classification == "non_trivial"
     assert report.test_cases[0].generated_test_count == 2
+    assert report.test_cases[0].valid_instance_count == 1
+    assert report.test_cases[0].total_instance_count == 2
+    assert report.test_cases[0].validity == "partially_valid"
 
 
 def test_missing_expected_test_is_invalid(tmp_path: Path) -> None:

@@ -1,0 +1,799 @@
+{
+  "generated_at": "2026-09-13T18:13:21.338720+00:00",
+  "repository": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell",
+  "source_error_manifest": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py-test-smell/results/error_rates/collection_manifest.json",
+  "baseline_ref": "origin/experiment-base",
+  "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
+  "python_executable": "/usr/local/bin/python3",
+  "collector_sha256": {
+    "collect_test_smells_all_branches.py": "54491019e5c4c8f9f667e9a854e5f87fcb7ef803f44540ab37fa664f0a1baca1",
+    "collect_test_smells.py": "8ce4a2347eaf62ac306b3f7cb1d2d3c9f7d85d57f5365c2343a9b7d4a4917605",
+    "detect_test_smells_ast.py": "105566a585a914b6fc6b17ef56695e56c18719f723eb431230268a936bbc77c9"
+  },
+  "pytest_smell_executable": "/private/tmp/test-smell-pilot-tools/pytest-smell-venv/bin/pytest-smell",
+  "tempy_root": "/private/tmp/test-smell-pilot-tools/TEMPY",
+  "participants": [
+    {
+      "participant_id": "experiment-01",
+      "participant_number": 1,
+      "status": "collected",
+      "participant_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+      "output_file": "raw/experiment-01.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 2,
+        "confirmed_pair_count": 2,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.4,
+        "mean_smells_per_test": 0.4,
+        "test_smell_density": 0.05714285714285714,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "status": "collected",
+      "participant_commit": "a48fb91cabdeb1829841a8491419c9727baf75ff",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.2,
+        "mean_smells_per_test": 0.2,
+        "test_smell_density": 0.02857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "status": "collected",
+      "participant_commit": "cf6fa5479cc12d618e80da82dbe7b92a33af3013",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.2,
+        "mean_smells_per_test": 0.2,
+        "test_smell_density": 0.02857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "status": "collected",
+      "participant_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 0,
+        "invalid_test_count": 5,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": null,
+        "mean_smells_per_test": null,
+        "test_smell_density": null,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "status": "collected",
+      "participant_commit": "fcd99f9b82ddcce8aa2a5a02da7b73491aff8b12",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 2,
+        "confirmed_pair_count": 3,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.4,
+        "mean_smells_per_test": 0.6,
+        "test_smell_density": 0.08571428571428572,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-06",
+      "participant_number": 6,
+      "status": "collected",
+      "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
+      "output_file": "raw/experiment-06.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 0,
+        "invalid_test_count": 5,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": null,
+        "mean_smells_per_test": null,
+        "test_smell_density": null,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "status": "collected",
+      "participant_commit": "975d8b5a07fdb8fd6b186368f6b88c43e935323a",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.2,
+        "mean_smells_per_test": 0.2,
+        "test_smell_density": 0.02857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "status": "collected",
+      "participant_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 1,
+        "invalid_test_count": 4,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 1.0,
+        "mean_smells_per_test": 1.0,
+        "test_smell_density": 0.14285714285714285,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 1.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "status": "collected",
+      "participant_commit": "db7aac28703727cccb04a098580e0a71dc62882d",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 2,
+        "invalid_test_count": 3,
+        "smelly_test_count": 2,
+        "confirmed_pair_count": 4,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 1.0,
+        "mean_smells_per_test": 2.0,
+        "test_smell_density": 0.2857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 2,
+            "uncertain_count": 0,
+            "rate": 1.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.5
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.5
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-10",
+      "participant_number": 10,
+      "status": "collected",
+      "participant_commit": "f69c01b1ec004842add4ff533b4fbd035a7c7d5d",
+      "output_file": "raw/experiment-10.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.2,
+        "mean_smells_per_test": 0.2,
+        "test_smell_density": 0.02857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-11",
+      "participant_number": 11,
+      "status": "collected",
+      "participant_commit": "18f0f69f73c5dde0cb60e77dece882a6fd59b93a",
+      "output_file": "raw/experiment-11.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.2,
+        "mean_smells_per_test": 0.2,
+        "test_smell_density": 0.02857142857142857,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "status": "collected",
+      "participant_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 5,
+        "invalid_test_count": 0,
+        "smelly_test_count": 2,
+        "confirmed_pair_count": 2,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.4,
+        "mean_smells_per_test": 0.4,
+        "test_smell_density": 0.05714285714285714,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.2
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-13",
+      "participant_number": 13,
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-14",
+      "participant_number": 14,
+      "status": "collected",
+      "participant_commit": "ecaec5f05aecb0de2a9367740daade7508fe3435",
+      "output_file": "raw/experiment-14.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 3,
+        "invalid_test_count": 2,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.3333333333333333,
+        "mean_smells_per_test": 0.3333333333333333,
+        "test_smell_density": 0.047619047619047616,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.3333333333333333
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-15",
+      "participant_number": 15,
+      "status": "not_participated",
+      "reason": "Participant did not take part in the experiment."
+    },
+    {
+      "participant_id": "experiment-16",
+      "participant_number": 16,
+      "status": "collected",
+      "participant_commit": "1cc970e97affd8d64684909799afa1a33a8d06e7",
+      "output_file": "raw/experiment-16.json",
+      "summary": {
+        "total_source_tests": 5,
+        "eligible_test_count": 4,
+        "invalid_test_count": 1,
+        "smelly_test_count": 3,
+        "confirmed_pair_count": 4,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.75,
+        "mean_smells_per_test": 1.0,
+        "test_smell_density": 0.14285714285714285,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.25
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 2,
+            "uncertain_count": 0,
+            "rate": 0.5
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 0.25
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    }
+  ]
+}

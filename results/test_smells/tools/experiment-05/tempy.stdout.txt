@@ -1,0 +1,13 @@
+/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/test-smell-static-7snjijqj/test_participant.py [AST PACKAGE]
+CLASSES:
+
+METHODS/FUNCTIONS:
+core_rule(38~40) - function or procedure
+process_markdown_file(56~58) - function or procedure
+test_file(61~76) - function or procedure
+test_spec(79~89) - function or procedure
+test_core_after(92~97) - function or procedure
+test_parse_fail(100~104) - function or procedure
+test_non_utf8(107~127) - function or procedure
+
+__TEMPY_JSON__[{"test_smell_type": "Conditional Test Logic", "method_name": "test_spec", "lines": [83]}, {"test_smell_type": "Exception Handling", "method_name": "test_non_utf8", "lines": [120]}]

@@ -1,0 +1,110 @@
+{
+  "protocol_version": "2",
+  "tools": {
+    "ast_rule_engine": {
+      "status": "completed",
+      "version": "1",
+      "repeatable": true,
+      "runs": 2,
+      "supported_smells": [
+        "assertion_roulette", "magic_number_test", "unknown_test",
+        "conditional_test_logic", "eager_test", "duplicate_assert",
+        "exception_handling"
+      ],
+      "detections": [
+        {"test_name": "test_ar_two_bare_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_ar_three_bare_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_ar_pytest_rewriting_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_magic_number_integer_positive", "smell": "magic_number_test"},
+        {"test_name": "test_magic_number_large_integer_positive", "smell": "magic_number_test"},
+        {"test_name": "test_magic_number_tuple_positive", "smell": "magic_number_test"},
+        {"test_name": "test_unknown_render_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_assignment_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_helper_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_conditional_if_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_for_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_while_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_match_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_eager_render_and_parse_positive", "smell": "eager_test"},
+        {"test_name": "test_eager_render_and_parse_inline_positive", "smell": "eager_test"},
+        {"test_name": "test_eager_parse_and_render_inline_positive", "smell": "eager_test"},
+        {"test_name": "test_duplicate_exact_positive", "smell": "duplicate_assert"},
+        {"test_name": "test_duplicate_formatting_positive", "smell": "duplicate_assert"},
+        {"test_name": "test_duplicate_different_messages_positive", "smell": "duplicate_assert"},
+        {"test_name": "test_exception_manual_flag_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_manual_fail_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_local_helper_positive", "smell": "exception_handling"}
+      ]
+    },
+    "pytest-smell": {
+      "status": "completed",
+      "version": "1.0.5",
+      "repeatable": true,
+      "runs": 2,
+      "supported_smells": [
+        "assertion_roulette", "magic_number_test", "unknown_test",
+        "conditional_test_logic", "eager_test", "duplicate_assert",
+        "exception_handling"
+      ],
+      "detections": [
+        {"test_name": "test_duplicate_exact_positive", "smell": "duplicate_assert"},
+        {"test_name": "test_ar_two_bare_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_ar_three_bare_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_ar_pytest_rewriting_positive", "smell": "assertion_roulette"},
+        {"test_name": "test_magic_number_integer_positive", "smell": "magic_number_test"},
+        {"test_name": "test_magic_number_large_integer_positive", "smell": "magic_number_test"},
+        {"test_name": "test_magic_number_tuple_positive", "smell": "magic_number_test"},
+        {"test_name": "test_magic_number_conventional_values_control", "smell": "magic_number_test"},
+        {"test_name": "test_eager_render_and_parse_positive", "smell": "magic_number_test"},
+        {"test_name": "test_eager_render_and_parse_inline_positive", "smell": "magic_number_test"},
+        {"test_name": "test_eager_parse_and_render_inline_positive", "smell": "magic_number_test"},
+        {"test_name": "test_eager_one_call_multiple_oracles_control", "smell": "magic_number_test"},
+        {"test_name": "test_unknown_render_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_assignment_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_helper_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_conditional_if_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_for_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_while_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_ternary_control", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_comprehension_control", "smell": "conditional_test_logic"},
+        {"test_name": "test_exception_manual_flag_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_manual_fail_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_local_helper_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_try_finally_control", "smell": "exception_handling"},
+        {"test_name": "test_exception_word_in_string_control", "smell": "exception_handling"}
+      ]
+    },
+    "TEMPY": {
+      "status": "completed",
+      "commit": "4c945d121d645b52fefb8f1b4f3e6caeec7c9095",
+      "repeatable": true,
+      "runs": 2,
+      "supported_smells": [
+        "unknown_test", "conditional_test_logic", "exception_handling"
+      ],
+      "detections": [
+        {"test_name": "test_conditional_if_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_for_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_conditional_while_positive", "smell": "conditional_test_logic"},
+        {"test_name": "test_unknown_render_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_assignment_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_helper_without_oracle_positive", "smell": "unknown_test"},
+        {"test_name": "test_unknown_pytest_raises_control", "smell": "unknown_test"},
+        {"test_name": "test_exception_manual_fail_positive", "smell": "unknown_test"},
+        {"test_name": "test_exception_pytest_raises_control", "smell": "unknown_test"},
+        {"test_name": "test_exception_manual_flag_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_manual_fail_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_local_helper_positive", "smell": "exception_handling"},
+        {"test_name": "test_exception_try_finally_control", "smell": "exception_handling"},
+        {"test_name": "test_exception_word_in_string_control", "smell": "exception_handling"}
+      ]
+    },
+    "PyNose": {
+      "status": "not_runnable",
+      "commit": "490a4a4d96ef5ca5d31c721bd3c0ddc92a0350cd",
+      "current_cli_commit": "081e5f9dcc416da4a290bcc5102ce46f104afefa",
+      "repeatable": null,
+      "reason": "Current CLI and official headless branch could not resolve the unpinned plugin-utilities dependency."
+    }
+  }
+}

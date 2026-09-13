@@ -32,6 +32,7 @@ OracleClassification = Literal[
     "invalid", "non_trivial", "trivial", "assertionless", "uncertain"
 ]
 EvidenceClassification = Literal["non_trivial", "trivial", "uncertain"]
+SourceValidity = Literal["fully_valid", "partially_valid", "invalid"]
 EXPECTED_TEST_FUNCTIONS = (
     "test_file",
     "test_spec",
@@ -54,6 +55,9 @@ class AssertionTestResult:
     source_test: str
     generated_nodeids: list[str]
     generated_test_count: int
+    valid_instance_count: int
+    total_instance_count: int
+    validity: SourceValidity
     classification: OracleClassification
     assertion_count: int
     non_trivial_assertion_count: int
@@ -490,9 +494,17 @@ def _report_from_results(
     test_cases: list[AssertionTestResult] = []
     for source_test in source_order:
         source_results = results_by_source.get(source_test)
-        is_invalid = not source_results or any(
-            result.classification != "valid" for result in source_results
+        total_instance_count = len(source_results or [])
+        valid_instance_count = sum(
+            result.classification == "valid" for result in source_results or []
         )
+        if valid_instance_count == 0:
+            validity: SourceValidity = "invalid"
+        elif valid_instance_count == total_instance_count:
+            validity = "fully_valid"
+        else:
+            validity = "partially_valid"
+        is_invalid = validity == "invalid"
         evidence = [] if is_invalid else evidence_by_source.get(source_test, [])
         classification: OracleClassification = (
             "invalid" if is_invalid else _source_classification(evidence)
@@ -503,7 +515,10 @@ def _report_from_results(
                 generated_nodeids=[
                     result.nodeid for result in source_results or []
                 ],
-                generated_test_count=len(source_results or []),
+                generated_test_count=total_instance_count,
+                valid_instance_count=valid_instance_count,
+                total_instance_count=total_instance_count,
+                validity=validity,
                 classification=classification,
                 assertion_count=len(evidence),
                 non_trivial_assertion_count=sum(

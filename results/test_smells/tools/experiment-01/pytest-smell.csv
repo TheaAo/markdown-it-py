@@ -1,0 +1,5 @@
+test_suite,test_name,smell,metric_value
+test_participant.py,test_spec,Conditional Logic,2
+test_participant.py,test_parse_fail,Magic Number,1
+test_participant.py,test_non_utf8,Magic Number,2
+test_participant.py,test_non_utf8,Assertion Roullete,2

@@ -1,0 +1,9 @@
+[
+  {
+    "test_smell_type": "Redundant Print",
+    "method_name": "test_core_after",
+    "lines": [
+      100
+    ]
+  }
+]
