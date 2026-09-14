@@ -1,0 +1,2 @@
+Pre-survey的Quiz1和Quiz2正确答案都是A。
+但quiz不用于考核，只是用作一个事前pytest能力参考。
