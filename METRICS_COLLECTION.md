@@ -478,13 +478,12 @@ Test Smell Density. The corresponding raw JSON retains all eligible
 source-test/smell decisions with line evidence and reasons, plus invalid source
 records, validity counts, and external-tool agreement or disagreement.
 
-The existing Assertion Score result files were not regenerated during Test Smell
-collection. Because the current protocol admits `partially_valid` source tests,
-the owning workflow must eventually regenerate Assertion Score to add the new
-validity provenance before a combined final dataset is frozen. The saved dataset
-contains no partially-valid source function, so this protocol change does not alter
-any existing Assertion Score value. It also does not invalidate the saved Error
-Rate, Coverage, or Test Smell results.
+The Assertion Score result files have been regenerated under the source-validity
+protocol. The saved dataset contains no `partially_valid` source function, and the
+regeneration did not alter any participant-level Assertion Score value. Raw JSON,
+the collection manifest, and `assertion_score.csv` now retain the validity schema
+and collector commit provenance. The Error Rate, Coverage, Mutation Score,
+Execution Time, and Test Smell item or execution-set definitions are unchanged.
 
 Participants who did not participate and branches that could not be collected
 remain in all three tables, but their metric cells are empty rather than zero.

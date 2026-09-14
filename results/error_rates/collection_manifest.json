@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-29T15:01:12.769908+00:00",
-  "repository": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py",
+  "generated_at": "2026-09-14T00:52:01.309921+00:00",
+  "repository": "/private/tmp/markdown-it-py-assertion-validity",
   "baseline_ref": "origin/experiment-base",
   "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
-  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
-  "collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/scripts/collect_error_rates.py",
-  "coverage_collector_script": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/scripts/collect_coverage.py",
+  "collector_commit": "96d8c2242a289d24544a31abec4706836dd23b8b",
+  "collector_script": "/private/tmp/markdown-it-py-assertion-validity/scripts/collect_error_rates.py",
+  "coverage_collector_script": "/private/tmp/markdown-it-py-assertion-validity/scripts/collect_coverage.py",
   "python_executable": "/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/venv/bin/python",
   "participants": [
     {
@@ -72,6 +72,53 @@
             "test_core_after": "non_trivial",
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
           },
           "score": 1.0
         }
@@ -141,6 +188,53 @@
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
+          },
           "score": 1.0
         }
       }
@@ -209,6 +303,53 @@
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
+          },
           "score": 1.0
         }
       }
@@ -266,6 +407,53 @@
             "test_core_after": "invalid",
             "test_parse_fail": "invalid",
             "test_non_utf8": "invalid"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_spec": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_core_after": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_parse_fail": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_non_utf8": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            }
           },
           "score": null
         }
@@ -336,6 +524,53 @@
             "test_parse_fail": "trivial",
             "test_non_utf8": "trivial"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
+          },
           "score": 0.6
         }
       }
@@ -394,6 +629,45 @@
             "test_core_after": "invalid",
             "test_parse_fail": "invalid",
             "test_non_utf8": "invalid"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_spec": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_core_after": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_parse_fail": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_non_utf8": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            }
           },
           "score": null
         }
@@ -462,6 +736,53 @@
             "test_core_after": "non_trivial",
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
           },
           "score": 1.0
         }
@@ -534,6 +855,47 @@
             "test_parse_fail": "invalid",
             "test_non_utf8": "invalid"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "uncertain",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_core_after": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_parse_fail": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_non_utf8": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            }
+          },
           "score": 0.0
         }
       }
@@ -601,6 +963,51 @@
             "test_core_after": "invalid",
             "test_parse_fail": "assertionless",
             "test_non_utf8": "assertionless"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_spec": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_core_after": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            },
+            "test_parse_fail": {
+              "classification": "assertionless",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "assertionless",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
           },
           "score": 0.0
         }
@@ -670,6 +1077,53 @@
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
+          },
           "score": 1.0
         }
       }
@@ -738,6 +1192,704 @@
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec[example_1]",
+                "tests/task/task.py::test_spec[example_2]",
+                "tests/task/task.py::test_spec[example_3]",
+                "tests/task/task.py::test_spec[example_4]",
+                "tests/task/task.py::test_spec[example_5]",
+                "tests/task/task.py::test_spec[example_6]",
+                "tests/task/task.py::test_spec[example_7]",
+                "tests/task/task.py::test_spec[example_8]",
+                "tests/task/task.py::test_spec[example_9]",
+                "tests/task/task.py::test_spec[example_10]",
+                "tests/task/task.py::test_spec[example_11]",
+                "tests/task/task.py::test_spec[example_12]",
+                "tests/task/task.py::test_spec[example_13]",
+                "tests/task/task.py::test_spec[example_14]",
+                "tests/task/task.py::test_spec[example_15]",
+                "tests/task/task.py::test_spec[example_16]",
+                "tests/task/task.py::test_spec[example_17]",
+                "tests/task/task.py::test_spec[example_18]",
+                "tests/task/task.py::test_spec[example_19]",
+                "tests/task/task.py::test_spec[example_20]",
+                "tests/task/task.py::test_spec[example_21]",
+                "tests/task/task.py::test_spec[example_22]",
+                "tests/task/task.py::test_spec[example_23]",
+                "tests/task/task.py::test_spec[example_24]",
+                "tests/task/task.py::test_spec[example_25]",
+                "tests/task/task.py::test_spec[example_26]",
+                "tests/task/task.py::test_spec[example_27]",
+                "tests/task/task.py::test_spec[example_28]",
+                "tests/task/task.py::test_spec[example_29]",
+                "tests/task/task.py::test_spec[example_30]",
+                "tests/task/task.py::test_spec[example_31]",
+                "tests/task/task.py::test_spec[example_32]",
+                "tests/task/task.py::test_spec[example_33]",
+                "tests/task/task.py::test_spec[example_34]",
+                "tests/task/task.py::test_spec[example_35]",
+                "tests/task/task.py::test_spec[example_36]",
+                "tests/task/task.py::test_spec[example_37]",
+                "tests/task/task.py::test_spec[example_38]",
+                "tests/task/task.py::test_spec[example_39]",
+                "tests/task/task.py::test_spec[example_40]",
+                "tests/task/task.py::test_spec[example_41]",
+                "tests/task/task.py::test_spec[example_42]",
+                "tests/task/task.py::test_spec[example_43]",
+                "tests/task/task.py::test_spec[example_44]",
+                "tests/task/task.py::test_spec[example_45]",
+                "tests/task/task.py::test_spec[example_46]",
+                "tests/task/task.py::test_spec[example_47]",
+                "tests/task/task.py::test_spec[example_48]",
+                "tests/task/task.py::test_spec[example_49]",
+                "tests/task/task.py::test_spec[example_50]",
+                "tests/task/task.py::test_spec[example_51]",
+                "tests/task/task.py::test_spec[example_52]",
+                "tests/task/task.py::test_spec[example_53]",
+                "tests/task/task.py::test_spec[example_54]",
+                "tests/task/task.py::test_spec[example_55]",
+                "tests/task/task.py::test_spec[example_56]",
+                "tests/task/task.py::test_spec[example_57]",
+                "tests/task/task.py::test_spec[example_58]",
+                "tests/task/task.py::test_spec[example_59]",
+                "tests/task/task.py::test_spec[example_60]",
+                "tests/task/task.py::test_spec[example_61]",
+                "tests/task/task.py::test_spec[example_62]",
+                "tests/task/task.py::test_spec[example_63]",
+                "tests/task/task.py::test_spec[example_64]",
+                "tests/task/task.py::test_spec[example_65]",
+                "tests/task/task.py::test_spec[example_66]",
+                "tests/task/task.py::test_spec[example_67]",
+                "tests/task/task.py::test_spec[example_68]",
+                "tests/task/task.py::test_spec[example_69]",
+                "tests/task/task.py::test_spec[example_70]",
+                "tests/task/task.py::test_spec[example_71]",
+                "tests/task/task.py::test_spec[example_72]",
+                "tests/task/task.py::test_spec[example_73]",
+                "tests/task/task.py::test_spec[example_74]",
+                "tests/task/task.py::test_spec[example_75]",
+                "tests/task/task.py::test_spec[example_76]",
+                "tests/task/task.py::test_spec[example_77]",
+                "tests/task/task.py::test_spec[example_78]",
+                "tests/task/task.py::test_spec[example_79]",
+                "tests/task/task.py::test_spec[example_80]",
+                "tests/task/task.py::test_spec[example_81]",
+                "tests/task/task.py::test_spec[example_82]",
+                "tests/task/task.py::test_spec[example_83]",
+                "tests/task/task.py::test_spec[example_84]",
+                "tests/task/task.py::test_spec[example_85]",
+                "tests/task/task.py::test_spec[example_86]",
+                "tests/task/task.py::test_spec[example_87]",
+                "tests/task/task.py::test_spec[example_88]",
+                "tests/task/task.py::test_spec[example_89]",
+                "tests/task/task.py::test_spec[example_90]",
+                "tests/task/task.py::test_spec[example_91]",
+                "tests/task/task.py::test_spec[example_92]",
+                "tests/task/task.py::test_spec[example_93]",
+                "tests/task/task.py::test_spec[example_94]",
+                "tests/task/task.py::test_spec[example_95]",
+                "tests/task/task.py::test_spec[example_96]",
+                "tests/task/task.py::test_spec[example_97]",
+                "tests/task/task.py::test_spec[example_98]",
+                "tests/task/task.py::test_spec[example_99]",
+                "tests/task/task.py::test_spec[example_100]",
+                "tests/task/task.py::test_spec[example_101]",
+                "tests/task/task.py::test_spec[example_102]",
+                "tests/task/task.py::test_spec[example_103]",
+                "tests/task/task.py::test_spec[example_104]",
+                "tests/task/task.py::test_spec[example_105]",
+                "tests/task/task.py::test_spec[example_106]",
+                "tests/task/task.py::test_spec[example_107]",
+                "tests/task/task.py::test_spec[example_108]",
+                "tests/task/task.py::test_spec[example_109]",
+                "tests/task/task.py::test_spec[example_110]",
+                "tests/task/task.py::test_spec[example_111]",
+                "tests/task/task.py::test_spec[example_112]",
+                "tests/task/task.py::test_spec[example_113]",
+                "tests/task/task.py::test_spec[example_114]",
+                "tests/task/task.py::test_spec[example_115]",
+                "tests/task/task.py::test_spec[example_116]",
+                "tests/task/task.py::test_spec[example_117]",
+                "tests/task/task.py::test_spec[example_118]",
+                "tests/task/task.py::test_spec[example_119]",
+                "tests/task/task.py::test_spec[example_120]",
+                "tests/task/task.py::test_spec[example_121]",
+                "tests/task/task.py::test_spec[example_122]",
+                "tests/task/task.py::test_spec[example_123]",
+                "tests/task/task.py::test_spec[example_124]",
+                "tests/task/task.py::test_spec[example_125]",
+                "tests/task/task.py::test_spec[example_126]",
+                "tests/task/task.py::test_spec[example_127]",
+                "tests/task/task.py::test_spec[example_128]",
+                "tests/task/task.py::test_spec[example_129]",
+                "tests/task/task.py::test_spec[example_130]",
+                "tests/task/task.py::test_spec[example_131]",
+                "tests/task/task.py::test_spec[example_132]",
+                "tests/task/task.py::test_spec[example_133]",
+                "tests/task/task.py::test_spec[example_134]",
+                "tests/task/task.py::test_spec[example_135]",
+                "tests/task/task.py::test_spec[example_136]",
+                "tests/task/task.py::test_spec[example_137]",
+                "tests/task/task.py::test_spec[example_138]",
+                "tests/task/task.py::test_spec[example_139]",
+                "tests/task/task.py::test_spec[example_140]",
+                "tests/task/task.py::test_spec[example_141]",
+                "tests/task/task.py::test_spec[example_142]",
+                "tests/task/task.py::test_spec[example_143]",
+                "tests/task/task.py::test_spec[example_144]",
+                "tests/task/task.py::test_spec[example_145]",
+                "tests/task/task.py::test_spec[example_146]",
+                "tests/task/task.py::test_spec[example_147]",
+                "tests/task/task.py::test_spec[example_148]",
+                "tests/task/task.py::test_spec[example_149]",
+                "tests/task/task.py::test_spec[example_150]",
+                "tests/task/task.py::test_spec[example_151]",
+                "tests/task/task.py::test_spec[example_152]",
+                "tests/task/task.py::test_spec[example_153]",
+                "tests/task/task.py::test_spec[example_154]",
+                "tests/task/task.py::test_spec[example_155]",
+                "tests/task/task.py::test_spec[example_156]",
+                "tests/task/task.py::test_spec[example_157]",
+                "tests/task/task.py::test_spec[example_158]",
+                "tests/task/task.py::test_spec[example_159]",
+                "tests/task/task.py::test_spec[example_160]",
+                "tests/task/task.py::test_spec[example_161]",
+                "tests/task/task.py::test_spec[example_162]",
+                "tests/task/task.py::test_spec[example_163]",
+                "tests/task/task.py::test_spec[example_164]",
+                "tests/task/task.py::test_spec[example_165]",
+                "tests/task/task.py::test_spec[example_166]",
+                "tests/task/task.py::test_spec[example_167]",
+                "tests/task/task.py::test_spec[example_168]",
+                "tests/task/task.py::test_spec[example_169]",
+                "tests/task/task.py::test_spec[example_170]",
+                "tests/task/task.py::test_spec[example_171]",
+                "tests/task/task.py::test_spec[example_172]",
+                "tests/task/task.py::test_spec[example_173]",
+                "tests/task/task.py::test_spec[example_174]",
+                "tests/task/task.py::test_spec[example_175]",
+                "tests/task/task.py::test_spec[example_176]",
+                "tests/task/task.py::test_spec[example_177]",
+                "tests/task/task.py::test_spec[example_178]",
+                "tests/task/task.py::test_spec[example_179]",
+                "tests/task/task.py::test_spec[example_180]",
+                "tests/task/task.py::test_spec[example_181]",
+                "tests/task/task.py::test_spec[example_182]",
+                "tests/task/task.py::test_spec[example_183]",
+                "tests/task/task.py::test_spec[example_184]",
+                "tests/task/task.py::test_spec[example_185]",
+                "tests/task/task.py::test_spec[example_186]",
+                "tests/task/task.py::test_spec[example_187]",
+                "tests/task/task.py::test_spec[example_188]",
+                "tests/task/task.py::test_spec[example_189]",
+                "tests/task/task.py::test_spec[example_190]",
+                "tests/task/task.py::test_spec[example_191]",
+                "tests/task/task.py::test_spec[example_192]",
+                "tests/task/task.py::test_spec[example_193]",
+                "tests/task/task.py::test_spec[example_194]",
+                "tests/task/task.py::test_spec[example_195]",
+                "tests/task/task.py::test_spec[example_196]",
+                "tests/task/task.py::test_spec[example_197]",
+                "tests/task/task.py::test_spec[example_198]",
+                "tests/task/task.py::test_spec[example_199]",
+                "tests/task/task.py::test_spec[example_200]",
+                "tests/task/task.py::test_spec[example_201]",
+                "tests/task/task.py::test_spec[example_202]",
+                "tests/task/task.py::test_spec[example_203]",
+                "tests/task/task.py::test_spec[example_204]",
+                "tests/task/task.py::test_spec[example_205]",
+                "tests/task/task.py::test_spec[example_206]",
+                "tests/task/task.py::test_spec[example_207]",
+                "tests/task/task.py::test_spec[example_208]",
+                "tests/task/task.py::test_spec[example_209]",
+                "tests/task/task.py::test_spec[example_210]",
+                "tests/task/task.py::test_spec[example_211]",
+                "tests/task/task.py::test_spec[example_212]",
+                "tests/task/task.py::test_spec[example_213]",
+                "tests/task/task.py::test_spec[example_214]",
+                "tests/task/task.py::test_spec[example_215]",
+                "tests/task/task.py::test_spec[example_216]",
+                "tests/task/task.py::test_spec[example_217]",
+                "tests/task/task.py::test_spec[example_218]",
+                "tests/task/task.py::test_spec[example_219]",
+                "tests/task/task.py::test_spec[example_220]",
+                "tests/task/task.py::test_spec[example_221]",
+                "tests/task/task.py::test_spec[example_222]",
+                "tests/task/task.py::test_spec[example_223]",
+                "tests/task/task.py::test_spec[example_224]",
+                "tests/task/task.py::test_spec[example_225]",
+                "tests/task/task.py::test_spec[example_226]",
+                "tests/task/task.py::test_spec[example_227]",
+                "tests/task/task.py::test_spec[example_228]",
+                "tests/task/task.py::test_spec[example_229]",
+                "tests/task/task.py::test_spec[example_230]",
+                "tests/task/task.py::test_spec[example_231]",
+                "tests/task/task.py::test_spec[example_232]",
+                "tests/task/task.py::test_spec[example_233]",
+                "tests/task/task.py::test_spec[example_234]",
+                "tests/task/task.py::test_spec[example_235]",
+                "tests/task/task.py::test_spec[example_236]",
+                "tests/task/task.py::test_spec[example_237]",
+                "tests/task/task.py::test_spec[example_238]",
+                "tests/task/task.py::test_spec[example_239]",
+                "tests/task/task.py::test_spec[example_240]",
+                "tests/task/task.py::test_spec[example_241]",
+                "tests/task/task.py::test_spec[example_242]",
+                "tests/task/task.py::test_spec[example_243]",
+                "tests/task/task.py::test_spec[example_244]",
+                "tests/task/task.py::test_spec[example_245]",
+                "tests/task/task.py::test_spec[example_246]",
+                "tests/task/task.py::test_spec[example_247]",
+                "tests/task/task.py::test_spec[example_248]",
+                "tests/task/task.py::test_spec[example_249]",
+                "tests/task/task.py::test_spec[example_250]",
+                "tests/task/task.py::test_spec[example_251]",
+                "tests/task/task.py::test_spec[example_252]",
+                "tests/task/task.py::test_spec[example_253]",
+                "tests/task/task.py::test_spec[example_254]",
+                "tests/task/task.py::test_spec[example_255]",
+                "tests/task/task.py::test_spec[example_256]",
+                "tests/task/task.py::test_spec[example_257]",
+                "tests/task/task.py::test_spec[example_258]",
+                "tests/task/task.py::test_spec[example_259]",
+                "tests/task/task.py::test_spec[example_260]",
+                "tests/task/task.py::test_spec[example_261]",
+                "tests/task/task.py::test_spec[example_262]",
+                "tests/task/task.py::test_spec[example_263]",
+                "tests/task/task.py::test_spec[example_264]",
+                "tests/task/task.py::test_spec[example_265]",
+                "tests/task/task.py::test_spec[example_266]",
+                "tests/task/task.py::test_spec[example_267]",
+                "tests/task/task.py::test_spec[example_268]",
+                "tests/task/task.py::test_spec[example_269]",
+                "tests/task/task.py::test_spec[example_270]",
+                "tests/task/task.py::test_spec[example_271]",
+                "tests/task/task.py::test_spec[example_272]",
+                "tests/task/task.py::test_spec[example_273]",
+                "tests/task/task.py::test_spec[example_274]",
+                "tests/task/task.py::test_spec[example_275]",
+                "tests/task/task.py::test_spec[example_276]",
+                "tests/task/task.py::test_spec[example_277]",
+                "tests/task/task.py::test_spec[example_278]",
+                "tests/task/task.py::test_spec[example_279]",
+                "tests/task/task.py::test_spec[example_280]",
+                "tests/task/task.py::test_spec[example_281]",
+                "tests/task/task.py::test_spec[example_282]",
+                "tests/task/task.py::test_spec[example_283]",
+                "tests/task/task.py::test_spec[example_284]",
+                "tests/task/task.py::test_spec[example_285]",
+                "tests/task/task.py::test_spec[example_286]",
+                "tests/task/task.py::test_spec[example_287]",
+                "tests/task/task.py::test_spec[example_288]",
+                "tests/task/task.py::test_spec[example_289]",
+                "tests/task/task.py::test_spec[example_290]",
+                "tests/task/task.py::test_spec[example_291]",
+                "tests/task/task.py::test_spec[example_292]",
+                "tests/task/task.py::test_spec[example_293]",
+                "tests/task/task.py::test_spec[example_294]",
+                "tests/task/task.py::test_spec[example_295]",
+                "tests/task/task.py::test_spec[example_296]",
+                "tests/task/task.py::test_spec[example_297]",
+                "tests/task/task.py::test_spec[example_298]",
+                "tests/task/task.py::test_spec[example_299]",
+                "tests/task/task.py::test_spec[example_300]",
+                "tests/task/task.py::test_spec[example_301]",
+                "tests/task/task.py::test_spec[example_302]",
+                "tests/task/task.py::test_spec[example_303]",
+                "tests/task/task.py::test_spec[example_304]",
+                "tests/task/task.py::test_spec[example_305]",
+                "tests/task/task.py::test_spec[example_306]",
+                "tests/task/task.py::test_spec[example_307]",
+                "tests/task/task.py::test_spec[example_308]",
+                "tests/task/task.py::test_spec[example_309]",
+                "tests/task/task.py::test_spec[example_310]",
+                "tests/task/task.py::test_spec[example_311]",
+                "tests/task/task.py::test_spec[example_312]",
+                "tests/task/task.py::test_spec[example_313]",
+                "tests/task/task.py::test_spec[example_314]",
+                "tests/task/task.py::test_spec[example_315]",
+                "tests/task/task.py::test_spec[example_316]",
+                "tests/task/task.py::test_spec[example_317]",
+                "tests/task/task.py::test_spec[example_318]",
+                "tests/task/task.py::test_spec[example_319]",
+                "tests/task/task.py::test_spec[example_320]",
+                "tests/task/task.py::test_spec[example_321]",
+                "tests/task/task.py::test_spec[example_322]",
+                "tests/task/task.py::test_spec[example_323]",
+                "tests/task/task.py::test_spec[example_324]",
+                "tests/task/task.py::test_spec[example_325]",
+                "tests/task/task.py::test_spec[example_326]",
+                "tests/task/task.py::test_spec[example_327]",
+                "tests/task/task.py::test_spec[example_328]",
+                "tests/task/task.py::test_spec[example_329]",
+                "tests/task/task.py::test_spec[example_330]",
+                "tests/task/task.py::test_spec[example_331]",
+                "tests/task/task.py::test_spec[example_332]",
+                "tests/task/task.py::test_spec[example_333]",
+                "tests/task/task.py::test_spec[example_334]",
+                "tests/task/task.py::test_spec[example_335]",
+                "tests/task/task.py::test_spec[example_336]",
+                "tests/task/task.py::test_spec[example_337]",
+                "tests/task/task.py::test_spec[example_338]",
+                "tests/task/task.py::test_spec[example_339]",
+                "tests/task/task.py::test_spec[example_340]",
+                "tests/task/task.py::test_spec[example_341]",
+                "tests/task/task.py::test_spec[example_342]",
+                "tests/task/task.py::test_spec[example_343]",
+                "tests/task/task.py::test_spec[example_344]",
+                "tests/task/task.py::test_spec[example_345]",
+                "tests/task/task.py::test_spec[example_346]",
+                "tests/task/task.py::test_spec[example_347]",
+                "tests/task/task.py::test_spec[example_348]",
+                "tests/task/task.py::test_spec[example_349]",
+                "tests/task/task.py::test_spec[example_350]",
+                "tests/task/task.py::test_spec[example_351]",
+                "tests/task/task.py::test_spec[example_352]",
+                "tests/task/task.py::test_spec[example_353]",
+                "tests/task/task.py::test_spec[example_354]",
+                "tests/task/task.py::test_spec[example_355]",
+                "tests/task/task.py::test_spec[example_356]",
+                "tests/task/task.py::test_spec[example_357]",
+                "tests/task/task.py::test_spec[example_358]",
+                "tests/task/task.py::test_spec[example_359]",
+                "tests/task/task.py::test_spec[example_360]",
+                "tests/task/task.py::test_spec[example_361]",
+                "tests/task/task.py::test_spec[example_362]",
+                "tests/task/task.py::test_spec[example_363]",
+                "tests/task/task.py::test_spec[example_364]",
+                "tests/task/task.py::test_spec[example_365]",
+                "tests/task/task.py::test_spec[example_366]",
+                "tests/task/task.py::test_spec[example_367]",
+                "tests/task/task.py::test_spec[example_368]",
+                "tests/task/task.py::test_spec[example_369]",
+                "tests/task/task.py::test_spec[example_370]",
+                "tests/task/task.py::test_spec[example_371]",
+                "tests/task/task.py::test_spec[example_372]",
+                "tests/task/task.py::test_spec[example_373]",
+                "tests/task/task.py::test_spec[example_374]",
+                "tests/task/task.py::test_spec[example_375]",
+                "tests/task/task.py::test_spec[example_376]",
+                "tests/task/task.py::test_spec[example_377]",
+                "tests/task/task.py::test_spec[example_378]",
+                "tests/task/task.py::test_spec[example_379]",
+                "tests/task/task.py::test_spec[example_380]",
+                "tests/task/task.py::test_spec[example_381]",
+                "tests/task/task.py::test_spec[example_382]",
+                "tests/task/task.py::test_spec[example_383]",
+                "tests/task/task.py::test_spec[example_384]",
+                "tests/task/task.py::test_spec[example_385]",
+                "tests/task/task.py::test_spec[example_386]",
+                "tests/task/task.py::test_spec[example_387]",
+                "tests/task/task.py::test_spec[example_388]",
+                "tests/task/task.py::test_spec[example_389]",
+                "tests/task/task.py::test_spec[example_390]",
+                "tests/task/task.py::test_spec[example_391]",
+                "tests/task/task.py::test_spec[example_392]",
+                "tests/task/task.py::test_spec[example_393]",
+                "tests/task/task.py::test_spec[example_394]",
+                "tests/task/task.py::test_spec[example_395]",
+                "tests/task/task.py::test_spec[example_396]",
+                "tests/task/task.py::test_spec[example_397]",
+                "tests/task/task.py::test_spec[example_398]",
+                "tests/task/task.py::test_spec[example_399]",
+                "tests/task/task.py::test_spec[example_400]",
+                "tests/task/task.py::test_spec[example_401]",
+                "tests/task/task.py::test_spec[example_402]",
+                "tests/task/task.py::test_spec[example_403]",
+                "tests/task/task.py::test_spec[example_404]",
+                "tests/task/task.py::test_spec[example_405]",
+                "tests/task/task.py::test_spec[example_406]",
+                "tests/task/task.py::test_spec[example_407]",
+                "tests/task/task.py::test_spec[example_408]",
+                "tests/task/task.py::test_spec[example_409]",
+                "tests/task/task.py::test_spec[example_410]",
+                "tests/task/task.py::test_spec[example_411]",
+                "tests/task/task.py::test_spec[example_412]",
+                "tests/task/task.py::test_spec[example_413]",
+                "tests/task/task.py::test_spec[example_414]",
+                "tests/task/task.py::test_spec[example_415]",
+                "tests/task/task.py::test_spec[example_416]",
+                "tests/task/task.py::test_spec[example_417]",
+                "tests/task/task.py::test_spec[example_418]",
+                "tests/task/task.py::test_spec[example_419]",
+                "tests/task/task.py::test_spec[example_420]",
+                "tests/task/task.py::test_spec[example_421]",
+                "tests/task/task.py::test_spec[example_422]",
+                "tests/task/task.py::test_spec[example_423]",
+                "tests/task/task.py::test_spec[example_424]",
+                "tests/task/task.py::test_spec[example_425]",
+                "tests/task/task.py::test_spec[example_426]",
+                "tests/task/task.py::test_spec[example_427]",
+                "tests/task/task.py::test_spec[example_428]",
+                "tests/task/task.py::test_spec[example_429]",
+                "tests/task/task.py::test_spec[example_430]",
+                "tests/task/task.py::test_spec[example_431]",
+                "tests/task/task.py::test_spec[example_432]",
+                "tests/task/task.py::test_spec[example_433]",
+                "tests/task/task.py::test_spec[example_434]",
+                "tests/task/task.py::test_spec[example_435]",
+                "tests/task/task.py::test_spec[example_436]",
+                "tests/task/task.py::test_spec[example_437]",
+                "tests/task/task.py::test_spec[example_438]",
+                "tests/task/task.py::test_spec[example_439]",
+                "tests/task/task.py::test_spec[example_440]",
+                "tests/task/task.py::test_spec[example_441]",
+                "tests/task/task.py::test_spec[example_442]",
+                "tests/task/task.py::test_spec[example_443]",
+                "tests/task/task.py::test_spec[example_444]",
+                "tests/task/task.py::test_spec[example_445]",
+                "tests/task/task.py::test_spec[example_446]",
+                "tests/task/task.py::test_spec[example_447]",
+                "tests/task/task.py::test_spec[example_448]",
+                "tests/task/task.py::test_spec[example_449]",
+                "tests/task/task.py::test_spec[example_450]",
+                "tests/task/task.py::test_spec[example_451]",
+                "tests/task/task.py::test_spec[example_452]",
+                "tests/task/task.py::test_spec[example_453]",
+                "tests/task/task.py::test_spec[example_454]",
+                "tests/task/task.py::test_spec[example_455]",
+                "tests/task/task.py::test_spec[example_456]",
+                "tests/task/task.py::test_spec[example_457]",
+                "tests/task/task.py::test_spec[example_458]",
+                "tests/task/task.py::test_spec[example_459]",
+                "tests/task/task.py::test_spec[example_460]",
+                "tests/task/task.py::test_spec[example_461]",
+                "tests/task/task.py::test_spec[example_462]",
+                "tests/task/task.py::test_spec[example_463]",
+                "tests/task/task.py::test_spec[example_464]",
+                "tests/task/task.py::test_spec[example_465]",
+                "tests/task/task.py::test_spec[example_466]",
+                "tests/task/task.py::test_spec[example_467]",
+                "tests/task/task.py::test_spec[example_468]",
+                "tests/task/task.py::test_spec[example_469]",
+                "tests/task/task.py::test_spec[example_470]",
+                "tests/task/task.py::test_spec[example_471]",
+                "tests/task/task.py::test_spec[example_472]",
+                "tests/task/task.py::test_spec[example_473]",
+                "tests/task/task.py::test_spec[example_474]",
+                "tests/task/task.py::test_spec[example_475]",
+                "tests/task/task.py::test_spec[example_476]",
+                "tests/task/task.py::test_spec[example_477]",
+                "tests/task/task.py::test_spec[example_478]",
+                "tests/task/task.py::test_spec[example_479]",
+                "tests/task/task.py::test_spec[example_480]",
+                "tests/task/task.py::test_spec[example_481]",
+                "tests/task/task.py::test_spec[example_482]",
+                "tests/task/task.py::test_spec[example_483]",
+                "tests/task/task.py::test_spec[example_484]",
+                "tests/task/task.py::test_spec[example_485]",
+                "tests/task/task.py::test_spec[example_486]",
+                "tests/task/task.py::test_spec[example_487]",
+                "tests/task/task.py::test_spec[example_488]",
+                "tests/task/task.py::test_spec[example_489]",
+                "tests/task/task.py::test_spec[example_490]",
+                "tests/task/task.py::test_spec[example_491]",
+                "tests/task/task.py::test_spec[example_492]",
+                "tests/task/task.py::test_spec[example_493]",
+                "tests/task/task.py::test_spec[example_494]",
+                "tests/task/task.py::test_spec[example_495]",
+                "tests/task/task.py::test_spec[example_496]",
+                "tests/task/task.py::test_spec[example_497]",
+                "tests/task/task.py::test_spec[example_498]",
+                "tests/task/task.py::test_spec[example_499]",
+                "tests/task/task.py::test_spec[example_500]",
+                "tests/task/task.py::test_spec[example_501]",
+                "tests/task/task.py::test_spec[example_502]",
+                "tests/task/task.py::test_spec[example_503]",
+                "tests/task/task.py::test_spec[example_504]",
+                "tests/task/task.py::test_spec[example_505]",
+                "tests/task/task.py::test_spec[example_506]",
+                "tests/task/task.py::test_spec[example_507]",
+                "tests/task/task.py::test_spec[example_508]",
+                "tests/task/task.py::test_spec[example_509]",
+                "tests/task/task.py::test_spec[example_510]",
+                "tests/task/task.py::test_spec[example_511]",
+                "tests/task/task.py::test_spec[example_512]",
+                "tests/task/task.py::test_spec[example_513]",
+                "tests/task/task.py::test_spec[example_514]",
+                "tests/task/task.py::test_spec[example_515]",
+                "tests/task/task.py::test_spec[example_516]",
+                "tests/task/task.py::test_spec[example_517]",
+                "tests/task/task.py::test_spec[example_518]",
+                "tests/task/task.py::test_spec[example_519]",
+                "tests/task/task.py::test_spec[example_520]",
+                "tests/task/task.py::test_spec[example_521]",
+                "tests/task/task.py::test_spec[example_522]",
+                "tests/task/task.py::test_spec[example_523]",
+                "tests/task/task.py::test_spec[example_524]",
+                "tests/task/task.py::test_spec[example_525]",
+                "tests/task/task.py::test_spec[example_526]",
+                "tests/task/task.py::test_spec[example_527]",
+                "tests/task/task.py::test_spec[example_528]",
+                "tests/task/task.py::test_spec[example_529]",
+                "tests/task/task.py::test_spec[example_530]",
+                "tests/task/task.py::test_spec[example_531]",
+                "tests/task/task.py::test_spec[example_532]",
+                "tests/task/task.py::test_spec[example_533]",
+                "tests/task/task.py::test_spec[example_534]",
+                "tests/task/task.py::test_spec[example_535]",
+                "tests/task/task.py::test_spec[example_536]",
+                "tests/task/task.py::test_spec[example_537]",
+                "tests/task/task.py::test_spec[example_538]",
+                "tests/task/task.py::test_spec[example_539]",
+                "tests/task/task.py::test_spec[example_540]",
+                "tests/task/task.py::test_spec[example_541]",
+                "tests/task/task.py::test_spec[example_542]",
+                "tests/task/task.py::test_spec[example_543]",
+                "tests/task/task.py::test_spec[example_544]",
+                "tests/task/task.py::test_spec[example_545]",
+                "tests/task/task.py::test_spec[example_546]",
+                "tests/task/task.py::test_spec[example_547]",
+                "tests/task/task.py::test_spec[example_548]",
+                "tests/task/task.py::test_spec[example_549]",
+                "tests/task/task.py::test_spec[example_550]",
+                "tests/task/task.py::test_spec[example_551]",
+                "tests/task/task.py::test_spec[example_552]",
+                "tests/task/task.py::test_spec[example_553]",
+                "tests/task/task.py::test_spec[example_554]",
+                "tests/task/task.py::test_spec[example_555]",
+                "tests/task/task.py::test_spec[example_556]",
+                "tests/task/task.py::test_spec[example_557]",
+                "tests/task/task.py::test_spec[example_558]",
+                "tests/task/task.py::test_spec[example_559]",
+                "tests/task/task.py::test_spec[example_560]",
+                "tests/task/task.py::test_spec[example_561]",
+                "tests/task/task.py::test_spec[example_562]",
+                "tests/task/task.py::test_spec[example_563]",
+                "tests/task/task.py::test_spec[example_564]",
+                "tests/task/task.py::test_spec[example_565]",
+                "tests/task/task.py::test_spec[example_566]",
+                "tests/task/task.py::test_spec[example_567]",
+                "tests/task/task.py::test_spec[example_568]",
+                "tests/task/task.py::test_spec[example_569]",
+                "tests/task/task.py::test_spec[example_570]",
+                "tests/task/task.py::test_spec[example_571]",
+                "tests/task/task.py::test_spec[example_572]",
+                "tests/task/task.py::test_spec[example_573]",
+                "tests/task/task.py::test_spec[example_574]",
+                "tests/task/task.py::test_spec[example_575]",
+                "tests/task/task.py::test_spec[example_576]",
+                "tests/task/task.py::test_spec[example_577]",
+                "tests/task/task.py::test_spec[example_578]",
+                "tests/task/task.py::test_spec[example_579]",
+                "tests/task/task.py::test_spec[example_580]",
+                "tests/task/task.py::test_spec[example_581]",
+                "tests/task/task.py::test_spec[example_582]",
+                "tests/task/task.py::test_spec[example_583]",
+                "tests/task/task.py::test_spec[example_584]",
+                "tests/task/task.py::test_spec[example_585]",
+                "tests/task/task.py::test_spec[example_586]",
+                "tests/task/task.py::test_spec[example_587]",
+                "tests/task/task.py::test_spec[example_588]",
+                "tests/task/task.py::test_spec[example_589]",
+                "tests/task/task.py::test_spec[example_590]",
+                "tests/task/task.py::test_spec[example_591]",
+                "tests/task/task.py::test_spec[example_592]",
+                "tests/task/task.py::test_spec[example_593]",
+                "tests/task/task.py::test_spec[example_594]",
+                "tests/task/task.py::test_spec[example_595]",
+                "tests/task/task.py::test_spec[example_596]",
+                "tests/task/task.py::test_spec[example_597]",
+                "tests/task/task.py::test_spec[example_598]",
+                "tests/task/task.py::test_spec[example_599]",
+                "tests/task/task.py::test_spec[example_600]",
+                "tests/task/task.py::test_spec[example_601]",
+                "tests/task/task.py::test_spec[example_602]",
+                "tests/task/task.py::test_spec[example_603]",
+                "tests/task/task.py::test_spec[example_604]",
+                "tests/task/task.py::test_spec[example_605]",
+                "tests/task/task.py::test_spec[example_606]",
+                "tests/task/task.py::test_spec[example_607]",
+                "tests/task/task.py::test_spec[example_608]",
+                "tests/task/task.py::test_spec[example_609]",
+                "tests/task/task.py::test_spec[example_610]",
+                "tests/task/task.py::test_spec[example_611]",
+                "tests/task/task.py::test_spec[example_612]",
+                "tests/task/task.py::test_spec[example_613]",
+                "tests/task/task.py::test_spec[example_614]",
+                "tests/task/task.py::test_spec[example_615]",
+                "tests/task/task.py::test_spec[example_616]",
+                "tests/task/task.py::test_spec[example_617]",
+                "tests/task/task.py::test_spec[example_618]",
+                "tests/task/task.py::test_spec[example_619]",
+                "tests/task/task.py::test_spec[example_620]",
+                "tests/task/task.py::test_spec[example_621]",
+                "tests/task/task.py::test_spec[example_622]",
+                "tests/task/task.py::test_spec[example_623]",
+                "tests/task/task.py::test_spec[example_624]",
+                "tests/task/task.py::test_spec[example_625]",
+                "tests/task/task.py::test_spec[example_626]",
+                "tests/task/task.py::test_spec[example_627]",
+                "tests/task/task.py::test_spec[example_628]",
+                "tests/task/task.py::test_spec[example_629]",
+                "tests/task/task.py::test_spec[example_630]",
+                "tests/task/task.py::test_spec[example_631]",
+                "tests/task/task.py::test_spec[example_632]",
+                "tests/task/task.py::test_spec[example_633]",
+                "tests/task/task.py::test_spec[example_634]",
+                "tests/task/task.py::test_spec[example_635]",
+                "tests/task/task.py::test_spec[example_636]",
+                "tests/task/task.py::test_spec[example_637]",
+                "tests/task/task.py::test_spec[example_638]",
+                "tests/task/task.py::test_spec[example_639]",
+                "tests/task/task.py::test_spec[example_640]",
+                "tests/task/task.py::test_spec[example_641]",
+                "tests/task/task.py::test_spec[example_642]",
+                "tests/task/task.py::test_spec[example_643]",
+                "tests/task/task.py::test_spec[example_644]",
+                "tests/task/task.py::test_spec[example_645]",
+                "tests/task/task.py::test_spec[example_646]",
+                "tests/task/task.py::test_spec[example_647]",
+                "tests/task/task.py::test_spec[example_648]",
+                "tests/task/task.py::test_spec[example_649]",
+                "tests/task/task.py::test_spec[example_650]",
+                "tests/task/task.py::test_spec[example_651]",
+                "tests/task/task.py::test_spec[example_652]"
+              ],
+              "valid_instance_count": 652,
+              "total_instance_count": 652,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
+          },
           "score": 1.0
         }
       }
@@ -805,6 +1957,53 @@
             "test_core_after": "non_trivial",
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "non_trivial"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            }
           },
           "score": 1.0
         }
@@ -881,6 +2080,51 @@
             "test_parse_fail": "assertionless",
             "test_non_utf8": "invalid"
           },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            },
+            "test_core_after": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "assertionless",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "invalid",
+              "generated_nodeids": [],
+              "valid_instance_count": 0,
+              "total_instance_count": 0,
+              "validity": "invalid"
+            }
+          },
           "score": 0.6666666666666666
         }
       }
@@ -955,6 +2199,53 @@
             "test_core_after": "assertionless",
             "test_parse_fail": "non_trivial",
             "test_non_utf8": "invalid"
+          },
+          "test_provenance": {
+            "test_file": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_file"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_spec": {
+              "classification": "assertionless",
+              "generated_nodeids": [
+                "tests/task/task.py::test_spec"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_core_after": {
+              "classification": "assertionless",
+              "generated_nodeids": [
+                "tests/task/task.py::test_core_after"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_parse_fail": {
+              "classification": "non_trivial",
+              "generated_nodeids": [
+                "tests/task/task.py::test_parse_fail"
+              ],
+              "valid_instance_count": 1,
+              "total_instance_count": 1,
+              "validity": "fully_valid"
+            },
+            "test_non_utf8": {
+              "classification": "invalid",
+              "generated_nodeids": [
+                "tests/task/task.py::test_non_utf8"
+              ],
+              "valid_instance_count": 0,
+              "total_instance_count": 1,
+              "validity": "invalid"
+            }
           },
           "score": 0.5
         }

@@ -4,7 +4,7 @@
   "participant_commit": "ecaec5f05aecb0de2a9367740daade7508fe3435",
   "baseline_ref": "origin/experiment-base",
   "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
-  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "collector_commit": "96d8c2242a289d24544a31abec4706836dd23b8b",
   "metrics": {
     "test_path": "tests/task/task.py",
     "suite_level": {
@@ -60,7 +60,7 @@
     }
   },
   "coverage": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-14/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-fjxx_g_2/experiment-14/tests/task/task.py",
     "source": "markdown_it",
     "valid_tests_included": 3,
     "invalid_tests_excluded": 1,
@@ -90,7 +90,7 @@
     }
   },
   "assertion_score": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-14/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-fjxx_g_2/experiment-14/tests/task/task.py",
     "total_source_tests": 5,
     "invalid_test_count": 2,
     "eligible_test_count": 3,
@@ -106,6 +106,9 @@
           "tests/task/task.py::test_file"
         ],
         "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
         "classification": "non_trivial",
         "assertion_count": 1,
         "non_trivial_assertion_count": 1,
@@ -124,6 +127,9 @@
           "tests/task/task.py::test_spec"
         ],
         "generated_test_count": 1,
+        "valid_instance_count": 0,
+        "total_instance_count": 1,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -135,6 +141,9 @@
           "tests/task/task.py::test_core_after"
         ],
         "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
         "classification": "non_trivial",
         "assertion_count": 1,
         "non_trivial_assertion_count": 1,
@@ -153,6 +162,9 @@
           "tests/task/task.py::test_parse_fail"
         ],
         "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
         "classification": "assertionless",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -162,6 +174,9 @@
         "source_test": "test_non_utf8",
         "generated_nodeids": [],
         "generated_test_count": 0,
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,

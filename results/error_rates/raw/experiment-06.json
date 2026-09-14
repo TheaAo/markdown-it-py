@@ -4,7 +4,7 @@
   "participant_commit": "7795121a34517b39588618441b097729de7b06ed",
   "baseline_ref": "origin/experiment-base",
   "baseline_commit": "e5deff554777f059bca726e55bbcbfcc01c10620",
-  "collector_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+  "collector_commit": "96d8c2242a289d24544a31abec4706836dd23b8b",
   "metrics": {
     "test_path": "tests/task/task.py",
     "suite_level": {
@@ -34,7 +34,7 @@
     }
   },
   "coverage": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-06/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-fjxx_g_2/experiment-06/tests/task/task.py",
     "source": "markdown_it",
     "valid_tests_included": 0,
     "invalid_tests_excluded": 1,
@@ -53,7 +53,7 @@
     }
   },
   "assertion_score": {
-    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-q4iffgl6/experiment-06/tests/task/task.py",
+    "test_path": "/private/var/folders/gq/3n7dx54d6csd4y4l8tbnj8l40000gn/T/experiment-worktrees-fjxx_g_2/experiment-06/tests/task/task.py",
     "total_source_tests": 5,
     "invalid_test_count": 5,
     "eligible_test_count": 0,
@@ -69,6 +69,9 @@
           "tests/task/task.py::test_file"
         ],
         "generated_test_count": 1,
+        "valid_instance_count": 0,
+        "total_instance_count": 1,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -78,6 +81,9 @@
         "source_test": "test_spec",
         "generated_nodeids": [],
         "generated_test_count": 0,
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -87,6 +93,9 @@
         "source_test": "test_core_after",
         "generated_nodeids": [],
         "generated_test_count": 0,
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -96,6 +105,9 @@
         "source_test": "test_parse_fail",
         "generated_nodeids": [],
         "generated_test_count": 0,
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
@@ -105,6 +117,9 @@
         "source_test": "test_non_utf8",
         "generated_nodeids": [],
         "generated_test_count": 0,
+        "valid_instance_count": 0,
+        "total_instance_count": 0,
+        "validity": "invalid",
         "classification": "invalid",
         "assertion_count": 0,
         "non_trivial_assertion_count": 0,
