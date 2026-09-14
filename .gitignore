@@ -105,6 +105,7 @@ celerybeat.pid
 .env
 .venv
 .venv-tools/
+.venv-mutmut/
 env/
 venv/
 ENV/
@@ -142,5 +143,8 @@ __pycache__/
 .DS_Store
 
 docs/api/
+!/results/coverage/
+!/results/coverage/coverage.csv
+/results/mutation_score/
 
 uv.lock

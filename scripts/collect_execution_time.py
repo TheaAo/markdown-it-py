@@ -13,11 +13,15 @@ import time
 from typing import Literal
 
 try:
-    from scripts.collect_coverage import _isolated_valid_nodeids
-    from scripts.collect_error_rates import collect_error_rates
+    from scripts.metric_collection.collect_coverage import _isolated_valid_nodeids
+    from scripts.metric_collection.collect_error_rates import collect_error_rates
 except ModuleNotFoundError:  # pragma: no cover - used when run as a script
-    from collect_coverage import _isolated_valid_nodeids  # type: ignore[no-redef]
-    from collect_error_rates import collect_error_rates  # type: ignore[no-redef]
+    from metric_collection.collect_coverage import (  # type: ignore[no-redef]
+        _isolated_valid_nodeids,
+    )
+    from metric_collection.collect_error_rates import (  # type: ignore[no-redef]
+        collect_error_rates,
+    )
 
 
 Status = Literal[

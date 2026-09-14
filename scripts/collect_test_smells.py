@@ -13,7 +13,7 @@ import tempfile
 from typing import Any, Sequence
 
 try:
-    from scripts.collect_error_rates import _split_test_file
+    from scripts.metric_collection.collect_error_rates import _split_test_file
     from scripts.detect_test_smells_ast import (
         FORMAL_SMELLS,
         RULE_VERSION,
@@ -21,7 +21,9 @@ try:
         analyze_tree,
     )
 except ModuleNotFoundError:  # pragma: no cover - direct script execution
-    from collect_error_rates import _split_test_file  # type: ignore[no-redef]
+    from metric_collection.collect_error_rates import (  # type: ignore[no-redef]
+        _split_test_file,
+    )
     from detect_test_smells_ast import (  # type: ignore[no-redef]
         FORMAL_SMELLS,
         RULE_VERSION,

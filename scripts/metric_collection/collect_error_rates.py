@@ -60,7 +60,9 @@ class ErrorRateReport:
     case_level: CaseLevelReport
 
 
-def _run(command: list[str], cwd: Path, timeout: float) -> subprocess.CompletedProcess[str]:
+def _run(
+    command: list[str], cwd: Path, timeout: float
+) -> subprocess.CompletedProcess[str]:
     try:
         return subprocess.run(
             command,
@@ -115,7 +117,10 @@ def _classify_failure(output: str) -> tuple[Classification, str]:
     if "SyntaxError" in output:
         return "syntax_error", "pytest reported SyntaxError"
     if "AssertionError" in output or re.search(r"\bFailed:\s", output):
-        return "function_error", "test executed but assertion failed on the original SUT"
+        return (
+            "function_error",
+            "test executed but assertion failed on the original SUT",
+        )
     if re.search(r"^ERROR\b", output, flags=re.MULTILINE):
         return "runtime_error", "pytest reported an execution error"
     return "runtime_error", "test failed with a non-assertion exception"
@@ -164,7 +169,9 @@ def _top_level_block_starts(lines: list[str]) -> list[tuple[int, str | None]]:
 
 
 def _split_test_file(test_path: Path) -> tuple[str, list[TestBlock]]:
-    lines = test_path.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+    lines = test_path.read_text(encoding="utf-8", errors="replace").splitlines(
+        keepends=True
+    )
     test_ranges: list[tuple[int, int, str]] = []
 
     try:
@@ -203,7 +210,9 @@ def _copy_materials(test_path: Path, isolated_dir: Path) -> None:
         shutil.copytree(materials, isolated_dir / "materials")
 
 
-def _display_nodeid(original_test_path: Path, repo_root: Path, isolated_nodeid: str) -> str:
+def _display_nodeid(
+    original_test_path: Path, repo_root: Path, isolated_nodeid: str
+) -> str:
     try:
         display_path = original_test_path.relative_to(repo_root)
     except ValueError:
@@ -213,7 +222,7 @@ def _display_nodeid(original_test_path: Path, repo_root: Path, isolated_nodeid: 
     return f"{display_path}::{isolated_nodeid.split('::', 1)[1]}"
 
 
-_PYTEST_PLUGIN_TEMPLATE = '''
+_PYTEST_PLUGIN_TEMPLATE = """
 import json
 from pathlib import Path
 
@@ -306,7 +315,7 @@ def pytest_sessionfinish(session, exitstatus):
         "collection_errors": COLLECTION_ERRORS,
     }}
     RESULT_PATH.write_text(json.dumps(payload), encoding="utf-8")
-'''
+"""
 
 
 def _syntax_error_result(
@@ -475,9 +484,15 @@ def _batch_runtime_results(
 
 def _case_level_report(test_cases: list[TestCaseResult]) -> CaseLevelReport:
     total = len(test_cases)
-    syntax_count = sum(1 for item in test_cases if item.classification == "syntax_error")
-    runtime_count = sum(1 for item in test_cases if item.classification == "runtime_error")
-    function_count = sum(1 for item in test_cases if item.classification == "function_error")
+    syntax_count = sum(
+        1 for item in test_cases if item.classification == "syntax_error"
+    )
+    runtime_count = sum(
+        1 for item in test_cases if item.classification == "runtime_error"
+    )
+    function_count = sum(
+        1 for item in test_cases if item.classification == "function_error"
+    )
     valid_count = sum(1 for item in test_cases if item.classification == "valid")
     denominator = total or 1
     return CaseLevelReport(
@@ -531,7 +546,9 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Collect syntax/runtime/function error rates for participant pytest artifacts."
     )
-    parser.add_argument("test_path", type=Path, help="Path to the participant test file.")
+    parser.add_argument(
+        "test_path", type=Path, help="Path to the participant test file."
+    )
     parser.add_argument(
         "--repo-root",
         type=Path,

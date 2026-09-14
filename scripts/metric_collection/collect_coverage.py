@@ -10,11 +10,11 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from scripts.collect_assertion_score import (
+    from scripts.metric_collection.collect_assertion_score import (
         AssertionScoreReport,
         collect_assertion_score,
     )
-    from scripts.collect_error_rates import (
+    from scripts.metric_collection.collect_error_rates import (
         _copy_materials,
         _ensure_pytest_available,
         _split_test_file,
@@ -140,8 +140,7 @@ def _isolated_valid_nodeids(
     _copy_materials(test_path, temp_root)
 
     paths_by_test_name = {
-        block.name: temp_root / filename
-        for filename, block in files_to_blocks.items()
+        block.name: temp_root / filename for filename, block in files_to_blocks.items()
     }
     nodeids: list[str] = []
     for result in valid_results:
@@ -202,8 +201,7 @@ def _run_coverage(
     )
     if json_result.returncode != 0 or not json_path.exists():
         raise RuntimeError(
-            f"coverage JSON generation failed for {scope_name}:\n"
-            f"{json_result.stdout}"
+            f"coverage JSON generation failed for {scope_name}:\n{json_result.stdout}"
         )
 
     coverage_json = json.loads(json_path.read_text(encoding="utf-8"))
@@ -375,8 +373,7 @@ def main(argv: list[str] | None = None) -> int:
         type=Path,
         default=Path("tests"),
         help=(
-            "Project test directory to include in the combined result "
-            "(default: tests)."
+            "Project test directory to include in the combined result (default: tests)."
         ),
     )
     parser.add_argument(

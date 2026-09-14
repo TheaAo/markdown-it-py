@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scripts.collect_error_rates import _split_test_file
+from scripts.metric_collection.collect_error_rates import _split_test_file
 
 
 def test_split_test_file_keeps_multiline_parametrize_decorator(tmp_path: Path):

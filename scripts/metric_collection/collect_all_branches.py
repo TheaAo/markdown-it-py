@@ -237,8 +237,7 @@ def _assertion_score_summary(assertion: dict[str, Any]) -> dict[str, Any]:
             raise ValueError(f"unexpected assertion test function: {source_test}")
         if classification not in ASSERTION_CLASSIFICATIONS:
             raise ValueError(
-                f"invalid assertion classification for {source_test}: "
-                f"{classification}"
+                f"invalid assertion classification for {source_test}: {classification}"
             )
         if source_test in test_statuses:
             raise ValueError(f"duplicate assertion test function: {source_test}")

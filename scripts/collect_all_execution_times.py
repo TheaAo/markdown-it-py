@@ -9,7 +9,7 @@ import tempfile
 from typing import Any
 
 try:
-    from scripts.collect_all_branches import (
+    from scripts.metric_collection.collect_all_branches import (
         NOT_PARTICIPATED,
         PARTICIPANT_NUMBERS,
         TASK_PATH,
@@ -22,7 +22,7 @@ try:
         _write_json,
     )
 except ModuleNotFoundError:  # pragma: no cover - used when run as a script
-    from collect_all_branches import (  # type: ignore[no-redef]
+    from metric_collection.collect_all_branches import (  # type: ignore[no-redef]
         NOT_PARTICIPATED,
         PARTICIPANT_NUMBERS,
         TASK_PATH,

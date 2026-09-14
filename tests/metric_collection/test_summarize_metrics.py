@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.summarize_metrics import (
+from scripts.metric_collection.summarize_metrics import (
     ASSERTION_SCORE_COLUMNS,
     COVERAGE_COLUMNS,
     ERROR_RATE_COLUMNS,
@@ -122,7 +122,13 @@ def test_summary_writes_separate_focused_metric_tables(tmp_path: Path) -> None:
     )
 
     error_rate_path, coverage_path, assertion_score_path = summarize_metrics(
-        manifest_path, tmp_path / "summary"
+        manifest_path, tmp_path / "results"
+    )
+
+    assert error_rate_path == tmp_path / "results/error_rates/error_rates.csv"
+    assert coverage_path == tmp_path / "results/coverage/coverage.csv"
+    assert assertion_score_path == (
+        tmp_path / "results/assertion_score/assertion_score.csv"
     )
 
     error_columns, error_rows = _read_rows(error_rate_path)
@@ -171,7 +177,7 @@ def test_summary_keeps_coverage_empty_for_old_manifest(tmp_path: Path) -> None:
     _write_manifest(manifest_path, [participant])
 
     _error_rate_path, coverage_path, _assertion_score_path = summarize_metrics(
-        manifest_path, tmp_path / "summary"
+        manifest_path, tmp_path / "results"
     )
 
     _columns, rows = _read_rows(coverage_path)
@@ -191,7 +197,7 @@ def test_summary_rejects_missing_assertion_score(tmp_path: Path) -> None:
         ValueError,
         match=r"assertion_score is missing; rerun collect_all_branches.py",
     ):
-        summarize_metrics(manifest_path, tmp_path / "summary")
+        summarize_metrics(manifest_path, tmp_path / "results")
 
 
 def test_summary_rejects_inconsistent_classification_total(tmp_path: Path) -> None:
@@ -203,4 +209,4 @@ def test_summary_rejects_inconsistent_classification_total(tmp_path: Path) -> No
     _write_manifest(manifest_path, [participant])
 
     with pytest.raises(ValueError, match="classified total 6 does not equal 5"):
-        summarize_metrics(manifest_path, tmp_path / "summary")
+        summarize_metrics(manifest_path, tmp_path / "results")

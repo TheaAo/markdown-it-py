@@ -110,9 +110,7 @@ def _rate(count: int, total: int) -> float:
     return count / total if total else 0.0
 
 
-def _error_rate_values(
-    participant: dict[str, Any], context: str
-) -> dict[str, Any]:
+def _error_rate_values(participant: dict[str, Any], context: str) -> dict[str, Any]:
     summary = participant.get("summary")
     if not isinstance(summary, dict):
         raise ValueError(f"{context}.summary must be an object for collected data")
@@ -381,12 +379,12 @@ def _write_csv(
     temporary_path.replace(path)
 
 
-def summarize_metrics(manifest_path: Path, output_dir: Path) -> tuple[Path, Path, Path]:
+def summarize_metrics(manifest_path: Path, results_root: Path) -> tuple[Path, Path, Path]:
     manifest = _read_manifest(manifest_path)
     error_rows, coverage_rows, assertion_rows = _metric_rows(manifest)
-    error_rate_path = output_dir / "error_rates.csv"
-    coverage_path = output_dir / "coverage.csv"
-    assertion_score_path = output_dir / "assertion_score.csv"
+    error_rate_path = results_root / "error_rates" / "error_rates.csv"
+    coverage_path = results_root / "coverage" / "coverage.csv"
+    assertion_score_path = results_root / "assertion_score" / "assertion_score.csv"
     _write_csv(error_rate_path, ERROR_RATE_COLUMNS, error_rows)
     _write_csv(coverage_path, COVERAGE_COLUMNS, coverage_rows)
     _write_csv(assertion_score_path, ASSERTION_SCORE_COLUMNS, assertion_rows)
@@ -407,8 +405,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("results/error_rates/summary"),
-        help="Directory for focused metric CSV files.",
+        default=Path("results"),
+        help="Results root containing one directory per metric.",
     )
     args = parser.parse_args(argv)
 

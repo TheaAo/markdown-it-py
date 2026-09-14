@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "frozen_at": "2026-09-06T22:07:38Z",
+  "status": "pre_full_collection_validated",
+  "catalog_hash": "ab4b3d2e06e961673a865c12dffbe5ea82e3ca405ec29cdb813366b44bb74462",
+  "catalog_identity_hash": "84a5df1e2ce1fd79c98cbf2488c50c81650d28051b8c1a4205e6b736d121b613",
+  "sut_hash": "0e7e7bbc3888b630b3abbd5ae4e31f2cbdf3dc46aa19efa86c34138364383254",
+  "python_version": "3.11.6",
+  "mutmut_version": "mutmut, version 3.7.0",
+  "execution_policy": {
+    "schema_version": 1,
+    "mutant_timeout": {
+      "formula": "(estimated_test_time + constant) * multiplier",
+      "multiplier": 6.0,
+      "constant": 0.5
+    },
+    "timeout_retry_count": 1,
+    "baseline_test_timeout_seconds": 120.0,
+    "collection_execution_timeout_seconds": null,
+    "kill_confirmation": {
+      "enabled": true,
+      "protocol": "independent_second_execution_v3_incremental"
+    },
+    "equivalent_duplicate_policy": {
+      "exclude_confirmed_equivalent": true,
+      "exclude_duplicates": false
+    }
+  },
+  "execution_policy_hash": "dd1b3fc9ee05ff410da90fedf1c26a042530049fdf6fc42aae682c1b1c6ca772",
+  "performance_configuration": {
+    "max_children": 4,
+    "confirmation_batch_size": 25,
+    "participant_timeout_seconds": null
+  },
+  "source_state": {
+    "branch": "pilot-metric-mutation",
+    "head_commit": "0d070acfebf18b8325f8de3df206337167b40fce",
+    "working_tree_committed": false,
+    "collector_source_hashes": {
+      "scripts/metric_collection/mutation_cache.py": "04116eaf133aa0355f2757e85764e2624c69b069e0ec94f37c79989c5537b1bf",
+      "scripts/metric_collection/collect_mutation_score.py": "ce969972177d277a427eeda7144c2bebdbb49daf43be59e7730ee9b41eef753e",
+      "scripts/metric_collection/collect_all_mutation_scores.py": "02975c3dd5cc5e42c8475423508244055f584a28e785f2447dd295c3205bd50b",
+      "scripts/metric_collection/aggregate_mutant_outcomes.py": "ce1db955969f16ce71ff9bc43811f3fa1dccea9180aed6c43355b5a520fe29e0",
+      "scripts/metric_collection/mutation_common.py": "19da7a4dfe6298512a5b86cbe0f20a4c32a86cca519ccb4ada0233e84836dd74"
+    }
+  },
+  "validation": {
+    "metric_collection_tests": "78 passed",
+    "repository_tests_directory": "334 passed",
+    "timeout_increase_pilot": {
+      "participant_id": "experiment-11",
+      "reused_results": 4579,
+      "rerun_previous_timeouts": 146,
+      "new_status_counts": {
+        "killed": 3023,
+        "survived": 1297,
+        "no_tests": 262,
+        "timeout": 143
+      },
+      "mutation_score": 0.6597555652553471,
+      "duration_seconds": 1383.7987684579566
+    },
+    "interruption_resume_pilot": {
+      "catalog_size": 200,
+      "catalog_hash": "5b3c97110155c2be8c89dfe234d0c0bab43194edfa6d0cd85456e7fee12598f9",
+      "interrupted_after_persisted_confirmations": 5,
+      "persisted_confirmations_reused": 5,
+      "remaining_confirmations_completed": 195,
+      "final_reliable_evidence_records": 200,
+      "temporary_worktree_cleaned": true
+    }
+  },
+  "unavailable_checks": [
+    "ruff is not installed in the available environments",
+    "tox and pre-commit are not installed",
+    "benchmarking collection requires the unavailable pytest-benchmark plugin"
+  ]
+}

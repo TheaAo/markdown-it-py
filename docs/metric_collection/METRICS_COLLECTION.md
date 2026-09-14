@@ -1,13 +1,14 @@
 # Experiment Metrics Collection
 
 This document describes how to collect error-rate, coverage, assertion-score,
-test-smell, and execution-time metrics from participant test submissions.
+mutation-score, test-smell, and execution-time metrics from participant test
+submissions.
 
 Test Smell research documents:
 
-- [TEST_SMELL_PILOT.md](TEST_SMELL_PILOT.md): pilot evidence and tool choice;
-- [TEST_SMELL_HANDOFF.md](TEST_SMELL_HANDOFF.md): implementation handoff.
-- [TEST_SMELL_AUDIT.md](TEST_SMELL_AUDIT.md): frozen-rule participant audit.
+- [TEST_SMELL_PILOT.md](../../TEST_SMELL_PILOT.md): pilot evidence and tool choice;
+- [TEST_SMELL_HANDOFF.md](../../TEST_SMELL_HANDOFF.md): implementation handoff.
+- [TEST_SMELL_AUDIT.md](../../TEST_SMELL_AUDIT.md): frozen-rule participant audit.
 
 ## Environment
 
@@ -30,12 +31,35 @@ git fetch --prune origin
 The collectors execute participant-authored Python code. Only run them on trusted
 experiment branches and in the dedicated experiment environment.
 
+## Directory Layout
+
+- `scripts/metric_collection/` contains only the research data collectors,
+  workload definitions, summarizers, and review tools.
+- `tests/metric_collection/` contains their regression tests.
+- `docs/metric_collection/` contains the current methodology and usage documents.
+- `results/error_rates/` contains the cross-participant collection manifest and raw
+  records. Those records also carry coverage and assertion evidence so that the
+  valid-test classification is performed only once.
+- `results/coverage/` contains the analysis-ready coverage table.
+- `results/assertion_score/` contains the analysis-ready assertion-score table.
+- `results/mutation_score/` contains mutation catalogs, execution records, reviews,
+  and analysis-ready mutation tables.
+- `results/execution_time/` contains pilot and formal timing measurements.
+- `results/test_smells/` contains detector evidence and test-smell summaries.
+- `results/mutation_score/` is ignored by Git so its large catalogs and raw
+  execution records are not accidentally committed. The smaller frozen datasets
+  for the other metrics remain version-controlled research evidence.
+
+Catalog and score commands use project-local result paths by default. Temporary
+directories are used only as isolated execution workspaces and are removed after a
+run; reviewable outputs are written under the metric-specific directories above.
+
 ## Single Submission
 
 Collect one test file with:
 
 ```bash
-venv/bin/python scripts/collect_error_rates.py \
+venv/bin/python scripts/metric_collection/collect_error_rates.py \
   tests/task/task.py \
   --timeout 120 \
   > metrics.json
@@ -54,7 +78,7 @@ expands them. For example, `test_spec[test_case217]` is one test case.
 Collect statement and branch coverage together with the error-rate classification:
 
 ```bash
-venv/bin/python scripts/collect_coverage.py \
+venv/bin/python scripts/metric_collection/collect_coverage.py \
   tests/task/task.py \
   --repo-root . \
   --python venv/bin/python \
@@ -72,7 +96,7 @@ run a second time by the batch collector.
 Collect assertion score without coverage with:
 
 ```bash
-venv/bin/python scripts/collect_assertion_score.py \
+venv/bin/python scripts/metric_collection/collect_assertion_score.py \
   tests/task/task.py \
   --error-rates metrics.json \
   > assertion_score.json
@@ -341,7 +365,7 @@ Participant submissions use the remote branches `experiment-01` through
 Collect all branches serially with:
 
 ```bash
-venv/bin/python scripts/collect_all_branches.py \
+venv/bin/python scripts/metric_collection/collect_all_branches.py \
   --baseline origin/experiment-base \
   --output-dir results/error_rates \
   --timeout 120
@@ -354,7 +378,7 @@ error-rate result and does not execute pytest again. Use `--skip-coverage` only 
 a faster, error-rate-only diagnostic run:
 
 ```bash
-venv/bin/python scripts/collect_all_branches.py \
+venv/bin/python scripts/metric_collection/collect_all_branches.py \
   --baseline origin/experiment-base \
   --output-dir results/error_rates \
   --timeout 120 \
@@ -368,6 +392,274 @@ participant-added test materials and avoids disturbing local uncommitted changes
 
 Collection is serial to keep execution deterministic and to avoid resource
 contention. This is especially important if execution-time metrics are added later.
+
+## Mutation Tool Pilot
+
+The phase-one benchmark compares MutPy, Mutmut, and Cosmic Ray on the same fixed SUT
+module and participant test suite. Install each tool in a separate Python 3.11
+environment, then run:
+
+```bash
+venv/bin/python scripts/metric_collection/benchmark_mutation_tools.py \
+  --sut-ref pilot-metric \
+  --participant-ref origin/experiment-11 \
+  --mutpy-python /path/to/mutpy-venv/bin/python \
+  --mutmut-python /path/to/mutmut-venv/bin/python \
+  --cosmic-ray-python /path/to/cosmic-ray-venv/bin/python \
+  --output-dir results/mutation_score/tool_pilot
+```
+
+The script runs each tool twice to verify semantic catalog reproducibility. It writes
+`benchmark.json`, `benchmark.csv`, and raw tool logs. The tools use their native
+operator sets, so their mutant counts and mutation scores must not be compared as if
+they represented the same fault catalog. See
+`docs/metric_collection/MUTATION_PILOT.md` for the fixed pilot
+setup, observed results, and tool-selection decision.
+
+## Mutation Score
+
+Mutation Score uses Mutmut 3.7.0 under Python 3.11. A researcher-controlled workload
+first creates a complete catalog from the common `origin/experiment-base` SUT. The
+`specified` layer covers the five assignment requirements; `extended_only` covers
+additional boundary and state behavior within the same scope. Catalog generation is
+repeated twice and must reproduce the Mutmut name, normalized diff, source location,
+workload layer, SUT hash, workload hashes, and catalog hash.
+
+Create the tool environment and the `ruler.py` pilot catalog with:
+
+```bash
+python3.11 -m venv .venv-mutmut
+.venv-mutmut/bin/python -m pip install 'mutmut==3.7.0' -e '.[testing]'
+.venv-mutmut/bin/python scripts/metric_collection/build_mutant_catalog.py \
+  --baseline-ref origin/experiment-base \
+  --mutmut-python .venv-mutmut/bin/python \
+  --only-mutate markdown_it/ruler.py \
+  --output-dir results/mutation_score/catalog-pilot
+```
+
+The builder assigns a deterministic operator family from each normalized diff.
+Existing catalogs can be annotated without changing mutant identity:
+
+```bash
+venv/bin/python scripts/metric_collection/classify_mutation_operators.py \
+  results/mutation_score/catalog-pilot/mutant_catalog.json \
+  --output results/mutation_score/catalog-pilot/classified_catalog.json \
+  --review-csv results/mutation_score/catalog-pilot/operator_review.csv
+```
+
+### Sampling Protocol
+
+The `specified` layer is sampled once and the frozen sample is shared by every
+participant. The smaller `extended_only` layer is included as a census and reported
+as a separate exploratory score. Sampling is without replacement and reproducible
+from the source catalog hash, strategy, ratio or size, minimum-per-stratum rule, and
+seed. It is forbidden to resample per participant or after inspecting participant
+scores.
+
+This follows the cost-reduction motivation of Zhang et al.'s operator-based and
+random mutant-selection study, but does not copy its Java/Javalanche-specific 5%
+choice. This project evaluates 5%, 10%, 20%, 30%, and 50%, twenty fixed seeds, and
+five strategies for the specified sampling frame. The extended-only census has
+inclusion probability 1 and sampling weight 1. The two layers are never combined as
+a primary score, so no subjective cross-layer importance weight is introduced.
+`scripts/metric_collection/mutation_sampling_protocol.json` pre-registers the
+candidate values and acceptance thresholds. The formal strategy, effective sample
+size, and seed must be frozen before full-SUT collection.
+
+The `ruler.py` pilot itself runs all 74 mutants for every participant; sampling is
+simulated offline so that the full scores remain the ground truth:
+
+```bash
+.venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
+  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
+  --python .venv-mutmut/bin/python \
+  --baseline origin/experiment-base \
+  --output-dir results/mutation_score/ruler-full \
+  --max-children 4 --resume
+
+venv/bin/python scripts/metric_collection/analyze_sampling_pilot.py \
+  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
+  --results results/mutation_score/ruler-full/raw \
+  --output-dir results/mutation_score/sampling-pilot-specified-plus-extended-census
+```
+
+The analysis writes per-run errors, MAE, RMSE, adjusted R², Kendall tau-b,
+Spearman rho, ranking changes, cross-seed standard deviation, and sampled/full cost
+ratio. A strategy is recommendable only when its specified-layer median absolute
+error is at most 0.05, 95th-percentile absolute error is at most 0.07, adjusted R²
+is at least 0.95, and both rank correlations are at least 0.90.
+
+The completed 74-mutant pilot collected all 14 participating branches. Under the
+current 0.07 P95 threshold, none of the evaluated strategies at target ratios from
+5% to 50% is acceptable. The previous function-stratified minimum sample of 30 had
+a specified P95 absolute error of 0.0990 and is therefore retained only as historical
+pilot evidence, not as an accepted formal sample. Higher ratios must be declared and
+evaluated before a formal sample is frozen; the threshold must not be relaxed after
+inspecting the new results.
+
+After a strategy passes the revised protocol, create the formal shared sample using
+the frozen values rather than the historical example values:
+
+```bash
+venv/bin/python scripts/metric_collection/sample_mutant_catalog.py \
+  results/mutation_score/catalog/classified_catalog.json \
+  --strategy <FROZEN_STRATEGY> \
+  --ratio <FROZEN_RATIO> --seed <FROZEN_SEED> \
+  --minimum-sample-size 30 --minimum-per-stratum 1 \
+  --census-layer extended_only \
+  --output-dir results/mutation_score/sampled-catalog
+```
+
+Specified function strata can have unequal sampling fractions. Every sampled
+specified mutant therefore records `N_h/n_h`; the estimated specified score uses
+those weights and includes a finite-population 95% interval. Extended-only mutants
+have weight 1 because the layer is complete. Singleton sampled strata receive the
+conservative interval [0, 1] rather than a false zero-width interval.
+
+### Participant Collection and Aggregation
+
+Collect the same frozen task-relevant catalog on all branches serially. Participants 13 and 15
+are recorded as `not_participated`. Valid-only participant tests must pass the
+unmutated baseline; catalog, SUT, workload, and Mutmut hashes must match. Use
+`--confirm-kills` when every kill used as global evidence must be independently
+rerun. Confirmations are persisted atomically in small batches.
+
+```bash
+.venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --python .venv-mutmut/bin/python \
+  --baseline origin/experiment-base \
+  --output-dir results/mutation_score/full-sut/formal \
+  --max-children 4 --timeout-multiplier 5 --timeout-constant 0.5 \
+  --timeout-retry-count 1 --confirmation-batch-size 25 \
+  --resume --confirm-kills
+
+venv/bin/python scripts/metric_collection/aggregate_mutant_outcomes.py \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --results results/mutation_score/full-sut/formal/raw \
+  --manifest results/mutation_score/full-sut/formal/collection_manifest.json \
+  --reliable-kill-evidence results/mutation_score/full-sut/formal/reliable_kill_evidence.json \
+  --output-dir results/mutation_score/full-sut/formal/global \
+  --require-confirmed-kills
+```
+
+Mutation resume uses three separate identities. `catalog_hash` identifies the
+frozen mutants, while `execution_context_hash` covers the catalog and SUT together
+with the participant valid-only test artifact, test materials, Python, Mutmut, and
+the valid-only isolation protocol. `execution_policy_hash` covers timeout and retry
+settings, kill confirmation, and duplicate/equivalent handling. `max_children` is
+performance-only and does not invalidate cached results.
+
+Changing only timeout settings no longer clears confirmed kills. Increasing the
+timeout reuses completed statuses and reruns prior timeouts. Decreasing it reuses
+rows whose recorded duration fits the new limit and reruns rows that exceed the
+limit or lack timing. Global reliable-kill evidence remains valid independently of
+the participant's status under the current timeout policy. Each evidence record is
+stored by mutant and execution context in `reliable_kill_evidence.json`; the legacy
+`confirmed_kills.json` is retained as historical input and is never reset. Replaced
+participant raw results are content-addressed under `history/`.
+
+Legacy rows without timing metadata remain reusable during ordinary `--resume`.
+Timing is collected only when explicitly requested with
+`--backfill-missing-durations`. This maintenance mode reruns matching-context rows
+whose execution duration, estimated duration, or Mutmut exit code is missing. A
+`no_tests` result has no actual test execution duration by definition, so it is
+complete when its estimated duration and exit code are present. The mode does not
+change `execution_policy_hash`, and existing reliable kills are reused rather than
+reconfirmed.
+
+Every participant raw result reports `reused_results`,
+`reused_confirmed_kills`, `rerun_previous_timeouts`,
+`rerun_policy_affected`, `new_kills_to_confirm`, and
+`invalidated_context_mismatch` under `cache_statistics`. Backfill runs additionally
+report `backfill_missing_durations` and `rerun_missing_durations`.
+
+A reliable kill requires successful collection, a passing valid-only baseline, no
+infrastructure error, matching catalog/SUT/workload hashes, an explicit Mutmut
+`killed` result, and—when required—a successful confirmation rerun. Flaky kills are
+never global evidence. Any reliable kill makes the mutant `auto_non_equivalent` and
+removes it from equivalent review, while each participant's original killed or
+survived result remains unchanged. Mutants never reliably killed become one blinded
+`review_candidate`; timeout-only cases become `execution_unresolved`.
+
+In the completed `ruler.py` pilot, 52 of 74 mutants had at least one reliable kill.
+The naive participant survivor/timeout union contained all 74 mutants, whereas the
+never-killed protocol produced 22 review candidates and no execution-unresolved
+mutants, reducing manual equivalent review by 52 mutants (70.27%).
+
+For the fixed 33-mutant pilot sample, 21 mutants had a reliable kill and 12 were
+never killed. Offline sampled participant results are derived from the already
+completed full matrix rather than rerunning Mutmut:
+
+```bash
+venv/bin/python scripts/metric_collection/derive_sampled_mutation_results.py \
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --full-results results/mutation_score/ruler-full/raw \
+  --full-manifest results/mutation_score/ruler-full/collection_manifest.json \
+  --output-dir results/mutation_score/sampled-pilot
+```
+
+### Equivalent-Mutant Review
+
+`review_candidates.csv` intentionally hides participant identities, scores, and kill
+frequency. Two reviewers independently choose `non_equivalent`,
+`confirmed_equivalent`, `duplicate`, or `unresolved` and provide reasons. Agreement,
+Cohen's kappa, disagreements, adjudicated counts, and a review-artifact hash are
+recorded. Only `confirmed_equivalent` is always excluded. `unresolved` remains in
+the denominator. Duplicate exclusion is off by default and must be enabled
+explicitly as a sensitivity policy.
+
+The pilot also retains an AI-assisted preliminary review before and after file. It
+classifies 10 candidates as non-equivalent, 1 as confirmed equivalent, and 1 as a
+duplicate. This is not represented as two independent reviewers and must not be used
+to report Cohen's kappa. A human should independently verify at least every proposed
+equivalent exclusion before the formal analysis.
+
+Prepare an inspectable, disposable worktree for one mutant with:
+
+```bash
+.venv-mutmut/bin/python scripts/metric_collection/prepare_mutation_review_workspace.py prepare \
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --mutant-id <MUTANT_ID> --mutmut-python .venv-mutmut/bin/python \
+  --target /tmp/markdown-it-mutant-review
+```
+
+The generated `MUTATION_REVIEW.md` provides `show`, `tests-for-mutant`, rerun, and
+`apply` commands. `apply` is permitted only inside that worktree; do not commit it.
+Use the printed cleanup command afterwards.
+
+Apply completed reviews to a new catalog and produce final participant scores:
+
+```bash
+venv/bin/python scripts/metric_collection/apply_global_mutant_reviews.py \
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --reviewer-1 results/mutation_score/formal/reviewer_1.csv \
+  --reviewer-2 results/mutation_score/formal/reviewer_2.csv \
+  --adjudication results/mutation_score/formal/adjudication.csv \
+  --output-catalog results/mutation_score/formal/reviewed_catalog.json \
+  --output-summary results/mutation_score/formal/review_summary.json \
+  --output-decisions results/mutation_score/formal/review_decisions.csv
+
+venv/bin/python scripts/metric_collection/summarize_mutation_scores.py \
+  results/mutation_score/formal/collection_manifest.json \
+  --reviewed-catalog results/mutation_score/formal/reviewed_catalog.json \
+  --raw-dir results/mutation_score/formal/raw \
+  --output results/mutation_score/formal/mutation_scores.csv
+```
+
+For each layer, timeout is reported and excluded. Confirmed equivalent mutants are
+removed globally. The unweighted descriptive score and weighted estimate are:
+
+```text
+eligible = killed + survived + no_tests - confirmed_equivalent
+MS = eligible_killed / eligible
+EstimatedKilled = sum_h N_h * killed_h / n_h
+EstimatedMS = weighted killed / weighted eligible
+```
+
+Specified and extended-only scores remain separate primary outcomes; combined score
+is a sensitivity result. A participant with no valid tests receives zero through
+`no_tests`; collection or environment failure remains unavailable rather than zero.
 
 ## Batch Output
 
@@ -441,18 +733,23 @@ Convert the collection manifest into analysis-ready CSV files without rerunning 
 participant tests:
 
 ```bash
-venv/bin/python scripts/summarize_metrics.py \
+venv/bin/python scripts/metric_collection/summarize_metrics.py \
   results/error_rates/collection_manifest.json \
-  --output-dir results/error_rates/summary
+  --output-dir results
 ```
 
 This creates:
 
 ```text
-results/error_rates/summary/
-├── assertion_score.csv
-├── error_rates.csv
-└── coverage.csv
+results/
+├── assertion_score/
+│   └── assertion_score.csv
+├── coverage/
+│   └── coverage.csv
+└── error_rates/
+    ├── collection_manifest.json
+    ├── error_rates.csv
+    └── raw/
 ```
 
 CSV does not support workbook tabs, so each metric family is written to a separate,
