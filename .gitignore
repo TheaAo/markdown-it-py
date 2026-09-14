@@ -142,6 +142,7 @@ __pycache__/
 .DS_Store
 
 docs/api/
-/results/metric_collection/
+/results/*
+!/results/README.md
 
 uv.lock

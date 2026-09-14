@@ -1022,7 +1022,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("results/metric_collection/mutation/catalog"),
+        default=Path("results/mutation_score/catalog"),
     )
     return parser
 

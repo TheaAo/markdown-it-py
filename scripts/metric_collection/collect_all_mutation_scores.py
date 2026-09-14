@@ -382,7 +382,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("results/metric_collection/mutation"),
+        default=Path("results/mutation_score"),
     )
     parser.add_argument("--max-children", type=int, default=4)
     parser.add_argument("--test-timeout", type=float, default=120.0)

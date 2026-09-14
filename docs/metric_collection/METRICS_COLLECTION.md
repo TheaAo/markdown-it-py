@@ -31,12 +31,19 @@ experiment branches and in the dedicated experiment environment.
   workload definitions, summarizers, and review tools.
 - `tests/metric_collection/` contains their regression tests.
 - `docs/metric_collection/` contains the current methodology and usage documents.
-- `results/metric_collection/` contains generated local data. It is ignored by Git
-  so large or intermediate datasets are not accidentally committed.
+- `results/error_rates/` contains the cross-participant collection manifest and raw
+  records. Those records also carry coverage and assertion evidence so that the
+  valid-test classification is performed only once.
+- `results/coverage/` contains the analysis-ready coverage table.
+- `results/assertion_score/` contains the analysis-ready assertion-score table.
+- `results/mutation_score/` contains mutation catalogs, execution records, reviews,
+  and analysis-ready mutation tables.
+- `results/` is ignored by Git so large or intermediate datasets are not
+  accidentally committed.
 
 Catalog and score commands use project-local result paths by default. Temporary
 directories are used only as isolated execution workspaces and are removed after a
-run; reviewable outputs are written under `results/metric_collection/`.
+run; reviewable outputs are written under the metric-specific directories above.
 
 ## Single Submission
 
@@ -189,7 +196,7 @@ Collect all branches serially with:
 ```bash
 venv/bin/python scripts/metric_collection/collect_all_branches.py \
   --baseline origin/experiment-base \
-  --output-dir results/metric_collection/error_rates \
+  --output-dir results/error_rates \
   --timeout 120
 ```
 
@@ -202,7 +209,7 @@ a faster, error-rate-only diagnostic run:
 ```bash
 venv/bin/python scripts/metric_collection/collect_all_branches.py \
   --baseline origin/experiment-base \
-  --output-dir results/metric_collection/error_rates \
+  --output-dir results/error_rates \
   --timeout 120 \
   --skip-coverage
 ```
@@ -228,7 +235,7 @@ venv/bin/python scripts/metric_collection/benchmark_mutation_tools.py \
   --mutpy-python /path/to/mutpy-venv/bin/python \
   --mutmut-python /path/to/mutmut-venv/bin/python \
   --cosmic-ray-python /path/to/cosmic-ray-venv/bin/python \
-  --output-dir results/metric_collection/mutation_pilot
+  --output-dir results/mutation_score/tool_pilot
 ```
 
 The script runs each tool twice to verify semantic catalog reproducibility. It writes
@@ -256,7 +263,7 @@ python3.11 -m venv .venv-mutmut
   --baseline-ref origin/experiment-base \
   --mutmut-python .venv-mutmut/bin/python \
   --only-mutate markdown_it/ruler.py \
-  --output-dir results/metric_collection/mutation/catalog-pilot
+  --output-dir results/mutation_score/catalog-pilot
 ```
 
 The builder assigns a deterministic operator family from each normalized diff.
@@ -264,9 +271,9 @@ Existing catalogs can be annotated without changing mutant identity:
 
 ```bash
 venv/bin/python scripts/metric_collection/classify_mutation_operators.py \
-  results/metric_collection/mutation/catalog-pilot/mutant_catalog.json \
-  --output results/metric_collection/mutation/catalog-pilot/classified_catalog.json \
-  --review-csv results/metric_collection/mutation/catalog-pilot/operator_review.csv
+  results/mutation_score/catalog-pilot/mutant_catalog.json \
+  --output results/mutation_score/catalog-pilot/classified_catalog.json \
+  --review-csv results/mutation_score/catalog-pilot/operator_review.csv
 ```
 
 ### Sampling Protocol
@@ -293,16 +300,16 @@ simulated offline so that the full scores remain the ground truth:
 
 ```bash
 .venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
-  --catalog results/metric_collection/mutation/catalog-pilot/classified_catalog.json \
+  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
   --python .venv-mutmut/bin/python \
   --baseline origin/experiment-base \
-  --output-dir results/metric_collection/mutation/ruler-full \
+  --output-dir results/mutation_score/ruler-full \
   --max-children 4 --resume
 
 venv/bin/python scripts/metric_collection/analyze_sampling_pilot.py \
-  --catalog results/metric_collection/mutation/catalog-pilot/classified_catalog.json \
-  --results results/metric_collection/mutation/ruler-full/raw \
-  --output-dir results/metric_collection/mutation/sampling-pilot-specified-plus-extended-census
+  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
+  --results results/mutation_score/ruler-full/raw \
+  --output-dir results/mutation_score/sampling-pilot-specified-plus-extended-census
 ```
 
 The analysis writes per-run errors, MAE, RMSE, adjusted R², Kendall tau-b,
@@ -324,12 +331,12 @@ the frozen values rather than the historical example values:
 
 ```bash
 venv/bin/python scripts/metric_collection/sample_mutant_catalog.py \
-  results/metric_collection/mutation/catalog/classified_catalog.json \
+  results/mutation_score/catalog/classified_catalog.json \
   --strategy <FROZEN_STRATEGY> \
   --ratio <FROZEN_RATIO> --seed <FROZEN_SEED> \
   --minimum-sample-size 30 --minimum-per-stratum 1 \
   --census-layer extended_only \
-  --output-dir results/metric_collection/mutation/sampled-catalog
+  --output-dir results/mutation_score/sampled-catalog
 ```
 
 Specified function strata can have unequal sampling fractions. Every sampled
@@ -348,20 +355,20 @@ rerun. Confirmations are persisted atomically in small batches.
 
 ```bash
 .venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
-  --catalog results/metric_collection/mutation/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
   --python .venv-mutmut/bin/python \
   --baseline origin/experiment-base \
-  --output-dir results/metric_collection/mutation/full-sut/formal \
+  --output-dir results/mutation_score/full-sut/formal \
   --max-children 4 --timeout-multiplier 5 --timeout-constant 0.5 \
   --timeout-retry-count 1 --confirmation-batch-size 25 \
   --resume --confirm-kills
 
 venv/bin/python scripts/metric_collection/aggregate_mutant_outcomes.py \
-  --catalog results/metric_collection/mutation/full-sut/catalog/task_relevant_mutant_catalog.json \
-  --results results/metric_collection/mutation/full-sut/formal/raw \
-  --manifest results/metric_collection/mutation/full-sut/formal/collection_manifest.json \
-  --reliable-kill-evidence results/metric_collection/mutation/full-sut/formal/reliable_kill_evidence.json \
-  --output-dir results/metric_collection/mutation/full-sut/formal/global \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --results results/mutation_score/full-sut/formal/raw \
+  --manifest results/mutation_score/full-sut/formal/collection_manifest.json \
+  --reliable-kill-evidence results/mutation_score/full-sut/formal/reliable_kill_evidence.json \
+  --output-dir results/mutation_score/full-sut/formal/global \
   --require-confirmed-kills
 ```
 
@@ -415,10 +422,10 @@ completed full matrix rather than rerunning Mutmut:
 
 ```bash
 venv/bin/python scripts/metric_collection/derive_sampled_mutation_results.py \
-  --catalog results/metric_collection/mutation/sampled-catalog/sampled_mutant_catalog.json \
-  --full-results results/metric_collection/mutation/ruler-full/raw \
-  --full-manifest results/metric_collection/mutation/ruler-full/collection_manifest.json \
-  --output-dir results/metric_collection/mutation/sampled-pilot
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --full-results results/mutation_score/ruler-full/raw \
+  --full-manifest results/mutation_score/ruler-full/collection_manifest.json \
+  --output-dir results/mutation_score/sampled-pilot
 ```
 
 ### Equivalent-Mutant Review
@@ -441,7 +448,7 @@ Prepare an inspectable, disposable worktree for one mutant with:
 
 ```bash
 .venv-mutmut/bin/python scripts/metric_collection/prepare_mutation_review_workspace.py prepare \
-  --catalog results/metric_collection/mutation/sampled-catalog/sampled_mutant_catalog.json \
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
   --mutant-id <MUTANT_ID> --mutmut-python .venv-mutmut/bin/python \
   --target /tmp/markdown-it-mutant-review
 ```
@@ -454,19 +461,19 @@ Apply completed reviews to a new catalog and produce final participant scores:
 
 ```bash
 venv/bin/python scripts/metric_collection/apply_global_mutant_reviews.py \
-  --catalog results/metric_collection/mutation/sampled-catalog/sampled_mutant_catalog.json \
-  --reviewer-1 results/metric_collection/mutation/formal/reviewer_1.csv \
-  --reviewer-2 results/metric_collection/mutation/formal/reviewer_2.csv \
-  --adjudication results/metric_collection/mutation/formal/adjudication.csv \
-  --output-catalog results/metric_collection/mutation/formal/reviewed_catalog.json \
-  --output-summary results/metric_collection/mutation/formal/review_summary.json \
-  --output-decisions results/metric_collection/mutation/formal/review_decisions.csv
+  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --reviewer-1 results/mutation_score/formal/reviewer_1.csv \
+  --reviewer-2 results/mutation_score/formal/reviewer_2.csv \
+  --adjudication results/mutation_score/formal/adjudication.csv \
+  --output-catalog results/mutation_score/formal/reviewed_catalog.json \
+  --output-summary results/mutation_score/formal/review_summary.json \
+  --output-decisions results/mutation_score/formal/review_decisions.csv
 
 venv/bin/python scripts/metric_collection/summarize_mutation_scores.py \
-  results/metric_collection/mutation/formal/collection_manifest.json \
-  --reviewed-catalog results/metric_collection/mutation/formal/reviewed_catalog.json \
-  --raw-dir results/metric_collection/mutation/formal/raw \
-  --output results/metric_collection/mutation/formal/mutation_scores.csv
+  results/mutation_score/formal/collection_manifest.json \
+  --reviewed-catalog results/mutation_score/formal/reviewed_catalog.json \
+  --raw-dir results/mutation_score/formal/raw \
+  --output results/mutation_score/formal/mutation_scores.csv
 ```
 
 For each layer, timeout is reported and excluded. Confirmed equivalent mutants are
@@ -488,7 +495,7 @@ is a sensitivity result. A participant with no valid tests receives zero through
 Successful collection creates:
 
 ```text
-results/metric_collection/error_rates/
+results/error_rates/
 ├── collection_manifest.json
 └── raw/
     ├── experiment-01.json
@@ -536,17 +543,22 @@ participant tests:
 
 ```bash
 venv/bin/python scripts/metric_collection/summarize_metrics.py \
-  results/metric_collection/error_rates/collection_manifest.json \
-  --output-dir results/metric_collection/error_rates/summary
+  results/error_rates/collection_manifest.json \
+  --output-dir results
 ```
 
 This creates:
 
 ```text
-results/metric_collection/error_rates/summary/
-├── assertion_score.csv
-├── error_rates.csv
-└── coverage.csv
+results/
+├── assertion_score/
+│   └── assertion_score.csv
+├── coverage/
+│   └── coverage.csv
+└── error_rates/
+    ├── collection_manifest.json
+    ├── error_rates.csv
+    └── raw/
 ```
 
 CSV does not support workbook tabs, so each metric family is written to a separate,

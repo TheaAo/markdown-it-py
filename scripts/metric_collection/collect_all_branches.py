@@ -606,7 +606,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--output-dir",
         type=Path,
-        default=Path("results/metric_collection/error_rates"),
+        default=Path("results/error_rates"),
         help="Directory for raw participant JSON files and the manifest.",
     )
     parser.add_argument(

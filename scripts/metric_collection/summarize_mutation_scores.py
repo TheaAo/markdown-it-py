@@ -168,12 +168,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         "manifest",
         type=Path,
         nargs="?",
-        default=Path("results/metric_collection/mutation/collection_manifest.json"),
+        default=Path("results/mutation_score/collection_manifest.json"),
     )
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("results/metric_collection/mutation/summary/mutation_scores.csv"),
+        default=Path("results/mutation_score/summary/mutation_scores.csv"),
     )
     parser.add_argument("--reviewed-catalog", type=Path)
     parser.add_argument("--raw-dir", type=Path)

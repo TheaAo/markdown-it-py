@@ -74,10 +74,10 @@ Do not run this command without explicit approval for the full cross-branch run.
 
 ```bash
 .venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
-  --catalog results/metric_collection/mutation/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
   --python .venv-mutmut/bin/python \
   --baseline origin/experiment-base \
-  --output-dir results/metric_collection/mutation/full-sut/formal \
+  --output-dir results/mutation_score/full-sut/formal \
   --max-children 4 \
   --timeout-multiplier 6 \
   --timeout-constant 0.5 \
