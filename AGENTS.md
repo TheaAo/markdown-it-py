@@ -314,28 +314,44 @@ def test_emphasis(input_text, expected):
 
 ## Commit Message Format
 
-Use this format:
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+without emoji. Use this structure:
 
 ```
-<EMOJI> <KEYWORD>: Summarize in 72 chars or less (#<PR>)
+<type>[optional scope][!]: <description>
 
-Optional detailed explanation.
+[optional body]
+
+[optional footer(s)]
 ```
 
-Keywords:
+Rules:
 
-- `✨ NEW:` – New feature
-- `🐛 FIX:` – Bug fix
-- `👌 IMPROVE:` – Improvement (no breaking changes)
-- `‼️ BREAKING:` – Breaking change
-- `📚 DOCS:` – Documentation
-- `🔧 MAINTAIN:` – Maintenance changes only (typos, etc.)
-- `🧪 TEST:` – Tests or CI changes only
-- `♻️ REFACTOR:` – Refactoring
+- Start every commit with a type followed by an optional noun scope, an optional
+  `!`, and the required `: ` separator.
+- Use `feat` for a new feature and `fix` for a bug fix. Other useful types include
+  `docs`, `test`, `refactor`, `perf`, `build`, `ci`, and `chore`.
+- Write a short, imperative description immediately after the prefix. Keep the
+  subject concise and do not add an emoji.
+- Separate an optional body from the description with one blank line.
+- Put optional footers after another blank line. Use hyphens instead of spaces in
+  footer tokens, except for the reserved `BREAKING CHANGE` token.
+- Mark an incompatible change with `!` before the colon or with a
+  `BREAKING CHANGE: <description>` footer.
+- Prefer separate, focused commits when changes belong to different types.
+
+Examples:
+
+```
+feat(metrics): collect generation times
+fix(coverage): exclude invalid tests
+docs: document the experiment protocol
+refactor(parser)!: replace the token interface
+```
 
 ## PR Title and Description Format
 
-Use the same as for the commit message format, but for the title you can omit the `KEYWORD` and only use `EMOJI`.
+Use the same Conventional Commits prefix for pull request titles when practical.
 
 ## Pull Request Requirements
 
