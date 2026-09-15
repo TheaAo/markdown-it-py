@@ -1,11 +1,7 @@
-from contextlib import redirect_stdout
-import io
+from contextlib import redirect_stderr
 import json
-import pathlib
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
-import os
 
 import pytest
 
@@ -21,14 +17,11 @@ from markdown_it.cli import parse
 # - This test can serve as an overall regression test for the parsing and rendering functionality.
 def test_file():
 
-    text_file = open("D:/Code/markdown-it-py/tests/task/materials/test_file.html", 'r', encoding='utf-8')
-    text_file_line = text_file.read()
-
-    file = open("D:/Code/markdown-it-py/tests/task/materials/spec.md", 'r', encoding='utf-8')
-    text_lines = file.read()
+    materials = Path(__file__).parent / "materials"
+    text_file_line = (materials / "test_file.html").read_text(encoding="utf-8")
+    text_lines = (materials / "spec.md").read_text(encoding="utf-8")
 
     md = MarkdownIt("commonmark")
-    tokens = md.parse(text_lines)
     html_text = md.render(text_lines)
 
     assert html_text == text_file_line
@@ -41,14 +34,13 @@ def test_file():
 # - Compare the actual rendering result with the expected HTML output;
 # - You may use parameterized tests to organize these test cases.
 def test_spec():
-    with open('D:/Code/markdown-it-py/tests/task/materials/commonmark.json', 'r', encoding='utf-8') as f:
-        json_data = json.load(f)
+    materials = Path(__file__).parent / "materials"
+    json_data = json.loads((materials / "commonmark.json").read_text(encoding="utf-8"))
 
     m_h = dict((item["markdown"], item["html"]) for item in json_data)
 
     for k, v in m_h.items():
         md = MarkdownIt("commonmark")
-        tokens = md.parse(k)
         html_text = md.render(k)
 
         assert ''.join(html_text.split()) == ''.join(v.split())
@@ -60,7 +52,19 @@ def test_spec():
 # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
 # - Verify that the custom rule is actually called.
-# def test_core_after(capsys):
+def test_core_after():
+    events = []
+
+    def custom_rule(state):
+        events.append(state.src)
+
+    def plugin(md):
+        md.core.ruler.after("normalize", "custom_rule", custom_rule)
+
+    md = MarkdownIt("commonmark").use(plugin)
+    md.parse("first\r\nsecond")
+
+    assert events == ["first\nsecond"]
 
 # Please test the program’s behavior when processing a non-existent file path.
 # Requirements:
@@ -68,11 +72,10 @@ def test_spec():
 # - Verify that the program raises `SystemExit`;
 # - Verify that the exit code is the abnormal exit code.
 def test_parse_fail():
-    filepath = "D:/Code/markdown-it-py/tests/task/materials/AAA.json"
-    if os.path.isfile(filepath):
-        return True
-    else:
-        return SystemExit
+    filepath = Path(__file__).parent / "materials" / "AAA.json"
+    with pytest.raises(SystemExit) as exc_info:
+        parse.main([str(filepath)])
+    assert exc_info.value.code == 1
     
 # Please test the program’s behavior when processing a Markdown file that is not encoded in UTF-8.
 # Requirements:
@@ -81,14 +84,21 @@ def test_parse_fail():
 # - Verify that the program can handle the input;
 # - Verify that the program exits normally with the normal exit code.
 def test_non_utf8():
-    mystr = '09. BÃ¡t NhÃ£ TÃ¢m Kinh'
-    try:
-        test_parse('utf-8')
-    except: 
-        return 0
+    with tempfile.TemporaryDirectory() as tempdir:
+        path = Path(tempdir) / "invalid.md"
+        path.write_bytes(b"valid markdown\xff\n")
+        error_output = tempfile.SpooledTemporaryFile(mode="w+")
+
+        with pytest.raises(SystemExit) as exc_info:
+            with redirect_stderr(error_output):
+                parse.main([str(path)])
+
+        error_output.seek(0)
+        assert exc_info.value.code == 1
+        assert f'Cannot decode file "{path}" as UTF-8.' in error_output.read()
     
 def test_parse():
     with tempfile.TemporaryDirectory() as tempdir:
-        path = pathlib.Path(tempdir).joinpath("test.md")
+        path = Path(tempdir).joinpath("test.md")
         path.write_text("a b c")
         assert parse.main([str(path)]) == 0  # File exists and parses successfully, returns exit code 0
