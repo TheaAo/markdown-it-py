@@ -447,7 +447,7 @@ venv/bin/python scripts/metric_collection/classify_mutation_operators.py \
   --review-csv results/mutation_score/catalog-pilot/operator_review.csv
 ```
 
-### Sampling Protocol
+### Execution-Cost Sampling Protocol
 
 The `specified` layer is sampled once and the frozen sample is shared by every
 participant. The smaller `extended_only` layer is included as a census and reported
@@ -615,6 +615,144 @@ duplicate. This is not represented as two independent reviewers and must not be 
 to report Cohen's kappa. A human should independently verify at least every proposed
 equivalent exclusion before the formal analysis.
 
+The completed full-SUT collection uses a separate statistical review protocol.
+Reliable participant kills are concrete non-equivalence witnesses: 3,041 of the
+4,725 catalog mutants are therefore `auto_non_equivalent`. The remaining 1,684
+never-reliably-killed mutants form the equivalent-review sampling frame. Failure to
+find a witness is not evidence of equivalence, and identical participant kill
+vectors are not used as semantic-equivalence evidence.
+
+This reliable-kill pass is the only automatic pre-screen accepted for the frozen
+first-round frame. No additional AST, bytecode, SMT, LLM, or observed-vector rule
+is treated as proof, and the catalog does not currently provide a validated
+complete-program representation for sound duplicate clustering. A future
+researcher-controlled differential or grammar-fuzzing pass may add reproducible
+non-equivalence witnesses, but it must write separate evidence, preserve participant
+outcomes, version the sampling frame, and freeze a new sample before review. Its
+generated inputs must not be added to participant suites when scores are computed.
+
+The pre-specified first review round is a shared probability sample of 100 mutants,
+using seed `20260915`. Sampling is without replacement and stratified by
+`workload_layer` and `operator_family`. Every non-census stratum receives at least
+two observations; strata with at most two mutants are censused. Selection uses a
+SHA-256 priority per seed, stratum, and mutant ID. Increasing the requested sample
+size with the same frame and seed therefore produces a strictly nested sample.
+Each sampled row records its stratum population, sample size, inclusion probability,
+and Horvitz--Thompson weight. Automatic duplicate clustering is not currently used:
+each mutant is an independent cluster with multiplicity one.
+
+Generate the frozen first-round sample with:
+
+```bash
+venv/bin/python scripts/metric_collection/equivalent_mutant_sampling.py \
+  --global-outcomes results/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
+  --output-dir results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1 \
+  --sample-size 100 --seed 20260915 --minimum-per-stratum 2 \
+  --planned-sample-sizes 100 150 225 313
+```
+
+The output contains `sample.csv`, `sampling_manifest.json`, blinded reviewer
+templates, and an adjudication template. Reviewer files do not contain participant
+outcomes. For the lower-effort design, distribute only `reviewer_1.csv` initially.
+The primary reviewer uses `non_equivalent`, `confirmed_equivalent`, `duplicate`, or
+`unresolved` and supplies reasons. The generated full `reviewer_2.csv` is retained
+only as a reserve and must not be distributed or completed.
+
+After the primary review is complete, create the blinded targeted secondary workload.
+It contains every primary `confirmed_equivalent`, `duplicate`, or `unresolved` label,
+plus a deterministic random quality-control sample of ten primary
+`non_equivalent` labels. The secondary file does not reveal either the primary label
+or why the row was selected:
+
+```bash
+venv/bin/python scripts/metric_collection/targeted_mutant_review.py prepare-secondary \
+  --primary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
+  --output-secondary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
+  --output-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
+  --output-adjudication results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
+  --qc-size 10 --seed 20260915
+```
+
+After the independent secondary review and adjudication of every disagreement,
+produce decisions with:
+
+```bash
+venv/bin/python scripts/metric_collection/targeted_mutant_review.py apply \
+  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --primary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
+  --secondary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
+  --selection-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
+  --adjudication results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
+  --output-catalog results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewed_catalog.json \
+  --output-summary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
+  --output-decisions results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv
+```
+
+Primary-only `non_equivalent` decisions are accepted under this design; every more
+risky exclusion claim receives secondary review. `duplicate` remains scoreable and
+is treated as non-equivalent for estimating equivalent exclusions. Because secondary
+selection is targeted, full-sample Cohen's kappa is not reported. The random
+quality-control subset's raw agreement and any disagreements are retained instead.
+Every sampled row must have a resolved final decision before estimates are generated.
+
+The statistical summarizer estimates equivalent counts with design weights. Its
+reported approximate 95% intervals use the binary worst-case variance of 0.25 within
+each stratum and a finite-population correction. This is intentionally conservative
+when an observed stratum contains only equivalent or only non-equivalent decisions.
+For each participant, estimated equivalent mutants are removed only when that
+participant's outcome was scoreable; timeout and flaky-kill outcomes remain outside
+the score denominator. `no_tests` remains scoreable and contributes zero kills.
+Specified-layer participant scores are the primary stopping outcomes; extended-only
+and combined scores are reported separately, with combined treated as sensitivity
+analysis.
+
+```bash
+venv/bin/python scripts/metric_collection/summarize_equivalent_mutant_sample.py \
+  --collection-manifest results/mutation_score/full-sut/formal/collection_manifest.json \
+  --global-outcomes results/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
+  --sampling-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sampling_manifest.json \
+  --sample results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sample.csv \
+  --decisions results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv \
+  --review-summary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
+  --participant-matrix results/mutation_score/full-sut/formal/global/participant_mutant_matrix.csv \
+  --output-dir results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final \
+  --target-half-width 0.05
+```
+
+The command writes `mutation_score_estimates.json` and the final
+`mutation_scores.csv`. The expansion looks are pre-specified at cumulative sample
+sizes 100, 150, 225, and 313. To protect the precision decision from optional
+stopping, the stopping diagnostic applies a Bonferroni correction across these four
+looks (98.75% intervals at each look); the final participant intervals remain the
+pre-specified nominal 95% estimates. The precision criterion is marginal for each
+participant rather than a claim of simultaneous 95% coverage across all participants.
+If any primary stopping interval has half-width above 0.05, create the next scheduled
+sample in a new directory with the same seed and pass the prior round via
+`--previous-review-dir`. This carries forward existing reviewer and adjudication
+entries and adds only the next deterministic sample rows. Continue until every
+primary interval meets the target or report that the target was not reached; never
+relax the threshold after observing results. The sampler refuses to overwrite an
+existing review directory, protecting completed review work.
+
+Before estimating, the summarizer recomputes and verifies the manifest, global
+outcomes, sampling-frame, selected-sample, catalog, SUT, execution-policy, and
+deterministic selection identities. It also verifies the review-summary hash against
+the adjudicated decisions and the complete participant matrix against the hashed
+global aggregation. The final JSON and CSV retain review, decision-status, and
+participant-matrix hashes. A provenance mismatch prevents final output.
+
+The completed 2026-09-15 first look contained 12 independently confirmed equivalent
+mutants and 88 non-equivalent mutants, with no unresolved decisions. The targeted
+secondary reviewer agreed on all 12 proposed-equivalent cases and all ten random
+quality-control cases, so no adjudication was necessary; the quality-control raw
+agreement is 1.0 and Cohen's kappa remains unreported because the secondary sample
+was targeted. The design-weighted estimate is 214.885 equivalent mutants in the
+1,684-mutant frame (estimated proportion 0.127604; conservative nominal 95% count
+interval 50.792--378.978). The largest specified-participant stopping half-width is
+0.033405, so the first look satisfies the 0.05 target and no sample expansion is
+required. The authoritative generated outputs are under
+`results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/`.
+
 Prepare an inspectable, disposable worktree for one mutant with:
 
 ```bash
@@ -628,7 +766,8 @@ The generated `MUTATION_REVIEW.md` provides `show`, `tests-for-mutant`, rerun, a
 `apply` commands. `apply` is permitted only inside that worktree; do not commit it.
 Use the printed cleanup command afterwards.
 
-Apply completed reviews to a new catalog and produce final participant scores:
+For a full census review rather than the statistical protocol, apply completed
+reviews to a new catalog and produce exact participant scores with:
 
 ```bash
 venv/bin/python scripts/metric_collection/apply_global_mutant_reviews.py \

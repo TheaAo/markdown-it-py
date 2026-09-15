@@ -1,10 +1,87 @@
 # Mutation Score Collection Handoff
 
-Last updated: 2026-09-06
+Last updated: 2026-09-15
 Repository: `/Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py`
 Current branch: `pilot-metric-mutation`
 
-## Current Readiness Update (2026-09-07)
+## Current Finalisation Status (2026-09-15)
+
+This section is authoritative. Sections 9--15 are retained only as explicitly
+labelled historical context from before the completed full collection.
+
+- `pilot-metric` was fast-forwarded into `pilot-metric-mutation`; both local and
+  remote branches were at `7c35b01` before the statistical-finalisation changes.
+- Full collection finished on 2026-09-07 and global aggregation finished on
+  2026-09-08. The fixed catalog contains 4,725 mutants across 14 reliable
+  participants; experiments 13 and 15 did not participate.
+- The formal collection manifest records 15,518.707 seconds total duration.
+- Reliable kill evidence proves 3,041 mutants non-equivalent. The remaining 1,684
+  review candidates contain no execution-unresolved mutants.
+- Reliable kills are the only accepted automatic pre-screen for the frozen frame.
+  No LLM, identical kill vector, AST/bytecode heuristic, or unvalidated duplicate
+  representation is used as semantic-equivalence proof.
+- Experiments 04 and 06 have no valid tests and correctly receive zero through
+  `no_tests`. Participant timeouts remain excluded from score denominators.
+- The selected finalisation route is statistical equivalent-mutant estimation, not
+  a 1,684-mutant census and not automatic labelling of survivors as equivalent.
+- The first review round is a reproducible 100-mutant probability sample with seed
+  `20260915`, stratified by `workload_layer` and `operator_family`. The three
+  singleton extended-only strata are censused. Automatic duplicate clustering is
+  not used, so every mutant currently has cluster multiplicity one.
+- The sampling implementation and tests are in
+  `scripts/metric_collection/equivalent_mutant_sampling.py`,
+  `scripts/metric_collection/summarize_equivalent_mutant_sample.py`,
+  `scripts/metric_collection/targeted_mutant_review.py`, and their focused tests.
+- The stage-one sample, audit manifest, reviewer files, and adjudication
+  template are under
+  `results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/`.
+  The earlier blank 313-item sample is retained under `equivalent_review_sample/`
+  as an unused reserve; the 100 selected IDs form a strict subset of it.
+- The primary reviewer checks all 100 rows. Only proposed-equivalent, duplicate,
+  unresolved, and ten deterministically selected non-equivalent quality-control
+  rows receive blinded secondary review. Targeted selection means full-sample
+  Cohen's kappa is not claimed; quality-control raw agreement is retained.
+- The primary review is complete: all 100 rows have non-empty reasons, with 12
+  `confirmed_equivalent` and 88 `non_equivalent` decisions. The independent targeted
+  secondary review is also complete for all 22 selected rows (all 12 proposed
+  equivalents plus 10 deterministic quality-control rows). The two reviewers had no
+  disagreements, and raw agreement in the random quality-control subset was 1.0.
+  Full-sample Cohen's kappa is deliberately not reported because secondary selection
+  was targeted. The selection-manifest hash is
+  `8c828070cb64cd81bd7b2caf6f7019fa8960056d07fc50eebcd45ffd9f160649`.
+- Final estimates use Horvitz--Thompson design weights and conservative nominal 95%
+  finite-population intervals based on the binary worst-case variance. Sequential
+  expansion uses pre-specified cumulative sizes 100, 150, 225, and 313 and a
+  Bonferroni correction across the four looks (98.75% stopping intervals). It keeps
+  the same frame and seed and must continue until every specified participant-score
+  stopping interval has half-width at most 0.05, or the limitation is explicitly
+  reported. The nominal participant intervals are marginal, not simultaneous 95%
+  coverage claims. All catalog, SUT, policy, frame, sample, and manifest hashes are
+  revalidated before estimates are written. Review-summary, decision-status, and
+  participant-matrix hashes are also retained in the final outputs.
+- The formal first-look estimate is complete. The stratified Horvitz--Thompson
+  estimate is 214.885 equivalent mutants among the 1,684-candidate review frame
+  (estimated proportion 0.127604; conservative nominal 95% count interval
+  50.792--378.978). The sample contains 12 confirmed-equivalent and no unresolved
+  decisions.
+- The pre-specified stage-one stopping rule passed: the largest specified-layer
+  participant stopping-interval half-width is `0.033405`, below the `0.05` target.
+  No expansion to 150, 225, or 313 reviews is required. Experiment 07 has the widest
+  primary interval; its estimated adjusted score is 0.692502 with nominal 95%
+  interval 0.667301--0.719680.
+- Final outputs are
+  `results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/mutation_scores.csv`
+  and `mutation_score_estimates.json` in the same directory. The final review hash is
+  `7fccc6f69321b576821e5d690f726b4c4b6a781c5f99fdf47b2cda6a7c0a89aa`.
+- The finalisation changes described here are not committed or pushed. Do not
+  commit or push them without explicit user approval.
+
+Immediate next actions are final verification of the code and documentation, review
+of the intended git diff, and commit/push only after explicit user approval. Generated
+tests may provide global non-equivalence witnesses but must never be added to
+participant test suites when computing participant scores.
+
+## Historical Readiness Update (2026-09-07)
 
 This update supersedes the earlier blocker and next-step sections below.
 
@@ -307,7 +384,7 @@ The evidence-aware aggregation was also validated without running Mutmut:
 - review candidates: 1,559;
 - execution unresolved: 148.
 
-## 9. Current Blocker
+## 9. Historical Blocker (superseded)
 
 The code can migrate the old format and preserve reliable kills, but the old raw
 participant rows do not contain:
@@ -325,7 +402,7 @@ backfill timings for the other 4,577 rows.
 
 No formal timing backfill or real selective Mutmut rerun has been started yet.
 
-## 10. Next Implementation Plan
+## 10. Historical Implementation Plan (superseded)
 
 ### Phase A: approved cleanup
 
@@ -398,7 +475,7 @@ After the pilot succeeds:
 6. perform blinded equivalent-mutant review for never-killed mutants;
 7. produce final Mutation Score CSV output.
 
-## 11. Cleanup and Worktree Status
+## 11. Historical Cleanup and Worktree Status (superseded)
 
 At the last check, no Mutation Score or Mutmut process was running.
 
@@ -412,7 +489,7 @@ Existing worktrees:
 
 Do not remove the review worktree unless the user explicitly approves it.
 
-## 12. Git and Commit State
+## 12. Historical Git and Commit State (superseded)
 
 The Mutation Score implementation has not been committed or pushed. The working
 tree contains a large amount of accumulated work, including moved scripts and docs,
@@ -431,7 +508,7 @@ This user instruction overrides the emoji commit format in `AGENTS.md`.
 
 Do not commit or push until the user explicitly approves the exact staged diff.
 
-## 13. Important Files
+## 13. Historical Important Files (superseded)
 
 Core implementation:
 
@@ -462,7 +539,7 @@ Current formal artifacts:
 - `results/mutation_score/full-sut/formal/cache_migration_report.json`
 - `results/mutation_score/full-sut/formal/cache_policy_change_preview.json`
 
-## 14. Pitfalls That Must Not Be Repeated
+## 14. Historical Pitfalls That Must Not Be Repeated
 
 ### Never bind evidence validity to timeout policy
 
@@ -529,7 +606,7 @@ Always retain the fixed catalog, per-mutant matrix, raw status, timing, evidence
 review status, and catalog/context hashes. Mutation Score without provenance is not
 adequate for the thesis.
 
-## 15. Safe First Commands for the Next Session
+## 15. Historical Safe First Commands (superseded)
 
 Use these read-only checks first:
 
