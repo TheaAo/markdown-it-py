@@ -8,10 +8,12 @@ Generated research data is organized by metric:
 - `coverage/` stores the analysis-ready statement and branch coverage summary.
 - `assertion_score/` stores the analysis-ready assertion-score summary.
 - `generation_time/` stores the self-reported comprehension and total generation
-  times, together with normalized durations in seconds.
+  times, together with normalized durations in seconds and generation-efficiency
+  ratios.
 - `mutation_score/` stores mutation catalogs, dry-run inventories, participant
   executions, review artifacts, and mutation-score summaries.
-- `execution_time/` stores pilot and formal execution-time measurements.
+- `execution_time/` stores pilot and formal execution-time measurements and
+  execution-efficiency ratios.
 - `test_smells/` stores test-smell evidence, tool output, and summary tables.
 
 Mutation-score working data is ignored because its catalogs and raw execution
