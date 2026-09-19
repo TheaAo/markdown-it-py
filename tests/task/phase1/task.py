@@ -1,10 +1,7 @@
-from contextlib import redirect_stdout
-import io
 import json
 import re
 import tempfile
 from pathlib import Path
-from unittest.mock import patch
 
 import pytest
 
@@ -20,7 +17,7 @@ from markdown_it.cli import parse
 # - This test can serve as an overall regression test for the parsing and rendering functionality.
 def test_file():
 	# Regression: full CommonMark spec to HTML matches golden file.
-	materials_dir = Path(__file__).parent / "materials"
+	materials_dir = Path(__file__).resolve().parent / "materials"
 	spec_path = materials_dir / "spec.md"
 	expected_path = materials_dir / "test_file.html"
 
@@ -42,7 +39,7 @@ def test_file():
 # - You may use parameterized tests to organize these test cases.
 def test_spec():
 	# Iterate CommonMark JSON examples and compare normalized HTML.
-	materials_dir = Path(__file__).parent / "materials"
+	materials_dir = Path(__file__).resolve().parent / "materials"
 	cases_path = materials_dir / "commonmark.json"
 
 	cases = json.loads(cases_path.read_text(encoding="utf-8"))
@@ -73,17 +70,28 @@ def test_spec():
 # - Define a plugin function, and in the plugin, insert the custom rule after the `normalize` rule;
 # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
-# - Verify that the custom rule is actually called.
-def test_core_after(capsys):
-	# Ensure core rule insertion executes during parsing.
+# - Verify that the custom rule is actually called after `normalize`.
+def test_core_after():
+	# Record execution order for normalize and the inserted core rule.
+	execution_order = []
+
 	def core_rule(state) -> None:
-		print("core rule called")
+		execution_order.append("core_test_rule")
 
 	def _plugin(_md: MarkdownIt) -> None:
+		core_rule_names = _md.get_all_rules()["core"]
+		normalize_index = core_rule_names.index("normalize")
+		normalize_rule = _md.core.ruler.getRules()[normalize_index]
+
+		def tracked_normalize(state) -> None:
+			execution_order.append("normalize")
+			normalize_rule(state)
+
+		_md.core.ruler.at("normalize", tracked_normalize)
 		_md.core.ruler.after("normalize", "core_test_rule", core_rule)
 
-	MarkdownIt().use(_plugin).parse("a")
-	assert "core rule called" in capsys.readouterr().out
+	MarkdownIt("commonmark").use(_plugin).parse("a")
+	assert execution_order == ["normalize", "core_test_rule"]
 
 
 # Please test the program’s behavior when processing a non-existent file path.
@@ -105,14 +113,19 @@ def test_parse_fail():
 # - Invoke the command-line parsing functionality to process the file;
 # - Verify that the program can handle the input;
 # - Verify that the program exits normally with the normal exit code.
-def test_non_utf8():
-	# GBK-encoded Markdown should be accepted (errors ignored).
+def test_non_utf8(capsys):
+	# Invalid UTF-8 input should exit with an explanatory error.
 	with tempfile.TemporaryDirectory() as tempdir:
 		path = Path(tempdir) / "non_utf8.md"
-		gbk_text = "# 标题\n\n这是一段中文内容。\n"
-		path.write_bytes(gbk_text.encode("gbk"))
-		with redirect_stdout(io.StringIO()):
-			assert parse.main([str(path)]) == 0
+		path.write_bytes(b"# title\n\ninvalid UTF-8: \xff\n")
+
+		with pytest.raises(SystemExit) as excinfo:
+			parse.main([str(path)])
+
+		assert excinfo.value.code == 1
+		assert capsys.readouterr().err == (
+			f'Cannot decode file "{path}" as UTF-8.\n'
+		)
 
 
 
