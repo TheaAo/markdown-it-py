@@ -1,4 +1,4 @@
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 import pathlib
@@ -64,23 +64,40 @@ def test_spec():
 
 # Please test the behavior of inserting a custom rule into the Core rule chain using core.ruler.after().
 # Requirements:
-# - Define a custom Core rule function. This function should take a `state` parameter and be used to mark that “the rule has been executed”, for example by printing a fixed string;
+# - Define a custom Core rule function. This function should take a `state` parameter and be used to mark that “the rule has been executed”, for example by appending a marker to a list;
 # - Define a plugin function, and in the plugin, insert the custom rule after the `normalize` rule;
 # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
-# - Verify that the custom rule is actually called.
-def test_core_after(capsys):
+# - Verify that the custom rule is actually called;
+# - Verify that the custom rule is invoked after the `normalize` rule rather than only checking final execution.
+def test_core_after():
+    execution_log = []
+
     def custom_core_rule(state):
-        print("Custom core rule executed")
+        execution_log.append("custom_core_rule")
 
-    def plugin(md):
-        md.core.ruler.after("normalize", "custom_core_rule", custom_core_rule)
+    md = MarkdownIt("commonmark")
+    core_rule_names = md.get_all_rules()["core"]
+    normalize_rule = md.core.ruler.getRules()[core_rule_names.index("normalize")]
 
-    md = MarkdownIt().use(plugin)
+    def tracking_normalize(state):
+        execution_log.append("normalize")
+        return normalize_rule(state)
+
+    md.core.ruler.at("normalize", tracking_normalize)
+
+    def plugin(_md):
+        _md.core.ruler.after("normalize", "custom_core_rule", custom_core_rule)
+
+    md.use(plugin)
     md.parse("Hello, **world**!")
 
-    captured = capsys.readouterr()
-    assert "Custom core rule executed" in captured.out
+    final_core_rule_names = md.get_all_rules()["core"]
+    assert final_core_rule_names.index("normalize") < final_core_rule_names.index(
+        "custom_core_rule"
+    )
+    assert "custom_core_rule" in execution_log
+    assert execution_log.index("normalize") < execution_log.index("custom_core_rule")
 
 
 # Please test the program’s behavior when processing a non-existent file path.
@@ -97,19 +114,23 @@ def test_parse_fail():
 # Requirements:
 # - Construct or provide a non-UTF-8 encoded Markdown file;
 # - Invoke the command-line parsing functionality to process the file;
-# - Verify that the program can handle the input;
-# - Verify that the program exits normally with the normal exit code.
+# - Verify that the program raises `SystemExit`;
+# - Verify that the exit code is the abnormal exit code;
+# - Verify that the program writes a UTF-8 decode error message to stderr;
+# - Do not require successful rendering to HTML.
 def test_non_utf8():
     with tempfile.NamedTemporaryFile(delete=False, mode="wb") as tmp_file:
-        tmp_file.write("Hello, world!".encode("latin-1"))
+        tmp_file.write(b"\xff\xfeHello, world!\n")
         tmp_file_path = tmp_file.name
 
     try:
-        with patch("sys.argv", ["markdown-it", tmp_file_path]):
-            with redirect_stdout(io.StringIO()) as f:
+        with pytest.raises(SystemExit) as exc_info:
+            with redirect_stderr(io.StringIO()) as err_stream:
                 cli_parse.main([tmp_file_path])
-                output = f.getvalue()
-                assert "Hello, world!" in output
+
+        assert exc_info.value.code == 1, "Expected abnormal exit code for UTF-8 decode error"
+        assert 'Cannot decode file' in err_stream.getvalue()
+        assert "UTF-8" in err_stream.getvalue()
     finally:
         pathlib.Path(tmp_file_path).unlink()
 
