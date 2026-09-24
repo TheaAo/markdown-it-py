@@ -1,0 +1,21 @@
+{
+  "analysis_scope": "Phase 1 only",
+  "random_seed": 20260924,
+  "bootstrap_replicates": 20000,
+  "exact_permutation_test": true,
+  "mean_difference_direction": "AI minus Manual",
+  "source_files": {
+    "error_rates/error_rates.csv": "c29f2f0de08c2225b426a77134382bff534602e94e2afa55228956038654d562",
+    "coverage/coverage.csv": "38c60089651b19c33b23c89e3cb4dd29401c1c7f5397f962ecabe622e1fb1fc5",
+    "assertion_score/assertion_score.csv": "e672d2ecd089e16fdf9af2b944deb755823fb4196e614c37f9ff1157b65ce9da",
+    "mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/mutation_scores.csv": "ee2c78d16cb8ff67ddb3c59663cdc01684bb08bdc0b573892613b9f4e3328f61",
+    "generation_time/generation_time.csv": "ccbce5c747b575d41fbbf74f9a4828a9ca0d1302c1d31d9f621854d69fe54734",
+    "generation_time/generation_efficiency.csv": "710be2f58ce7417f0c1472f0955b767cf2282ee42b036216fd69ab2f12083799",
+    "execution_time/formal/summary/execution_time.csv": "e24421c9c1471947f889c4c4ec81c6f9767211b0eb83eaaa1e0cee440172c278",
+    "execution_time/execution_efficiency.csv": "31c4f8fe6664fda3f9d08ec3bc5a1ad584f4db1f0cc645313f02b476de89b0d5",
+    "test_smells/summary/test_smell.csv": "db682678b1e134881d04e6796bde005a3c5c3af4ae8103caeb31c3751ffc867b",
+    "questionnaire/pre_survey.csv": "b74cb5d7d996228ef6bb8f4d3a56cece3445e8652a55a5c1f4f5bf9b28d44984",
+    "questionnaire/post_survey_ai_group.csv": "4df355a83472356e8c169e63e7f883c897aafb74a13506f995cb679ed3c95b38",
+    "questionnaire/post_survey_manual_group.csv": "fd3bb9773069a35793bd3799ad58bbe2d109477d6d32901bc753850f70532641"
+  }
+}

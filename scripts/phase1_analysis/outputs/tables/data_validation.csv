@@ -1,0 +1,16 @@
+check,status,detail
+Allocated participant IDs,PASS,Expected IDs 1-16 exactly once.
+Participation count,PASS,Observed 14 participants.
+Treatment group counts,PASS,"Observed {'Manual': 8, 'AI': 6}."
+Non-participant IDs,PASS,"Observed [13, 15]."
+Error-rate count invariant,PASS,valid + syntax + runtime + function errors equals generated tests.
+No-valid-test participants,PASS,"Observed [4, 6]."
+Missingness: participant_statement_coverage,PASS,"Missing for participant IDs [4, 6]."
+Missingness: assertion_score,PASS,"Missing for participant IDs [4, 6]."
+Missingness: execution_time_seconds,PASS,"Missing for participant IDs [4, 6]."
+Missingness: test_smell_density,PASS,"Missing for participant IDs [4, 6]."
+Adjusted mutation-score completeness,PASS,Missing for participant IDs [].
+Mutation generation-efficiency completeness,PASS,Missing for participant IDs [].
+Assertion uncertainty,PASS,"Observed [{'participant_number': 8, 'uncertain_test_count': 1.0}]."
+Test-smell uncertainty,PASS,No uncertain source-test/smell pairs expected.
+Mutation review precision target,PASS,All participant specified-layer intervals must satisfy the stopping rule.
