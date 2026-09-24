@@ -84,3 +84,27 @@ def test_interactive_render():
     # The rendered output is prefixed by a newline
     assert "\n<h1>hello</h1>\n" in output
     assert "Exiting" in output
+
+
+def test_non_utf8():
+    import io
+    import tempfile
+    import pathlib
+    from contextlib import redirect_stderr
+
+    # Create a file containing bytes that are invalid UTF-8
+    with tempfile.TemporaryDirectory() as td:
+        path = pathlib.Path(td).joinpath("bad.md")
+        # write invalid UTF-8 sequence
+        path.write_bytes(b"\xff\xfe\xff\xfe")
+
+        stderr_io = io.StringIO()
+        with redirect_stderr(stderr_io):
+            with pytest.raises(SystemExit) as exc:
+                parse.main([str(path)])
+
+        # SystemExit should be raised with non-zero abnormal exit code
+        assert exc.value.code == 1
+
+        stderr = stderr_io.getvalue()
+        assert f'Cannot decode file "{str(path)}" as UTF-8.' in stderr

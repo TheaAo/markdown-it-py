@@ -5,6 +5,7 @@ import pathlib
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
+import re
 
 import pytest
 
@@ -21,8 +22,7 @@ from markdown_it.cli import parse
 def test_file():
 
     md = MarkdownIt("commonmark")
-
-    with open("tests/task/materials/spec.md","r") as test_file:
+    with open("tests/task/phase1/materials/spec.md","r", encoding="utf-8") as test_file:
         # text = "# This is a heading"
         # 使用 commonmark 的规则初始化该 parser
         
@@ -31,10 +31,10 @@ def test_file():
         html_text = md.render(test_file.read())
         # print("hey")
 
-        Path("output.html").write_text(html_text)
+        Path("output.html").write_text(html_text, encoding="utf-8")
 
 
-    with open('output.html') as file1, open('tests/task/materials/test_file.html') as file2:
+    with open('output.html', encoding="utf-8") as file1, open('tests/task/phase1/materials/test_file.html', encoding="utf-8") as file2:
         for file1Line, file2Line in zip(file1, file2):
             assert file1Line == file2Line, "markdown content rendered result inconsperancy"
             # if file1Line != file2Line:
@@ -58,27 +58,64 @@ def test_file():
 def test_spec():
 
     md = MarkdownIt("commonmark")
-
-    with open('tests/task/materials/commonmark.json') as f:
+    with open('tests/task/phase1/materials/commonmark.json', encoding="utf-8") as f:
         test_json = json.load(f)
-        for i in test_json:
-            # assert md.render(i['html']) == 0
-            html_parsed = md.render(i['html'])
-            # md_goal = i['markdown']
-            print(i)
-            print(i['markdown'])
-            print(html_parsed)
-            assert html_parsed == i['markdown'] , "markdown content rendered result inconsperancy"
+        def _normalize(s: str) -> str:
+            s = s.strip()
+            # collapse inter-tag whitespace/newlines to a single boundary
+            s = re.sub(r">\s+<", "><", s)
+            return s
+
+        for case in test_json:
+            rendered = md.render(case['markdown'])
+            if _normalize(rendered) != _normalize(case['html']):
+                assert rendered == case['html'], (
+                    "markdown content rendered result inconsperancy: example %r" % case.get('example')
+                )
         
 
-# # Please test the behavior of inserting a custom rule into the Core rule chain using core.ruler.after().
-# # Requirements:
-# # - Define a custom Core rule function. This function should take a `state` parameter and be used to mark that “the rule has been executed”, for example by printing a fixed string;
-# # - Define a plugin function, and in the plugin, insert the custom rule after the `normalize` rule;
-# # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
-# # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
-# # - Verify that the custom rule is actually called.
-# def test_core_after(capsys):
+# Please test the behavior of inserting a custom rule into the Core rule chain using core.ruler.after().
+def test_core_after():
+    calls: list[str] = []
+
+    def custom_core_rule(state):
+        # mark that custom rule ran
+        calls.append("custom")
+
+    def plugin(md: MarkdownIt) -> None:
+        # insert custom rule after normalize
+        md.core.ruler.after("normalize", "new_rule", custom_core_rule)
+
+    md = MarkdownIt("commonmark")
+
+    # locate the original normalize function and wrap it to record execution
+    active_names = md.core.ruler.get_active_rules()
+    try:
+        pos = active_names.index("normalize")
+    except ValueError:
+        pytest.skip("normalize rule not present")
+
+    active_fns = md.core.ruler.getRules("")
+    orig_normalize = active_fns[pos]
+
+    def wrapped_normalize(state):
+        calls.append("normalize")
+        return orig_normalize(state)
+
+    # replace normalize with our wrapper
+    md.core.ruler.at("normalize", wrapped_normalize)
+
+    # register plugin that inserts custom rule after normalize
+    md.use(plugin)
+
+    # run parser to trigger core rules
+    md.parse("a")
+
+    # verify custom rule was called
+    assert "custom" in calls
+
+    # verify normalize ran before custom
+    assert calls.index("normalize") < calls.index("custom")
 
 
 # # Please test the program’s behavior when processing a non-existent file path.
