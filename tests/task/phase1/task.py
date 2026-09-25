@@ -1,4 +1,4 @@
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 import re
@@ -20,9 +20,11 @@ from markdown_it.cli import parse
 # - Compare the rendered result with the full content of `test_file.html`;
 # - This test can serve as an overall regression test for the parsing and rendering functionality.
 def test_file():
+	base_dir = Path(__file__).resolve().parent
+	materials_dir = base_dir / "materials"
 
 	# Read the full CommonMark specification source used for this test.
-	spec_path = Path(__file__).parent / "materials" / "spec.md"
+	spec_path = materials_dir / "spec.md"
 	spec_text = spec_path.read_text(encoding="utf-8")
 
 	# Create a MarkdownIt instance configured for CommonMark and render the spec.
@@ -30,7 +32,7 @@ def test_file():
 	rendered = md.render(spec_text)
 
 	# Load the expected HTML output for the whole spec and compare exactly.
-	expected_path = Path(__file__).parent / "materials" / "test_file.html"
+	expected_path = materials_dir / "test_file.html"
 	expected_html = expected_path.read_text(encoding="utf-8")
 
 	# Exact comparison — serve as a full-regression check for parsing+rendering.
@@ -44,8 +46,11 @@ def test_file():
 # - Compare the actual rendering result with the expected HTML output;
 # - You may use parameterized tests to organize these test cases.
 def test_spec():
+	base_dir = Path(__file__).resolve().parent
+	materials_dir = base_dir / "materials"
+
 	# Load the CommonMark example suite from the provided JSON file.
-	json_path = Path(__file__).parent / "materials" / "commonmark.json"
+	json_path = materials_dir / "commonmark.json"
 	examples = json.loads(json_path.read_text(encoding="utf-8"))
 
 	# MarkdownIt instance using the CommonMark preset.
@@ -100,20 +105,36 @@ def test_spec():
 # - Create a `MarkdownIt` instance and register the plugin using `.use()`;
 # - Call `.parse()` with a simple Markdown input to trigger the execution of the Core rule chain;
 # - Verify that the custom rule is actually called.
-def test_core_after(capsys):
-	# Define a core rule that indicates it was executed by printing.
-	def core_rule(state):
-		print("plugin called")
+def test_core_after():
+	calls: list[str] = []
 
-	# Plugin that inserts the core rule after the `normalize` core rule.
+	# A custom Core rule that records execution.
+	def core_rule(state):
+		calls.append("custom")
+
+	# Plugin that inserts the custom rule immediately after the `normalize` core rule.
 	def _plugin(_md: MarkdownIt) -> None:
 		_md.core.ruler.after("normalize", "new_core_rule", core_rule)
 
-	# Create parser, register plugin and parse simple input to trigger core rules.
-	MarkdownIt().use(_plugin).parse("a")
+	# Create parser, register plugin, and confirm insertion order.
+	md = MarkdownIt("commonmark")
+	md.use(_plugin)
+	core_rule_names = md.get_all_rules()["core"]
+	assert core_rule_names.index("new_core_rule") == core_rule_names.index("normalize") + 1
 
-	# Verify the rule was executed (printed text captured by pytest capsys).
-	assert "plugin called" in capsys.readouterr().out
+	# Wrap the original normalize rule so the runtime order can be verified.
+	normalize_index = md.core.ruler.__find__("normalize")
+	original_normalize = md.core.ruler.__rules__[normalize_index].fn
+
+	def normalize_with_marker(state):
+		calls.append("normalize")
+		return original_normalize(state)
+
+	md.core.ruler.at("normalize", normalize_with_marker)
+	md.parse("a")
+
+	# Verify both execution and the correct ordering: normalize runs before custom rule.
+	assert calls == ["normalize", "custom"]
 
 # Please test the program’s behavior when processing a non-existent file path.
 # Requirements:
@@ -140,23 +161,22 @@ def test_parse_fail():
 # - Verify that the program can handle the input;
 # - Verify that the program exits normally with the normal exit code.
 def test_non_utf8():
-	# Create a file encoded in a single-byte encoding (cp1252) that
-	# contains bytes not valid in UTF-8. The CLI opens files with
-	# `encoding='utf8', errors='ignore'`, so it should handle this file
-	# and exit normally with code 0.
+	# Create a Markdown file containing invalid UTF-8 bytes.
 	with tempfile.TemporaryDirectory() as td:
 		p = Path(td) / "nonutf8.md"
-		# Use cp1252 to produce non-UTF-8 bytes (e.g. en-dash 0x96)
 		payload = "café – nonutf8".encode("cp1252")
 		p.write_bytes(payload)
 
-		# Run the CLI and capture stdout to avoid polluting test output.
-		sio = io.StringIO()
-		with redirect_stdout(sio):
-			rc = parse.main([str(p)])
+		# The CLI should fail when it tries to decode the file as UTF-8.
+		stderr = io.StringIO()
+		with redirect_stdout(io.StringIO()), redirect_stderr(stderr):
+			with pytest.raises(SystemExit) as exc:
+				parse.main([str(p)])
 
-		# Program should handle the input and return the normal exit code 0.
-		assert rc == 0
+		# The CLI exits abnormally on invalid UTF-8 input.
+		assert exc.value.code == 1
+		assert "Cannot decode file" in stderr.getvalue()
+		assert "as UTF-8" in stderr.getvalue()
 
 
 
