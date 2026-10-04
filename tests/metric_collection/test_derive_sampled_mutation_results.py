@@ -1,7 +1,9 @@
 from typing import Any
 
-from scripts.metric_collection.derive_sampled_mutation_results import derive_result
-from scripts.metric_collection.mutation_common import catalog_hash
+from scripts.metric_collection_phase1.derive_sampled_mutation_results import (
+    derive_result,
+)
+from scripts.metric_collection_phase1.mutation_common import catalog_hash
 
 
 def _mutant(number: int, layer: str) -> dict[str, Any]:

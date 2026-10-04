@@ -1,7 +1,9 @@
 from pathlib import Path
 
-from scripts.metric_collection.collect_error_rates import TestCaseResult as CaseResult
-from scripts.metric_collection.collect_mutation_score import (
+from scripts.metric_collection_phase1.collect_error_rates import (
+    TestCaseResult as CaseResult,
+)
+from scripts.metric_collection_phase1.collect_mutation_score import (
     _catalog_summary,
     _copy_submission_resources,
     _result_execution_metadata,

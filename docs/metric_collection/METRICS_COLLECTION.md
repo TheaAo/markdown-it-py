@@ -33,20 +33,20 @@ experiment branches and in the dedicated experiment environment.
 
 ## Directory Layout
 
-- `scripts/metric_collection/` contains only the research data collectors,
+- `scripts/metric_collection_phase1/` contains only the research data collectors,
   workload definitions, summarizers, and review tools.
 - `tests/metric_collection/` contains their regression tests.
 - `docs/metric_collection/` contains the current methodology and usage documents.
-- `results/error_rates/` contains the cross-participant collection manifest and raw
+- `results/phase1/error_rates/` contains the cross-participant collection manifest and raw
   records. Those records also carry coverage and assertion evidence so that the
   valid-test classification is performed only once.
-- `results/coverage/` contains the analysis-ready coverage table.
-- `results/assertion_score/` contains the analysis-ready assertion-score table.
-- `results/mutation_score/` contains mutation catalogs, execution records, reviews,
+- `results/phase1/coverage/` contains the analysis-ready coverage table.
+- `results/phase1/assertion_score/` contains the analysis-ready assertion-score table.
+- `results/phase1/mutation_score/` contains mutation catalogs, execution records, reviews,
   and analysis-ready mutation tables.
-- `results/execution_time/` contains pilot and formal timing measurements.
-- `results/test_smells/` contains detector evidence and test-smell summaries.
-- `results/mutation_score/` is ignored by Git so its large catalogs and raw
+- `results/phase1/execution_time/` contains pilot and formal timing measurements.
+- `results/phase1/test_smells/` contains detector evidence and test-smell summaries.
+- `results/phase1/mutation_score/` is ignored by Git so its large catalogs and raw
   execution records are not accidentally committed. The smaller frozen datasets
   for the other metrics remain version-controlled research evidence.
 
@@ -59,7 +59,7 @@ run; reviewable outputs are written under the metric-specific directories above.
 Collect one test file with:
 
 ```bash
-venv/bin/python scripts/metric_collection/collect_error_rates.py \
+venv/bin/python scripts/metric_collection_phase1/collect_error_rates.py \
   tests/task/task.py \
   --timeout 120 \
   > metrics.json
@@ -78,7 +78,7 @@ expands them. For example, `test_spec[test_case217]` is one test case.
 Collect statement and branch coverage together with the error-rate classification:
 
 ```bash
-venv/bin/python scripts/metric_collection/collect_coverage.py \
+venv/bin/python scripts/metric_collection_phase1/collect_coverage.py \
   tests/task/task.py \
   --repo-root . \
   --python venv/bin/python \
@@ -96,7 +96,7 @@ run a second time by the batch collector.
 Collect assertion score without coverage with:
 
 ```bash
-venv/bin/python scripts/metric_collection/collect_assertion_score.py \
+venv/bin/python scripts/metric_collection_phase1/collect_assertion_score.py \
   tests/task/task.py \
   --error-rates metrics.json \
   > assertion_score.json
@@ -249,17 +249,17 @@ Git commit, and analyzes an isolated copy containing only eligible target tests 
 static support code. Use:
 
 ```bash
-python3 scripts/collect_test_smells_all_branches.py \
-  --error-manifest results/error_rates/collection_manifest.json \
-  --output-dir results/test_smells \
+python3 scripts/metric_collection_phase1/collect_test_smells_all_branches.py \
+  --error-manifest results/phase1/error_rates/collection_manifest.json \
+  --output-dir results/phase1/test_smells \
   --pytest-smell /path/to/pytest-smell \
   --tempy-root /path/to/TEMPY \
   --python /path/to/python \
   --timeout 60
 
-python3 scripts/summarize_test_smells.py \
-  results/test_smells/collection_manifest.json \
-  --output results/test_smells/summary/test_smell.csv
+python3 scripts/metric_collection_phase1/summarize_test_smells.py \
+  results/phase1/test_smells/collection_manifest.json \
+  --output results/phase1/test_smells/summary/test_smell.csv
 ```
 
 pytest-smell must be version `1.0.5`. TEMPY must be checked out at commit
@@ -306,7 +306,7 @@ threshold does not remove, replace, or automatically rerun any observation.
 Collect a single submission with:
 
 ```bash
-venv/bin/python scripts/collect_execution_time.py \
+venv/bin/python scripts/metric_collection_phase1/collect_execution_time.py \
   tests/task/task.py \
   --repo-root . \
   --python venv/bin/python \
@@ -336,9 +336,9 @@ execution time alongside each ratio.
 Collect all participant branches later, when the machine is otherwise idle:
 
 ```bash
-venv/bin/python scripts/collect_all_execution_times.py \
+venv/bin/python scripts/metric_collection_phase1/collect_all_execution_times.py \
   --baseline origin/experiment-base \
-  --output-dir results/execution_time \
+  --output-dir results/phase1/execution_time \
   --timeout 120 \
   --warmups 3 \
   --measurements 15
@@ -351,9 +351,9 @@ results.
 Create the focused CSV without rerunning participant tests:
 
 ```bash
-venv/bin/python scripts/summarize_execution_times.py \
-  results/execution_time/collection_manifest.json \
-  --output results/execution_time/summary/execution_time.csv
+venv/bin/python scripts/metric_collection_phase1/summarize_execution_times.py \
+  results/phase1/execution_time/collection_manifest.json \
+  --output results/phase1/execution_time/summary/execution_time.csv
 ```
 
 ## All Participant Branches
@@ -365,9 +365,9 @@ Participant submissions use the remote branches `experiment-01` through
 Collect all branches serially with:
 
 ```bash
-venv/bin/python scripts/metric_collection/collect_all_branches.py \
+venv/bin/python scripts/metric_collection_phase1/collect_all_branches.py \
   --baseline origin/experiment-base \
-  --output-dir results/error_rates \
+  --output-dir results/phase1/error_rates \
   --timeout 120
 ```
 
@@ -378,9 +378,9 @@ error-rate result and does not execute pytest again. Use `--skip-coverage` only 
 a faster, error-rate-only diagnostic run:
 
 ```bash
-venv/bin/python scripts/metric_collection/collect_all_branches.py \
+venv/bin/python scripts/metric_collection_phase1/collect_all_branches.py \
   --baseline origin/experiment-base \
-  --output-dir results/error_rates \
+  --output-dir results/phase1/error_rates \
   --timeout 120 \
   --skip-coverage
 ```
@@ -400,13 +400,13 @@ module and participant test suite. Install each tool in a separate Python 3.11
 environment, then run:
 
 ```bash
-venv/bin/python scripts/metric_collection/benchmark_mutation_tools.py \
+venv/bin/python scripts/metric_collection_phase1/benchmark_mutation_tools.py \
   --sut-ref pilot-metric \
   --participant-ref origin/experiment-11 \
   --mutpy-python /path/to/mutpy-venv/bin/python \
   --mutmut-python /path/to/mutmut-venv/bin/python \
   --cosmic-ray-python /path/to/cosmic-ray-venv/bin/python \
-  --output-dir results/mutation_score/tool_pilot
+  --output-dir results/phase1/mutation_score/tool_pilot
 ```
 
 The script runs each tool twice to verify semantic catalog reproducibility. It writes
@@ -430,21 +430,21 @@ Create the tool environment and the `ruler.py` pilot catalog with:
 ```bash
 python3.11 -m venv .venv-mutmut
 .venv-mutmut/bin/python -m pip install 'mutmut==3.7.0' -e '.[testing]'
-.venv-mutmut/bin/python scripts/metric_collection/build_mutant_catalog.py \
+.venv-mutmut/bin/python scripts/metric_collection_phase1/build_mutant_catalog.py \
   --baseline-ref origin/experiment-base \
   --mutmut-python .venv-mutmut/bin/python \
   --only-mutate markdown_it/ruler.py \
-  --output-dir results/mutation_score/catalog-pilot
+  --output-dir results/phase1/mutation_score/catalog-pilot
 ```
 
 The builder assigns a deterministic operator family from each normalized diff.
 Existing catalogs can be annotated without changing mutant identity:
 
 ```bash
-venv/bin/python scripts/metric_collection/classify_mutation_operators.py \
-  results/mutation_score/catalog-pilot/mutant_catalog.json \
-  --output results/mutation_score/catalog-pilot/classified_catalog.json \
-  --review-csv results/mutation_score/catalog-pilot/operator_review.csv
+venv/bin/python scripts/metric_collection_phase1/classify_mutation_operators.py \
+  results/phase1/mutation_score/catalog-pilot/mutant_catalog.json \
+  --output results/phase1/mutation_score/catalog-pilot/classified_catalog.json \
+  --review-csv results/phase1/mutation_score/catalog-pilot/operator_review.csv
 ```
 
 ### Execution-Cost Sampling Protocol
@@ -462,7 +462,7 @@ choice. This project evaluates 5%, 10%, 20%, 30%, and 50%, twenty fixed seeds, a
 five strategies for the specified sampling frame. The extended-only census has
 inclusion probability 1 and sampling weight 1. The two layers are never combined as
 a primary score, so no subjective cross-layer importance weight is introduced.
-`scripts/metric_collection/mutation_sampling_protocol.json` pre-registers the
+`scripts/metric_collection_phase1/mutation_sampling_protocol.json` pre-registers the
 candidate values and acceptance thresholds. The formal strategy, effective sample
 size, and seed must be frozen before full-SUT collection.
 
@@ -470,17 +470,17 @@ The `ruler.py` pilot itself runs all 74 mutants for every participant; sampling 
 simulated offline so that the full scores remain the ground truth:
 
 ```bash
-.venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
-  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
+.venv-mutmut/bin/python scripts/metric_collection_phase1/collect_all_mutation_scores.py \
+  --catalog results/phase1/mutation_score/catalog-pilot/classified_catalog.json \
   --python .venv-mutmut/bin/python \
   --baseline origin/experiment-base \
-  --output-dir results/mutation_score/ruler-full \
+  --output-dir results/phase1/mutation_score/ruler-full \
   --max-children 4 --resume
 
-venv/bin/python scripts/metric_collection/analyze_sampling_pilot.py \
-  --catalog results/mutation_score/catalog-pilot/classified_catalog.json \
-  --results results/mutation_score/ruler-full/raw \
-  --output-dir results/mutation_score/sampling-pilot-specified-plus-extended-census
+venv/bin/python scripts/metric_collection_phase1/analyze_sampling_pilot.py \
+  --catalog results/phase1/mutation_score/catalog-pilot/classified_catalog.json \
+  --results results/phase1/mutation_score/ruler-full/raw \
+  --output-dir results/phase1/mutation_score/sampling-pilot-specified-plus-extended-census
 ```
 
 The analysis writes per-run errors, MAE, RMSE, adjusted R², Kendall tau-b,
@@ -501,13 +501,13 @@ After a strategy passes the revised protocol, create the formal shared sample us
 the frozen values rather than the historical example values:
 
 ```bash
-venv/bin/python scripts/metric_collection/sample_mutant_catalog.py \
-  results/mutation_score/catalog/classified_catalog.json \
+venv/bin/python scripts/metric_collection_phase1/sample_mutant_catalog.py \
+  results/phase1/mutation_score/catalog/classified_catalog.json \
   --strategy <FROZEN_STRATEGY> \
   --ratio <FROZEN_RATIO> --seed <FROZEN_SEED> \
   --minimum-sample-size 30 --minimum-per-stratum 1 \
   --census-layer extended_only \
-  --output-dir results/mutation_score/sampled-catalog
+  --output-dir results/phase1/mutation_score/sampled-catalog
 ```
 
 Specified function strata can have unequal sampling fractions. Every sampled
@@ -525,21 +525,21 @@ unmutated baseline; catalog, SUT, workload, and Mutmut hashes must match. Use
 rerun. Confirmations are persisted atomically in small batches.
 
 ```bash
-.venv-mutmut/bin/python scripts/metric_collection/collect_all_mutation_scores.py \
-  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+.venv-mutmut/bin/python scripts/metric_collection_phase1/collect_all_mutation_scores.py \
+  --catalog results/phase1/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
   --python .venv-mutmut/bin/python \
   --baseline origin/experiment-base \
-  --output-dir results/mutation_score/full-sut/formal \
+  --output-dir results/phase1/mutation_score/full-sut/formal \
   --max-children 4 --timeout-multiplier 5 --timeout-constant 0.5 \
   --timeout-retry-count 1 --confirmation-batch-size 25 \
   --resume --confirm-kills
 
-venv/bin/python scripts/metric_collection/aggregate_mutant_outcomes.py \
-  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
-  --results results/mutation_score/full-sut/formal/raw \
-  --manifest results/mutation_score/full-sut/formal/collection_manifest.json \
-  --reliable-kill-evidence results/mutation_score/full-sut/formal/reliable_kill_evidence.json \
-  --output-dir results/mutation_score/full-sut/formal/global \
+venv/bin/python scripts/metric_collection_phase1/aggregate_mutant_outcomes.py \
+  --catalog results/phase1/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --results results/phase1/mutation_score/full-sut/formal/raw \
+  --manifest results/phase1/mutation_score/full-sut/formal/collection_manifest.json \
+  --reliable-kill-evidence results/phase1/mutation_score/full-sut/formal/reliable_kill_evidence.json \
+  --output-dir results/phase1/mutation_score/full-sut/formal/global \
   --require-confirmed-kills
 ```
 
@@ -592,11 +592,11 @@ never killed. Offline sampled participant results are derived from the already
 completed full matrix rather than rerunning Mutmut:
 
 ```bash
-venv/bin/python scripts/metric_collection/derive_sampled_mutation_results.py \
-  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
-  --full-results results/mutation_score/ruler-full/raw \
-  --full-manifest results/mutation_score/ruler-full/collection_manifest.json \
-  --output-dir results/mutation_score/sampled-pilot
+venv/bin/python scripts/metric_collection_phase1/derive_sampled_mutation_results.py \
+  --catalog results/phase1/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --full-results results/phase1/mutation_score/ruler-full/raw \
+  --full-manifest results/phase1/mutation_score/ruler-full/collection_manifest.json \
+  --output-dir results/phase1/mutation_score/sampled-pilot
 ```
 
 ### Equivalent-Mutant Review
@@ -644,9 +644,9 @@ each mutant is an independent cluster with multiplicity one.
 Generate the frozen first-round sample with:
 
 ```bash
-venv/bin/python scripts/metric_collection/equivalent_mutant_sampling.py \
-  --global-outcomes results/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
-  --output-dir results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1 \
+venv/bin/python scripts/metric_collection_phase1/equivalent_mutant_sampling.py \
+  --global-outcomes results/phase1/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
+  --output-dir results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1 \
   --sample-size 100 --seed 20260915 --minimum-per-stratum 2 \
   --planned-sample-sizes 100 150 225 313
 ```
@@ -665,11 +665,11 @@ plus a deterministic random quality-control sample of ten primary
 or why the row was selected:
 
 ```bash
-venv/bin/python scripts/metric_collection/targeted_mutant_review.py prepare-secondary \
-  --primary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
-  --output-secondary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
-  --output-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
-  --output-adjudication results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
+venv/bin/python scripts/metric_collection_phase1/targeted_mutant_review.py prepare-secondary \
+  --primary-review results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
+  --output-secondary results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
+  --output-manifest results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
+  --output-adjudication results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
   --qc-size 10 --seed 20260915
 ```
 
@@ -677,15 +677,15 @@ After the independent secondary review and adjudication of every disagreement,
 produce decisions with:
 
 ```bash
-venv/bin/python scripts/metric_collection/targeted_mutant_review.py apply \
-  --catalog results/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
-  --primary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
-  --secondary-review results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
-  --selection-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
-  --adjudication results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
-  --output-catalog results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewed_catalog.json \
-  --output-summary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
-  --output-decisions results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv
+venv/bin/python scripts/metric_collection_phase1/targeted_mutant_review.py apply \
+  --catalog results/phase1/mutation_score/full-sut/catalog/task_relevant_mutant_catalog.json \
+  --primary-review results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_1.csv \
+  --secondary-review results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewer_2_targeted.csv \
+  --selection-manifest results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/secondary_selection_manifest.json \
+  --adjudication results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/adjudication_targeted.csv \
+  --output-catalog results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/reviewed_catalog.json \
+  --output-summary results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
+  --output-decisions results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv
 ```
 
 Primary-only `non_equivalent` decisions are accepted under this design; every more
@@ -707,15 +707,15 @@ and combined scores are reported separately, with combined treated as sensitivit
 analysis.
 
 ```bash
-venv/bin/python scripts/metric_collection/summarize_equivalent_mutant_sample.py \
-  --collection-manifest results/mutation_score/full-sut/formal/collection_manifest.json \
-  --global-outcomes results/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
-  --sampling-manifest results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sampling_manifest.json \
-  --sample results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sample.csv \
-  --decisions results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv \
-  --review-summary results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
-  --participant-matrix results/mutation_score/full-sut/formal/global/participant_mutant_matrix.csv \
-  --output-dir results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final \
+venv/bin/python scripts/metric_collection_phase1/summarize_equivalent_mutant_sample.py \
+  --collection-manifest results/phase1/mutation_score/full-sut/formal/collection_manifest.json \
+  --global-outcomes results/phase1/mutation_score/full-sut/formal/global/global_mutant_outcomes.json \
+  --sampling-manifest results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sampling_manifest.json \
+  --sample results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/sample.csv \
+  --decisions results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_decisions.csv \
+  --review-summary results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/review_summary.json \
+  --participant-matrix results/phase1/mutation_score/full-sut/formal/global/participant_mutant_matrix.csv \
+  --output-dir results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final \
   --target-half-width 0.05
 ```
 
@@ -751,13 +751,13 @@ was targeted. The design-weighted estimate is 214.885 equivalent mutants in the
 interval 50.792--378.978). The largest specified-participant stopping half-width is
 0.033405, so the first look satisfies the 0.05 target and no sample expansion is
 required. The authoritative generated outputs are under
-`results/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/`.
+`results/phase1/mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/`.
 
 Prepare an inspectable, disposable worktree for one mutant with:
 
 ```bash
-.venv-mutmut/bin/python scripts/metric_collection/prepare_mutation_review_workspace.py prepare \
-  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+.venv-mutmut/bin/python scripts/metric_collection_phase1/prepare_mutation_review_workspace.py prepare \
+  --catalog results/phase1/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
   --mutant-id <MUTANT_ID> --mutmut-python .venv-mutmut/bin/python \
   --target /tmp/markdown-it-mutant-review
 ```
@@ -770,20 +770,20 @@ For a full census review rather than the statistical protocol, apply completed
 reviews to a new catalog and produce exact participant scores with:
 
 ```bash
-venv/bin/python scripts/metric_collection/apply_global_mutant_reviews.py \
-  --catalog results/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
-  --reviewer-1 results/mutation_score/formal/reviewer_1.csv \
-  --reviewer-2 results/mutation_score/formal/reviewer_2.csv \
-  --adjudication results/mutation_score/formal/adjudication.csv \
-  --output-catalog results/mutation_score/formal/reviewed_catalog.json \
-  --output-summary results/mutation_score/formal/review_summary.json \
-  --output-decisions results/mutation_score/formal/review_decisions.csv
+venv/bin/python scripts/metric_collection_phase1/apply_global_mutant_reviews.py \
+  --catalog results/phase1/mutation_score/sampled-catalog/sampled_mutant_catalog.json \
+  --reviewer-1 results/phase1/mutation_score/formal/reviewer_1.csv \
+  --reviewer-2 results/phase1/mutation_score/formal/reviewer_2.csv \
+  --adjudication results/phase1/mutation_score/formal/adjudication.csv \
+  --output-catalog results/phase1/mutation_score/formal/reviewed_catalog.json \
+  --output-summary results/phase1/mutation_score/formal/review_summary.json \
+  --output-decisions results/phase1/mutation_score/formal/review_decisions.csv
 
-venv/bin/python scripts/metric_collection/summarize_mutation_scores.py \
-  results/mutation_score/formal/collection_manifest.json \
-  --reviewed-catalog results/mutation_score/formal/reviewed_catalog.json \
-  --raw-dir results/mutation_score/formal/raw \
-  --output results/mutation_score/formal/mutation_scores.csv
+venv/bin/python scripts/metric_collection_phase1/summarize_mutation_scores.py \
+  results/phase1/mutation_score/formal/collection_manifest.json \
+  --reviewed-catalog results/phase1/mutation_score/formal/reviewed_catalog.json \
+  --raw-dir results/phase1/mutation_score/formal/raw \
+  --output results/phase1/mutation_score/formal/mutation_scores.csv
 ```
 
 For each layer, timeout is reported and excluded. Confirmed equivalent mutants are
@@ -805,7 +805,7 @@ is a sensitivity result. A participant with no valid tests receives zero through
 Successful collection creates:
 
 ```text
-results/error_rates/
+results/phase1/error_rates/
 ├── collection_manifest.json
 └── raw/
     ├── experiment-01.json
@@ -817,7 +817,7 @@ Test Smell uses a separate result tree so it can reuse the frozen Error Rate dat
 without rerunning Assertion Score or any participant test:
 
 ```text
-results/test_smells/
+results/phase1/test_smells/
 ├── collection_manifest.json
 ├── raw/
 │   └── experiment-XX.json
@@ -872,15 +872,15 @@ Convert the collection manifest into analysis-ready CSV files without rerunning 
 participant tests:
 
 ```bash
-venv/bin/python scripts/metric_collection/summarize_metrics.py \
-  results/error_rates/collection_manifest.json \
+venv/bin/python scripts/metric_collection_phase1/summarize_metrics.py \
+  results/phase1/error_rates/collection_manifest.json \
   --output-dir results
 ```
 
 This creates:
 
 ```text
-results/
+results/phase1/
 ├── assertion_score/
 │   └── assertion_score.csv
 ├── coverage/

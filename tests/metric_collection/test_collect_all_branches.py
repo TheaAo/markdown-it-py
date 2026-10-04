@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from scripts.metric_collection.collect_all_branches import (
+from scripts.metric_collection_phase1.collect_all_branches import (
     _assertion_score_summary,
     _branch_ref,
     _collect_branch,

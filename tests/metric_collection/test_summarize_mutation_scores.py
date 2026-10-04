@@ -2,7 +2,10 @@ import csv
 import json
 from pathlib import Path
 
-from scripts.metric_collection.summarize_mutation_scores import COLUMNS, summarize
+from scripts.metric_collection_phase1.summarize_mutation_scores import (
+    COLUMNS,
+    summarize,
+)
 
 
 def test_writes_focused_mutation_table(tmp_path: Path) -> None:

@@ -1,0 +1,17 @@
+participant_number,status,group,total_time,total_time_seconds,generation_time_seconds
+1,not_participated,AI,00:55:37,,
+2,collected,AI,00:29:55,1795,1795
+3,collected,AI,00:24:06,1446,1446
+4,collected,AI,00:28:50,1730,1730
+5,collected,AI,00:11:31,691,691
+6,not_participated,AI,01:00:00,,
+7,collected,AI,00:17:44,1064,1064
+8,collected,AI,00:21:48,1308,1308
+9,collected,AI,00:07:22,442,442
+10,not_participated,AI,00:42:47,,
+11,not_participated,AI,00:37:34,,
+12,collected,AI,00:09:25,565,565
+13,not_participated,,,,
+14,not_participated,AI,00:09:25,,
+15,not_participated,,,,
+16,not_participated,AI,,,

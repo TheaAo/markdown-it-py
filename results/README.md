@@ -1,6 +1,15 @@
 # Experiment Results
 
-Generated research data is organized by metric:
+Research data is separated by experimental phase:
+
+- `phase1/` contains the existing frozen results, questionnaires and summary workbook.
+- `phase2/` contains second-phase evidence and future metric outputs.
+
+The original result files were moved without modifying their contents. Historical
+paths, commits and hashes inside those files identify the original collection run.
+Resolve relative output paths from the relocated manifest directory.
+
+Within each phase, generated data is organized by metric:
 
 - `error_rates/` stores the cross-participant collection manifest, raw participant
   records, and the error-rate summary. The raw records also contain coverage and

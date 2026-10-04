@@ -6,15 +6,17 @@ from typing import Any
 
 import pytest
 
-from scripts.metric_collection.equivalent_mutant_sampling import (
+from scripts.metric_collection_phase1.equivalent_mutant_sampling import (
     estimate_adjusted_scores,
-    main as sampling_main,
     plan_review_sample,
     write_adjusted_score_outputs,
     write_review_sample,
 )
-from scripts.metric_collection.mutation_common import canonical_json
-from scripts.metric_collection.summarize_equivalent_mutant_sample import main
+from scripts.metric_collection_phase1.equivalent_mutant_sampling import (
+    main as sampling_main,
+)
+from scripts.metric_collection_phase1.mutation_common import canonical_json
+from scripts.metric_collection_phase1.summarize_equivalent_mutant_sample import main
 
 
 def _candidates() -> list[dict[str, Any]]:

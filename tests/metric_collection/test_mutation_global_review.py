@@ -5,13 +5,18 @@ from typing import Any
 
 import pytest
 
-from scripts.metric_collection.aggregate_mutant_outcomes import (
+from scripts.metric_collection_phase1.aggregate_mutant_outcomes import (
     BLINDED_REVIEW_COLUMNS,
     _include_manifest_failures,
     aggregate_outcomes,
 )
-from scripts.metric_collection.apply_global_mutant_reviews import apply_global_reviews
-from scripts.metric_collection.mutation_common import catalog_hash, mutation_summary
+from scripts.metric_collection_phase1.apply_global_mutant_reviews import (
+    apply_global_reviews,
+)
+from scripts.metric_collection_phase1.mutation_common import (
+    catalog_hash,
+    mutation_summary,
+)
 
 
 def _catalog() -> dict[str, Any]:

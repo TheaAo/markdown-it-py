@@ -1,0 +1,108 @@
+{
+  "participant_id": "experiment-08",
+  "participant_number": 8,
+  "branch": "origin/experiment-08-phase2",
+  "participant_commit": "756c4aedfad5af4c798ddf1efff740b7994df60d",
+  "phase1_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+  "phase1_group": "Manual",
+  "phase2_group": "AI",
+  "protected_changes": [],
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "metrics": {
+    "suite_level": {
+      "collectable": true,
+      "pytest_returncode": 1,
+      "collection_errors": [],
+      "test_paths": [
+        "tests/task/phase1/task.py",
+        "tests/task/task2.py"
+      ]
+    },
+    "provenance": {
+      "python_version": "3.11.6",
+      "pytest_version": "9.1.1",
+      "markdown_it_path": "markdown_it/__init__.py"
+    },
+    "artifact_sha256": {
+      "tests/task/phase1/materials/commonmark.json": "d431b29d97b6f73e69d547109cf5081578fac931e72afe95639ebe766c1b2a20",
+      "tests/task/phase1/materials/spec.md": "257c41ad946f7a1414a499aca402a1aa8fdac3678532266611348c1cf54f4b80",
+      "tests/task/phase1/materials/test_file.html": "a1940dfab0df03b20947d464f9814f8f5c7a7bcb3f9247f186049dc5f3c9a429",
+      "tests/task/phase1/task.py": "a403ce6bef8ec8b55f8e01c6c13748752d8be13603b93686bb809dca86d3130c",
+      "tests/task/task2.py": "211ce9bdce4a9b5e68b80158d2a28f255ea19cced6b12748a26fd28f331382ef"
+    },
+    "source_test_declarations": {
+      "tests/task/phase1/task.py": [
+        "test_file",
+        "test_spec"
+      ],
+      "tests/task/task2.py": []
+    },
+    "missing_expected_tests": {
+      "tests/task/phase1/task.py": [
+        "test_core_after",
+        "test_parse_fail",
+        "test_non_utf8"
+      ],
+      "tests/task/task2.py": [
+        "test_make_fence_after",
+        "test_make_fence_at"
+      ]
+    },
+    "case_level": {
+      "total_generated_test_cases": 2,
+      "syntax_error_count": 0,
+      "runtime_error_count": 2,
+      "function_error_count": 0,
+      "valid_test_count": 0,
+      "syntax_error_rate": 0.0,
+      "runtime_error_rate": 1.0,
+      "function_error_rate": 0.0,
+      "overall_error_rate": 1.0,
+      "test_cases": [
+        {
+          "nodeid": "tests/task/phase1/task.py::test_file",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_file",
+          "classification": "runtime_error",
+          "reason": "test failed with FileNotFoundError",
+          "returncode": 1,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/phase1/task.py::test_spec",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_spec",
+          "classification": "runtime_error",
+          "reason": "test failed with FileNotFoundError",
+          "returncode": 1,
+          "count_basis": "pytest_instance"
+        }
+      ]
+    },
+    "by_file": {
+      "tests/task/phase1/task.py": {
+        "total_generated_test_cases": 2,
+        "syntax_error_count": 0,
+        "runtime_error_count": 2,
+        "function_error_count": 0,
+        "valid_test_count": 0,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 1.0,
+        "function_error_rate": 0.0,
+        "overall_error_rate": 1.0
+      },
+      "tests/task/task2.py": {
+        "total_generated_test_cases": 0,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 0,
+        "syntax_error_rate": null,
+        "runtime_error_rate": null,
+        "function_error_rate": null,
+        "overall_error_rate": null
+      }
+    },
+    "valid_nodeids": []
+  }
+}

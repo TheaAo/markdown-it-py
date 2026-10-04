@@ -6,7 +6,6 @@ import pytest
 
 from markdown_it import MarkdownIt
 
-
 EXPECTED_EMPTY = ""
 EXPECTED_HEADING = "<h1>title</h1>\n"
 EXPECTED_PARAGRAPH = "<p>text</p>\n"
