@@ -1,0 +1,55 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________________ test_core_after ________________________________
+
+    def test_core_after():
+        calls: list[str] = []
+    
+        def custom_core_rule(state):
+            # mark that custom rule ran
+            calls.append("custom")
+    
+        def plugin(md: MarkdownIt) -> None:
+            # insert custom rule after normalize
+            md.core.ruler.after("normalize", "new_rule", custom_core_rule)
+    
+        md = MarkdownIt("commonmark")
+    
+        # locate the original normalize function and wrap it to record execution
+        active_names = md.core.ruler.get_active_rules()
+        try:
+            pos = active_names.index("normalize")
+        except ValueError:
+            pytest.skip("normalize rule not present")
+    
+        active_fns = md.core.ruler.getRules("")
+        orig_normalize = active_fns[pos]
+    
+        def wrapped_normalize(state):
+            calls.append("normalize")
+            return orig_normalize(state)
+    
+        # replace normalize with our wrapper
+        md.core.ruler.at("normalize", wrapped_normalize)
+    
+        # register plugin that inserts custom rule after normalize
+        md.use(plugin)
+    
+        # run parser to trigger core rules
+        md.parse("a")
+    
+        # verify custom rule was called
+>       assert "custom" in calls
+E       AssertionError: assert 'custom' in []
+
+tests/task/phase1/task.py:115: AssertionError
+=============================== warnings summary ===============================
+../../../../../../tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /private/tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/task/phase1/task.py::test_core_after - AssertionError: assert 'c...
+1 failed, 1 warning in 0.09s

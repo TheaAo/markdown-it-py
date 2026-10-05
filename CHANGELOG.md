@@ -1,20 +1,5 @@
 # Change Log
 
-## Unreleased
-
-- Measure Phase 2 coverage using frozen valid instances, with original test paths,
-  task scopes and coverage unions against pristine baseline tests.
-
-- Collect Phase 2 error rates across frozen participant task files, preserving
-  original paths, classification evidence and missing-submission status.
-
-- Separate research collectors and results by phase, and add a Phase 2 submission
-  inventory and collection plan.
-
-- Add staged stratified equivalent-mutant review sampling, targeted secondary
-  quality control, and design-weighted Mutation Score estimates with
-  finite-population intervals.
-
 ## 4.0.0 - 2024-08-10
 
 This primarily drops support for Python 3.9, adds support for Python 3.13,

@@ -30,6 +30,15 @@ same 58 valid instances. The summary CSV uses 0–1 fractions; raw records inclu
 covered/total counts and percentage values. Evidence includes whole-suite and
 task-group coverage, pristine project coverage and combined coverage unions.
 See [Coverage methodology](../../docs/metric_collection_phase2/COVERAGE.md).
+
+`assertion_score/` contains automated assertion-quality results for all eight
+participants, using the same frozen submissions. The analyzer scores source
+functions rather than pytest instances. All four uncertain classifications were
+resolved as non-trivial by Codex source review with targeted execution probes.
+The raw automatic evidence remains unchanged; `assertion_score.csv` contains
+the adjusted scores, and `manual_review/` retains adjudications and evidence.
+The two trivial classifications remain pending in `review_candidates.csv`. See
+[Assertion Score methodology](../../docs/metric_collection_phase2/ASSERTION_SCORE.md).
 Future metric directories follow the Phase 1 layout. Participant 12's duration was corrected by the researcher
 from `00:37:59` to `00:09:25`; both seconds columns are 565.
 

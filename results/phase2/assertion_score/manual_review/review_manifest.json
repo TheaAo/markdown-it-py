@@ -1,0 +1,9 @@
+{
+  "scope": "Source review of all four automated uncertain functions; other classifications unchanged",
+  "adjudications_sha256": "2796727d85a6ddf658941a5c6d850542940340e166116d22642704417ebe3acc",
+  "probe_results_sha256": "4c734041babd777f4e21cf53db3ab7f34251f865ffdedf799fc5ca2b3dc3fb6f",
+  "final_assertion_score_file": "assertion_score.csv",
+  "final_assertion_score_sha256": "789b4c7060f183d4d9548e201e5b8ab28602e68bfa97f7fcd5e967a2e623f1fb",
+  "collection_manifest_sha256": "f05878070a08b98ca2c5f108d10c52d5cd7eca56fb6e29ff1e1f1f5aba2ed046",
+  "final_export_script_sha256": "3eaee3456fb490269e6377bfdb23190f46efba201bb09aa0402bb8ed37605fb9"
+}

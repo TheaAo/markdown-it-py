@@ -1,0 +1,66 @@
+{
+  "purpose": "Targeted oracle review, not the formal mutation-score collection",
+  "python": "3.11.6",
+  "results": [
+    {
+      "participant_number": 3,
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "probe": "skip_core",
+      "pytest_returncode": 1,
+      "assertion_failure": true,
+      "evidence_file": "experiment-03-test_core_after-skip_core.txt",
+      "probe_source_sha256": "388fb984845164a3fff26b34689d00d288feeb8ddd0e40d2b8e3dada5975b406"
+    },
+    {
+      "participant_number": 8,
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "probe": "skip_core",
+      "pytest_returncode": 1,
+      "assertion_failure": true,
+      "evidence_file": "experiment-08-test_core_after-skip_core.txt",
+      "probe_source_sha256": "388fb984845164a3fff26b34689d00d288feeb8ddd0e40d2b8e3dada5975b406"
+    },
+    {
+      "participant_number": 9,
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "probe": "skip_core",
+      "pytest_returncode": 1,
+      "assertion_failure": true,
+      "evidence_file": "experiment-09-test_core_after-skip_core.txt",
+      "probe_source_sha256": "388fb984845164a3fff26b34689d00d288feeb8ddd0e40d2b8e3dada5975b406"
+    },
+    {
+      "participant_number": 9,
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "probe": "skip_normalize",
+      "pytest_returncode": 1,
+      "assertion_failure": true,
+      "evidence_file": "experiment-09-test_core_after-skip_normalize.txt",
+      "probe_source_sha256": "261a188df7ab09945a78ebd35644d875dd7cad547512bfd828aacad3ba8ee347"
+    },
+    {
+      "participant_number": 8,
+      "source_id": "tests/task/phase1/task.py::test_file",
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "probe": "wrong_render",
+      "pytest_returncode": 1,
+      "assertion_failure": true,
+      "evidence_file": "experiment-08-test_file-wrong_render.txt",
+      "probe_source_sha256": "2f5fd2263971a902ebe84fd5a324212b63353c725426e48c89dfd1c2d29c9965"
+    },
+    {
+      "participant_number": 8,
+      "source_id": "tests/task/phase1/task.py::test_file",
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "probe": "empty_render",
+      "pytest_returncode": 0,
+      "assertion_failure": false,
+      "evidence_file": "experiment-08-test_file-empty_render.txt",
+      "probe_source_sha256": "03694a6665a177aca54104a71b7c3fc93a02c149ffe94869c253a10ba7f5911a"
+    }
+  ]
+}

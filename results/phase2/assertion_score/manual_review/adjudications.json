@@ -1,0 +1,58 @@
+{
+  "scope": "Only four automatically uncertain source functions; automated outputs unchanged",
+  "reviews": [
+    {
+      "participant_number": 3,
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "automated_classification": "uncertain",
+      "reviewed_classification": "non_trivial",
+      "reviewer": "Codex (source inspection and targeted execution probes)",
+      "reviewed_at": "2026-10-05T08:02:32.006000+00:00",
+      "reason": "The parser invokes tracked_normalize and core_rule callbacks, which append to execution_order; the assertion checks the exact execution sequence. The analyzer does not model callback side effects.",
+      "source_line_numbers": [
+        94
+      ]
+    },
+    {
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "source_id": "tests/task/phase1/task.py::test_file",
+      "automated_classification": "uncertain",
+      "reviewed_classification": "non_trivial",
+      "reviewer": "Codex (source inspection and targeted execution probes)",
+      "reviewed_at": "2026-10-05T08:02:32.006323+00:00",
+      "reason": "The rendered SUT output is written to output.html, then read and compared with reference lines. The analyzer does not model write/read data flow or loop-variable binding. Non-trivial but zip truncates unequal file lengths; empty output passes.",
+      "source_line_numbers": [
+        39
+      ]
+    },
+    {
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "automated_classification": "uncertain",
+      "reviewed_classification": "non_trivial",
+      "reviewer": "Codex (source inspection and targeted execution probes)",
+      "reviewed_at": "2026-10-05T08:02:32.006386+00:00",
+      "reason": "Parser-dispatched callbacks append normalize/custom to calls; assertions check execution and relative order. The analyzer does not model callback side effects.",
+      "source_line_numbers": [
+        115,
+        118
+      ]
+    },
+    {
+      "participant_number": 9,
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "source_id": "tests/task/phase1/task.py::test_core_after",
+      "automated_classification": "uncertain",
+      "reviewed_classification": "non_trivial",
+      "reviewer": "Codex (source inspection and targeted execution probes)",
+      "reviewed_at": "2026-10-05T08:02:32.006549+00:00",
+      "reason": "The registered callback appends state.src after normalization; the assertion checks LF-normalized input and exactly one invocation. The analyzer does not model callback state data or side effects.",
+      "source_line_numbers": [
+        67
+      ]
+    }
+  ]
+}

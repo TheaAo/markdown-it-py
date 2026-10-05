@@ -22,3 +22,8 @@ reproduction and current collection status.
 `collect_coverage.py` consumes the frozen error-rate valid pool and reuses the
 Phase 1 coverage engine. See [`COVERAGE.md`](../../docs/metric_collection_phase2/COVERAGE.md)
 for scopes, units, evidence and reproduction.
+
+`collect_assertion_score.py` reuses the Phase 1 AST analyzer with the frozen
+instance classifications, source-file identity and actual selected functions.
+See [`ASSERTION_SCORE.md`](../../docs/metric_collection_phase2/ASSERTION_SCORE.md)
+for scoring and manual-review candidates.
