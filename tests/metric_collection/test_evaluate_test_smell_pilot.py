@@ -2,9 +2,8 @@ import ast
 import json
 from pathlib import Path
 
-from scripts.detect_test_smells_ast import detect_file
-from scripts.evaluate_test_smell_pilot import evaluate_pilot
-
+from scripts.metric_collection_phase1.detect_test_smells_ast import detect_file
+from scripts.metric_collection_phase1.evaluate_test_smell_pilot import evaluate_pilot
 
 FIXTURE_DIR = Path(__file__).parent / "fixtures" / "test_smell_pilot"
 PILOT_FILE = FIXTURE_DIR / "test_pilot_cases.py"

@@ -323,8 +323,9 @@ def validate_phase1_data(master: pd.DataFrame) -> pd.DataFrame:
     ]
     record(
         "Assertion uncertainty",
-        uncertain_assertions.to_dict("records")
-        == [{"participant_number": 8, "uncertain_test_count": 1.0}],
+        uncertain_assertions.empty
+        and bool(participants.loc[participants["participant_number"].eq(8), "assertion_score"].eq(1).all())
+        and bool(participants.loc[participants["participant_number"].eq(8), "non_trivial_test_count"].eq(1).all()),
         f"Observed {uncertain_assertions.to_dict('records')}.",
     )
     record(
@@ -532,21 +533,8 @@ def run_sensitivity_analyses(data: pd.DataFrame) -> pd.DataFrame:
     worst_smell.loc[no_valid, "test_smell_density"] = 1.0
     add("No-valid-test suites assigned smell density 1", "test_smell_density", worst_smell)
 
-    add("Assertion score: unresolved item as non-trivial = no", "assertion_score", data)
-    assertion_upper = data.copy()
-    participant_8 = assertion_upper["participant_number"].eq(8)
-    eligible = (
-        assertion_upper["non_trivial_test_count"]
-        + assertion_upper["trivial_test_count"]
-        + assertion_upper["assertionless_test_count"]
-        + assertion_upper["uncertain_test_count"]
-    )
-    assertion_upper.loc[participant_8, "assertion_score"] = (
-        assertion_upper.loc[participant_8, "non_trivial_test_count"]
-        + assertion_upper.loc[participant_8, "uncertain_test_count"]
-    ) / eligible.loc[participant_8]
-    add("Assertion score: participant 8 unresolved item as non-trivial", "assertion_score", assertion_upper)
-
+    # Participant 8's assertion was manually resolved as non-trivial; there is
+    # no remaining lower/upper assertion-classification scenario to test.
     without_11 = data.loc[~data["participant_number"].eq(11)].copy()
     add("Execution time excluding participant 11", "execution_time_seconds", without_11)
     add(

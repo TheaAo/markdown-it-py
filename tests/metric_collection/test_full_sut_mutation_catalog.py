@@ -5,7 +5,7 @@ from typing import Any
 
 import pytest
 
-from scripts.metric_collection.build_mutant_catalog import (
+from scripts.metric_collection_phase1.build_mutant_catalog import (
     _absolute_source_lines,
     _catalog_payload,
     _coverage_source_lines,
@@ -13,7 +13,7 @@ from scripts.metric_collection.build_mutant_catalog import (
     classify_workload_layer,
     derive_task_relevant_mutants,
 )
-from scripts.metric_collection.mutation_common import (
+from scripts.metric_collection_phase1.mutation_common import (
     build_collection_policy,
     catalog_hash,
     changed_lines_from_diff,

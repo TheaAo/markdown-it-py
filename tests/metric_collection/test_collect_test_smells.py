@@ -1,8 +1,7 @@
 import json
 from pathlib import Path
 
-from scripts.collect_test_smells import collect_test_smells
-
+from scripts.metric_collection_phase1.collect_test_smells import collect_test_smells
 
 EXPECTED = (
     "test_file",

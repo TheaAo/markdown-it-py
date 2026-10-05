@@ -4,11 +4,17 @@
   "bootstrap_replicates": 20000,
   "exact_permutation_test": true,
   "mean_difference_direction": "AI minus Manual",
+  "individual_plot_excluded_participant_ids": [
+    6
+  ],
+  "statistical_sample_excluded_participant_ids": [],
+  "mutation_csv_restoration": "Restored from the archived Mutation score worksheet; see RESTORATION.md beside the CSV.",
   "source_files": {
     "error_rates/error_rates.csv": "c29f2f0de08c2225b426a77134382bff534602e94e2afa55228956038654d562",
     "coverage/coverage.csv": "38c60089651b19c33b23c89e3cb4dd29401c1c7f5397f962ecabe622e1fb1fc5",
-    "assertion_score/assertion_score.csv": "e672d2ecd089e16fdf9af2b944deb755823fb4196e614c37f9ff1157b65ce9da",
-    "mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/mutation_scores.csv": "ee2c78d16cb8ff67ddb3c59663cdc01684bb08bdc0b573892613b9f4e3328f61",
+    "assertion_score/assertion_score.csv": "dbcbb1c9a43a7c89762649867b7b3feedceed314d28f5c77ed40ee822d0680bc",
+    "assertion_score/manual_review.csv": "80d6ac5f6fde9691a211f040f25abf8eba34f7df2fefc57a48da506d8f7b238c",
+    "mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/final/mutation_scores.csv": "4cc195af23267bb644db7c999839575338b7a91a8ff88a51fb34b3fe167b131e",
     "generation_time/generation_time.csv": "ccbce5c747b575d41fbbf74f9a4828a9ca0d1302c1d31d9f621854d69fe54734",
     "generation_time/generation_efficiency.csv": "710be2f58ce7417f0c1472f0955b767cf2282ee42b036216fd69ab2f12083799",
     "execution_time/formal/summary/execution_time.csv": "e24421c9c1471947f889c4c4ec81c6f9767211b0eb83eaaa1e0cee440172c278",

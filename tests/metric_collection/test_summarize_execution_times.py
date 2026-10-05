@@ -4,7 +4,9 @@ import csv
 import json
 from pathlib import Path
 
-from scripts.summarize_execution_times import summarize_execution_times
+from scripts.metric_collection_phase1.summarize_execution_times import (
+    summarize_execution_times,
+)
 
 
 def test_summary_writes_focused_execution_time_table(tmp_path: Path) -> None:

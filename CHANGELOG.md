@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Separate research collectors and results by phase, and add a Phase 2 submission
+  inventory and collection plan.
+
 - Add staged stratified equivalent-mutant review sampling, targeted secondary
   quality control, and design-weighted Mutation Score estimates with
   finite-population intervals.

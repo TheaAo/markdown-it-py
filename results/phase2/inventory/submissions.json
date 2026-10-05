@@ -1,0 +1,181 @@
+{
+  "schema_version": "phase2-inventory-v1",
+  "generated_at": "2026-10-04T13:31:08.041264+00:00",
+  "baseline_ref": "origin/experiment-base-phase2",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "baseline_sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+  "task_paths": [
+    "tests/task/phase1/task.py",
+    "tests/task/task2.py"
+  ],
+  "ref_source": "local refs only; no fetch performed",
+  "participants": [
+    {
+      "participant_id": "experiment-01",
+      "phase1_status": "collected",
+      "phase1_commit": "5d27c841edeacdaa958107a12699fb72e622afb1",
+      "phase2_ref": "origin/experiment-01-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-02",
+      "phase1_status": "collected",
+      "phase1_commit": "a48fb91cabdeb1829841a8491419c9727baf75ff",
+      "phase2_ref": "origin/experiment-02-phase2",
+      "phase2_commit": "0603c17e7d85cc315be01cf66fc4c0a76101631d",
+      "missing_task_paths": [
+        "tests/task/phase1/task.py"
+      ],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/task2.py": "8e0be33b4ad0c7da2b76eeb7d136684b3d5cd4c7"
+      },
+      "status": "missing_task_file"
+    },
+    {
+      "participant_id": "experiment-03",
+      "phase1_status": "collected",
+      "phase1_commit": "cf6fa5479cc12d618e80da82dbe7b92a33af3013",
+      "phase2_ref": "origin/experiment-03-phase2",
+      "phase2_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "missing_task_paths": [],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/phase1/task.py": "5c0ae34d2619f4127649dedffe962bbee0b1cdd5",
+        "tests/task/task2.py": "2637a5c028ffe9cad1e782ec34b31789a7a9ab7c"
+      },
+      "status": "pending_submission_review"
+    },
+    {
+      "participant_id": "experiment-04",
+      "phase1_status": "collected",
+      "phase1_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+      "phase2_ref": "origin/experiment-04-phase2",
+      "phase2_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "missing_task_paths": [],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/phase1/task.py": "1ea9a82f2db85a52b84a18f169e49caff5ce3e10",
+        "tests/task/task2.py": "2a8d1f436454b7bf93d3031f985eda45b84d4125"
+      },
+      "status": "pending_submission_review"
+    },
+    {
+      "participant_id": "experiment-05",
+      "phase1_status": "collected",
+      "phase1_commit": "fcd99f9b82ddcce8aa2a5a02da7b73491aff8b12",
+      "phase2_ref": "origin/experiment-05-phase2",
+      "phase2_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "missing_task_paths": [],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/phase1/task.py": "81120dc261b6ce466b80e63877f4e3a01da83232",
+        "tests/task/task2.py": "aa29e9a527bdf3e6fdb372f6891a79d1d9be9b96"
+      },
+      "status": "pending_submission_review"
+    },
+    {
+      "participant_id": "experiment-06",
+      "phase1_status": "collected",
+      "phase1_commit": "7795121a34517b39588618441b097729de7b06ed",
+      "phase2_ref": "origin/experiment-06-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-07",
+      "phase1_status": "collected",
+      "phase1_commit": "975d8b5a07fdb8fd6b186368f6b88c43e935323a",
+      "phase2_ref": "origin/experiment-07-phase2",
+      "phase2_commit": "790717245ef4c2fee2582c1ae47f3310d58aa0ee",
+      "missing_task_paths": [],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/phase1/task.py": "53bc39ec214c6ce14a550b49ddeb2776ca9383ff",
+        "tests/task/task2.py": "c063e79e1b01a26cdc98881cc04e7a09856ac55a"
+      },
+      "status": "pending_submission_review"
+    },
+    {
+      "participant_id": "experiment-08",
+      "phase1_status": "collected",
+      "phase1_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "phase2_ref": "origin/experiment-08-phase2",
+      "phase2_commit": "756c4aedfad5af4c798ddf1efff740b7994df60d",
+      "missing_task_paths": [],
+      "sut_tree": "b3d952ae8ec9e92d5efb875b9fae950c9b36c8b3",
+      "sut_matches_baseline": true,
+      "protected_changes": [],
+      "task_blob_hashes": {
+        "tests/task/phase1/task.py": "ed4750ff8ee66bc05dd1d45b4e220a8b181b6245",
+        "tests/task/task2.py": "1b28d1410a7af9aa59d91f89ffc8dcad86fa9326"
+      },
+      "status": "pending_submission_review"
+    },
+    {
+      "participant_id": "experiment-09",
+      "phase1_status": "collected",
+      "phase1_commit": "db7aac28703727cccb04a098580e0a71dc62882d",
+      "phase2_ref": "origin/experiment-09-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-10",
+      "phase1_status": "collected",
+      "phase1_commit": "f69c01b1ec004842add4ff533b4fbd035a7c7d5d",
+      "phase2_ref": "origin/experiment-10-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-11",
+      "phase1_status": "collected",
+      "phase1_commit": "18f0f69f73c5dde0cb60e77dece882a6fd59b93a",
+      "phase2_ref": "origin/experiment-11-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-12",
+      "phase1_status": "collected",
+      "phase1_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+      "phase2_ref": "origin/experiment-12-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-13",
+      "phase1_status": "not_participated",
+      "phase1_commit": null,
+      "phase2_ref": "origin/experiment-13-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-14",
+      "phase1_status": "collected",
+      "phase1_commit": "ecaec5f05aecb0de2a9367740daade7508fe3435",
+      "phase2_ref": "origin/experiment-14-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-15",
+      "phase1_status": "not_participated",
+      "phase1_commit": null,
+      "phase2_ref": "origin/experiment-15-phase2",
+      "status": "missing_branch"
+    },
+    {
+      "participant_id": "experiment-16",
+      "phase1_status": "collected",
+      "phase1_commit": "1cc970e97affd8d64684909799afa1a33a8d06e7",
+      "phase2_ref": "origin/experiment-16-phase2",
+      "status": "missing_branch"
+    }
+  ]
+}

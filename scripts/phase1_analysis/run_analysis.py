@@ -43,6 +43,7 @@ SOURCE_FILES = [
     "error_rates/error_rates.csv",
     "coverage/coverage.csv",
     "assertion_score/assertion_score.csv",
+    "assertion_score/manual_review.csv",
     "mutation_score/full-sut/formal/global/equivalent_review_sample_stage1/"
     "final/mutation_scores.csv",
     "generation_time/generation_time.csv",
@@ -145,6 +146,9 @@ def write_manifest() -> None:
         "bootstrap_replicates": BOOTSTRAP_REPLICATES,
         "exact_permutation_test": True,
         "mean_difference_direction": "AI minus Manual",
+        "individual_plot_excluded_participant_ids": [6],
+        "statistical_sample_excluded_participant_ids": [],
+        "mutation_csv_restoration": "Restored from the archived Mutation score worksheet; see RESTORATION.md beside the CSV.",
         "source_files": {
             relative: _sha256(RESULTS_DIR / relative) for relative in SOURCE_FILES
         },

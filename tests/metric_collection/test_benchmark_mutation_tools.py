@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from scripts.metric_collection.benchmark_mutation_tools import (
+from scripts.metric_collection_phase1.benchmark_mutation_tools import (
     mutpy_catalog,
     parse_cosmic_ray_dump,
     parse_mutmut_stats,

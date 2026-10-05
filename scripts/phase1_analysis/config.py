@@ -7,7 +7,8 @@ from pathlib import Path
 
 ANALYSIS_DIR = Path(__file__).resolve().parent
 REPO_ROOT = ANALYSIS_DIR.parents[1]
-RESULTS_DIR = REPO_ROOT / "results"
+# Phase 1 collection files now live separately from the Phase 2 results.
+RESULTS_DIR = REPO_ROOT / "results" / "phase1"
 OUTPUT_DIR = ANALYSIS_DIR / "outputs"
 TABLE_DIR = OUTPUT_DIR / "tables"
 FIGURE_DIR = OUTPUT_DIR / "figures"
@@ -111,4 +112,3 @@ SECONDARY_METRICS: dict[str, dict[str, object]] = {
         "higher_is_better": True,
     },
 }
-

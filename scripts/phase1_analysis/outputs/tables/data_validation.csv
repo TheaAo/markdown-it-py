@@ -11,6 +11,6 @@ Missingness: execution_time_seconds,PASS,"Missing for participant IDs [4, 6]."
 Missingness: test_smell_density,PASS,"Missing for participant IDs [4, 6]."
 Adjusted mutation-score completeness,PASS,Missing for participant IDs [].
 Mutation generation-efficiency completeness,PASS,Missing for participant IDs [].
-Assertion uncertainty,PASS,"Observed [{'participant_number': 8, 'uncertain_test_count': 1.0}]."
+Assertion uncertainty,PASS,Observed [].
 Test-smell uncertainty,PASS,No uncertain source-test/smell pairs expected.
 Mutation review precision target,PASS,All participant specified-layer intervals must satisfy the stopping rule.
