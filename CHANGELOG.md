@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Measure Phase 2 coverage using frozen valid instances, with original test paths,
+  task scopes and coverage unions against pristine baseline tests.
+
 - Collect Phase 2 error rates across frozen participant task files, preserving
   original paths, classification evidence and missing-submission status.
 

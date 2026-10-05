@@ -1,0 +1,129 @@
+{
+  "participant_id": "experiment-08",
+  "participant_number": 8,
+  "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+  "phase1_group": "Manual",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "error_rate_raw_sha256": "76810927ad3568e3a450d15711b959ea537cf85827a0033e0427dc7d067fe92c",
+  "valid_nodeids": [
+    "tests/task/phase1/task.py::test_file",
+    "tests/task/phase1/task.py::test_spec",
+    "tests/task/phase1/task.py::test_core_after",
+    "tests/task/task2.py::test_make_fence_rule_callable",
+    "tests/task/task2.py::test_default_fence_exists",
+    "tests/task/task2.py::test_make_fence_after",
+    "tests/task/task2.py::test_make_fence_at",
+    "tests/test_cli.py::test_non_utf8"
+  ],
+  "valid_tests_included": 8,
+  "invalid_tests_excluded": 0,
+  "missing_expected_tests": {
+    "tests/task/phase1/task.py": [
+      "test_parse_fail"
+    ]
+  },
+  "participant_tests_only": {
+    "statement": {
+      "covered": 2561,
+      "total": 3622,
+      "percent": 70.7067918277195
+    },
+    "branch": {
+      "covered": 845,
+      "total": 1394,
+      "percent": 60.61692969870875
+    },
+    "provenance": {
+      "python": "3.11.6",
+      "pytest": "9.1.1",
+      "coverage": "7.16.2",
+      "markdown_it_path": "markdown_it/__init__.py"
+    }
+  },
+  "all_tests_combined": {
+    "statement": {
+      "covered": 3469,
+      "total": 3622,
+      "percent": 95.77581446714522
+    },
+    "branch": {
+      "covered": 1281,
+      "total": 1394,
+      "percent": 91.89383070301291
+    }
+  },
+  "group_nodeids": {
+    "maintenance": [
+      "tests/task/phase1/task.py::test_file",
+      "tests/task/phase1/task.py::test_spec",
+      "tests/task/phase1/task.py::test_core_after",
+      "tests/test_cli.py::test_non_utf8"
+    ],
+    "new_generation": [
+      "tests/task/task2.py::test_make_fence_after",
+      "tests/task/task2.py::test_make_fence_at"
+    ],
+    "retained_legacy": [],
+    "additional": [
+      "tests/task/task2.py::test_make_fence_rule_callable",
+      "tests/task/task2.py::test_default_fence_exists"
+    ]
+  },
+  "group_coverage": {
+    "maintenance": {
+      "statement": {
+        "covered": 2561,
+        "total": 3622,
+        "percent": 70.7067918277195
+      },
+      "branch": {
+        "covered": 845,
+        "total": 1394,
+        "percent": 60.61692969870875
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    },
+    "new_generation": {
+      "statement": {
+        "covered": 1224,
+        "total": 3622,
+        "percent": 33.793484262838206
+      },
+      "branch": {
+        "covered": 198,
+        "total": 1394,
+        "percent": 14.203730272596843
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    },
+    "retained_legacy": null,
+    "additional": {
+      "statement": {
+        "covered": 703,
+        "total": 3622,
+        "percent": 19.40916620651574
+      },
+      "branch": {
+        "covered": 1,
+        "total": 1394,
+        "percent": 0.07173601147776185
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    }
+  }
+}

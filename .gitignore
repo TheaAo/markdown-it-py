@@ -145,6 +145,8 @@ __pycache__/
 docs/api/
 !/results/phase1/coverage/
 !/results/phase1/coverage/coverage.csv
+!/results/phase2/coverage/
+!/results/phase2/coverage/**
 /results/phase1/mutation_score/
 /results/phase2/mutation_score/
 

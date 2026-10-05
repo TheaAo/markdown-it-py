@@ -18,3 +18,7 @@ Error-rate collection is implemented in `collect_error_rates.py` and accepts onl
 standard `experiment-xx-phase2` branches. See
 [`ERROR_RATES.md`](../../docs/metric_collection_phase2/ERROR_RATES.md) for counting,
 reproduction and current collection status.
+
+`collect_coverage.py` consumes the frozen error-rate valid pool and reuses the
+Phase 1 coverage engine. See [`COVERAGE.md`](../../docs/metric_collection_phase2/COVERAGE.md)
+for scopes, units, evidence and reproduction.

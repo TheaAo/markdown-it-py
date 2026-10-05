@@ -24,6 +24,12 @@ instances, all valid, with zero classified errors. Participant 08's relocated
 Participants 08 and 09 each have eight executed cases; the others have seven.
 `error_rates_history/` preserves earlier collections unchanged.
 See [Error Rate methodology](../../docs/metric_collection_phase2/ERROR_RATES.md).
+
+`coverage/` contains the completed eight-participant coverage collection using the
+same 58 valid instances. The summary CSV uses 0–1 fractions; raw records include
+covered/total counts and percentage values. Evidence includes whole-suite and
+task-group coverage, pristine project coverage and combined coverage unions.
+See [Coverage methodology](../../docs/metric_collection_phase2/COVERAGE.md).
 Future metric directories follow the Phase 1 layout. Participant 12's duration was corrected by the researcher
 from `00:37:59` to `00:09:25`; both seconds columns are 565.
 
