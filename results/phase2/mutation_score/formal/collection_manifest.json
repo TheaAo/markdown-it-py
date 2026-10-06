@@ -1,0 +1,476 @@
+{
+  "phase": 2,
+  "stage": "formal_execution",
+  "status": "executions_complete",
+  "started_at": "2026-10-05T13:33:34.419662+00:00",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "sut_hash": "d2a2b10e256f9b8678730d14dbfc6c596dc711c2fd69af8d1669f91a56fe4f03",
+  "catalog_hash": "a3077bad6aafde5755c3e195bcc5ab6792feefaad955695311f65068caa673f3",
+  "error_rate_manifest_sha256": "236b78d84f5ace84f0eda180f16318b33c885cc47bc8b7f9d99cbe4441a90e36",
+  "valid_only_protocol": "phase2_original_paths_valid_instances_v1",
+  "confirm_kills": true,
+  "max_children": 1,
+  "participants": [
+    {
+      "participant_number": 2,
+      "participant_id": "experiment-02",
+      "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+      "phase1_group": "AI",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:34.455960+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3345,
+          "survived": 1472,
+          "no_tests": 48,
+          "timeout": 180,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4865,
+          "eligible_killed": 3345,
+          "mutation_score": 0.6875642343268242
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3345,
+          "survived": 1478,
+          "no_tests": 48,
+          "timeout": 180,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4871,
+          "eligible_killed": 3345,
+          "mutation_score": 0.686717306507904
+        }
+      },
+      "output_file": "raw/experiment-02.json",
+      "finished_at": "2026-10-05T13:33:35.979694+00:00"
+    },
+    {
+      "participant_number": 3,
+      "participant_id": "experiment-03",
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "phase1_group": "AI",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:36.026779+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3382,
+          "survived": 1479,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4866,
+          "eligible_killed": 3382,
+          "mutation_score": 0.6950267159884915
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3382,
+          "survived": 1485,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4872,
+          "eligible_killed": 3382,
+          "mutation_score": 0.6941707717569786
+        }
+      },
+      "output_file": "raw/experiment-03.json",
+      "finished_at": "2026-10-05T13:33:37.389807+00:00"
+    },
+    {
+      "participant_number": 4,
+      "participant_id": "experiment-04",
+      "participant_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:37.424854+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3394,
+          "survived": 1467,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4866,
+          "eligible_killed": 3394,
+          "mutation_score": 0.6974928072338676
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3394,
+          "survived": 1473,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4872,
+          "eligible_killed": 3394,
+          "mutation_score": 0.6966338259441708
+        }
+      },
+      "output_file": "raw/experiment-04.json",
+      "finished_at": "2026-10-05T13:33:39.036323+00:00"
+    },
+    {
+      "participant_number": 5,
+      "participant_id": "experiment-05",
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:39.072340+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3362,
+          "survived": 1490,
+          "no_tests": 5,
+          "timeout": 188,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4857,
+          "eligible_killed": 3362,
+          "mutation_score": 0.6921968293185093
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3362,
+          "survived": 1496,
+          "no_tests": 5,
+          "timeout": 188,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4863,
+          "eligible_killed": 3362,
+          "mutation_score": 0.6913427925149085
+        }
+      },
+      "output_file": "raw/experiment-05.json",
+      "finished_at": "2026-10-05T13:33:40.615351+00:00"
+    },
+    {
+      "participant_number": 7,
+      "participant_id": "experiment-07",
+      "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+      "phase1_group": "AI",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:40.651468+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3387,
+          "survived": 1472,
+          "no_tests": 5,
+          "timeout": 181,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4864,
+          "eligible_killed": 3387,
+          "mutation_score": 0.6963404605263158
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3387,
+          "survived": 1478,
+          "no_tests": 5,
+          "timeout": 181,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4870,
+          "eligible_killed": 3387,
+          "mutation_score": 0.6954825462012321
+        }
+      },
+      "output_file": "raw/experiment-07.json",
+      "finished_at": "2026-10-05T13:33:42.024685+00:00"
+    },
+    {
+      "participant_number": 8,
+      "participant_id": "experiment-08",
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "started_at": "2026-10-05T13:33:42.025589+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 8,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3381,
+          "survived": 1480,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4866,
+          "eligible_killed": 3381,
+          "mutation_score": 0.6948212083847103
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3381,
+          "survived": 1486,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4872,
+          "eligible_killed": 3381,
+          "mutation_score": 0.6939655172413793
+        }
+      },
+      "output_file": "raw/experiment-08.json",
+      "finished_at": "2026-10-05T14:13:21.201207+00:00"
+    },
+    {
+      "participant_number": 9,
+      "participant_id": "experiment-09",
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "started_at": "2026-10-05T14:13:21.295941+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 8,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3332,
+          "survived": 1518,
+          "no_tests": 5,
+          "timeout": 190,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4855,
+          "eligible_killed": 3332,
+          "mutation_score": 0.686302780638517
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3332,
+          "survived": 1524,
+          "no_tests": 5,
+          "timeout": 190,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4861,
+          "eligible_killed": 3332,
+          "mutation_score": 0.6854556675581156
+        }
+      },
+      "output_file": "raw/experiment-09.json",
+      "finished_at": "2026-10-05T14:13:22.761977+00:00"
+    },
+    {
+      "participant_number": 12,
+      "participant_id": "experiment-12",
+      "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+      "phase1_group": "AI",
+      "status": "collected",
+      "started_at": "2026-10-05T14:13:22.796175+00:00",
+      "summary": {
+        "baseline_valid_only_passed": true,
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "specified": {
+          "catalog_total": 5045,
+          "killed": 3390,
+          "survived": 1471,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4866,
+          "eligible_killed": 3390,
+          "mutation_score": 0.6966707768187423
+        },
+        "extended": {
+          "catalog_total": 6,
+          "killed": 0,
+          "survived": 6,
+          "no_tests": 0,
+          "timeout": 0,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 6,
+          "eligible_killed": 0,
+          "mutation_score": 0.0
+        },
+        "combined": {
+          "catalog_total": 5051,
+          "killed": 3390,
+          "survived": 1477,
+          "no_tests": 5,
+          "timeout": 179,
+          "other": 0,
+          "confirmed_equivalent": 0,
+          "excluded_duplicates": 0,
+          "eligible_mutants": 4872,
+          "eligible_killed": 3390,
+          "mutation_score": 0.6958128078817734
+        }
+      },
+      "output_file": "raw/experiment-12.json",
+      "finished_at": "2026-10-05T14:13:24.145956+00:00"
+    }
+  ],
+  "final_score_status": "pending global non-equivalence and equivalent-mutant assessment",
+  "collector_sha256": {
+    "scripts/metric_collection_phase2/collect_mutation_score.py": "b05efa38b40134d284d0186cbced04e9188794bc02d89368b417ce7c3e6a31cc",
+    "scripts/metric_collection_phase1/collect_mutation_score.py": "272c4a0e846286bc38a9040150b397d3f726afba92fc1f84b4d92f780e5877b9",
+    "scripts/metric_collection_phase1/mutation_cache.py": "ea2f3f684a01ed55f372df1aa860b0f1e470a5da43d5a9c0d59ecfcb112d08c1",
+    "scripts/metric_collection_phase1/mutation_common.py": "7123139b965e6996e438a4f06f598178027abcfa664cee89b2a1d234c6bbf8a9",
+    "scripts/metric_collection_phase2/collect_coverage.py": "8beffb7bb694434ffde41f591304b70bdba7bfbe9a688f1e4e4b00506230b532"
+  },
+  "execution_policy_hash": "c1b621d0321217bf5f299a78bdc49587a9878754f0075f50971a2992e1ea2d5f",
+  "execution_policy": {
+    "schema_version": 1,
+    "mutant_timeout": {
+      "formula": "(estimated_test_time + constant) * multiplier",
+      "multiplier": 5.0,
+      "constant": 0.5
+    },
+    "timeout_retry_count": 1,
+    "baseline_test_timeout_seconds": 120.0,
+    "collection_execution_timeout_seconds": null,
+    "kill_confirmation": {
+      "enabled": true,
+      "protocol": "independent_second_execution_v3_incremental"
+    },
+    "equivalent_duplicate_policy": {
+      "exclude_confirmed_equivalent": true,
+      "exclude_duplicates": false
+    }
+  },
+  "finished_at": "2026-10-05T14:13:24.146816+00:00"
+}

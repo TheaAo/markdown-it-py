@@ -39,6 +39,19 @@ The raw automatic evidence remains unchanged; `assertion_score.csv` contains
 the adjusted scores, and `manual_review/` retains adjudications and evidence.
 The two trivial classifications remain pending in `review_candidates.csv`. See
 [Assertion Score methodology](../../docs/metric_collection_phase2/ASSERTION_SCORE.md).
+
+`mutation_score/mutation_score.csv` contains the final eight-participant Mutation
+Score. The primary column is `specified_estimated_adjusted_score` (0–1 fractions),
+with raw scores, approximate 95% intervals and supplementary scopes retained.
+The corrected catalog contains 5,051 task-relevant mutants. The fixed 100-mutant
+stratified sample has 16 confirmed equivalent invariants and 84 non-equivalent
+witnesses; all primary precision criteria pass. Equivalent decisions have one
+Codex source reviewer and no independent secondary review. Participant 08's entire
+catalog was rerun serially to eliminate a shared-file race; the final results have
+zero flaky kills. See the generated `mutation_score/run_report.md` and
+[Mutation Score methodology](../../docs/metric_collection_phase2/MUTATION_SCORE.md).
+Mutation working data remains ignored, as in Phase 1. Archived Phase 1 Mutation
+Scores require scope rechecking before direct cross-phase comparison.
 Future metric directories follow the Phase 1 layout. Participant 12's duration was corrected by the researcher
 from `00:37:59` to `00:09:25`; both seconds columns are 565.
 

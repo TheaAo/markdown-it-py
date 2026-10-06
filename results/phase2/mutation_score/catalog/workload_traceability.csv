@@ -1,0 +1,12 @@
+requirement,layer,source,test,rationale,review_status,reviewer,review_notes
+complete_specification,specified,assignment and spec.md/test_file.html,test_complete_specification,Exact full-file CommonMark regression required by the task.,unreviewed,,
+official_commonmark_examples,specified,assignment and commonmark.json,test_commonmark_examples,All provided official examples are required; none are sampled.,unreviewed,,
+missing_cli_file,specified,assignment,test_cli_missing_file_exits_abnormally,Checks the required SystemExit and abnormal exit code.,unreviewed,,
+rendering_boundaries,extended_only,boundary and state analysis,test_render_is_deterministic_and_handles_unicode;test_render_empty_input,"Adds newline, Unicode, empty-input, and repeated-use paths.",unreviewed,,
+ruler_after_boundaries,extended_only,Ruler public API and control-flow analysis,test_ruler_after_*,"Adds position, cache invalidation, and missing-anchor paths.",unreviewed,,
+cli_path_boundaries,extended_only,CLI public API and error-path analysis,test_cli_directory_path_reports_error;test_cli_missing_unicode_path_reports_error,Adds directory and Unicode/space path equivalence classes.,unreviewed,,
+non_utf8_boundaries,extended_only,encoding equivalence-class analysis,test_cli_handles_additional_non_utf8_classes,Adds UTF-16 BOM and invalid-byte inputs with baseline-defined behavior.,unreviewed,,
+core_after_normalize_order,specified,Phase 2 assignment,test_core_after_normalize_order,Core rule executes after normalization.,unreviewed,,
+non_utf8_decode_failure,specified,Phase 2 assignment,test_non_utf8_exits_with_decode_message,Exit code 1 and UTF-8 decode error message.,unreviewed,,
+fence_after_and_at,specified,Phase 2 assignment,test_make_fence_after_keeps_default;test_make_fence_at_replaces_default,Colon fence contents and default-fence preservation/replacement.,unreviewed,,
+fence_encoding_boundaries,extended_only,Phase 2 boundary analysis,test_non_utf8_classes;test_colon_closing_length;test_default_factory_markers;test_colon_minimum_and_unclosed,Invalid encodings and configurable fence boundaries.,unreviewed,,

@@ -1,0 +1,16 @@
+{
+  "stage": "final_mutation_score_complete",
+  "status": "completed",
+  "history": "history/source_mapping_v1",
+  "purpose": "Complete the verified source-mapping scope; cached identical observations retained",
+  "details": {
+    "invalidated_participant": "experiment-08",
+    "max_children": 1,
+    "collection_manifest": "formal/collection_manifest.json",
+    "previous_parallel_execution": "history/parallel_file_race_v1/"
+  },
+  "final_score_status": "complete",
+  "final_result": "mutation_score.csv",
+  "review_method": "single_reviewer_source_analysis_with_executable_witnesses",
+  "finished_at": "2026-10-05T14:15:56.637534+00:00"
+}

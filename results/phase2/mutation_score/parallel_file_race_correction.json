@@ -1,0 +1,22 @@
+{
+  "reason": "experiment-08 test_file writes fixed output.html shared by parallel mutant processes",
+  "invalidated_participant": "experiment-08",
+  "rerun_max_children": 1,
+  "removed_evidence_records": 0,
+  "other_participants_write_isolation": "02/03/04/05/09/12 temporary paths; 07 NamedTemporaryFile; verified frozen submission sources",
+  "reuse_other_participants": true,
+  "invalidated_migration_cache": "history/parallel_file_race_v1/migration_cache/experiment-08.json",
+  "status": "serial_rerun_complete",
+  "serial_result_sha256": "88409911d21da6bc6d897258d06b235d5c9c6844dfdbce4b6c4a12b7a8698db0",
+  "serial_catalog_mutants": 5051,
+  "serial_flaky_kills": 0,
+  "changed_observations": [
+    {
+      "mutant_id": "Mfc598eef5deee272",
+      "mutant_name": "markdown_it.presets.commonmark.x_make__mutmut_6",
+      "parallel_status": "killed",
+      "serial_status": "survived",
+      "parallel_flaky_kill": true
+    }
+  ]
+}

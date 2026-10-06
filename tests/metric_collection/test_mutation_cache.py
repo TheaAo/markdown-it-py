@@ -103,6 +103,20 @@ def test_timeout_only_change_does_not_invalidate_confirmed_kill() -> None:
     assert plan["rerun_ids"] == ["M3"]
 
 
+def test_identical_policy_does_not_reuse_flaky_or_unexecuted_rows() -> None:
+    previous = _previous()
+    previous["mutants"][0]["flaky_kill"] = True
+    previous["mutants"][1]["status"] = "unavailable"
+    plan = plan_result_reuse(
+        _mutants(),
+        previous,
+        current_context_hash=execution_context_hash(_context()),
+        current_policy=_policy(),
+    )
+    assert set(plan["reused"]) == {"M3"}
+    assert plan["rerun_ids"] == ["M1", "M2"]
+
+
 def test_timeout_increase_only_reruns_previous_timeouts() -> None:
     plan = plan_result_reuse(
         _mutants(),

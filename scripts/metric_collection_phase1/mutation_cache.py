@@ -198,8 +198,14 @@ def plan_result_reuse(
             reuse = status != "timeout"
         elif relation in {"decreased", "mixed"}:
             reuse = _duration_fits_policy(row, current_policy)
-        if reuse and backfill_missing_durations and not _has_complete_execution_metadata(
-            row
+        if status not in {"killed", "survived", "no_tests", "timeout"} or row.get(
+            "flaky_kill"
+        ):
+            reuse = False
+        if (
+            reuse
+            and backfill_missing_durations
+            and not _has_complete_execution_metadata(row)
         ):
             rerun_ids.append(mutant_id)
             rerun_missing_durations += 1

@@ -108,6 +108,9 @@ def function_from_mutant_name(mutant_name: str) -> str:
     parts = mutant_name.split(marker)
     if len(parts) >= 2:
         return parts[-1].split("__mutmut_", 1)[0]
+    leaf = mutant_name.rsplit(".", 1)[-1].split("__mutmut_", 1)[0]
+    if leaf.startswith("x_"):
+        return leaf[2:]
     return "<module>"
 
 

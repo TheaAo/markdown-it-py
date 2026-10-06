@@ -238,7 +238,10 @@ def _valid_test_artifact_hash(valid_root: Path, nodeids: Sequence[str]) -> str:
         if path.is_file() and path.suffix == ".py" and "__pycache__" not in path.parts
     ]
     return semantic_artifact_hash(
-        {"files": sorted(files, key=lambda item: item["path"]), "nodeids": sorted(nodeids)}
+        {
+            "files": sorted(files, key=lambda item: item["path"]),
+            "nodeids": sorted(nodeids),
+        }
     )
 
 
@@ -378,6 +381,29 @@ def _catalog_summary(
     return summary_function(results, exclude_duplicates=exclude_duplicates)
 
 
+def _original_valid_nodeids(
+    pool_path: Path, repo_root: Path, valid_results: Sequence[TestCaseResult]
+) -> list[str]:
+    nodeids = json.loads(pool_path.read_text(encoding="utf-8"))
+    if not isinstance(nodeids, list) or not all(
+        isinstance(nodeid, str) for nodeid in nodeids
+    ):
+        raise ValueError("original node IDs must be a string array")
+    if len(nodeids) != len(set(nodeids)) or set(nodeids) != {
+        item.nodeid for item in valid_results
+    }:
+        raise ValueError("original node IDs differ from the classified valid pool")
+    for nodeid in nodeids:
+        relative = Path(nodeid.split("::", 1)[0])
+        if (
+            relative.is_absolute()
+            or ".." in relative.parts
+            or not (repo_root / relative).is_file()
+        ):
+            raise ValueError(f"invalid original test path: {relative}")
+    return nodeids
+
+
 def collect_mutation_score(args: argparse.Namespace) -> dict[str, Any]:
     if args.confirmation_batch_size <= 0:
         raise ValueError("confirmation batch size must be positive")
@@ -429,19 +455,34 @@ def collect_mutation_score(args: argparse.Namespace) -> dict[str, Any]:
         valid_root = workspace / "tests/valid_participant"
         valid_root.mkdir(parents=True)
         nodeids: list[str] = []
-        if valid_results:
-            absolute_nodeids = _isolated_valid_nodeids(
-                test_path=test_path,
-                repo_root=args.repo_root,
-                temp_root=valid_root,
-                valid_results=valid_results,
+        original_pool = getattr(args, "original_nodeids", None)
+        runner_protocol = RUNNER_PROTOCOL
+        if original_pool is not None:
+            nodeids = _original_valid_nodeids(
+                Path(original_pool), args.repo_root, valid_results
             )
-            nodeids = [
-                str(Path(nodeid.split("::", 1)[0]).relative_to(workspace))
-                + "::"
-                + nodeid.split("::", 1)[1]
-                for nodeid in absolute_nodeids
-            ]
+            shutil.copytree(
+                args.repo_root / "tests",
+                workspace / "tests",
+                dirs_exist_ok=True,
+                ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+            )
+            valid_root = workspace / "tests"
+            runner_protocol = "phase2_original_paths_valid_instances_v1"
+        if valid_results:
+            if original_pool is None:
+                absolute_nodeids = _isolated_valid_nodeids(
+                    test_path=test_path,
+                    repo_root=args.repo_root,
+                    temp_root=valid_root,
+                    valid_results=valid_results,
+                )
+                nodeids = [
+                    str(Path(nodeid.split("::", 1)[0]).relative_to(workspace))
+                    + "::"
+                    + nodeid.split("::", 1)[1]
+                    for nodeid in absolute_nodeids
+                ]
             baseline = _run(
                 [str(args.python), "-m", "pytest", "-q", *nodeids],
                 workspace,
@@ -454,9 +495,14 @@ def collect_mutation_score(args: argparse.Namespace) -> dict[str, Any]:
         context = build_execution_context(
             catalog,
             test_artifact_hash=test_artifact_hash,
-            test_materials_hash=_test_materials_hash(test_path),
+            test_materials_hash=_test_materials_hash(
+                workspace / "tests/_scope.py"
+                if original_pool is not None
+                else test_path
+            ),
             python_version=python_version,
         )
+        context["valid_only_protocol"] = runner_protocol
         context_hash = execution_context_hash(context)
         participant_commit = args.participant_commit or ""
         if not participant_commit:
@@ -622,7 +668,7 @@ def collect_mutation_score(args: argparse.Namespace) -> dict[str, Any]:
                         ),
                         "python_version": context["python_version"],
                         "mutmut_version": context["mutmut_version"],
-                        "valid_only_protocol": RUNNER_PROTOCOL,
+                        "valid_only_protocol": runner_protocol,
                         "evidence_quality": "direct_independent_confirmation",
                     }
                     add_evidence(evidence, record)
@@ -697,9 +743,7 @@ def collect_mutation_score(args: argparse.Namespace) -> dict[str, Any]:
             "rerun_previous_timeouts": reuse_plan["statistics"][
                 "rerun_previous_timeouts"
             ],
-            "rerun_policy_affected": reuse_plan["statistics"][
-                "rerun_policy_affected"
-            ],
+            "rerun_policy_affected": reuse_plan["statistics"]["rerun_policy_affected"],
             "rerun_missing_durations": reuse_plan["statistics"][
                 "rerun_missing_durations"
             ],
@@ -776,6 +820,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--python", type=Path, default=Path(sys.executable))
     parser.add_argument("--catalog", type=Path, required=True)
     parser.add_argument("--error-rates", type=Path)
+    parser.add_argument("--original-nodeids", type=Path)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--audit-csv", type=Path)
     parser.add_argument("--test-review-csv", type=Path)

@@ -1,0 +1,15 @@
+{
+  "seed": 20261005,
+  "initial_sample_size": 100,
+  "minimum_per_stratum": 2,
+  "planned_sample_sizes": [
+    100,
+    150,
+    225,
+    313
+  ],
+  "target_half_width": 0.05,
+  "primary_scope": "specified",
+  "nominal_confidence_level": 0.95,
+  "review_population": "no reliable global kill; no automatic equivalence claims"
+}

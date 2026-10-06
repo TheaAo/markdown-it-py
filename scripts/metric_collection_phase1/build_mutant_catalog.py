@@ -9,6 +9,7 @@ import hashlib
 import json
 from pathlib import Path
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -390,7 +391,9 @@ def _absolute_source_lines(
 ) -> tuple[int, ...]:
     local_lines = changed_lines_from_diff(diff)
     function_name = function_from_mutant_name(mutant_name)
-    tree = ast.parse((workspace / module).read_text(encoding="utf-8"))
+    source = (workspace / module).read_text(encoding="utf-8")
+    source_lines = source.splitlines()
+    tree = ast.parse(source)
     name_parts = mutant_name.split("ǁ")
     class_name = name_parts[-2] if len(name_parts) >= 3 else None
     search_root: ast.AST = tree
@@ -407,10 +410,45 @@ def _absolute_source_lines(
         for node in ast.walk(search_root)
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
         and node.name == function_name
+        and not any(
+            (isinstance(decorator, ast.Name) and decorator.id == "overload")
+            or (isinstance(decorator, ast.Attribute) and decorator.attr == "overload")
+            for decorator in node.decorator_list
+        )
     ]
-    if len(candidates) == 1:
-        return tuple(candidates[0].lineno + line - 1 for line in local_lines)
-    return local_lines
+    if len(candidates) != 1:
+        raise ValueError(f"Cannot uniquely locate mutant function: {mutant_name}")
+    function = candidates[0]
+    # Mutmut's function diff includes leading comments, and may include decorators.
+    # Validate the complete old-side hunk against the frozen source instead of
+    # assuming the diff starts at the AST function's def line.
+    start = min([function.lineno, *(node.lineno for node in function.decorator_list)])
+    while start > 1 and (
+        not source_lines[start - 2].strip()
+        or source_lines[start - 2].lstrip().startswith("#")
+    ):
+        start -= 1
+    old_lines: list[tuple[int, str]] = []
+    old_line: int | None = None
+    for line in diff.splitlines():
+        match = re.match(r"^@@ -(\d+)(?:,\d+)? \+", line)
+        if match is not None:
+            old_line = int(match.group(1))
+        elif old_line is not None and (line == "" or line.startswith((" ", "-"))):
+            old_lines.append((old_line, line[1:]))
+            old_line += 1
+    offsets = [
+        base
+        for base in range(start, function.lineno + 1)
+        if all(
+            0 < base + relative - 1 <= len(source_lines)
+            and source_lines[base + relative - 2].lstrip() == text.lstrip()
+            for relative, text in old_lines
+        )
+    ]
+    if len(offsets) != 1:
+        raise ValueError(f"Cannot uniquely align mutant diff: {mutant_name}")
+    return tuple(offsets[0] + line - 1 for line in local_lines)
 
 
 def _coverage_source_lines(
@@ -425,9 +463,7 @@ def _coverage_source_lines(
     anchors: list[int] = []
     for source_line in changed_source_lines:
         enclosing = [
-            node
-            for node in statements
-            if node.lineno <= source_line <= node.end_lineno
+            node for node in statements if node.lineno <= source_line <= node.end_lineno
         ]
         if not enclosing:
             anchors.append(source_line)
@@ -507,7 +543,11 @@ def _run_catalog(
         try:
             shown = shown_mutants.get(mutant_name)
             if not isinstance(shown, dict) or not isinstance(shown.get("diff"), str):
-                reason = shown.get("error", "missing bulk diff") if shown else "missing bulk diff"
+                reason = (
+                    shown.get("error", "missing bulk diff")
+                    if shown
+                    else "missing bulk diff"
+                )
                 raise ValueError(str(reason))
             diff = normalize_diff(shown["diff"])
             module = _module_from_diff(diff)
@@ -531,9 +571,7 @@ def _run_catalog(
             coverage_source_lines = source_lines
             mapping_status = "fallback_diff_line"
             mapping_failures += 1
-        covered_by_specified = _covered(
-            specified_lines, module, coverage_source_lines
-        )
+        covered_by_specified = _covered(specified_lines, module, coverage_source_lines)
         covered_by_extended = _covered(extended_lines, module, coverage_source_lines)
         workload_layer = classify_workload_layer(
             covered_by_specified, covered_by_extended
@@ -965,12 +1003,8 @@ def build_catalog(args: argparse.Namespace) -> dict[str, Any]:
             first["metadata"]["reference_status_counts"]
             == second["metadata"]["reference_status_counts"]
         ),
-        "first_reference_status_counts": first["metadata"][
-            "reference_status_counts"
-        ],
-        "second_reference_status_counts": second["metadata"][
-            "reference_status_counts"
-        ],
+        "first_reference_status_counts": first["metadata"]["reference_status_counts"],
+        "second_reference_status_counts": second["metadata"]["reference_status_counts"],
         "first_durations_seconds": first["metadata"]["durations_seconds"],
         "second_durations_seconds": second["metadata"]["durations_seconds"],
     }

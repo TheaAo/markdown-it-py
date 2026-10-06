@@ -1,0 +1,41 @@
+{
+  "protocol": "verified_function_hunks_with_leading_comments_and_overload_filter_v2",
+  "parent_raw_catalog_sha256": "cf0e2f535f4d287cac366b11ad6aaf1da4107417da564dcbcb324e8168f1d952",
+  "parent_raw_catalog_hash": "5c6b9f6e6ff86ec38bdedeef235fa9b838bcfc4c5013b1f1b3e76805cc011bed",
+  "raw_inventory_generation_comparison": {
+    "semantic_catalog_hash_match": true,
+    "first_raw_catalog_hash": "5c6b9f6e6ff86ec38bdedeef235fa9b838bcfc4c5013b1f1b3e76805cc011bed",
+    "second_raw_catalog_hash": "5c6b9f6e6ff86ec38bdedeef235fa9b838bcfc4c5013b1f1b3e76805cc011bed",
+    "reference_status_counts_match": true,
+    "first_reference_status_counts": {
+      "killed": 3425,
+      "no_tests": 2033,
+      "survived": 1895,
+      "timeout": 167
+    },
+    "second_reference_status_counts": {
+      "killed": 3425,
+      "no_tests": 2033,
+      "survived": 1895,
+      "timeout": 167
+    },
+    "first_durations_seconds": {
+      "specified_baseline": 1.5426411249791272,
+      "extended_baseline": 0.29577575001167133,
+      "reference_mutation_run": 1622.6235100829508
+    },
+    "second_durations_seconds": {
+      "specified_baseline": 1.348570916976314,
+      "extended_baseline": 0.262007791956421,
+      "reference_mutation_run": 1698.7646700000041
+    }
+  },
+  "corrected_derivation_hashes": [
+    "7fcb259b73f4fb355bda23c85806a17362ab815663479afec4fdc0a3b0d53b8d",
+    "7fcb259b73f4fb355bda23c85806a17362ab815663479afec4fdc0a3b0d53b8d"
+  ],
+  "source_mapping_failures": 0,
+  "coverage_repetitions": 2,
+  "mutant_executions_regenerated": false,
+  "reason": "Correct coordinate metadata and scope; exact mutant names/diffs and frozen SUT are unchanged"
+}

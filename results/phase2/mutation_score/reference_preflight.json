@@ -1,0 +1,12 @@
+{
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "workload_hashes": {
+    "mutation_specified_workload.py": "fa68cec29b5b8319636533f8b0948096d58f97e4f55a4fcab303217a32732e72",
+    "mutation_extended_workload.py": "6d2220371a926741400625b6f180d570a8214ff8b06057c9409db440d57403b1",
+    "mutation_workload_common.py": "19fac21a765e7e71a15912ec697a6e73ccfdac95f257c792ed3f6e888cd46174",
+    "phase1_reference_specified.py": "f0044481da530a5af00b72f94afb8c771e68481172ef8a3b17cd4264c9377de6",
+    "phase1_reference_extended.py": "f01b980fd5f658902e9e313de6e872494455e37662aa7db6698a228a99edbcfb"
+  },
+  "pytest_returncode": 0,
+  "pytest_output": "........................................................................ [ 10%]\n........................................................................ [ 21%]\n........................................................................ [ 32%]\n........................................................................ [ 42%]\n........................................................................ [ 53%]\n........................................................................ [ 64%]\n........................................................................ [ 74%]\n........................................................................ [ 85%]\n........................................................................ [ 96%]\n...........................                                              [100%]\n=============================== warnings summary ===============================\n../../../../../../../Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/.venv-mutmut/lib/python3.11/site-packages/_pytest/config/__init__.py:1464\n  /Users/ruoyur/Code/Chalmers/MasterThesis/markdown-it-py/.venv-mutmut/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout\n  \n    self._warn_or_fail_if_strict(f\"Unknown config option: {key}\\n\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n675 passed, 1 warning in 0.42s\n"
+}
