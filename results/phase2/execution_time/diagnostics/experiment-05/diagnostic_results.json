@@ -1,0 +1,392 @@
+{
+  "purpose": "Diagnostic temporary-copy ablation; does not replace participant results.",
+  "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+  "python_executable": "/private/tmp/phase2-tox/py311/bin/python",
+  "nodes": [
+    "tests/task/phase1/task.py::test_file",
+    "tests/task/phase1/task.py::test_spec",
+    "tests/task/phase1/task.py::test_core_after",
+    "tests/task/phase1/task.py::test_parse_fail",
+    "tests/task/phase1/task.py::test_non_utf8",
+    "tests/task/task2.py::test_make_fence_after",
+    "tests/task/task2.py::test_make_fence_at"
+  ],
+  "warmup_count": 3,
+  "measurement_count": 7,
+  "variants": {
+    "original": {
+      "runs": [
+        {
+          "phase": "warmup",
+          "index": 1,
+          "elapsed_nanoseconds": 456460667,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "elapsed_nanoseconds": 893718875,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "elapsed_nanoseconds": 534174667,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 1,
+          "elapsed_nanoseconds": 497830000,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 2,
+          "elapsed_nanoseconds": 1195390291,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 3,
+          "elapsed_nanoseconds": 588249792,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 4,
+          "elapsed_nanoseconds": 1243007083,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 5,
+          "elapsed_nanoseconds": 1271102541,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 6,
+          "elapsed_nanoseconds": 755193542,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 7,
+          "elapsed_nanoseconds": 643784417,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        }
+      ],
+      "median_seconds": 0.755193542,
+      "cv": 0.3822596181873027,
+      "pytest_case_seconds": [
+        {
+          "name": "test_file",
+          "seconds": 0.154
+        },
+        {
+          "name": "test_spec",
+          "seconds": 0.17
+        },
+        {
+          "name": "test_core_after",
+          "seconds": 0.0
+        },
+        {
+          "name": "test_parse_fail",
+          "seconds": 0.001
+        },
+        {
+          "name": "test_non_utf8",
+          "seconds": 0.001
+        },
+        {
+          "name": "test_make_fence_after",
+          "seconds": 0.0
+        },
+        {
+          "name": "test_make_fence_at",
+          "seconds": 0.0
+        }
+      ]
+    },
+    "remove_unused_parse": {
+      "runs": [
+        {
+          "phase": "warmup",
+          "index": 1,
+          "elapsed_nanoseconds": 427697833,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "elapsed_nanoseconds": 452699667,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "elapsed_nanoseconds": 452614375,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 1,
+          "elapsed_nanoseconds": 659324000,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 2,
+          "elapsed_nanoseconds": 333298334,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 3,
+          "elapsed_nanoseconds": 423769750,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 4,
+          "elapsed_nanoseconds": 467571625,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 5,
+          "elapsed_nanoseconds": 508733916,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 6,
+          "elapsed_nanoseconds": 340746541,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 7,
+          "elapsed_nanoseconds": 367180209,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        }
+      ],
+      "median_seconds": 0.42376975,
+      "cv": 0.2612225178693444
+    },
+    "reuse_parser": {
+      "runs": [
+        {
+          "phase": "warmup",
+          "index": 1,
+          "elapsed_nanoseconds": 344334583,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "elapsed_nanoseconds": 976547708,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "elapsed_nanoseconds": 471588292,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 1,
+          "elapsed_nanoseconds": 312122666,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 2,
+          "elapsed_nanoseconds": 297936625,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 3,
+          "elapsed_nanoseconds": 288463000,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 4,
+          "elapsed_nanoseconds": 288378917,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 5,
+          "elapsed_nanoseconds": 616839875,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 6,
+          "elapsed_nanoseconds": 357468125,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 7,
+          "elapsed_nanoseconds": 317125041,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        }
+      ],
+      "median_seconds": 0.312122666,
+      "cv": 0.3341064168671189
+    },
+    "both": {
+      "runs": [
+        {
+          "phase": "warmup",
+          "index": 1,
+          "elapsed_nanoseconds": 288498375,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "elapsed_nanoseconds": 239016042,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "elapsed_nanoseconds": 248887792,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 1,
+          "elapsed_nanoseconds": 471355000,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 2,
+          "elapsed_nanoseconds": 401662875,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 3,
+          "elapsed_nanoseconds": 264916334,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 4,
+          "elapsed_nanoseconds": 242478375,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 5,
+          "elapsed_nanoseconds": 226189709,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 6,
+          "elapsed_nanoseconds": 263998750,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        },
+        {
+          "phase": "measurement",
+          "index": 7,
+          "elapsed_nanoseconds": 246643958,
+          "returncode": 0,
+          "timed_out": false,
+          "failure_output": null
+        }
+      ],
+      "median_seconds": 0.26399875,
+      "cv": 0.31302970761016174
+    }
+  }
+}

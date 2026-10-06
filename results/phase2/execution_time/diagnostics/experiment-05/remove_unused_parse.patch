@@ -1,0 +1,18 @@
+--- original
++++ remove_unused_parse
+@@ -26,7 +26,6 @@
+         content = file.read()
+     md = MarkdownIt("commonmark")
+ 
+-    tokens = md.parse(content)
+     html_text = md.render(content)
+ 
+     file_path2 = materials_path / "test_file.html"
+@@ -53,7 +52,6 @@
+         markdown = data['markdown']
+         html = data['html']
+         md = MarkdownIt("commonmark")
+-        tokens = md.parse(markdown)
+         html_text = md.render(markdown)
+         assert html.replace("\n", "").replace("\r", "") == html_text.replace("\n", "").replace("\r", "")
+ 

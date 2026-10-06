@@ -1,0 +1,14 @@
+--- original
++++ reuse_parser
+@@ -49,10 +49,10 @@
+     with open(file_path, 'r', encoding='utf-8') as f:
+         datas = json.load(f)
+ 
++    md = MarkdownIt("commonmark")
+     for data in datas:
+         markdown = data['markdown']
+         html = data['html']
+-        md = MarkdownIt("commonmark")
+         tokens = md.parse(markdown)
+         html_text = md.render(markdown)
+         assert html.replace("\n", "").replace("\r", "") == html_text.replace("\n", "").replace("\r", "")

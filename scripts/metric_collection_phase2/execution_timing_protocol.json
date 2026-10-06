@@ -1,0 +1,25 @@
+{
+  "schema_version": "phase2-execution-time-v3",
+  "frozen_at": "2026-10-06",
+  "primary_metric": "execution_time_seconds",
+  "estimator": "median",
+  "scope": "all saved valid participant instances together, original submission paths",
+  "duration": "complete pytest subprocess wall time, including interpreter startup and collection",
+  "warmup_count": 3,
+  "measurement_count": 15,
+  "timeout_seconds": 120,
+  "cv_review_threshold": 0.05,
+  "outlier_policy": "retain_all_observations",
+  "automatic_rerun_policy": "never_replace_failed_or_slow_observations",
+  "manual_recollection_policy": "user-requested full-cohort replacement; delete earlier timing datasets after the new complete run is verified",
+  "execution_order": "serial in ascending participant number; prepare and verify all snapshots before timing; no concurrent metric collection",
+  "pilot_participants": [
+    2,
+    8,
+    9
+  ],
+  "pilot_selection_basis": "7-instance suite and both 8-instance suites; frozen before timing",
+  "comparability": "Phase 1 timer and estimator reused; Phase 2 uses original files instead of isolated function files. Direct phase differences also include SUT, task and layout changes.",
+  "global_warmup_count_per_participant": 0,
+  "global_warmup_policy": "none; retain one baseline and three participant warmups before fifteen formal measurements"
+}

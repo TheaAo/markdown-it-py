@@ -1,0 +1,233 @@
+{
+  "participant_id": "experiment-08",
+  "participant_number": 8,
+  "branch": "origin/experiment-08-phase2",
+  "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+  "phase1_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+  "phase1_group": "Manual",
+  "phase2_group": "AI",
+  "input_error_rate_sha256": "76810927ad3568e3a450d15711b959ea537cf85827a0033e0427dc7d067fe92c",
+  "status": "collected",
+  "summary": {
+    "metric_status": "collected",
+    "valid_tests_included": 8,
+    "invalid_tests_excluded": 0,
+    "execution_time": {
+      "execution_time_seconds": 0.211854083,
+      "measurement_count": 15,
+      "mean_seconds": 0.2149265222,
+      "standard_deviation_seconds": 0.007968103822016405,
+      "minimum_seconds": 0.20918775,
+      "maximum_seconds": 0.236071125,
+      "first_quartile_seconds": 0.210105958,
+      "third_quartile_seconds": 0.214649042,
+      "interquartile_range_seconds": 0.004543084000000003,
+      "median_absolute_deviation_seconds": 0.0022059170000000017,
+      "coefficient_of_variation": 0.037073618185668504,
+      "cv_review_threshold": 0.05,
+      "cv_review_required": false
+    }
+  },
+  "output_file": "raw/experiment-08.json",
+  "execution_time": {
+    "status": "collected",
+    "valid_tests_included": 8,
+    "invalid_tests_excluded": 0,
+    "summary": {
+      "execution_time_seconds": 0.211854083,
+      "measurement_count": 15,
+      "mean_seconds": 0.2149265222,
+      "standard_deviation_seconds": 0.007968103822016405,
+      "minimum_seconds": 0.20918775,
+      "maximum_seconds": 0.236071125,
+      "first_quartile_seconds": 0.210105958,
+      "third_quartile_seconds": 0.214649042,
+      "interquartile_range_seconds": 0.004543084000000003,
+      "median_absolute_deviation_seconds": 0.0022059170000000017,
+      "coefficient_of_variation": 0.037073618185668504,
+      "cv_review_threshold": 0.05,
+      "cv_review_required": false
+    },
+    "baseline": {
+      "phase": "baseline",
+      "index": 1,
+      "elapsed_nanoseconds": 216621083,
+      "returncode": 0,
+      "timed_out": false,
+      "failure_output": null
+    },
+    "warmups": [
+      {
+        "phase": "warmup",
+        "index": 1,
+        "elapsed_nanoseconds": 210158500,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "warmup",
+        "index": 2,
+        "elapsed_nanoseconds": 214360792,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "warmup",
+        "index": 3,
+        "elapsed_nanoseconds": 223364542,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      }
+    ],
+    "measurements": [
+      {
+        "phase": "measurement",
+        "index": 1,
+        "elapsed_nanoseconds": 221517083,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 2,
+        "elapsed_nanoseconds": 229452958,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 3,
+        "elapsed_nanoseconds": 212616084,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 4,
+        "elapsed_nanoseconds": 209836500,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 5,
+        "elapsed_nanoseconds": 211496459,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 6,
+        "elapsed_nanoseconds": 209648166,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 7,
+        "elapsed_nanoseconds": 210375416,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 8,
+        "elapsed_nanoseconds": 209187750,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 9,
+        "elapsed_nanoseconds": 209472000,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 10,
+        "elapsed_nanoseconds": 236071125,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 11,
+        "elapsed_nanoseconds": 214736167,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 12,
+        "elapsed_nanoseconds": 212011583,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 13,
+        "elapsed_nanoseconds": 211060542,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 14,
+        "elapsed_nanoseconds": 214561917,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      },
+      {
+        "phase": "measurement",
+        "index": 15,
+        "elapsed_nanoseconds": 211854083,
+        "returncode": 0,
+        "timed_out": false,
+        "failure_output": null
+      }
+    ],
+    "selected_nodeids": [
+      "tests/task/phase1/task.py::test_file",
+      "tests/task/phase1/task.py::test_spec",
+      "tests/task/phase1/task.py::test_core_after",
+      "tests/task/task2.py::test_make_fence_rule_callable",
+      "tests/task/task2.py::test_default_fence_exists",
+      "tests/task/task2.py::test_make_fence_after",
+      "tests/task/task2.py::test_make_fence_at",
+      "tests/test_cli.py::test_non_utf8"
+    ],
+    "provenance": {
+      "python_version": "3.11.6",
+      "pytest_version": "9.1.1",
+      "markdown_it_path": "markdown_it/__init__.py",
+      "selected_nodeids": [
+        "tests/task/phase1/task.py::test_file",
+        "tests/task/phase1/task.py::test_spec",
+        "tests/task/phase1/task.py::test_core_after",
+        "tests/task/task2.py::test_make_fence_rule_callable",
+        "tests/task/task2.py::test_default_fence_exists",
+        "tests/task/task2.py::test_make_fence_after",
+        "tests/task/task2.py::test_make_fence_at",
+        "tests/test_cli.py::test_non_utf8"
+      ]
+    }
+  }
+}

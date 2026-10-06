@@ -1,0 +1,168 @@
+{
+  "scope": "direct test_file/test_spec bodies in one process; excludes pytest startup, fixtures and other tests; temporary variants only",
+  "seed": 20261006,
+  "discarded_predefined_warmup_rounds": 3,
+  "measured_rounds": 7,
+  "round_orders": [
+    [
+      "reuse_parser",
+      "remove_unused_parse",
+      "original",
+      "both"
+    ],
+    [
+      "remove_unused_parse",
+      "original",
+      "both",
+      "reuse_parser"
+    ],
+    [
+      "both",
+      "original",
+      "reuse_parser",
+      "remove_unused_parse"
+    ],
+    [
+      "remove_unused_parse",
+      "reuse_parser",
+      "both",
+      "original"
+    ],
+    [
+      "reuse_parser",
+      "remove_unused_parse",
+      "both",
+      "original"
+    ],
+    [
+      "original",
+      "remove_unused_parse",
+      "reuse_parser",
+      "both"
+    ],
+    [
+      "remove_unused_parse",
+      "both",
+      "original",
+      "reuse_parser"
+    ],
+    [
+      "reuse_parser",
+      "remove_unused_parse",
+      "both",
+      "original"
+    ],
+    [
+      "both",
+      "reuse_parser",
+      "original",
+      "remove_unused_parse"
+    ],
+    [
+      "original",
+      "both",
+      "reuse_parser",
+      "remove_unused_parse"
+    ]
+  ],
+  "nanoseconds": {
+    "original": {
+      "test_file": [
+        86478209,
+        85354458,
+        85463375,
+        81114375,
+        81817334,
+        82737125,
+        86914042
+      ],
+      "test_spec": [
+        120166333,
+        120717959,
+        121373541,
+        124507084,
+        126808000,
+        125556000,
+        121127958
+      ]
+    },
+    "remove_unused_parse": {
+      "test_file": [
+        46764708,
+        42875458,
+        47701375,
+        42982167,
+        42964583,
+        43442708,
+        43066584
+      ],
+      "test_spec": [
+        99179750,
+        99035000,
+        99193875,
+        99561042,
+        99599875,
+        100774584,
+        106295625
+      ]
+    },
+    "reuse_parser": {
+      "test_file": [
+        86561917,
+        86909250,
+        87381583,
+        81871541,
+        86605625,
+        88009667,
+        86650292
+      ],
+      "test_spec": [
+        42147500,
+        41423334,
+        41387000,
+        41403125,
+        41563792,
+        41599375,
+        41135750
+      ]
+    },
+    "both": {
+      "test_file": [
+        43346000,
+        43219500,
+        43032666,
+        46847208,
+        47149208,
+        43963459,
+        44414208
+      ],
+      "test_spec": [
+        22915917,
+        22691083,
+        22394000,
+        22477875,
+        22650917,
+        23401458,
+        22770041
+      ]
+    }
+  },
+  "median_seconds": {
+    "original": {
+      "test_file": 0.085354458,
+      "test_spec": 0.121373541
+    },
+    "remove_unused_parse": {
+      "test_file": 0.043066584,
+      "test_spec": 0.099561042
+    },
+    "reuse_parser": {
+      "test_file": 0.086650292,
+      "test_spec": 0.041423334
+    },
+    "both": {
+      "test_file": 0.043963459,
+      "test_spec": 0.022691083
+    }
+  }
+}

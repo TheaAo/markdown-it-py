@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Collect Phase 2 execution time from frozen valid participant instances using
+  the Phase 1 timer, with original paths and auditable repeated measurements.
+
 - Add staged stratified equivalent-mutant review sampling, targeted secondary
   quality control, and design-weighted Mutation Score estimates with
   finite-population intervals.

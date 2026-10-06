@@ -1,0 +1,15 @@
+{
+  "source_commit": "56852ac8de04e216b48ab9b34445027216ba5a47",
+  "source_directory": "results/phase2/error_rates/",
+  "file_sha256": {
+    "collection_manifest.json": "236b78d84f5ace84f0eda180f16318b33c885cc47bc8b7f9d99cbe4441a90e36",
+    "raw/experiment-02.json": "133e172bf63a42505346fc99604c128302cb288895e2ea9c15411eefb74c271d",
+    "raw/experiment-03.json": "4144462964281439a9540da76ae0cc01b683ec68f09e08afae63fd8b4b83918b",
+    "raw/experiment-04.json": "92d2c002f5a5d5108505ed7c440964686e5b7a946a4df4fe2f2b425ff26e9cf3",
+    "raw/experiment-05.json": "e15c3beeb63a820b21e7c1cb1f8112fca820af9244e481d1b4653e9e7382ad21",
+    "raw/experiment-07.json": "6aa2da7320f964036669d8d63ac0e57c62564b4fad99a073298c9e1b52eaaaaa",
+    "raw/experiment-08.json": "76810927ad3568e3a450d15711b959ea537cf85827a0033e0427dc7d067fe92c",
+    "raw/experiment-09.json": "e0017b81abbd720cc05408c38fc4f5668c75eb4f6a5a4fe74a384c18ca4bcd11",
+    "raw/experiment-12.json": "ab03df3728debbb614888aab70c2bb95408b4e84bcf77ff492d1bf3c23656d90"
+  }
+}
