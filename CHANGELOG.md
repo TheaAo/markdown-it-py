@@ -1,5 +1,10 @@
 # Change Log
 
+## Unreleased
+
+- Collect Phase 2 test smell density with frozen Phase 1 rules and organize
+  supplemental task summaries under `summary/by_task/`.
+
 ## 4.0.0 - 2024-08-10
 
 This primarily drops support for Python 3.9, adds support for Python 3.13,

@@ -99,7 +99,10 @@ def _load_error_rate(path: Path) -> dict[str, Any]:
     return metrics
 
 
-def _validity_by_source(error_rates: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def _validity_by_source(
+    error_rates: dict[str, Any],
+    expected_tests: Sequence[str] = EXPECTED_TEST_FUNCTIONS,
+) -> dict[str, dict[str, Any]]:
     case_level = error_rates.get("case_level")
     cases = case_level.get("test_cases") if isinstance(case_level, dict) else None
     if not isinstance(cases, list):
@@ -113,7 +116,7 @@ def _validity_by_source(error_rates: dict[str, Any]) -> dict[str, dict[str, Any]
             grouped.setdefault(source_test, []).append(case)
 
     results: dict[str, dict[str, Any]] = {}
-    for source_test in EXPECTED_TEST_FUNCTIONS:
+    for source_test in expected_tests:
         source_cases = grouped.get(source_test, [])
         total = len(source_cases)
         valid = sum(case.get("classification") == "valid" for case in source_cases)
@@ -412,8 +415,11 @@ def collect_test_smells(
     python_executable: str = sys.executable,
     evidence_dir: Path | None = None,
     timeout: float = 60.0,
+    expected_tests: Sequence[str] = EXPECTED_TEST_FUNCTIONS,
 ) -> dict[str, Any]:
-    validity = _validity_by_source(error_rates)
+    if len(set(expected_tests)) != len(expected_tests):
+        raise ValueError("Duplicate expected source functions")
+    validity = _validity_by_source(error_rates, expected_tests)
     eligible = {name for name, item in validity.items() if item["eligible"]}
 
     if not eligible:
@@ -475,7 +481,7 @@ def collect_test_smells(
         for smell in FORMAL_SMELLS
     }
 
-    for source_test in EXPECTED_TEST_FUNCTIONS:
+    for source_test in expected_tests:
         source_validity = validity[source_test]
         decisions = (
             ast_results.get(source_test, [])
@@ -548,9 +554,9 @@ def collect_test_smells(
         "rule_version": RULE_VERSION,
         "test_path": str(test_path),
         "analysis_unit": "source_test_function",
-        "total_source_tests": len(EXPECTED_TEST_FUNCTIONS),
+        "total_source_tests": len(expected_tests),
         "eligible_test_count": eligible_count,
-        "invalid_test_count": len(EXPECTED_TEST_FUNCTIONS) - eligible_count,
+        "invalid_test_count": len(expected_tests) - eligible_count,
         "smelly_test_count": smelly_tests,
         "confirmed_pair_count": confirmed_pairs,
         "uncertain_pair_count": uncertain_pairs,

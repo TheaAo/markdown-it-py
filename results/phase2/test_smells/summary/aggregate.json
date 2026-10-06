@@ -1,0 +1,299 @@
+{
+  "participant_count": 8,
+  "summary": {
+    "total_source_tests": 58,
+    "eligible_test_count": 58,
+    "invalid_test_count": 0,
+    "partially_valid_test_count": 0,
+    "smelly_test_count": 40,
+    "confirmed_pair_count": 42,
+    "uncertain_pair_count": 0,
+    "smelly_test_rate": 0.6896551724137931,
+    "mean_smells_per_test": 0.7241379310344828,
+    "test_smell_density": 0.10344827586206896,
+    "per_smell": {
+      "assertion_roulette": {
+        "confirmed_count": 31,
+        "uncertain_count": 0,
+        "rate": 0.5344827586206896
+      },
+      "magic_number_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "unknown_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "conditional_test_logic": {
+        "confirmed_count": 9,
+        "uncertain_count": 0,
+        "rate": 0.15517241379310345
+      },
+      "eager_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "duplicate_assert": {
+        "confirmed_count": 1,
+        "uncertain_count": 0,
+        "rate": 0.017241379310344827
+      },
+      "exception_handling": {
+        "confirmed_count": 1,
+        "uncertain_count": 0,
+        "rate": 0.017241379310344827
+      }
+    }
+  },
+  "by_task_group": {
+    "maintenance": {
+      "total_source_tests": 32,
+      "eligible_test_count": 32,
+      "invalid_test_count": 0,
+      "partially_valid_test_count": 0,
+      "smelly_test_count": 23,
+      "confirmed_pair_count": 24,
+      "uncertain_pair_count": 0,
+      "smelly_test_rate": 0.71875,
+      "mean_smells_per_test": 0.75,
+      "test_smell_density": 0.10714285714285714,
+      "per_smell": {
+        "assertion_roulette": {
+          "confirmed_count": 14,
+          "uncertain_count": 0,
+          "rate": 0.4375
+        },
+        "magic_number_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "unknown_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "conditional_test_logic": {
+          "confirmed_count": 9,
+          "uncertain_count": 0,
+          "rate": 0.28125
+        },
+        "eager_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "duplicate_assert": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "exception_handling": {
+          "confirmed_count": 1,
+          "uncertain_count": 0,
+          "rate": 0.03125
+        }
+      }
+    },
+    "new_generation": {
+      "total_source_tests": 16,
+      "eligible_test_count": 16,
+      "invalid_test_count": 0,
+      "partially_valid_test_count": 0,
+      "smelly_test_count": 16,
+      "confirmed_pair_count": 17,
+      "uncertain_pair_count": 0,
+      "smelly_test_rate": 1.0,
+      "mean_smells_per_test": 1.0625,
+      "test_smell_density": 0.15178571428571427,
+      "per_smell": {
+        "assertion_roulette": {
+          "confirmed_count": 16,
+          "uncertain_count": 0,
+          "rate": 1.0
+        },
+        "magic_number_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "unknown_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "conditional_test_logic": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "eager_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "duplicate_assert": {
+          "confirmed_count": 1,
+          "uncertain_count": 0,
+          "rate": 0.0625
+        },
+        "exception_handling": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "retained_legacy": {
+      "total_source_tests": 7,
+      "eligible_test_count": 7,
+      "invalid_test_count": 0,
+      "partially_valid_test_count": 0,
+      "smelly_test_count": 1,
+      "confirmed_pair_count": 1,
+      "uncertain_pair_count": 0,
+      "smelly_test_rate": 0.14285714285714285,
+      "mean_smells_per_test": 0.14285714285714285,
+      "test_smell_density": 0.02040816326530612,
+      "per_smell": {
+        "assertion_roulette": {
+          "confirmed_count": 1,
+          "uncertain_count": 0,
+          "rate": 0.14285714285714285
+        },
+        "magic_number_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "unknown_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "conditional_test_logic": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "eager_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "duplicate_assert": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "exception_handling": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "additional": {
+      "total_source_tests": 3,
+      "eligible_test_count": 3,
+      "invalid_test_count": 0,
+      "partially_valid_test_count": 0,
+      "smelly_test_count": 0,
+      "confirmed_pair_count": 0,
+      "uncertain_pair_count": 0,
+      "smelly_test_rate": 0.0,
+      "mean_smells_per_test": 0.0,
+      "test_smell_density": 0.0,
+      "per_smell": {
+        "assertion_roulette": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "magic_number_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "unknown_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "conditional_test_logic": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "eager_test": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "duplicate_assert": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        },
+        "exception_handling": {
+          "confirmed_count": 0,
+          "uncertain_count": 0,
+          "rate": 0.0
+        }
+      }
+    }
+  },
+  "legacy_task_scope": {
+    "total_source_tests": 39,
+    "eligible_test_count": 39,
+    "invalid_test_count": 0,
+    "partially_valid_test_count": 0,
+    "smelly_test_count": 24,
+    "confirmed_pair_count": 25,
+    "uncertain_pair_count": 0,
+    "smelly_test_rate": 0.6153846153846154,
+    "mean_smells_per_test": 0.6410256410256411,
+    "test_smell_density": 0.09157509157509157,
+    "per_smell": {
+      "assertion_roulette": {
+        "confirmed_count": 15,
+        "uncertain_count": 0,
+        "rate": 0.38461538461538464
+      },
+      "magic_number_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "unknown_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "conditional_test_logic": {
+        "confirmed_count": 9,
+        "uncertain_count": 0,
+        "rate": 0.23076923076923078
+      },
+      "eager_test": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "duplicate_assert": {
+        "confirmed_count": 0,
+        "uncertain_count": 0,
+        "rate": 0.0
+      },
+      "exception_handling": {
+        "confirmed_count": 1,
+        "uncertain_count": 0,
+        "rate": 0.02564102564102564
+      }
+    }
+  }
+}

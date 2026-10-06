@@ -1,0 +1,9 @@
+participant_number,status,total_source_tests,eligible_test_count,invalid_test_count,smelly_test_count,confirmed_pair_count,uncertain_pair_count,assertion_roulette_count,magic_number_test_count,unknown_test_count,conditional_test_logic_count,eager_test_count,duplicate_assert_count,exception_handling_count,assertion_roulette_rate,magic_number_test_rate,unknown_test_rate,conditional_test_logic_rate,eager_test_rate,duplicate_assert_rate,exception_handling_rate,smelly_test_rate,mean_smells_per_test,test_smell_density
+2,collected,7,7,0,5,5,0,4,0,0,1,0,0,0,0.571429,0.000000,0.000000,0.142857,0.000000,0.000000,0.000000,0.714286,0.714286,0.102041
+3,collected,7,7,0,4,4,0,3,0,0,1,0,0,0,0.428571,0.000000,0.000000,0.142857,0.000000,0.000000,0.000000,0.571429,0.571429,0.081633
+4,collected,7,7,0,5,5,0,4,0,0,1,0,0,0,0.571429,0.000000,0.000000,0.142857,0.000000,0.000000,0.000000,0.714286,0.714286,0.102041
+5,collected,7,7,0,5,5,0,4,0,0,1,0,0,0,0.571429,0.000000,0.000000,0.142857,0.000000,0.000000,0.000000,0.714286,0.714286,0.102041
+7,collected,7,7,0,5,6,0,4,0,0,1,0,1,0,0.571429,0.000000,0.000000,0.142857,0.000000,0.142857,0.000000,0.714286,0.857143,0.122449
+8,collected,8,8,0,6,7,0,4,0,0,2,0,0,1,0.500000,0.000000,0.000000,0.250000,0.000000,0.000000,0.125000,0.750000,0.875000,0.125000
+9,collected,8,8,0,4,4,0,3,0,0,1,0,0,0,0.375000,0.000000,0.000000,0.125000,0.000000,0.000000,0.000000,0.500000,0.500000,0.071429
+12,collected,7,7,0,6,6,0,5,0,0,1,0,0,0,0.714286,0.000000,0.000000,0.142857,0.000000,0.000000,0.000000,0.857143,0.857143,0.122449

@@ -1,0 +1,486 @@
+{
+  "scope": "retained_legacy",
+  "rule_version": "1.0.0",
+  "participants": [
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+      "phase1_commit": "a48fb91cabdeb1829841a8491419c9727baf75ff",
+      "phase1_group": "AI",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-02-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "phase1_commit": "cf6fa5479cc12d618e80da82dbe7b92a33af3013",
+      "phase1_group": "AI",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-03-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "participant_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "phase1_commit": "6b0ba00791dfa09ffd205e8ba6bd0f9888b169ac",
+      "phase1_group": "Manual",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-04-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "phase1_commit": "fcd99f9b82ddcce8aa2a5a02da7b73491aff8b12",
+      "phase1_group": "Manual",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-05-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+      "phase1_commit": "975d8b5a07fdb8fd6b186368f6b88c43e935323a",
+      "phase1_group": "AI",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-07-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "phase1_commit": "4b37180d68d24c8dbdc0d10529db8c829816775b",
+      "phase1_group": "Manual",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-08-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "total_source_tests": 0,
+        "eligible_test_count": 0,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": null,
+        "mean_smells_per_test": null,
+        "test_smell_density": null,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": null
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "phase1_commit": "db7aac28703727cccb04a098580e0a71dc62882d",
+      "phase1_group": "Manual",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-09-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 0,
+        "confirmed_pair_count": 0,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 0.0,
+        "mean_smells_per_test": 0.0,
+        "test_smell_density": 0.0,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+      "phase1_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+      "phase1_group": "AI",
+      "phase2_group": "AI",
+      "branch": "origin/experiment-12-phase2",
+      "status": "collected",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "total_source_tests": 1,
+        "eligible_test_count": 1,
+        "invalid_test_count": 0,
+        "partially_valid_test_count": 0,
+        "smelly_test_count": 1,
+        "confirmed_pair_count": 1,
+        "uncertain_pair_count": 0,
+        "smelly_test_rate": 1.0,
+        "mean_smells_per_test": 1.0,
+        "test_smell_density": 0.14285714285714285,
+        "per_smell": {
+          "assertion_roulette": {
+            "confirmed_count": 1,
+            "uncertain_count": 0,
+            "rate": 1.0
+          },
+          "magic_number_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "unknown_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "conditional_test_logic": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "eager_test": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "duplicate_assert": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          },
+          "exception_handling": {
+            "confirmed_count": 0,
+            "uncertain_count": 0,
+            "rate": 0.0
+          }
+        }
+      }
+    }
+  ]
+}
