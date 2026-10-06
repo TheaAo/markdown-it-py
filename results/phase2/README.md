@@ -56,3 +56,10 @@ Future metric directories follow the Phase 1 layout. Participant 12's duration w
 from `00:37:59` to `00:09:25`; both seconds columns are 565.
 
 See [the collection plan](../../docs/metric_collection_phase2/COLLECTION_PLAN.md).
+
+`execution_time/formal/` now contains the researcher's latest complete `new-run`,
+promoted unchanged at explicit request. Earlier formal timing data was replaced.
+`efficiency/` contains all six full-valid-suite generation and execution ratios,
+component scores/times, CV flags and conditional Mutation Score interval bounds.
+See `efficiency/README.md`; generation time means total task time, and execution
+uses only the selected latest dataset.

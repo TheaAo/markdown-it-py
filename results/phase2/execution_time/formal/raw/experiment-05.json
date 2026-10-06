@@ -13,17 +13,17 @@
     "valid_tests_included": 7,
     "invalid_tests_excluded": 0,
     "execution_time": {
-      "execution_time_seconds": 0.365441,
+      "execution_time_seconds": 0.344106625,
       "measurement_count": 15,
-      "mean_seconds": 0.3661351248666667,
-      "standard_deviation_seconds": 0.0024020634666411223,
-      "minimum_seconds": 0.363111792,
-      "maximum_seconds": 0.372024791,
-      "first_quartile_seconds": 0.3644308745,
-      "third_quartile_seconds": 0.36756585399999997,
-      "interquartile_range_seconds": 0.003134979499999968,
-      "median_absolute_deviation_seconds": 0.0017044999999999977,
-      "coefficient_of_variation": 0.006560592807138806,
+      "mean_seconds": 0.34657254713333335,
+      "standard_deviation_seconds": 0.0074112781468200035,
+      "minimum_seconds": 0.340991958,
+      "maximum_seconds": 0.368666541,
+      "first_quartile_seconds": 0.341928459,
+      "third_quartile_seconds": 0.348724166,
+      "interquartile_range_seconds": 0.006795706999999984,
+      "median_absolute_deviation_seconds": 0.0023967910000000092,
+      "coefficient_of_variation": 0.021384492822995402,
       "cv_review_threshold": 0.05,
       "cv_review_required": false
     }
@@ -34,24 +34,24 @@
     "valid_tests_included": 7,
     "invalid_tests_excluded": 0,
     "summary": {
-      "execution_time_seconds": 0.365441,
+      "execution_time_seconds": 0.344106625,
       "measurement_count": 15,
-      "mean_seconds": 0.3661351248666667,
-      "standard_deviation_seconds": 0.0024020634666411223,
-      "minimum_seconds": 0.363111792,
-      "maximum_seconds": 0.372024791,
-      "first_quartile_seconds": 0.3644308745,
-      "third_quartile_seconds": 0.36756585399999997,
-      "interquartile_range_seconds": 0.003134979499999968,
-      "median_absolute_deviation_seconds": 0.0017044999999999977,
-      "coefficient_of_variation": 0.006560592807138806,
+      "mean_seconds": 0.34657254713333335,
+      "standard_deviation_seconds": 0.0074112781468200035,
+      "minimum_seconds": 0.340991958,
+      "maximum_seconds": 0.368666541,
+      "first_quartile_seconds": 0.341928459,
+      "third_quartile_seconds": 0.348724166,
+      "interquartile_range_seconds": 0.006795706999999984,
+      "median_absolute_deviation_seconds": 0.0023967910000000092,
+      "coefficient_of_variation": 0.021384492822995402,
       "cv_review_threshold": 0.05,
       "cv_review_required": false
     },
     "baseline": {
       "phase": "baseline",
       "index": 1,
-      "elapsed_nanoseconds": 366688292,
+      "elapsed_nanoseconds": 351805916,
       "returncode": 0,
       "timed_out": false,
       "failure_output": null
@@ -60,7 +60,7 @@
       {
         "phase": "warmup",
         "index": 1,
-        "elapsed_nanoseconds": 363954000,
+        "elapsed_nanoseconds": 349064583,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -68,7 +68,7 @@
       {
         "phase": "warmup",
         "index": 2,
-        "elapsed_nanoseconds": 364639625,
+        "elapsed_nanoseconds": 344111292,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -76,7 +76,7 @@
       {
         "phase": "warmup",
         "index": 3,
-        "elapsed_nanoseconds": 374109709,
+        "elapsed_nanoseconds": 428184708,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -86,7 +86,7 @@
       {
         "phase": "measurement",
         "index": 1,
-        "elapsed_nanoseconds": 366712375,
+        "elapsed_nanoseconds": 342398916,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -94,7 +94,7 @@
       {
         "phase": "measurement",
         "index": 2,
-        "elapsed_nanoseconds": 364354208,
+        "elapsed_nanoseconds": 344106625,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -102,7 +102,7 @@
       {
         "phase": "measurement",
         "index": 3,
-        "elapsed_nanoseconds": 363736500,
+        "elapsed_nanoseconds": 345275041,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -110,7 +110,7 @@
       {
         "phase": "measurement",
         "index": 4,
-        "elapsed_nanoseconds": 364821000,
+        "elapsed_nanoseconds": 353327417,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -118,7 +118,7 @@
       {
         "phase": "measurement",
         "index": 5,
-        "elapsed_nanoseconds": 364507541,
+        "elapsed_nanoseconds": 341189500,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -126,7 +126,7 @@
       {
         "phase": "measurement",
         "index": 6,
-        "elapsed_nanoseconds": 365033791,
+        "elapsed_nanoseconds": 352173291,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -134,7 +134,7 @@
       {
         "phase": "measurement",
         "index": 7,
-        "elapsed_nanoseconds": 367644208,
+        "elapsed_nanoseconds": 352202042,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -142,7 +142,7 @@
       {
         "phase": "measurement",
         "index": 8,
-        "elapsed_nanoseconds": 367039083,
+        "elapsed_nanoseconds": 344868708,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -150,7 +150,7 @@
       {
         "phase": "measurement",
         "index": 9,
-        "elapsed_nanoseconds": 368899958,
+        "elapsed_nanoseconds": 341180625,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -158,7 +158,7 @@
       {
         "phase": "measurement",
         "index": 10,
-        "elapsed_nanoseconds": 365441000,
+        "elapsed_nanoseconds": 342147084,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -166,7 +166,7 @@
       {
         "phase": "measurement",
         "index": 11,
-        "elapsed_nanoseconds": 363545667,
+        "elapsed_nanoseconds": 340991958,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -174,7 +174,7 @@
       {
         "phase": "measurement",
         "index": 12,
-        "elapsed_nanoseconds": 372024791,
+        "elapsed_nanoseconds": 343908375,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -182,7 +182,7 @@
       {
         "phase": "measurement",
         "index": 13,
-        "elapsed_nanoseconds": 367667459,
+        "elapsed_nanoseconds": 341709834,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -190,7 +190,7 @@
       {
         "phase": "measurement",
         "index": 14,
-        "elapsed_nanoseconds": 363111792,
+        "elapsed_nanoseconds": 344442250,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null
@@ -198,7 +198,7 @@
       {
         "phase": "measurement",
         "index": 15,
-        "elapsed_nanoseconds": 367487500,
+        "elapsed_nanoseconds": 368666541,
         "returncode": 0,
         "timed_out": false,
         "failure_output": null

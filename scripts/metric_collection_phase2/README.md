@@ -54,3 +54,11 @@ Each participant retains one baseline, three warmups and fifteen measurements.
 Only the fifteen measurements contribute to summaries. The manifest records
 execution order and protocol; global warmup fields are empty for this protocol.
 See `results/phase2/execution_time/README.md` for results and comparability limits.
+
+## Efficiency
+
+`collect_efficiency.py` derives the six generation/execution efficiencies from
+frozen scores and explicitly selected times, without rerunning tests. The default
+execution input is the researcher-selected latest run now stored in `formal/`.
+See `results/phase2/efficiency/README.md` for units, denominator choice, provenance
+and conditional mutation interval limitations.

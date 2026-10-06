@@ -1,0 +1,49 @@
+{
+  "schema_version": "phase2-efficiency-v1",
+  "generated_at": "2026-10-06T09:02:38.052920+00:00",
+  "inputs": {
+    "coverage": {
+      "path": "/Users/ruoyur/.codex/worktrees/phase2-efficiency/markdown-it-py/results/phase2/coverage/collection_manifest.json",
+      "sha256": "a640cc1225ec3a26b4ec56f1332107342a4dff199825886a978d851ae47f552a"
+    },
+    "mutation": {
+      "path": "/Users/ruoyur/.codex/worktrees/phase2-efficiency/markdown-it-py/results/phase2/mutation_score/mutation_score.csv",
+      "sha256": "f56a0131c62377067169b34f01485b125b6857fd5948497a8af46a60fe1bd29e"
+    },
+    "mutation_manifest": {
+      "path": "/Users/ruoyur/.codex/worktrees/phase2-efficiency/markdown-it-py/results/phase2/mutation_score/formal/collection_manifest.json",
+      "sha256": "c7e61203af54703462eea84e8ac5373c5364af351c43153abc541dd63b7a431b"
+    },
+    "generation": {
+      "path": "/Users/ruoyur/.codex/worktrees/phase2-efficiency/markdown-it-py/results/phase2/generation_time/generation_time.csv",
+      "sha256": "4f15888deb94f915e722454ab2255f205260a7e6bed2babe3bd537ed20b32d88"
+    },
+    "timing": {
+      "path": "/Users/ruoyur/.codex/worktrees/phase2-efficiency/markdown-it-py/results/phase2/execution_time/formal/collection_manifest.json",
+      "sha256": "9fb7d3e5a89f3a4c26c7ad49defe5666e3b7836c63dd20fdddc595ac2ff706cc"
+    }
+  },
+  "collector_sha256": "8a8bfc8e26f85f18728b18af27c7fc51febc2ec3216e0f5febb25856966aa203",
+  "participant_numbers": [
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    12
+  ],
+  "execution_dataset": "formal",
+  "score_units": "0-1 fractions, not percentages",
+  "coverage_source": "exact participant-only covered/total counts; excludes pristine project tests",
+  "mutation_source": "specified_estimated_adjusted_score",
+  "generation_denominator": "total task seconds including comprehension, maintenance, generation and debugging",
+  "execution_denominator": "median of complete valid-suite pytest subprocess durations",
+  "mutation_interval": "conditional on fixed observed time; propagates only score-estimation uncertainty, not timing or self-report uncertainty",
+  "task_group_efficiency": "unavailable: no separate task-group time denominators were collected",
+  "outputs": {
+    "generation_efficiency.csv": "a6ccccb67a2daf1a6076ff4bf54a665006973945e9ddb8cf6806bbbf463f5931",
+    "execution_efficiency.csv": "4d5794e3b5ea88b8f8addf53241f3898bc905b2634ab288ec5bf57837e7daeb0"
+  }
+}

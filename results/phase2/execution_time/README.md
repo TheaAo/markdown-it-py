@@ -9,8 +9,6 @@ files, including participant-modified external test files where applicable.
   `56852ac8de04e216b48ab9b34445027216ba5a47`, with recorded SHA-256 hashes.
 - `formal/`: the latest complete collection, manifest, raw observations and
   `summary/execution_time.csv`. Earlier formal data was replaced at user request.
-- `new-run/`: an additional complete run generated separately; it does not
-  replace `formal/`.
 - `quality_review.json`: current dispersion, CV flags and verification counts.
 - `environment.json`: interpreter, package versions and machine details.
 - `diagnostics/`: temporary-copy investigations of participant 05. These are
@@ -30,10 +28,12 @@ Python/pytest subprocess startup, imports, collection, fixture handling, test
 execution and exit. Cacheprovider is disabled, PYTHONHASHSEED is 0 and external
 PYTEST_ADDOPTS are removed. Timing is separate from coverage/mutation collection.
 
-The latest collection on 2026-10-06 passed 120 measurements, 24 warmups and
-8 baselines, with zero global warmups. Participants meeting the 5% CV threshold:
-02, 04, 05, 07, 09.
-Flagged participants: 03 (9.50%), 08 (10.99%), 12 (5.51%).
+The authoritative dataset is the researcher's latest `new-run`, collected at
+2026-10-06T08:18:20.731786+00:00 and promoted unchanged to `formal/` at the
+researcher's explicit request. It replaces the previous formal dataset and is the
+execution-time denominator for efficiency calculations. The `new-run/` directory
+was removed by this move. All 120 measurements, 24 warmups and 8 baselines passed;
+there were no global warmups. All eight CVs are below 5%.
 All formal observations remain in the summaries, including slow observations.
 CV above 5% triggers review; it does not invalidate records or authorize automatic
 reruns. Collection success does not establish stability for flagged records.
