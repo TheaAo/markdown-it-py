@@ -21,9 +21,14 @@ from typing import Any
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from scripts.collect_execution_time import _summarize, _timed_pytest
-from scripts.metric_collection.collect_all_branches import _git, _write_json
-from scripts.summarize_execution_times import summarize_execution_times
+from scripts.metric_collection_phase1.collect_all_branches import _git, _write_json
+from scripts.metric_collection_phase1.collect_execution_time import (
+    _summarize,
+    _timed_pytest,
+)
+from scripts.metric_collection_phase1.summarize_execution_times import (
+    summarize_execution_times,
+)
 
 PARTICIPANTS = (2, 3, 4, 5, 7, 8, 9, 12)
 
@@ -153,7 +158,7 @@ def measure(
                 report["reason"] = run.failure_output
                 return report
     # Reconstruct the shared timer record for the unchanged Phase 1 estimator.
-    from scripts.collect_execution_time import TimedRun
+    from scripts.metric_collection_phase1.collect_execution_time import TimedRun
 
     report["summary"] = asdict(
         _summarize(
@@ -198,9 +203,9 @@ def collect(
             relative: file_hash(repo / relative)
             for relative in (
                 "scripts/metric_collection_phase2/collect_execution_times.py",
-                "scripts/collect_execution_time.py",
-                "scripts/summarize_execution_times.py",
-                "scripts/metric_collection/collect_all_branches.py",
+                "scripts/metric_collection_phase1/collect_execution_time.py",
+                "scripts/metric_collection_phase1/summarize_execution_times.py",
+                "scripts/metric_collection_phase1/collect_all_branches.py",
             )
         },
         "source_manifest": str(source_manifest),

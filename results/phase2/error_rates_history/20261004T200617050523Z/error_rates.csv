@@ -1,0 +1,9 @@
+participant_id,participant_number,status,phase1_group,phase2_group,total_generated_test_cases,syntax_error_count,runtime_error_count,function_error_count,valid_test_count,syntax_error_rate,runtime_error_rate,function_error_rate,overall_error_rate
+experiment-02,2,collected,AI,AI,7,0,0,0,7,0.0,0.0,0.0,0.0
+experiment-03,3,collected,AI,AI,7,0,0,0,7,0.0,0.0,0.0,0.0
+experiment-04,4,collected,Manual,AI,7,0,0,0,7,0.0,0.0,0.0,0.0
+experiment-05,5,collected,Manual,AI,7,0,0,0,7,0.0,0.0,0.0,0.0
+experiment-07,7,collected,AI,AI,7,0,0,0,7,0.0,0.0,0.0,0.0
+experiment-08,8,collected,Manual,AI,2,0,2,0,0,0.0,1.0,0.0,1.0
+experiment-09,9,missing_branch,Manual,AI,,,,,,,,,
+experiment-12,12,collected,AI,AI,7,0,0,0,7,0.0,0.0,0.0,0.0

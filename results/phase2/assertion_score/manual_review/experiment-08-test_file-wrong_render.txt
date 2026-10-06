@@ -1,0 +1,39 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+__________________________________ test_file ___________________________________
+
+    def test_file():
+    
+        md = MarkdownIt("commonmark")
+        with open("tests/task/phase1/materials/spec.md","r", encoding="utf-8") as test_file:
+            # text = "# This is a heading"
+            # 使用 commonmark 的规则初始化该 parser
+    
+            # print(test_file.read(1000))
+            # tokens = md.parse(test_file)
+            html_text = md.render(test_file.read())
+            # print("hey")
+    
+            Path("output.html").write_text(html_text, encoding="utf-8")
+    
+    
+        with open('output.html', encoding="utf-8") as file1, open('tests/task/phase1/materials/test_file.html', encoding="utf-8") as file2:
+            for file1Line, file2Line in zip(file1, file2):
+>               assert file1Line == file2Line, "markdown content rendered result inconsperancy"
+E               AssertionError: markdown content rendered result inconsperancy
+E               assert 'INTENTIONALLY WRONG OUTPUT\n' == '<hr />\n'
+E                 
+E                 - <hr />
+E                 + INTENTIONALLY WRONG OUTPUT
+
+tests/task/phase1/task.py:39: AssertionError
+=============================== warnings summary ===============================
+../../../../../../tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /private/tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/task/phase1/task.py::test_file - AssertionError: markdown conten...
+1 failed, 1 warning in 0.03s

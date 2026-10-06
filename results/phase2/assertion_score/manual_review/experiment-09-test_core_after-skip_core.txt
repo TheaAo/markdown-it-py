@@ -1,0 +1,33 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________________ test_core_after ________________________________
+
+    def test_core_after():
+        events = []
+    
+        def custom_rule(state):
+            events.append(state.src)
+    
+        def plugin(md):
+            md.core.ruler.after("normalize", "custom_rule", custom_rule)
+    
+        md = MarkdownIt("commonmark").use(plugin)
+        md.parse("first\r\nsecond")
+    
+>       assert events == ["first\nsecond"]
+E       AssertionError: assert [] == ['first\nsecond']
+E         
+E         Right contains one more item: 'first\nsecond'
+E         Use -v to get more diff
+
+tests/task/phase1/task.py:67: AssertionError
+=============================== warnings summary ===============================
+../../../../../../tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /private/tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/task/phase1/task.py::test_core_after - AssertionError: assert []...
+1 failed, 1 warning in 0.02s

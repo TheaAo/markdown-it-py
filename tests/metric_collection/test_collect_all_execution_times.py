@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from scripts.collect_all_execution_times import _summary
+from scripts.metric_collection_phase1.collect_all_execution_times import _summary
 
 
 def test_summary_preserves_primary_execution_time_name() -> None:

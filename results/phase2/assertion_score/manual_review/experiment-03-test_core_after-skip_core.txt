@@ -1,0 +1,41 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_______________________________ test_core_after ________________________________
+
+    def test_core_after():
+    	# Record execution order for normalize and the inserted core rule.
+    	execution_order = []
+    
+    	def core_rule(state) -> None:
+    		execution_order.append("core_test_rule")
+    
+    	def _plugin(_md: MarkdownIt) -> None:
+    		core_rule_names = _md.get_all_rules()["core"]
+    		normalize_index = core_rule_names.index("normalize")
+    		normalize_rule = _md.core.ruler.getRules()[normalize_index]
+    
+    		def tracked_normalize(state) -> None:
+    			execution_order.append("normalize")
+    			normalize_rule(state)
+    
+    		_md.core.ruler.at("normalize", tracked_normalize)
+    		_md.core.ruler.after("normalize", "core_test_rule", core_rule)
+    
+    	MarkdownIt("commonmark").use(_plugin).parse("a")
+>   	assert execution_order == ["normalize", "core_test_rule"]
+E    AssertionError: assert [] == ['normalize',...re_test_rule']
+E      
+E      Right contains 2 more items, first extra item: 'normalize'
+E      Use -v to get more diff
+
+tests/task/phase1/task.py:94: AssertionError
+=============================== warnings summary ===============================
+../../../../../../tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /private/tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/task/phase1/task.py::test_core_after - AssertionError: assert []...
+1 failed, 1 warning in 0.02s

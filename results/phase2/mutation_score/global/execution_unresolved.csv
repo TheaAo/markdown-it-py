@@ -1,0 +1,2021 @@
+mutant_id,workload_layer,module,function,source_line,operator_family,original_code,mutated_code,context_diff,show_command,tests_command,rerun_command,reviewer_1_status,reviewer_1_reason,reviewer_2_status,reviewer_2_reason,adjudicated_status,adjudication_reason
+M005cac56df85ad0c,specified,markdown_it/rules_block/lheading.py,lheading,62,ARITHMETIC,        nextLine += 1,        nextLine -= 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -51,7 +51,7 @@
+         if terminate:
+             break
+
+-        nextLine += 1
++        nextLine -= 1
+
+     if not level:
+         # Didn't find valid underline
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_84',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_84',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_84',,,,,,
+M00bd1d86e2b03a15,specified,markdown_it/parser_block.py,tokenize,102,ARITHMETIC,            line += 1,            line = 1,"--- markdown_it/parser_block.py
++++ markdown_it/parser_block.py
+@@ -40,5 +40,5 @@
+
+         if line < endLine and state.isEmpty(line):
+             hasEmptyLines = True
+-            line += 1
++            line = 1
+             state.line = line
+",mutmut show 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_45',mutmut tests-for-mutant 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_45',mutmut run 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_45',,,,,,
+M01046e43d5fad3a2,specified,markdown_it/rules_inline/autolink.py,autolink,74,ARITHMETIC,        state.pos += len(url) + 2,        state.pos -= len(url) + 2,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -60,7 +60,7 @@
+             token.markup = ""autolink""
+             token.info = ""auto""
+
+-        state.pos += len(url) + 2
++        state.pos -= len(url) + 2
+         return True
+
+     return False
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_154',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_154',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_154',,,,,,
+M03088053d9e3abe1,specified,markdown_it/rules_inline/state_inline.py,push,109,COMPARISON,    if nesting > 0:,    if nesting >= 0:,"--- markdown_it/rules_inline/state_inline.py
++++ markdown_it/rules_inline/state_inline.py
+@@ -15,7 +15,7 @@
+
+     token.level = self.level
+
+-    if nesting > 0:
++    if nesting >= 0:
+         # opening tag
+         self.level += 1
+         self._prev_delimiters.append(self.delimiters)
+",mutmut show 'markdown_it.rules_inline.state_inline.xǁStateInlineǁpush__mutmut_16',mutmut tests-for-mutant 'markdown_it.rules_inline.state_inline.xǁStateInlineǁpush__mutmut_16',mutmut run 'markdown_it.rules_inline.state_inline.xǁStateInlineǁpush__mutmut_16',,,,,,
+M034e27f40d82d614,specified,markdown_it/rules_inline/link.py,link,17,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/link.py
++++ markdown_it/rules_inline/link.py
+@@ -8,7 +8,7 @@
+     parseReference = True
+
+     if state.src[state.pos] != ""["":
+-        return False
++        return True
+
+     labelStart = state.pos + 1
+     labelEnd = state.md.helpers.parseLinkLabel(state, state.pos, True)
+",mutmut show 'markdown_it.rules_inline.link.x_link__mutmut_13',mutmut tests-for-mutant 'markdown_it.rules_inline.link.x_link__mutmut_13',mutmut run 'markdown_it.rules_inline.link.x_link__mutmut_13',,,,,,
+M04bea37727f72533,specified,markdown_it/rules_inline/backticks.py,backtick,13,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -2,7 +2,7 @@
+     pos = state.pos
+
+     if state.src[pos] != ""`"":
+-        return False
++        return True
+
+     start = pos
+     pos += 1
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_4',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_4',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_4',,,,,,
+M05b824fe06bdb8d9,specified,markdown_it/rules_block/blockquote.py,blockquote,271,ARITHMETIC,        nextLine += 1,        nextLine -= 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -257,7 +257,7 @@
+         #
+         state.sCount[nextLine] = -1
+
+-        nextLine += 1
++        nextLine -= 1
+
+     oldIndent = state.blkIndent
+     state.blkIndent = 0
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_257',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_257',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_257',,,,,,
+M0730644104fb8548,specified,markdown_it/helpers/parse_link_destination.py,parseLinkDestination,36,ARITHMETIC,                pos += 2,                pos -= 2,"--- markdown_it/helpers/parse_link_destination.py
++++ markdown_it/helpers/parse_link_destination.py
+@@ -17,7 +17,7 @@
+                 return result
+
+             if code == 0x5C and pos + 1 < maximum:  # \
+-                pos += 2
++                pos -= 2
+                 continue
+
+             pos += 1
+",mutmut show 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_40',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_40',mutmut run 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_40',,,,,,
+M07eb20a9e2447716,specified,markdown_it/rules_inline/entity.py,entity,17,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -3,7 +3,7 @@
+     maximum = state.posMax
+
+     if state.src[pos] != ""&"":
+-        return False
++        return True
+
+     if pos + 1 >= maximum:
+         return False
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_5',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_5',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_5',,,,,,
+M08e81ac3b49131aa,specified,markdown_it/parser_inline.py,skipToken,171,ARITHMETIC,        state.pos += 1,        state.pos = 1,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -37,5 +37,5 @@
+         state.pos = state.posMax
+
+     if not ok:
+-        state.pos += 1
++        state.pos = 1
+     cache[pos] = state.pos
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_30',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_30',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_30',,,,,,
+M0cb4135580386e2f,specified,markdown_it/rules_inline/entity.py,entity,39,ARITHMETIC,            state.pos += len(match.group(0)),            state.pos -= len(match.group(0)),"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -25,7 +25,7 @@
+                 token.markup = match.group(0)
+                 token.info = ""entity""
+
+-            state.pos += len(match.group(0))
++            state.pos -= len(match.group(0))
+             return True
+
+     else:
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_59',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_59',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_59',,,,,,
+M0e4a6dc808b32bdc,specified,markdown_it/rules_inline/entity.py,entity,53,CONSTANT_REPLACEMENT,    return False,    return True,"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -39,4 +39,4 @@
+             state.pos += len(match.group(0))
+             return True
+
+-    return False
++    return True
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_90',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_90',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_90',,,,,,
+M0fcd91f369fc885b,specified,markdown_it/rules_block/code.py,code,20,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -8,7 +8,7 @@
+
+     while nextLine < endLine:
+         if state.isEmpty(nextLine):
+-            nextLine += 1
++            nextLine = 1
+             continue
+
+         if state.is_code_block(nextLine):
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_21',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_21',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_21',,,,,,
+M119e28e167eae60f,specified,markdown_it/rules_inline/backticks.py,backtick,21,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -10,7 +10,7 @@
+
+     # scan marker length
+     while pos < maximum and (state.src[pos] == ""`""):
+-        pos += 1
++        pos = 1
+
+     marker = state.src[start:pos]
+     openerLength = len(marker)
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_14',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_14',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_14',,,,,,
+M1217e05a7ac3679c,specified,markdown_it/rules_block/hr.py,hr,50,ARITHMETIC,    state.line = startLine + 1,    state.line = startLine - 1,"--- markdown_it/rules_block/hr.py
++++ markdown_it/rules_block/hr.py
+@@ -34,7 +34,7 @@
+     if silent:
+         return True
+
+-    state.line = startLine + 1
++    state.line = startLine - 1
+
+     token = state.push(""hr"", ""hr"", 0)
+     token.map = [startLine, state.line]
+",mutmut show 'markdown_it.rules_block.hr.x_hr__mutmut_49',mutmut tests-for-mutant 'markdown_it.rules_block.hr.x_hr__mutmut_49',mutmut run 'markdown_it.rules_block.hr.x_hr__mutmut_49',,,,,,
+M1225fcd54d3355c0,specified,markdown_it/ruler.py,__find__,87,COMPARISON,        if rule.name == name:,        if rule.name != name:,"--- markdown_it/ruler.py
++++ markdown_it/ruler.py
+@@ -1,6 +1,6 @@
+ def __find__(self, name: str) -> int:
+     """"""Find rule index by name""""""
+     for i, rule in enumerate(self.__rules__):
+-        if rule.name == name:
++        if rule.name != name:
+             return i
+     return -1
+",mutmut show 'markdown_it.ruler.xǁRulerǁ__find____mutmut_2',mutmut tests-for-mutant 'markdown_it.ruler.xǁRulerǁ__find____mutmut_2',mutmut run 'markdown_it.ruler.xǁRulerǁ__find____mutmut_2',,,,,,
+M13d2efda9cdcf561,specified,markdown_it/rules_block/list.py,list_block,153,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -50,7 +50,7 @@
+         if posAfterMarker >= 0:
+             isOrdered = False
+         else:
+-            return False
++            return True
+
+     # If we're starting a new unordered list right after
+     # a paragraph, first line should not be empty.
+",mutmut show 'markdown_it.rules_block.list.x_list_block__mutmut_64',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_list_block__mutmut_64',mutmut run 'markdown_it.rules_block.list.x_list_block__mutmut_64',,,,,,
+M1405c19dd7848f9e,specified,markdown_it/rules_block/lheading.py,lheading,70,ARITHMETIC,    state.line = nextLine + 1,    state.line = nextLine - 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -59,7 +59,7 @@
+
+     content = state.getLines(startLine, nextLine, state.blkIndent, False).strip()
+
+-    state.line = nextLine + 1
++    state.line = nextLine - 1
+
+     token = state.push(""heading_open"", ""h"" + str(level), 1)
+     token.markup = marker
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_99',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_99',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_99',,,,,,
+M1410b4ae2618a83a,specified,markdown_it/rules_core/text_join.py,text_join,52,ARITHMETIC,                i += 1,                i = 1,"--- markdown_it/rules_core/text_join.py
++++ markdown_it/rules_core/text_join.py
+@@ -35,5 +35,5 @@
+                 new_tokens[-1].content = """".join(parts)
+             else:
+                 new_tokens.append(child_token)
+-                i += 1
++                i = 1
+         inline_token.children = new_tokens
+",mutmut show 'markdown_it.rules_core.text_join.x_text_join__mutmut_56',mutmut tests-for-mutant 'markdown_it.rules_core.text_join.x_text_join__mutmut_56',mutmut run 'markdown_it.rules_core.text_join.x_text_join__mutmut_56',,,,,,
+M16535ba419a666f8,specified,markdown_it/rules_block/blockquote.py,blockquote,50,CONSTANT_REPLACEMENT,        initial += 1,        initial += 2,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -36,7 +36,7 @@
+         # ' >   test '
+         #     ^ -- position start of line here:
+         pos += 1
+-        initial += 1
++        initial += 2
+         offset += 1
+         adjustTab = False
+         spaceAfterMarker = True
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_39',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_39',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_39',,,,,,
+M1edd7728d4b310a5,specified,markdown_it/rules_block/code.py,code,24,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -12,7 +12,7 @@
+             continue
+
+         if state.is_code_block(nextLine):
+-            nextLine += 1
++            nextLine -= 1
+             last = nextLine
+             continue
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_27',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_27',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_27',,,,,,
+M1f9fcbfd42a2d16d,specified,markdown_it/parser_inline.py,skipToken,137,STATEMENT_REPLACEMENT,    pos = state.pos,    pos = None,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -3,7 +3,7 @@
+         returns `True` if any rule reported success
+         """"""
+     ok = False
+-    pos = state.pos
++    pos = None
+     rules = self.ruler.getRules("""")
+     maxNesting = state.md.options[""maxNesting""]
+     cache = state.cache
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_3',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_3',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_3',,,,,,
+M1fa76c68aae18916,specified,markdown_it/ruler.py,__compile__,105,CONTROL_FLOW,                continue,                break,"--- markdown_it/ruler.py
++++ markdown_it/ruler.py
+@@ -12,7 +12,7 @@
+         self.__cache__[chain] = []
+         for rule in self.__rules__:
+             if not rule.enabled:
+-                continue
++                break
+             if chain and (chain not in rule.alt):
+                 continue
+             self.__cache__[chain].append(rule.fn)
+",mutmut show 'markdown_it.ruler.xǁRulerǁ__compile____mutmut_9',mutmut tests-for-mutant 'markdown_it.ruler.xǁRulerǁ__compile____mutmut_9',mutmut run 'markdown_it.ruler.xǁRulerǁ__compile____mutmut_9',,,,,,
+M215f68f4177449d7,specified,markdown_it/rules_block/list.py,list_block,220,COMPARISON,        indentAfterMarker = 1 if contentStart >= maximum else offset - initial,        indentAfterMarker = 1 if contentStart >= maximum else offset + initial,"--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -117,7 +117,7 @@
+         contentStart = pos
+
+         # trimming space in ""-    \n  3"" case, indent is 1 here
+-        indentAfterMarker = 1 if contentStart >= maximum else offset - initial
++        indentAfterMarker = 1 if contentStart >= maximum else offset + initial
+
+         # If we have more than 4 spaces, the indent is 1
+         # (the rest is just indented code block)
+",mutmut show 'markdown_it.rules_block.list.x_list_block__mutmut_148',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_list_block__mutmut_148',mutmut run 'markdown_it.rules_block.list.x_list_block__mutmut_148',,,,,,
+M21902bb0bd09e70a,specified,markdown_it/rules_block/html_block.py,html_block,82,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/html_block.py
++++ markdown_it/rules_block/html_block.py
+@@ -46,7 +46,7 @@
+                 if len(lineText) != 0:
+                     nextLine += 1
+                 break
+-            nextLine += 1
++            nextLine = 1
+
+     state.line = nextLine
+",mutmut show 'markdown_it.rules_block.html_block.x_html_block__mutmut_58',mutmut tests-for-mutant 'markdown_it.rules_block.html_block.x_html_block__mutmut_58',mutmut run 'markdown_it.rules_block.html_block.x_html_block__mutmut_58',,,,,,
+M21dbacd4e1452ce4,specified,markdown_it/rules_block/reference.py,reference,117,ARITHMETIC,        nextLine += 1,        nextLine -= 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -106,7 +106,7 @@
+         string += lineContent
+         pos = maximum
+         maximum = len(string)
+-        nextLine += 1
++        nextLine -= 1
+         titleRes = state.md.helpers.parseLinkTitle(string, pos, maximum, titleRes)
+
+     if pos < maximum and start != pos and titleRes.ok:
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_187',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_187',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_187',,,,,,
+M21dce9fd99320081,specified,markdown_it/rules_block/hr.py,hr,31,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/hr.py
++++ markdown_it/rules_block/hr.py
+@@ -15,7 +15,7 @@
+
+     # Check hr marker
+     if marker not in (""*"", ""-"", ""_""):
+-        return False
++        return True
+
+     # markers can be mixed with spaces, but there should be at least 3 of them
+",mutmut show 'markdown_it.rules_block.hr.x_hr__mutmut_27',mutmut tests-for-mutant 'markdown_it.rules_block.hr.x_hr__mutmut_27',mutmut run 'markdown_it.rules_block.hr.x_hr__mutmut_27',,,,,,
+M258896d661a43c5f,specified,markdown_it/helpers/parse_link_destination.py,parseLinkDestination,39,ARITHMETIC,            pos += 1,            pos = 1,"--- markdown_it/helpers/parse_link_destination.py
++++ markdown_it/helpers/parse_link_destination.py
+@@ -20,7 +20,7 @@
+                 pos += 2
+                 continue
+
+-            pos += 1
++            pos = 1
+
+         # no closing '>'
+         return result
+",mutmut show 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_43',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_43',mutmut run 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_43',,,,,,
+M25bccf99c280d395,specified,markdown_it/rules_inline/escape.py,escape,34,ARITHMETIC,            pos += 1,            pos = 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -23,7 +23,7 @@
+             ch = state.src[pos]
+             if not isStrSpace(ch):
+                 break
+-            pos += 1
++            pos = 1
+
+         state.pos = pos
+         return True
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_36',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_36',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_36',,,,,,
+M270e03eccf840c0f,specified,markdown_it/rules_block/blockquote.py,blockquote,86,ARITHMETIC,                offset += 1,                offset -= 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -72,7 +72,7 @@
+                     - (offset + state.bsCount[startLine] + (1 if adjustTab else 0)) % 4
+                 )
+             else:
+-                offset += 1
++                offset -= 1
+
+         else:
+             break
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_89',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_89',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_89',,,,,,
+M271995a15d4f7aae,specified,markdown_it/rules_block/list.py,markTightParagraphs,97,ARITHMETIC,            i += 2,            i = 2,"--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -7,5 +7,5 @@
+         if state.tokens[i].level == level and state.tokens[i].type == ""paragraph_open"":
+             state.tokens[i + 2].hidden = True
+             state.tokens[i].hidden = True
+-            i += 2
++            i = 2
+         i += 1
+",mutmut show 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_22',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_22',mutmut run 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_22',,,,,,
+M28e8cde5ead33305,specified,markdown_it/rules_block/reference.py,reference,53,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -42,7 +42,7 @@
+                 string += lineContent
+                 maximum = len(string)
+                 nextLine += 1
+-        pos += 1
++        pos = 1
+
+     if (
+         labelEnd is None or labelEnd < 0 or charCodeAt(string, labelEnd + 1) != 0x3A
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_82',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_82',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_82',,,,,,
+M29ee33cc67524fdc,specified,markdown_it/rules_inline/newline.py,newline,41,ARITHMETIC,        pos += 1,        pos -= 1,"--- markdown_it/rules_inline/newline.py
++++ markdown_it/rules_inline/newline.py
+@@ -32,7 +32,7 @@
+
+     # skip heading spaces for next line
+     while pos < maximum and isStrSpace(state.src[pos]):
+-        pos += 1
++        pos -= 1
+
+     state.pos = pos
+     return True
+",mutmut show 'markdown_it.rules_inline.newline.x_newline__mutmut_91',mutmut tests-for-mutant 'markdown_it.rules_inline.newline.x_newline__mutmut_91',mutmut run 'markdown_it.rules_inline.newline.x_newline__mutmut_91',,,,,,
+M2b663bf8ed7c2ef0,specified,markdown_it/rules_core/text_join.py,text_join,48,ARITHMETIC,                    i += 1,                    i = 1,"--- markdown_it/rules_core/text_join.py
++++ markdown_it/rules_core/text_join.py
+@@ -31,7 +31,7 @@
+                     if next_token.type != ""text"":
+                         break
+                     parts.append(next_token.content)
+-                    i += 1
++                    i = 1
+                 new_tokens[-1].content = """".join(parts)
+             else:
+                 new_tokens.append(child_token)
+",mutmut show 'markdown_it.rules_core.text_join.x_text_join__mutmut_47',mutmut tests-for-mutant 'markdown_it.rules_core.text_join.x_text_join__mutmut_47',mutmut run 'markdown_it.rules_core.text_join.x_text_join__mutmut_47',,,,,,
+M2bdf5143a2968255,specified,markdown_it/rules_inline/image.py,image,19,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/image.py
++++ markdown_it/rules_inline/image.py
+@@ -8,7 +8,7 @@
+         return False
+
+     if state.pos + 1 < state.posMax and state.src[state.pos + 1] != ""["":
+-        return False
++        return True
+
+     labelStart = state.pos + 2
+     labelEnd = state.md.helpers.parseLinkLabel(state, state.pos + 1, False)
+",mutmut show 'markdown_it.rules_inline.image.x_image__mutmut_17',mutmut tests-for-mutant 'markdown_it.rules_inline.image.x_image__mutmut_17',mutmut run 'markdown_it.rules_inline.image.x_image__mutmut_17',,,,,,
+M2c5d98fa35dc55a7,specified,markdown_it/rules_inline/autolink.py,autolink,16,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -2,7 +2,7 @@
+     pos = state.pos
+
+     if state.src[pos] != ""<"":
+-        return False
++        return True
+
+     start = state.pos
+     maximum = state.posMax
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_4',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_4',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_4',,,,,,
+M2e7f9d33cf8b749d,specified,markdown_it/rules_block/paragraph.py,paragraph,35,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -23,7 +23,7 @@
+
+         # quirk for blockquotes, this line should already be checked by that rule
+         if state.sCount[nextLine] < 0:
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         # Some tags can terminate paragraph without empty line.
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_39',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_39',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_39',,,,,,
+M303bb41780f596c4,specified,markdown_it/rules_block/reference.py,reference,16,ARITHMETIC,    nextLine = startLine + 1,    nextLine = startLine - 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -5,7 +5,7 @@
+
+     pos = state.bMarks[startLine] + state.tShift[startLine]
+     maximum = state.eMarks[startLine]
+-    nextLine = startLine + 1
++    nextLine = startLine - 1
+
+     if state.is_code_block(startLine):
+         return False
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_17',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_17',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_17',,,,,,
+M30ee7bcb4cd1c869,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,66,ARITHMETIC,                openerIdx -= jumps[openerIdx] + 1,                openerIdx += jumps[openerIdx] + 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -56,7 +56,7 @@
+             opener = delimiters[openerIdx]
+
+             if opener.marker != closer.marker:
+-                openerIdx -= jumps[openerIdx] + 1
++                openerIdx += jumps[openerIdx] + 1
+                 continue
+
+             if opener.open and opener.end < 0:
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_60',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_60',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_60',,,,,,
+M317c8067594654ae,specified,markdown_it/rules_block/reference.py,reference,58,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -47,7 +47,7 @@
+     if (
+         labelEnd is None or labelEnd < 0 or charCodeAt(string, labelEnd + 1) != 0x3A
+     ):  # /* : */
+-        return False
++        return True
+
+     # [label]:   destination   'title'
+     #         ^^^ skip optional whitespace here
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_98',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_98',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_98',,,,,,
+M32cfd1dd9ab15391,specified,markdown_it/rules_block/heading.py,heading,55,ARITHMETIC,    state.line = startLine + 1,    state.line = startLine - 1,"--- markdown_it/rules_block/heading.py
++++ markdown_it/rules_block/heading.py
+@@ -40,7 +40,7 @@
+     if tmp > pos and isStrSpace(state.src[tmp - 1]):
+         maximum = tmp
+
+-    state.line = startLine + 1
++    state.line = startLine - 1
+
+     token = state.push(""heading_open"", ""h"" + str(level), 1)
+     token.markup = ""########""[:level]
+",mutmut show 'markdown_it.rules_block.heading.x_heading__mutmut_75',mutmut tests-for-mutant 'markdown_it.rules_block.heading.x_heading__mutmut_75',mutmut run 'markdown_it.rules_block.heading.x_heading__mutmut_75',,,,,,
+M33254647879b1c6b,specified,markdown_it/rules_block/paragraph.py,paragraph,48,ARITHMETIC,        nextLine += 1,        nextLine = 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -36,7 +36,7 @@
+         if terminate:
+             break
+
+-        nextLine += 1
++        nextLine = 1
+
+     content = state.getLines(startLine, nextLine, state.blkIndent, False).strip()
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_57',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_57',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_57',,,,,,
+M35c55d260005d584,specified,markdown_it/rules_inline/backticks.py,backtick,44,ARITHMETIC,            matchEnd += 1,            matchEnd -= 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -33,7 +33,7 @@
+
+         # scan marker length
+         while matchEnd < maximum and (state.src[matchEnd] == ""`""):
+-            matchEnd += 1
++            matchEnd -= 1
+
+         closerLength = matchEnd - matchStart
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_50',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_50',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_50',,,,,,
+M36c1eea035c60f96,specified,markdown_it/rules_block/paragraph.py,paragraph,43,CONTROL_FLOW,                break,                return,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -31,7 +31,7 @@
+         for terminatorRule in terminatorRules:
+             if terminatorRule(state, nextLine, endLine, True):
+                 terminate = True
+-                break
++                return
+
+         if terminate:
+             break
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_55',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_55',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_55',,,,,,
+M383b12c97c599bb2,specified,markdown_it/rules_block/blockquote.py,blockquote,271,ARITHMETIC,        nextLine += 1,        nextLine = 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -257,7 +257,7 @@
+         #
+         state.sCount[nextLine] = -1
+
+-        nextLine += 1
++        nextLine = 1
+
+     oldIndent = state.blkIndent
+     state.blkIndent = 0
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_256',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_256',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_256',,,,,,
+M395a432c87a0f35a,specified,markdown_it/rules_inline/backticks.py,backtick,16,ARITHMETIC,    pos += 1,    pos -= 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -5,7 +5,7 @@
+         return False
+
+     start = pos
+-    pos += 1
++    pos -= 1
+     maximum = state.posMax
+
+     # scan marker length
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_7',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_7',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_7',,,,,,
+M3bd46ed83791cf00,specified,markdown_it/rules_inline/html_inline.py,html_inline,27,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/html_inline.py
++++ markdown_it/rules_inline/html_inline.py
+@@ -12,7 +12,7 @@
+     # Quick fail on second char
+     ch = state.src[pos + 1]
+     if ch not in (""!"", ""?"", ""/"") and not isLetter(ord(ch)):  # /* / */
+-        return False
++        return True
+
+     match = HTML_TAG_RE.search(state.src[pos:])
+     if not match:
+",mutmut show 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_28',mutmut tests-for-mutant 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_28',mutmut run 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_28',,,,,,
+M3cea76c589ffa537,specified,markdown_it/parser_block.py,tokenize,102,ARITHMETIC,            line += 1,            line -= 1,"--- markdown_it/parser_block.py
++++ markdown_it/parser_block.py
+@@ -40,5 +40,5 @@
+
+         if line < endLine and state.isEmpty(line):
+             hasEmptyLines = True
+-            line += 1
++            line -= 1
+             state.line = line
+",mutmut show 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_46',mutmut tests-for-mutant 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_46',mutmut run 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_46',,,,,,
+M3d0e28ceaf3019d7,specified,markdown_it/rules_block/blockquote.py,blockquote,131,ARITHMETIC,    nextLine = startLine + 1,    nextLine = startLine - 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -117,7 +117,7 @@
+     #     ```
+
+     # for (nextLine = startLine + 1; nextLine < endLine; nextLine++) {
+-    nextLine = startLine + 1
++    nextLine = startLine - 1
+     while nextLine < endLine:
+         # check if it's outdented, i.e. it's inside list item and indented
+         # less than said list item:
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_119',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_119',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_119',,,,,,
+M3d85c8d579d0cd70,specified,markdown_it/rules_block/blockquote.py,blockquote,91,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -77,7 +77,7 @@
+         else:
+             break
+
+-        pos += 1
++        pos = 1
+
+     oldBSCount = [state.bsCount[startLine]]
+     state.bsCount[startLine] = (
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_92',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_92',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_92',,,,,,
+M3d9b60d449f61db2,specified,markdown_it/rules_inline/text.py,text,15,COMPARISON,    if pos == state.pos:,    if pos != state.pos:,"--- markdown_it/rules_inline/text.py
++++ markdown_it/rules_inline/text.py
+@@ -8,7 +8,7 @@
+     terminator_char = state.md.inline.terminator_re.search(state.src, pos)
+     pos = terminator_char.start() if terminator_char else posMax
+
+-    if pos == state.pos:
++    if pos != state.pos:
+         return False
+
+     if not silent:
+",mutmut show 'markdown_it.rules_inline.text.x_text__mutmut_9',mutmut tests-for-mutant 'markdown_it.rules_inline.text.x_text__mutmut_9',mutmut run 'markdown_it.rules_inline.text.x_text__mutmut_9',,,,,,
+M3e710b15fb892e83,specified,markdown_it/rules_inline/text.py,text,12,CALL_ARGUMENT,"    terminator_char = state.md.inline.terminator_re.search(state.src, pos)","    terminator_char = state.md.inline.terminator_re.search(state.src, )","--- markdown_it/rules_inline/text.py
++++ markdown_it/rules_inline/text.py
+@@ -5,7 +5,7 @@
+     pos = state.pos
+     posMax = state.posMax
+
+-    terminator_char = state.md.inline.terminator_re.search(state.src, pos)
++    terminator_char = state.md.inline.terminator_re.search(state.src, )
+     pos = terminator_char.start() if terminator_char else posMax
+
+     if pos == state.pos:
+",mutmut show 'markdown_it.rules_inline.text.x_text__mutmut_7',mutmut tests-for-mutant 'markdown_it.rules_inline.text.x_text__mutmut_7',mutmut run 'markdown_it.rules_inline.text.x_text__mutmut_7',,,,,,
+M3fbf70f8cb9e5595,specified,markdown_it/rules_block/paragraph.py,paragraph,30,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -18,7 +18,7 @@
+         # this would be a code block normally, but after paragraph
+         # it's considered a lazy continuation regardless of what's there
+         if state.sCount[nextLine] - state.blkIndent > 3:
+-            nextLine += 1
++            nextLine = 1
+             continue
+
+         # quirk for blockquotes, this line should already be checked by that rule
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_32',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_32',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_32',,,,,,
+M3fe6736b0ff25b7f,specified,markdown_it/rules_block/heading.py,heading,43,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/heading.py
++++ markdown_it/rules_block/heading.py
+@@ -28,7 +28,7 @@
+             ch = None
+
+     if level > 6 or (pos < maximum and not isStrSpace(ch)):
+-        return False
++        return True
+
+     if silent:
+         return True
+",mutmut show 'markdown_it.rules_block.heading.x_heading__mutmut_53',mutmut tests-for-mutant 'markdown_it.rules_block.heading.x_heading__mutmut_53',mutmut run 'markdown_it.rules_block.heading.x_heading__mutmut_53',,,,,,
+M42f067c4283253e4,specified,markdown_it/rules_block/reference.py,reference,117,ARITHMETIC,        nextLine += 1,        nextLine = 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -106,7 +106,7 @@
+         string += lineContent
+         pos = maximum
+         maximum = len(string)
+-        nextLine += 1
++        nextLine = 1
+         titleRes = state.md.helpers.parseLinkTitle(string, pos, maximum, titleRes)
+
+     if pos < maximum and start != pos and titleRes.ok:
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_186',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_186',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_186',,,,,,
+M45ddddcc9744ff87,specified,markdown_it/rules_block/blockquote.py,blockquote,51,ARITHMETIC,        offset += 1,        offset = 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -37,7 +37,7 @@
+         #     ^ -- position start of line here:
+         pos += 1
+         initial += 1
+-        offset += 1
++        offset = 1
+         adjustTab = False
+         spaceAfterMarker = True
+     elif second_char == ""\t"":
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_40',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_40',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_40',,,,,,
+M4640707be79550df,specified,markdown_it/rules_inline/html_inline.py,html_inline,31,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/html_inline.py
++++ markdown_it/rules_inline/html_inline.py
+@@ -16,7 +16,7 @@
+
+     match = HTML_TAG_RE.search(state.src[pos:])
+     if not match:
+-        return False
++        return True
+
+     if not silent:
+         token = state.push(""html_inline"", """", 0)
+",mutmut show 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_32',mutmut tests-for-mutant 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_32',mutmut run 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_32',,,,,,
+M467d11a44ca7ae72,specified,markdown_it/rules_inline/escape.py,escape,28,ARITHMETIC,        pos += 1,        pos -= 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -17,7 +17,7 @@
+     if ch1 == ""\n"":
+         if not silent:
+             state.push(""hardbreak"", ""br"", 0)
+-        pos += 1
++        pos -= 1
+         # skip leading whitespaces from next line
+         while pos < maximum:
+             ch = state.src[pos]
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_29',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_29',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_29',,,,,,
+M47da802f930f64cc,specified,markdown_it/rules_block/list.py,list_block,281,ARITHMETIC,"            state.line = min(state.line + 2, endLine)","            state.line = min(state.line - 2, endLine)","--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -178,7 +178,7 @@
+             #
+             #     foo
+             # ~~~~~~~~
+-            state.line = min(state.line + 2, endLine)
++            state.line = min(state.line - 2, endLine)
+         else:
+             # NOTE in list.js this was:
+             # state.md.block.tokenize(state, startLine, endLine, True)
+",mutmut show 'markdown_it.rules_block.list.x_list_block__mutmut_223',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_list_block__mutmut_223',mutmut run 'markdown_it.rules_block.list.x_list_block__mutmut_223',,,,,,
+M4a521d1919dfe22a,specified,markdown_it/rules_inline/link.py,link,118,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_inline/link.py
++++ markdown_it/rules_inline/link.py
+@@ -109,7 +109,7 @@
+         ref = state.env[""references""].get(label, None)
+         if not ref:
+             state.pos = oldPos
+-            return False
++            return True
+
+         href = ref[""href""]
+         title = ref[""title""]
+",mutmut show 'markdown_it.rules_inline.link.x_link__mutmut_152',mutmut tests-for-mutant 'markdown_it.rules_inline.link.x_link__mutmut_152',mutmut run 'markdown_it.rules_inline.link.x_link__mutmut_152',,,,,,
+M4c96523392857eb2,specified,markdown_it/rules_block/paragraph.py,paragraph,48,ARITHMETIC,        nextLine += 1,        nextLine -= 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -36,7 +36,7 @@
+         if terminate:
+             break
+
+-        nextLine += 1
++        nextLine -= 1
+
+     content = state.getLines(startLine, nextLine, state.blkIndent, False).strip()
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_58',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_58',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_58',,,,,,
+M4d343a1a6880a0ba,specified,markdown_it/rules_block/hr.py,hr,45,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/hr.py
++++ markdown_it/rules_block/hr.py
+@@ -29,7 +29,7 @@
+             cnt += 1
+
+     if cnt < 3:
+-        return False
++        return True
+
+     if silent:
+         return True
+",mutmut show 'markdown_it.rules_block.hr.x_hr__mutmut_46',mutmut tests-for-mutant 'markdown_it.rules_block.hr.x_hr__mutmut_46',mutmut run 'markdown_it.rules_block.hr.x_hr__mutmut_46',,,,,,
+M4eb5ce9aa0b581e7,specified,markdown_it/rules_block/reference.py,reference,42,ARITHMETIC,                nextLine += 1,                nextLine = 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -31,7 +31,7 @@
+             if (lineContent := getNextLine(state, nextLine)) is not None:
+                 string += lineContent
+                 maximum = len(string)
+-                nextLine += 1
++                nextLine = 1
+         elif ch == 0x5C:  # /* \ */
+             pos += 1
+             if (
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_54',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_54',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_54',,,,,,
+M4ed13c881bf8f3d0,specified,markdown_it/rules_inline/state_inline.py,scanDelims,138,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/state_inline.py
++++ markdown_it/rules_inline/state_inline.py
+@@ -15,7 +15,7 @@
+     lastChar = self.src[start - 1] if start > 0 else "" ""
+
+     while pos < maximum and self.src[pos] == marker:
+-        pos += 1
++        pos = 1
+
+     count = pos - start
+",mutmut show 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_13',mutmut tests-for-mutant 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_13',mutmut run 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_13',,,,,,
+M50145002bdfd931c,specified,markdown_it/rules_block/lheading.py,lheading,50,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -39,7 +39,7 @@
+
+         # quirk for blockquotes, this line should already be checked by that rule
+         if state.sCount[nextLine] < 0:
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         # Some tags can terminate paragraph without empty line.
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_65',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_65',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_65',,,,,,
+M51c504c6c53edd24,specified,markdown_it/rules_block/fence.py,make_fence_rule,89,CONSTANT_REPLACEMENT,        while True:,        while False:,"--- markdown_it/rules_block/fence.py
++++ markdown_it/rules_block/fence.py
+@@ -75,7 +75,7 @@
+         # search end of block
+         nextLine = startLine
+
+-        while True:
++        while False:
+             nextLine += 1
+             if nextLine >= endLine:
+                 # unclosed block should be autoclosed by end of document.
+",mutmut show 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_54',mutmut tests-for-mutant 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_54',mutmut run 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_54',,,,,,
+M5349df734b7d6882,specified,markdown_it/rules_inline/entity.py,entity,50,ARITHMETIC,            state.pos += len(match.group(0)),            state.pos = len(match.group(0)),"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -36,7 +36,7 @@
+                 token.markup = match.group(0)
+                 token.info = ""entity""
+
+-            state.pos += len(match.group(0))
++            state.pos = len(match.group(0))
+             return True
+
+     return False
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_87',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_87',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_87',,,,,,
+M53f0d0cbb70c2c6e,specified,markdown_it/rules_inline/backticks.py,backtick,21,ARITHMETIC,        pos += 1,        pos -= 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -10,7 +10,7 @@
+
+     # scan marker length
+     while pos < maximum and (state.src[pos] == ""`""):
+-        pos += 1
++        pos -= 1
+
+     marker = state.src[start:pos]
+     openerLength = len(marker)
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_15',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_15',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_15',,,,,,
+M556e54b77a66be93,specified,markdown_it/rules_inline/escape.py,escape,17,ARITHMETIC,    pos += 1,    pos = 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -6,7 +6,7 @@
+     if state.src[pos] != ""\\"":
+         return False
+
+-    pos += 1
++    pos = 1
+
+     # '\' at the end of the inline block
+     if pos >= maximum:
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_6',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_6',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_6',,,,,,
+M5769d203849c3c10,specified,markdown_it/rules_inline/emphasis.py,_postProcess,93,ARITHMETIC,        i -= 1,        i += 1,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -51,4 +51,4 @@
+             state.tokens[delimiters[startDelim.end + 1].token].content = """"
+             i -= 1
+
+-        i -= 1
++        i += 1
+",mutmut show 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_98',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_98',mutmut run 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_98',,,,,,
+M5a8c03568ccb671f,specified,markdown_it/rules_block/code.py,code,14,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -2,7 +2,7 @@
+     LOGGER.debug(""entering code: %s, %s, %s, %s"", state, startLine, endLine, silent)
+
+     if not state.is_code_block(startLine):
+-        return False
++        return True
+
+     last = nextLine = startLine + 1
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_15',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_15',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_15',,,,,,
+M5f22869761863fa2,specified,markdown_it/rules_inline/newline.py,newline,37,ARITHMETIC,    pos += 1,    pos -= 1,"--- markdown_it/rules_inline/newline.py
++++ markdown_it/rules_inline/newline.py
+@@ -28,7 +28,7 @@
+         else:
+             state.push(""softbreak"", ""br"", 0)
+
+-    pos += 1
++    pos -= 1
+
+     # skip heading spaces for next line
+     while pos < maximum and isStrSpace(state.src[pos]):
+",mutmut show 'markdown_it.rules_inline.newline.x_newline__mutmut_85',mutmut tests-for-mutant 'markdown_it.rules_inline.newline.x_newline__mutmut_85',mutmut run 'markdown_it.rules_inline.newline.x_newline__mutmut_85',,,,,,
+M5fa9dbd16c014d30,specified,markdown_it/rules_inline/entity.py,entity,50,ARITHMETIC,            state.pos += len(match.group(0)),            state.pos -= len(match.group(0)),"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -36,7 +36,7 @@
+                 token.markup = match.group(0)
+                 token.info = ""entity""
+
+-            state.pos += len(match.group(0))
++            state.pos -= len(match.group(0))
+             return True
+
+     return False
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_88',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_88',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_88',,,,,,
+M5ff622583cff9025,specified,markdown_it/rules_block/html_block.py,html_block,82,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/html_block.py
++++ markdown_it/rules_block/html_block.py
+@@ -46,7 +46,7 @@
+                 if len(lineText) != 0:
+                     nextLine += 1
+                 break
+-            nextLine += 1
++            nextLine -= 1
+
+     state.line = nextLine
+",mutmut show 'markdown_it.rules_block.html_block.x_html_block__mutmut_59',mutmut tests-for-mutant 'markdown_it.rules_block.html_block.x_html_block__mutmut_59',mutmut run 'markdown_it.rules_block.html_block.x_html_block__mutmut_59',,,,,,
+M60b281b54c20281d,specified,markdown_it/rules_block/code.py,code,24,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -12,7 +12,7 @@
+             continue
+
+         if state.is_code_block(nextLine):
+-            nextLine += 1
++            nextLine = 1
+             last = nextLine
+             continue
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_26',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_26',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_26',,,,,,
+M60fe09fbe42275b7,specified,markdown_it/rules_block/reference.py,reference,22,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -11,7 +11,7 @@
+         return False
+
+     if state.src[pos] != ""["":
+-        return False
++        return True
+
+     string = state.src[pos : maximum + 1]
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_23',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_23',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_23',,,,,,
+M66558245b5618325,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,96,ARITHMETIC,                    jumps[closerIdx] = closerIdx - openerIdx + lastJump,                    jumps[closerIdx] = closerIdx - openerIdx - lastJump,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -86,7 +86,7 @@
+                     else:
+                         lastJump = 0
+
+-                    jumps[closerIdx] = closerIdx - openerIdx + lastJump
++                    jumps[closerIdx] = closerIdx - openerIdx - lastJump
+                     jumps[openerIdx] = lastJump
+
+                     closer.open = False
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_103',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_103',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_103',,,,,,
+M66fadb9b21762071,specified,markdown_it/rules_block/blockquote.py,blockquote,86,ARITHMETIC,                offset += 1,                offset = 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -72,7 +72,7 @@
+                     - (offset + state.bsCount[startLine] + (1 if adjustTab else 0)) % 4
+                 )
+             else:
+-                offset += 1
++                offset = 1
+
+         else:
+             break
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_88',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_88',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_88',,,,,,
+M67548d95642a485a,specified,markdown_it/rules_block/state_block.py,skipEmptyLines,145,ARITHMETIC,        from_pos += 1,        from_pos -= 1,"--- markdown_it/rules_block/state_block.py
++++ markdown_it/rules_block/state_block.py
+@@ -8,5 +8,5 @@
+                 break
+         except IndexError:
+             pass
+-        from_pos += 1
++        from_pos -= 1
+     return from_pos
+",mutmut show 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_6',mutmut tests-for-mutant 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_6',mutmut run 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_6',,,,,,
+M6b1862b400e29b92,specified,markdown_it/rules_inline/html_inline.py,html_inline,42,ARITHMETIC,    state.pos += len(match.group(0)),    state.pos -= len(match.group(0)),"--- markdown_it/rules_inline/html_inline.py
++++ markdown_it/rules_inline/html_inline.py
+@@ -27,5 +27,5 @@
+         if isLinkClose(token.content):
+             state.linkLevel -= 1
+
+-    state.pos += len(match.group(0))
++    state.pos -= len(match.group(0))
+     return True
+",mutmut show 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_56',mutmut tests-for-mutant 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_56',mutmut run 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_56',,,,,,
+M6b4853a16a5934a2,specified,markdown_it/rules_block/list.py,markTightParagraphs,98,ARITHMETIC,        i += 1,        i = 1,"--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -8,4 +8,4 @@
+             state.tokens[i + 2].hidden = True
+             state.tokens[i].hidden = True
+             i += 2
+-        i += 1
++        i = 1
+",mutmut show 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_25',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_25',mutmut run 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_25',,,,,,
+M6b5247d68f37c10f,specified,markdown_it/parser_inline.py,skipToken,170,BOOLEAN_CONNECTOR,    if not ok:,    if ok:,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -36,6 +36,6 @@
+         #
+         state.pos = state.posMax
+
+-    if not ok:
++    if ok:
+         state.pos += 1
+     cache[pos] = state.pos
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_29',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_29',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_29',,,,,,
+M6de4f9b40208196c,specified,markdown_it/rules_inline/autolink.py,autolink,77,CONSTANT_REPLACEMENT,    return False,    return True,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -63,4 +63,4 @@
+         state.pos += len(url) + 2
+         return True
+
+-    return False
++    return True
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_158',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_158',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_158',,,,,,
+M6eded14cc512f88f,specified,markdown_it/rules_block/code.py,code,20,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -8,7 +8,7 @@
+
+     while nextLine < endLine:
+         if state.isEmpty(nextLine):
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         if state.is_code_block(nextLine):
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_22',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_22',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_22',,,,,,
+M72c24b026592af9a,specified,markdown_it/rules_block/reference.py,reference,44,ARITHMETIC,            pos += 1,            pos -= 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -33,7 +33,7 @@
+                 maximum = len(string)
+                 nextLine += 1
+         elif ch == 0x5C:  # /* \ */
+-            pos += 1
++            pos -= 1
+             if (
+                 pos < maximum
+                 and charCodeAt(string, pos) == 0x0A
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_60',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_60',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_60',,,,,,
+M730bbb31311eb2bf,specified,markdown_it/rules_inline/backticks.py,backtick,29,ARITHMETIC,        state.pos += openerLength,        state.pos -= openerLength,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -18,7 +18,7 @@
+     if state.backticksScanned and state.backticks.get(openerLength, 0) <= start:
+         if not silent:
+             state.pending += marker
+-        state.pos += openerLength
++        state.pos -= openerLength
+         return True
+
+     matchStart = matchEnd = pos
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_30',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_30',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_30',,,,,,
+M73888e19fa480b17,specified,markdown_it/rules_block/blockquote.py,blockquote,27,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -13,7 +13,7 @@
+     # check the block quote marker
+     try:
+         if state.src[pos] != "">"":
+-            return False
++            return True
+     except IndexError:
+         return False
+     pos += 1
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_21',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_21',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_21',,,,,,
+M7abd7bd0705b433a,specified,markdown_it/parser_block.py,tokenize,62,CALL_ARGUMENT,"    rules = self.ruler.getRules("""")",    rules = self.ruler.getRules(None),"--- markdown_it/parser_block.py
++++ markdown_it/parser_block.py
+@@ -1,6 +1,6 @@
+ def tokenize(self, state: StateBlock, startLine: int, endLine: int) -> None:
+     """"""Generate tokens for input range.""""""
+-    rules = self.ruler.getRules("""")
++    rules = self.ruler.getRules(None)
+     line = startLine
+     maxNesting = state.md.options.maxNesting
+     hasEmptyLines = False
+",mutmut show 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_2',mutmut tests-for-mutant 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_2',mutmut run 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_2',,,,,,
+M7b764a437c6a13dd,specified,markdown_it/rules_block/reference.py,reference,80,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -69,7 +69,7 @@
+     #            ^^^^^^^^^^^ parse this
+     destRes = state.md.helpers.parseLinkDestination(string, pos, maximum)
+     if not destRes.ok:
+-        return False
++        return True
+
+     href = state.md.normalizeLink(destRes.str)
+     if not state.md.validateLink(href):
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_134',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_134',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_134',,,,,,
+M7d99418a86c9be1d,specified,markdown_it/rules_block/reference.py,reference,44,ARITHMETIC,            pos += 1,            pos = 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -33,7 +33,7 @@
+                 maximum = len(string)
+                 nextLine += 1
+         elif ch == 0x5C:  # /* \ */
+-            pos += 1
++            pos = 1
+             if (
+                 pos < maximum
+                 and charCodeAt(string, pos) == 0x0A
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_59',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_59',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_59',,,,,,
+M7f1c6a095726af38,specified,markdown_it/rules_block/html_block.py,html_block,59,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/html_block.py
++++ markdown_it/rules_block/html_block.py
+@@ -23,7 +23,7 @@
+             break
+
+     if not html_seq:
+-        return False
++        return True
+
+     if silent:
+         # true if this sequence can be a terminator, false otherwise
+",mutmut show 'markdown_it.rules_block.html_block.x_html_block__mutmut_35',mutmut tests-for-mutant 'markdown_it.rules_block.html_block.x_html_block__mutmut_35',mutmut run 'markdown_it.rules_block.html_block.x_html_block__mutmut_35',,,,,,
+M83b22dd27ea592ef,specified,markdown_it/rules_inline/newline.py,newline,41,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/newline.py
++++ markdown_it/rules_inline/newline.py
+@@ -32,7 +32,7 @@
+
+     # skip heading spaces for next line
+     while pos < maximum and isStrSpace(state.src[pos]):
+-        pos += 1
++        pos = 1
+
+     state.pos = pos
+     return True
+",mutmut show 'markdown_it.rules_inline.newline.x_newline__mutmut_90',mutmut tests-for-mutant 'markdown_it.rules_inline.newline.x_newline__mutmut_90',mutmut run 'markdown_it.rules_inline.newline.x_newline__mutmut_90',,,,,,
+M841d303fc4f41eba,specified,markdown_it/rules_block/hr.py,hr,40,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_block/hr.py
++++ markdown_it/rules_block/hr.py
+@@ -24,7 +24,7 @@
+         ch = state.src[pos]
+         pos += 1
+         if ch != marker and not isStrSpace(ch):
+-            return False
++            return True
+         if ch == marker:
+             cnt += 1
+",mutmut show 'markdown_it.rules_block.hr.x_hr__mutmut_39',mutmut tests-for-mutant 'markdown_it.rules_block.hr.x_hr__mutmut_39',mutmut run 'markdown_it.rules_block.hr.x_hr__mutmut_39',,,,,,
+M874deb5c48ad0bc3,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,44,ARITHMETIC,            closerIdx += 1,            closerIdx -= 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -34,7 +34,7 @@
+         closer.length = closer.length or 0
+
+         if not closer.close:
+-            closerIdx += 1
++            closerIdx -= 1
+             continue
+
+         # Previously calculated lower bounds (previous fails)
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_28',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_28',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_28',,,,,,
+M8a361318cdb4f727,specified,markdown_it/rules_inline/emphasis.py,tokenize,35,ARITHMETIC,    state.pos += scanned.length,    state.pos = scanned.length,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -25,6 +25,6 @@
+             )
+         )
+
+-    state.pos += scanned.length
++    state.pos = scanned.length
+
+     return True
+",mutmut show 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_46',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_46',mutmut run 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_46',,,,,,
+M8af285b2b91a4e86,specified,markdown_it/rules_inline/link.py,link,24,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/link.py
++++ markdown_it/rules_inline/link.py
+@@ -15,7 +15,7 @@
+
+     # parser failed to find ']', so it's not a valid link
+     if labelEnd < 0:
+-        return False
++        return True
+
+     pos = labelEnd + 1
+",mutmut show 'markdown_it.rules_inline.link.x_link__mutmut_27',mutmut tests-for-mutant 'markdown_it.rules_inline.link.x_link__mutmut_27',mutmut run 'markdown_it.rules_inline.link.x_link__mutmut_27',,,,,,
+M8d1b39ecb12dc5c4,specified,markdown_it/rules_block/lheading.py,lheading,28,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -17,7 +17,7 @@
+         # this would be a code block normally, but after paragraph
+         # it's considered a lazy continuation regardless of what's there
+         if state.sCount[nextLine] - state.blkIndent > 3:
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         # Check for underline in setext header
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_36',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_36',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_36',,,,,,
+M8dbdf0f7695a7a7c,specified,markdown_it/rules_inline/image.py,image,16,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/image.py
++++ markdown_it/rules_inline/image.py
+@@ -5,7 +5,7 @@
+     max = state.posMax
+
+     if state.src[state.pos] != ""!"":
+-        return False
++        return True
+
+     if state.pos + 1 < state.posMax and state.src[state.pos + 1] != ""["":
+         return False
+",mutmut show 'markdown_it.rules_inline.image.x_image__mutmut_8',mutmut tests-for-mutant 'markdown_it.rules_inline.image.x_image__mutmut_8',mutmut run 'markdown_it.rules_inline.image.x_image__mutmut_8',,,,,,
+M8dfdedcfec08c9cd,specified,markdown_it/helpers/parse_link_title.py,parseLinkTitle,68,ARITHMETIC,            pos += 1,            pos -= 1,"--- markdown_it/helpers/parse_link_title.py
++++ markdown_it/helpers/parse_link_title.py
+@@ -41,7 +41,7 @@
+         elif code == 0x28 and state.marker == 0x29:  # /* ( */  /* ) */
+             return state
+         elif code == 0x5C and pos + 1 < maximum:  # /* \ */
+-            pos += 1
++            pos -= 1
+
+         pos += 1
+",mutmut show 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_58',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_58',mutmut run 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_58',,,,,,
+M967978dbe796bde8,specified,markdown_it/rules_inline/state_inline.py,scanDelims,137,COMPARISON,    while pos < maximum and self.src[pos] == marker:,    while pos < maximum and self.src[pos] != marker:,"--- markdown_it/rules_inline/state_inline.py
++++ markdown_it/rules_inline/state_inline.py
+@@ -14,7 +14,7 @@
+     # treat beginning of the line as a whitespace
+     lastChar = self.src[start - 1] if start > 0 else "" ""
+
+-    while pos < maximum and self.src[pos] == marker:
++    while pos < maximum and self.src[pos] != marker:
+         pos += 1
+
+     count = pos - start
+",mutmut show 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_12',mutmut tests-for-mutant 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_12',mutmut run 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_12',,,,,,
+M99c0f08c9180fd98,specified,markdown_it/rules_inline/image.py,image,95,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_inline/image.py
++++ markdown_it/rules_inline/image.py
+@@ -84,7 +84,7 @@
+         # Link reference
+         #
+         if ""references"" not in state.env:
+-            return False
++            return True
+
+         # /* [ */
+         if pos < max and state.src[pos] == ""["":
+",mutmut show 'markdown_it.rules_inline.image.x_image__mutmut_122',mutmut tests-for-mutant 'markdown_it.rules_inline.image.x_image__mutmut_122',mutmut run 'markdown_it.rules_inline.image.x_image__mutmut_122',,,,,,
+M9ad805d798a962ce,specified,markdown_it/rules_block/reference.py,reference,149,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -138,7 +138,7 @@
+
+     if pos < maximum and charCodeAt(string, pos) != 0x0A:
+         # garbage at the end of the line
+-        return False
++        return True
+
+     label = normalizeReference(string[1:labelEnd])
+     if not label:
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_253',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_253',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_253',,,,,,
+M9cb57e50c5201907,specified,markdown_it/rules_block/state_block.py,skipCharsStr,191,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_block/state_block.py
++++ markdown_it/rules_block/state_block.py
+@@ -7,5 +7,5 @@
+             break
+         if current != ch:
+             break
+-        pos += 1
++        pos = 1
+     return pos
+",mutmut show 'markdown_it.rules_block.state_block.xǁStateBlockǁskipCharsStr__mutmut_6',mutmut tests-for-mutant 'markdown_it.rules_block.state_block.xǁStateBlockǁskipCharsStr__mutmut_6',mutmut run 'markdown_it.rules_block.state_block.xǁStateBlockǁskipCharsStr__mutmut_6',,,,,,
+M9d6d67a5b6398709,specified,markdown_it/rules_inline/html_inline.py,html_inline,22,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/html_inline.py
++++ markdown_it/rules_inline/html_inline.py
+@@ -7,7 +7,7 @@
+     # Check start
+     maximum = state.posMax
+     if state.src[pos] != ""<"" or pos + 2 >= maximum:
+-        return False
++        return True
+
+     # Quick fail on second char
+     ch = state.src[pos + 1]
+",mutmut show 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_16',mutmut tests-for-mutant 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_16',mutmut run 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_16',,,,,,
+M9da752cdb3cf64a2,specified,markdown_it/rules_inline/image.py,image,88,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/image.py
++++ markdown_it/rules_inline/image.py
+@@ -77,7 +77,7 @@
+             state.pos = oldPos
+             return False
+
+-        pos += 1
++        pos = 1
+
+     else:
+         #
+",mutmut show 'markdown_it.rules_inline.image.x_image__mutmut_116',mutmut tests-for-mutant 'markdown_it.rules_inline.image.x_image__mutmut_116',mutmut run 'markdown_it.rules_inline.image.x_image__mutmut_116',,,,,,
+Ma17c12f4374ea086,specified,markdown_it/rules_inline/html_inline.py,html_inline,42,ARITHMETIC,    state.pos += len(match.group(0)),    state.pos = len(match.group(0)),"--- markdown_it/rules_inline/html_inline.py
++++ markdown_it/rules_inline/html_inline.py
+@@ -27,5 +27,5 @@
+         if isLinkClose(token.content):
+             state.linkLevel -= 1
+
+-    state.pos += len(match.group(0))
++    state.pos = len(match.group(0))
+     return True
+",mutmut show 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_55',mutmut tests-for-mutant 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_55',mutmut run 'markdown_it.rules_inline.html_inline.x_html_inline__mutmut_55',,,,,,
+Ma1fa7dfa7dc55b76,specified,markdown_it/rules_block/reference.py,reference,34,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -23,7 +23,7 @@
+     while pos < maximum:
+         ch = charCodeAt(string, pos)
+         if ch == 0x5B:  # /* [ */
+-            return False
++            return True
+         elif ch == 0x5D:  # /* ] */
+             labelEnd = pos
+             break
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_39',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_39',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_39',,,,,,
+Ma2925f412af0841d,specified,markdown_it/rules_inline/emphasis.py,tokenize,17,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -7,7 +7,7 @@
+         return False
+
+     if marker not in (""_"", ""*""):
+-        return False
++        return True
+
+     scanned = state.scanDelims(state.pos, marker == ""*"")
+",mutmut show 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_7',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_7',mutmut run 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_7',,,,,,
+Ma2ba87b1d8f47ed8,specified,markdown_it/rules_block/fence.py,make_fence_rule,90,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/fence.py
++++ markdown_it/rules_block/fence.py
+@@ -76,7 +76,7 @@
+         nextLine = startLine
+
+         while True:
+-            nextLine += 1
++            nextLine -= 1
+             if nextLine >= endLine:
+                 # unclosed block should be autoclosed by end of document.
+                 # also block seems to be autoclosed by end of parent
+",mutmut show 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_56',mutmut tests-for-mutant 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_56',mutmut run 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_56',,,,,,
+Ma31d2631c6e9ca39,specified,markdown_it/rules_inline/state_inline.py,scanDelims,132,STATEMENT_REPLACEMENT,    marker = self.src[start],    marker = None,"--- markdown_it/rules_inline/state_inline.py
++++ markdown_it/rules_inline/state_inline.py
+@@ -9,7 +9,7 @@
+         """"""
+     pos = start
+     maximum = self.posMax
+-    marker = self.src[start]
++    marker = None
+
+     # treat beginning of the line as a whitespace
+     lastChar = self.src[start - 1] if start > 0 else "" ""
+",mutmut show 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_3',mutmut tests-for-mutant 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_3',mutmut run 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_3',,,,,,
+Ma56f8c3bae3d5717,specified,markdown_it/rules_inline/autolink.py,autolink,29,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -15,7 +15,7 @@
+         ch = state.src[pos]
+
+         if ch == ""<"":
+-            return False
++            return True
+         if ch == "">"":
+             break
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_16',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_16',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_16',,,,,,
+Ma58b697f1e62fe88,specified,markdown_it/rules_block/reference.py,reference,69,ARITHMETIC,                nextLine += 1,                nextLine -= 1,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -58,7 +58,7 @@
+             if (lineContent := getNextLine(state, nextLine)) is not None:
+                 string += lineContent
+                 maximum = len(string)
+-                nextLine += 1
++                nextLine -= 1
+         elif isSpace(ch):
+             pass
+         else:
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_119',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_119',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_119',,,,,,
+Ma66b3c46cb0b415e,specified,markdown_it/rules_inline/backticks.py,backtick,40,ARITHMETIC,        matchEnd = matchStart + 1,        matchEnd = matchStart - 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -29,7 +29,7 @@
+             matchStart = state.src.index(""`"", matchEnd)
+         except ValueError:
+             break
+-        matchEnd = matchStart + 1
++        matchEnd = matchStart - 1
+
+         # scan marker length
+         while matchEnd < maximum and (state.src[matchEnd] == ""`""):
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_43',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_43',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_43',,,,,,
+Ma78d3f5658ff92aa,specified,markdown_it/rules_inline/autolink.py,autolink,24,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -10,7 +10,7 @@
+     while True:
+         pos += 1
+         if pos >= maximum:
+-            return False
++            return True
+
+         ch = state.src[pos]
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_12',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_12',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_12',,,,,,
+Maaf1df106514e802,specified,markdown_it/rules_inline/escape.py,escape,15,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -4,7 +4,7 @@
+     maximum = state.posMax
+
+     if state.src[pos] != ""\\"":
+-        return False
++        return True
+
+     pos += 1
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_5',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_5',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_5',,,,,,
+Mab2ca36f2dda893f,specified,markdown_it/helpers/parse_link_title.py,parseLinkTitle,68,ARITHMETIC,            pos += 1,            pos = 1,"--- markdown_it/helpers/parse_link_title.py
++++ markdown_it/helpers/parse_link_title.py
+@@ -41,7 +41,7 @@
+         elif code == 0x28 and state.marker == 0x29:  # /* ( */  /* ) */
+             return state
+         elif code == 0x5C and pos + 1 < maximum:  # /* \ */
+-            pos += 1
++            pos = 1
+
+         pos += 1
+",mutmut show 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_57',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_57',mutmut run 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_57',,,,,,
+Mad7bc769c33bb184,specified,markdown_it/rules_block/list.py,markTightParagraphs,97,ARITHMETIC,            i += 2,            i -= 2,"--- markdown_it/rules_block/list.py
++++ markdown_it/rules_block/list.py
+@@ -7,5 +7,5 @@
+         if state.tokens[i].level == level and state.tokens[i].type == ""paragraph_open"":
+             state.tokens[i + 2].hidden = True
+             state.tokens[i].hidden = True
+-            i += 2
++            i -= 2
+         i += 1
+",mutmut show 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_23',mutmut tests-for-mutant 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_23',mutmut run 'markdown_it.rules_block.list.x_markTightParagraphs__mutmut_23',,,,,,
+Mb2877bfd77b21e26,specified,markdown_it/rules_inline/backticks.py,backtick,37,CALL_ARGUMENT,"            matchStart = state.src.index(""`"", matchEnd)","            matchStart = state.src.index(""`"", )","--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -26,7 +26,7 @@
+     # Nothing found in the cache, scan until the end of the line (or until marker is found)
+     while True:
+         try:
+-            matchStart = state.src.index(""`"", matchEnd)
++            matchStart = state.src.index(""`"", )
+         except ValueError:
+             break
+         matchEnd = matchStart + 1
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_38',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_38',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_38',,,,,,
+Mb3d4ce0fd4865160,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,66,ARITHMETIC,                openerIdx -= jumps[openerIdx] + 1,                openerIdx = jumps[openerIdx] + 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -56,7 +56,7 @@
+             opener = delimiters[openerIdx]
+
+             if opener.marker != closer.marker:
+-                openerIdx -= jumps[openerIdx] + 1
++                openerIdx = jumps[openerIdx] + 1
+                 continue
+
+             if opener.open and opener.end < 0:
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_59',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_59',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_59',,,,,,
+Mb48ca535869b8101,specified,markdown_it/rules_inline/emphasis.py,tokenize,35,ARITHMETIC,    state.pos += scanned.length,    state.pos -= scanned.length,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -25,6 +25,6 @@
+             )
+         )
+
+-    state.pos += scanned.length
++    state.pos -= scanned.length
+
+     return True
+",mutmut show 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_47',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_47',mutmut run 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_47',,,,,,
+Mb671dbeb48a0d55e,specified,markdown_it/rules_inline/backticks.py,backtick,37,CALL_ARGUMENT,"            matchStart = state.src.index(""`"", matchEnd)","            matchStart = state.src.index(""`"", None)","--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -26,7 +26,7 @@
+     # Nothing found in the cache, scan until the end of the line (or until marker is found)
+     while True:
+         try:
+-            matchStart = state.src.index(""`"", matchEnd)
++            matchStart = state.src.index(""`"", None)
+         except ValueError:
+             break
+         matchEnd = matchStart + 1
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_36',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_36',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_36',,,,,,
+Mb85d73c96e392b6a,specified,markdown_it/rules_inline/entity.py,entity,39,ARITHMETIC,            state.pos += len(match.group(0)),            state.pos = len(match.group(0)),"--- markdown_it/rules_inline/entity.py
++++ markdown_it/rules_inline/entity.py
+@@ -25,7 +25,7 @@
+                 token.markup = match.group(0)
+                 token.info = ""entity""
+
+-            state.pos += len(match.group(0))
++            state.pos = len(match.group(0))
+             return True
+
+     else:
+",mutmut show 'markdown_it.rules_inline.entity.x_entity__mutmut_58',mutmut tests-for-mutant 'markdown_it.rules_inline.entity.x_entity__mutmut_58',mutmut run 'markdown_it.rules_inline.entity.x_entity__mutmut_58',,,,,,
+Mb8e86de8a62f10e4,specified,markdown_it/parser_block.py,tokenize,87,CONSTANT_REPLACEMENT,"            if rule(state, line, endLine, False):","            if rule(state, line, endLine, True):","--- markdown_it/parser_block.py
++++ markdown_it/parser_block.py
+@@ -25,7 +25,7 @@
+         # - update `state.tokens`
+         # - return True
+         for rule in rules:
+-            if rule(state, line, endLine, False):
++            if rule(state, line, endLine, True):
+                 break
+
+         # set state.tight if we had an empty line before current tag
+",mutmut show 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_26',mutmut tests-for-mutant 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_26',mutmut run 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_26',,,,,,
+Mbd0c9c4054508952,specified,markdown_it/rules_block/blockquote.py,blockquote,81,ARITHMETIC,                offset += (,                offset -= (,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -67,7 +67,7 @@
+
+         if isStrSpace(ch):
+             if ch == ""\t"":
+-                offset += (
++                offset -= (
+                     4
+                     - (offset + state.bsCount[startLine] + (1 if adjustTab else 0)) % 4
+                 )
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_79',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_79',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_79',,,,,,
+Mbd323a628af3c779,specified,markdown_it/rules_inline/escape.py,escape,17,ARITHMETIC,    pos += 1,    pos -= 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -6,7 +6,7 @@
+     if state.src[pos] != ""\\"":
+         return False
+
+-    pos += 1
++    pos -= 1
+
+     # '\' at the end of the inline block
+     if pos >= maximum:
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_7',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_7',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_7',,,,,,
+Mbd3461ae4692cc7c,specified,markdown_it/parser_inline.py,tokenize,201,ARITHMETIC,        state.pos += 1,        state.pos -= 1,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -25,7 +25,7 @@
+             continue
+
+         state.pending += state.src[state.pos]
+-        state.pos += 1
++        state.pos -= 1
+
+     if state.pending:
+         state.pushPending()
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_26',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_26',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_26',,,,,,
+Mbddf115457a8ff50,specified,markdown_it/rules_block/paragraph.py,paragraph,35,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -23,7 +23,7 @@
+
+         # quirk for blockquotes, this line should already be checked by that rule
+         if state.sCount[nextLine] < 0:
+-            nextLine += 1
++            nextLine = 1
+             continue
+
+         # Some tags can terminate paragraph without empty line.
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_38',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_38',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_38',,,,,,
+Mbe6e7f8481a870b9,specified,markdown_it/rules_inline/emphasis.py,_postProcess,91,ARITHMETIC,            i -= 1,            i += 1,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -49,6 +49,6 @@
+         if isStrong:
+             state.tokens[delimiters[i - 1].token].content = """"
+             state.tokens[delimiters[startDelim.end + 1].token].content = """"
+-            i -= 1
++            i += 1
+
+         i -= 1
+",mutmut show 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_95',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_95',mutmut run 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_95',,,,,,
+Mc0398385764c2551,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,44,ARITHMETIC,            closerIdx += 1,            closerIdx = 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -34,7 +34,7 @@
+         closer.length = closer.length or 0
+
+         if not closer.close:
+-            closerIdx += 1
++            closerIdx = 1
+             continue
+
+         # Previously calculated lower bounds (previous fails)
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_27',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_27',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_27',,,,,,
+Mc04b975ef7475017,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,66,ARITHMETIC,                openerIdx -= jumps[openerIdx] + 1,                openerIdx -= jumps[openerIdx] - 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -56,7 +56,7 @@
+             opener = delimiters[openerIdx]
+
+             if opener.marker != closer.marker:
+-                openerIdx -= jumps[openerIdx] + 1
++                openerIdx -= jumps[openerIdx] - 1
+                 continue
+
+             if opener.open and opener.end < 0:
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_61',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_61',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_61',,,,,,
+Mc0a5340ca44d0c69,specified,markdown_it/rules_block/fence.py,make_fence_rule,65,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_block/fence.py
++++ markdown_it/rules_block/fence.py
+@@ -51,7 +51,7 @@
+         marker = state.src[pos]
+
+         if marker not in markers:
+-            return False
++            return True
+
+         # scan marker length
+         mem = pos
+",mutmut show 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_35',mutmut tests-for-mutant 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_35',mutmut run 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_35',,,,,,
+Mc119ed826d050365,specified,markdown_it/rules_inline/escape.py,escape,51,CONSTANT_REPLACEMENT,"        token = state.push(""text_special"", """", 0)","        token = state.push(""text_special"", """", 1)","--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -40,7 +40,7 @@
+     origStr = ""\\"" + escapedStr
+
+     if not silent:
+-        token = state.push(""text_special"", """", 0)
++        token = state.push(""text_special"", """", 1)
+         token.content = escapedStr if ch1 in _ESCAPED else origStr
+         token.markup = origStr
+         token.info = ""escape""
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_80',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_80',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_80',,,,,,
+Mc1af7d860c329319,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,124,ARITHMETIC,        closerIdx += 1,        closerIdx = 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -114,4 +114,4 @@
+                 (3 if closer.open else 0) + ((closer.length or 0) % 3)
+             ] = newMinOpenerIdx
+
+-        closerIdx += 1
++        closerIdx = 1
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_133',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_133',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_133',,,,,,
+Mc1e746209a482b87,specified,markdown_it/rules_inline/balance_pairs.py,processDelimiters,110,ARITHMETIC,            openerIdx -= jumps[openerIdx] + 1,            openerIdx = jumps[openerIdx] + 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -100,7 +100,7 @@
+
+                     break
+
+-            openerIdx -= jumps[openerIdx] + 1
++            openerIdx = jumps[openerIdx] + 1
+
+         if newMinOpenerIdx != -1:
+             # If match for this delimiter run failed, we want to set lower bound for
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_118',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_118',mutmut run 'markdown_it.rules_inline.balance_pairs.x_processDelimiters__mutmut_118',,,,,,
+Mc2065a5d263f478d,specified,markdown_it/rules_block/paragraph.py,paragraph,46,CONTROL_FLOW,            break,            return,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -34,7 +34,7 @@
+                 break
+
+         if terminate:
+-            break
++            return
+
+         nextLine += 1
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_56',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_56',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_56',,,,,,
+Mc2dcef506f9ef2c3,specified,markdown_it/rules_inline/autolink.py,autolink,53,ARITHMETIC,        state.pos += len(url) + 2,        state.pos -= len(url) + 2,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -39,7 +39,7 @@
+             token.markup = ""autolink""
+             token.info = ""auto""
+
+-        state.pos += len(url) + 2
++        state.pos -= len(url) + 2
+         return True
+
+     if EMAIL_RE.search(url) is not None:
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_85',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_85',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_85',,,,,,
+Mc57dd6e70ddf62a5,specified,markdown_it/rules_block/paragraph.py,paragraph,15,ARITHMETIC,    nextLine = startLine + 1,    nextLine = startLine - 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -3,7 +3,7 @@
+         ""entering paragraph: %s, %s, %s, %s"", state, startLine, endLine, silent
+     )
+
+-    nextLine = startLine + 1
++    nextLine = startLine - 1
+     ruler = state.md.block.ruler
+     terminatorRules = ruler.getRules(""paragraph"")
+     endLine = state.lineMax
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_14',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_14',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_14',,,,,,
+Mc5e40eab5c8889fe,specified,markdown_it/rules_block/blockquote.py,blockquote,51,ARITHMETIC,        offset += 1,        offset -= 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -37,7 +37,7 @@
+         #     ^ -- position start of line here:
+         pos += 1
+         initial += 1
+-        offset += 1
++        offset -= 1
+         adjustTab = False
+         spaceAfterMarker = True
+     elif second_char == ""\t"":
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_41',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_41',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_41',,,,,,
+Mc65eff286ad128b1,specified,markdown_it/rules_inline/newline.py,newline,37,ARITHMETIC,    pos += 1,    pos = 1,"--- markdown_it/rules_inline/newline.py
++++ markdown_it/rules_inline/newline.py
+@@ -28,7 +28,7 @@
+         else:
+             state.push(""softbreak"", ""br"", 0)
+
+-    pos += 1
++    pos = 1
+
+     # skip heading spaces for next line
+     while pos < maximum and isStrSpace(state.src[pos]):
+",mutmut show 'markdown_it.rules_inline.newline.x_newline__mutmut_84',mutmut tests-for-mutant 'markdown_it.rules_inline.newline.x_newline__mutmut_84',mutmut run 'markdown_it.rules_inline.newline.x_newline__mutmut_84',,,,,,
+Mc6687d727a69be61,specified,markdown_it/rules_inline/escape.py,escape,56,ARITHMETIC,    state.pos = pos + 1,    state.pos = pos - 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -45,5 +45,5 @@
+         token.markup = origStr
+         token.info = ""escape""
+
+-    state.pos = pos + 1
++    state.pos = pos - 1
+     return True
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_88',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_88',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_88',,,,,,
+Mc7eb750b64275f10,specified,markdown_it/rules_block/heading.py,heading,25,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/heading.py
++++ markdown_it/rules_block/heading.py
+@@ -10,7 +10,7 @@
+     ch: str | None = state.src[pos]
+
+     if ch != ""#"" or pos >= maximum:
+-        return False
++        return True
+
+     # count heading level
+     level = 1
+",mutmut show 'markdown_it.rules_block.heading.x_heading__mutmut_23',mutmut tests-for-mutant 'markdown_it.rules_block.heading.x_heading__mutmut_23',mutmut run 'markdown_it.rules_block.heading.x_heading__mutmut_23',,,,,,
+Mca2a26d554536bb7,specified,markdown_it/rules_block/lheading.py,lheading,62,ARITHMETIC,        nextLine += 1,        nextLine = 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -51,7 +51,7 @@
+         if terminate:
+             break
+
+-        nextLine += 1
++        nextLine = 1
+
+     if not level:
+         # Didn't find valid underline
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_83',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_83',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_83',,,,,,
+Mcb0d3ef4483f9984,specified,markdown_it/rules_block/fence.py,make_fence_rule,90,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/fence.py
++++ markdown_it/rules_block/fence.py
+@@ -76,7 +76,7 @@
+         nextLine = startLine
+
+         while True:
+-            nextLine += 1
++            nextLine = 1
+             if nextLine >= endLine:
+                 # unclosed block should be autoclosed by end of document.
+                 # also block seems to be autoclosed by end of parent
+",mutmut show 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_55',mutmut tests-for-mutant 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_55',mutmut run 'markdown_it.rules_block.fence.x_make_fence_rule__mutmut_55',,,,,,
+Mcb4546a5480de398,specified,markdown_it/rules_inline/text.py,text,16,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/text.py
++++ markdown_it/rules_inline/text.py
+@@ -9,7 +9,7 @@
+     pos = terminator_char.start() if terminator_char else posMax
+
+     if pos == state.pos:
+-        return False
++        return True
+
+     if not silent:
+         state.pending += state.src[state.pos : pos]
+",mutmut show 'markdown_it.rules_inline.text.x_text__mutmut_10',mutmut tests-for-mutant 'markdown_it.rules_inline.text.x_text__mutmut_10',mutmut run 'markdown_it.rules_inline.text.x_text__mutmut_10',,,,,,
+Mce583232fdc5b593,specified,markdown_it/parser_block.py,tokenize,62,CALL_ARGUMENT,"    rules = self.ruler.getRules("""")","    rules = self.ruler.getRules(""XXXX"")","--- markdown_it/parser_block.py
++++ markdown_it/parser_block.py
+@@ -1,6 +1,6 @@
+ def tokenize(self, state: StateBlock, startLine: int, endLine: int) -> None:
+     """"""Generate tokens for input range.""""""
+-    rules = self.ruler.getRules("""")
++    rules = self.ruler.getRules(""XXXX"")
+     line = startLine
+     maxNesting = state.md.options.maxNesting
+     hasEmptyLines = False
+",mutmut show 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_3',mutmut tests-for-mutant 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_3',mutmut run 'markdown_it.parser_block.xǁParserBlockǁtokenize__mutmut_3',,,,,,
+Mcf7597d456338147,specified,markdown_it/rules_inline/escape.py,escape,28,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -17,7 +17,7 @@
+     if ch1 == ""\n"":
+         if not silent:
+             state.push(""hardbreak"", ""br"", 0)
+-        pos += 1
++        pos = 1
+         # skip leading whitespaces from next line
+         while pos < maximum:
+             ch = state.src[pos]
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_28',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_28',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_28',,,,,,
+Md0017df0ba457f4d,specified,markdown_it/helpers/parse_link_destination.py,parseLinkDestination,60,ARITHMETIC,            pos += 2,            pos -= 2,"--- markdown_it/helpers/parse_link_destination.py
++++ markdown_it/helpers/parse_link_destination.py
+@@ -41,7 +41,7 @@
+         if code == 0x5C and pos + 1 < maximum:
+             if charCodeAt(string, pos + 1) == 0x20:
+                 break
+-            pos += 2
++            pos -= 2
+             continue
+
+         if code == 0x28:  # /* ( */)
+",mutmut show 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_81',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_81',mutmut run 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_81',,,,,,
+Md254a962ee7c4217,specified,markdown_it/helpers/parse_link_title.py,parseLinkTitle,70,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/helpers/parse_link_title.py
++++ markdown_it/helpers/parse_link_title.py
+@@ -43,7 +43,7 @@
+         elif code == 0x5C and pos + 1 < maximum:  # /* \ */
+             pos += 1
+
+-        pos += 1
++        pos = 1
+
+     # no closing marker found, but this link title may continue on the next line (for references)
+     state.can_continue = True
+",mutmut show 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_60',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_60',mutmut run 'markdown_it.helpers.parse_link_title.x_parseLinkTitle__mutmut_60',,,,,,
+Md4b2e42b788f64f7,specified,markdown_it/rules_inline/backticks.py,backtick,16,ARITHMETIC,    pos += 1,    pos = 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -5,7 +5,7 @@
+         return False
+
+     start = pos
+-    pos += 1
++    pos = 1
+     maximum = state.posMax
+
+     # scan marker length
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_6',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_6',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_6',,,,,,
+Md74669731e2b805c,specified,markdown_it/parser_inline.py,skipToken,171,ARITHMETIC,        state.pos += 1,        state.pos -= 1,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -37,5 +37,5 @@
+         state.pos = state.posMax
+
+     if not ok:
+-        state.pos += 1
++        state.pos -= 1
+     cache[pos] = state.pos
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_31',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_31',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁskipToken__mutmut_31',,,,,,
+Mdb006e316bce986d,specified,markdown_it/rules_inline/balance_pairs.py,link_pairs,138,ARITHMETIC,        curr += 1,        curr = 1,"--- markdown_it/rules_inline/balance_pairs.py
++++ markdown_it/rules_inline/balance_pairs.py
+@@ -9,4 +9,4 @@
+         curr_meta = tokens_meta[curr]
+         if curr_meta and ""delimiters"" in curr_meta:
+             processDelimiters(state, curr_meta[""delimiters""])
+-        curr += 1
++        curr = 1
+",mutmut show 'markdown_it.rules_inline.balance_pairs.x_link_pairs__mutmut_21',mutmut tests-for-mutant 'markdown_it.rules_inline.balance_pairs.x_link_pairs__mutmut_21',mutmut run 'markdown_it.rules_inline.balance_pairs.x_link_pairs__mutmut_21',,,,,,
+Mdc93c2afb87ac282,specified,markdown_it/rules_block/lheading.py,lheading,28,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -17,7 +17,7 @@
+         # this would be a code block normally, but after paragraph
+         # it's considered a lazy continuation regardless of what's there
+         if state.sCount[nextLine] - state.blkIndent > 3:
+-            nextLine += 1
++            nextLine = 1
+             continue
+
+         # Check for underline in setext header
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_35',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_35',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_35',,,,,,
+Mdca4c60b8a7019cf,specified,markdown_it/rules_block/blockquote.py,blockquote,228,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/blockquote.py
++++ markdown_it/rules_block/blockquote.py
+@@ -214,7 +214,7 @@
+             oldTShift.append(state.tShift[nextLine])
+             state.tShift[nextLine] = pos - state.bMarks[nextLine]
+
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         # Case 2: line is not inside the blockquote, and the last line was empty.
+",mutmut show 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_221',mutmut tests-for-mutant 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_221',mutmut run 'markdown_it.rules_block.blockquote.x_blockquote__mutmut_221',,,,,,
+Mdddae4c34e4b7ce6,specified,markdown_it/rules_inline/emphasis.py,tokenize,14,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -4,7 +4,7 @@
+     marker = state.src[start]
+
+     if silent:
+-        return False
++        return True
+
+     if marker not in (""_"", ""*""):
+         return False
+",mutmut show 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_3',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_3',mutmut run 'markdown_it.rules_inline.emphasis.x_tokenize__mutmut_3',,,,,,
+Mde7b543e1a24077d,specified,markdown_it/rules_block/state_block.py,skipEmptyLines,145,ARITHMETIC,        from_pos += 1,        from_pos = 1,"--- markdown_it/rules_block/state_block.py
++++ markdown_it/rules_block/state_block.py
+@@ -8,5 +8,5 @@
+                 break
+         except IndexError:
+             pass
+-        from_pos += 1
++        from_pos = 1
+     return from_pos
+",mutmut show 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_5',mutmut tests-for-mutant 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_5',mutmut run 'markdown_it.rules_block.state_block.xǁStateBlockǁskipEmptyLines__mutmut_5',,,,,,
+Me0a73dc88200fe86,specified,markdown_it/rules_block/paragraph.py,paragraph,30,ARITHMETIC,            nextLine += 1,            nextLine -= 1,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -18,7 +18,7 @@
+         # this would be a code block normally, but after paragraph
+         # it's considered a lazy continuation regardless of what's there
+         if state.sCount[nextLine] - state.blkIndent > 3:
+-            nextLine += 1
++            nextLine -= 1
+             continue
+
+         # quirk for blockquotes, this line should already be checked by that rule
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_33',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_33',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_33',,,,,,
+Me10aeabc8eb74842,specified,markdown_it/rules_inline/newline.py,newline,11,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/newline.py
++++ markdown_it/rules_inline/newline.py
+@@ -2,7 +2,7 @@
+     pos = state.pos
+
+     if state.src[pos] != ""\n"":
+-        return False
++        return True
+
+     pmax = len(state.pending) - 1
+     maximum = state.posMax
+",mutmut show 'markdown_it.rules_inline.newline.x_newline__mutmut_4',mutmut tests-for-mutant 'markdown_it.rules_inline.newline.x_newline__mutmut_4',mutmut run 'markdown_it.rules_inline.newline.x_newline__mutmut_4',,,,,,
+Me2caba6c2f141e86,specified,markdown_it/rules_block/code.py,code,16,ARITHMETIC,    last = nextLine = startLine + 1,    last = nextLine = startLine - 1,"--- markdown_it/rules_block/code.py
++++ markdown_it/rules_block/code.py
+@@ -4,7 +4,7 @@
+     if not state.is_code_block(startLine):
+         return False
+
+-    last = nextLine = startLine + 1
++    last = nextLine = startLine - 1
+
+     while nextLine < endLine:
+         if state.isEmpty(nextLine):
+",mutmut show 'markdown_it.rules_block.code.x_code__mutmut_17',mutmut tests-for-mutant 'markdown_it.rules_block.code.x_code__mutmut_17',mutmut run 'markdown_it.rules_block.code.x_code__mutmut_17',,,,,,
+Me2cc9a0fd0356552,specified,markdown_it/rules_block/hr.py,hr,38,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_block/hr.py
++++ markdown_it/rules_block/hr.py
+@@ -22,7 +22,7 @@
+     cnt = 1
+     while pos < maximum:
+         ch = state.src[pos]
+-        pos += 1
++        pos = 1
+         if ch != marker and not isStrSpace(ch):
+             return False
+         if ch == marker:
+",mutmut show 'markdown_it.rules_block.hr.x_hr__mutmut_32',mutmut tests-for-mutant 'markdown_it.rules_block.hr.x_hr__mutmut_32',mutmut run 'markdown_it.rules_block.hr.x_hr__mutmut_32',,,,,,
+Me2cd2f5a48355558,specified,markdown_it/parser_inline.py,tokenize,201,ARITHMETIC,        state.pos += 1,        state.pos = 1,"--- markdown_it/parser_inline.py
++++ markdown_it/parser_inline.py
+@@ -25,7 +25,7 @@
+             continue
+
+         state.pending += state.src[state.pos]
+-        state.pos += 1
++        state.pos = 1
+
+     if state.pending:
+         state.pushPending()
+",mutmut show 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_25',mutmut tests-for-mutant 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_25',mutmut run 'markdown_it.parser_inline.xǁParserInlineǁtokenize__mutmut_25',,,,,,
+Me442c54a1f69ff36,specified,markdown_it/rules_inline/state_inline.py,scanDelims,138,ARITHMETIC,        pos += 1,        pos -= 1,"--- markdown_it/rules_inline/state_inline.py
++++ markdown_it/rules_inline/state_inline.py
+@@ -15,7 +15,7 @@
+     lastChar = self.src[start - 1] if start > 0 else "" ""
+
+     while pos < maximum and self.src[pos] == marker:
+-        pos += 1
++        pos -= 1
+
+     count = pos - start
+",mutmut show 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_14',mutmut tests-for-mutant 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_14',mutmut run 'markdown_it.rules_inline.state_inline.xǁStateInlineǁscanDelims__mutmut_14',,,,,,
+Me77640a40f890168,specified,markdown_it/rules_inline/link.py,link,94,CONSTANT_REPLACEMENT,            return False,            return True,"--- markdown_it/rules_inline/link.py
++++ markdown_it/rules_inline/link.py
+@@ -85,7 +85,7 @@
+         # Link reference
+         #
+         if ""references"" not in state.env:
+-            return False
++            return True
+
+         if pos < maximum and state.src[pos] == ""["":
+             start = pos + 1
+",mutmut show 'markdown_it.rules_inline.link.x_link__mutmut_115',mutmut tests-for-mutant 'markdown_it.rules_inline.link.x_link__mutmut_115',mutmut run 'markdown_it.rules_inline.link.x_link__mutmut_115',,,,,,
+Me92a05302484b3bb,specified,markdown_it/rules_inline/backticks.py,backtick,44,ARITHMETIC,            matchEnd += 1,            matchEnd = 1,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -33,7 +33,7 @@
+
+         # scan marker length
+         while matchEnd < maximum and (state.src[matchEnd] == ""`""):
+-            matchEnd += 1
++            matchEnd = 1
+
+         closerLength = matchEnd - matchStart
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_49',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_49',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_49',,,,,,
+Me9cd9b90580a301f,specified,markdown_it/rules_block/lheading.py,lheading,66,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -55,7 +55,7 @@
+
+     if not level:
+         # Didn't find valid underline
+-        return False
++        return True
+
+     content = state.getLines(startLine, nextLine, state.blkIndent, False).strip()
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_87',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_87',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_87',,,,,,
+Mea2490f048e68c7a,specified,markdown_it/rules_inline/autolink.py,autolink,22,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/rules_inline/autolink.py
++++ markdown_it/rules_inline/autolink.py
+@@ -8,7 +8,7 @@
+     maximum = state.posMax
+
+     while True:
+-        pos += 1
++        pos = 1
+         if pos >= maximum:
+             return False
+",mutmut show 'markdown_it.rules_inline.autolink.x_autolink__mutmut_8',mutmut tests-for-mutant 'markdown_it.rules_inline.autolink.x_autolink__mutmut_8',mutmut run 'markdown_it.rules_inline.autolink.x_autolink__mutmut_8',,,,,,
+Mec87d444bcb09ff2,specified,markdown_it/helpers/parse_link_destination.py,parseLinkDestination,73,ARITHMETIC,        pos += 1,        pos = 1,"--- markdown_it/helpers/parse_link_destination.py
++++ markdown_it/helpers/parse_link_destination.py
+@@ -54,7 +54,7 @@
+                 break
+             level -= 1
+
+-        pos += 1
++        pos = 1
+
+     if start == pos:
+         return result
+",mutmut show 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_99',mutmut tests-for-mutant 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_99',mutmut run 'markdown_it.helpers.parse_link_destination.x_parseLinkDestination__mutmut_99',,,,,,
+Mef93929b67cd6237,specified,markdown_it/rules_block/lheading.py,lheading,50,ARITHMETIC,            nextLine += 1,            nextLine = 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -39,7 +39,7 @@
+
+         # quirk for blockquotes, this line should already be checked by that rule
+         if state.sCount[nextLine] < 0:
+-            nextLine += 1
++            nextLine = 1
+             continue
+
+         # Some tags can terminate paragraph without empty line.
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_64',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_64',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_64',,,,,,
+Mf0d5c76e5719be42,specified,markdown_it/rules_block/paragraph.py,paragraph,26,CONTROL_FLOW,            break,            return,"--- markdown_it/rules_block/paragraph.py
++++ markdown_it/rules_block/paragraph.py
+@@ -14,7 +14,7 @@
+     # jump line-by-line until empty one or EOF
+     while nextLine < endLine:
+         if state.isEmpty(nextLine):
+-            break
++            return
+         # this would be a code block normally, but after paragraph
+         # it's considered a lazy continuation regardless of what's there
+         if state.sCount[nextLine] - state.blkIndent > 3:
+",mutmut show 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_28',mutmut tests-for-mutant 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_28',mutmut run 'markdown_it.rules_block.paragraph.x_paragraph__mutmut_28',,,,,,
+Mf14ab2f87af0e93d,specified,markdown_it/rules_block/reference.py,reference,154,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/reference.py
++++ markdown_it/rules_block/reference.py
+@@ -143,7 +143,7 @@
+     label = normalizeReference(string[1:labelEnd])
+     if not label:
+         # CommonMark 0.20 disallows empty labels
+-        return False
++        return True
+
+     # Reference can not terminate anything. This check is for safety only.
+     if silent:
+",mutmut show 'markdown_it.rules_block.reference.x_reference__mutmut_258',mutmut tests-for-mutant 'markdown_it.rules_block.reference.x_reference__mutmut_258',mutmut run 'markdown_it.rules_block.reference.x_reference__mutmut_258',,,,,,
+Mf242f80c0c5a21f7,specified,markdown_it/rules_block/lheading.py,lheading,13,ARITHMETIC,    nextLine = startLine + 1,    nextLine = startLine - 1,"--- markdown_it/rules_block/lheading.py
++++ markdown_it/rules_block/lheading.py
+@@ -2,7 +2,7 @@
+     LOGGER.debug(""entering lheading: %s, %s, %s, %s"", state, startLine, endLine, silent)
+
+     level = None
+-    nextLine = startLine + 1
++    nextLine = startLine - 1
+     ruler = state.md.block.ruler
+     terminatorRules = ruler.getRules(""paragraph"")
+",mutmut show 'markdown_it.rules_block.lheading.x_lheading__mutmut_15',mutmut tests-for-mutant 'markdown_it.rules_block.lheading.x_lheading__mutmut_15',mutmut run 'markdown_it.rules_block.lheading.x_lheading__mutmut_15',,,,,,
+Mf25625ed7e848076,specified,markdown_it/rules_inline/backticks.py,backtick,32,STATEMENT_REPLACEMENT,    matchStart = matchEnd = pos,    matchStart = matchEnd = None,"--- markdown_it/rules_inline/backticks.py
++++ markdown_it/rules_inline/backticks.py
+@@ -21,7 +21,7 @@
+         state.pos += openerLength
+         return True
+
+-    matchStart = matchEnd = pos
++    matchStart = matchEnd = None
+
+     # Nothing found in the cache, scan until the end of the line (or until marker is found)
+     while True:
+",mutmut show 'markdown_it.rules_inline.backticks.x_backtick__mutmut_32',mutmut tests-for-mutant 'markdown_it.rules_inline.backticks.x_backtick__mutmut_32',mutmut run 'markdown_it.rules_inline.backticks.x_backtick__mutmut_32',,,,,,
+Mf2ab176ecf525436,specified,markdown_it/rules_inline/escape.py,escape,21,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_inline/escape.py
++++ markdown_it/rules_inline/escape.py
+@@ -10,7 +10,7 @@
+
+     # '\' at the end of the inline block
+     if pos >= maximum:
+-        return False
++        return True
+
+     ch1 = state.src[pos]
+     ch1_ord = ord(ch1)
+",mutmut show 'markdown_it.rules_inline.escape.x_escape__mutmut_10',mutmut tests-for-mutant 'markdown_it.rules_inline.escape.x_escape__mutmut_10',mutmut run 'markdown_it.rules_inline.escape.x_escape__mutmut_10',,,,,,
+Mf55e24691874fa61,specified,markdown_it/rules_inline/emphasis.py,_postProcess,93,ARITHMETIC,        i -= 1,        i = 1,"--- markdown_it/rules_inline/emphasis.py
++++ markdown_it/rules_inline/emphasis.py
+@@ -51,4 +51,4 @@
+             state.tokens[delimiters[startDelim.end + 1].token].content = """"
+             i -= 1
+
+-        i -= 1
++        i = 1
+",mutmut show 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_97',mutmut tests-for-mutant 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_97',mutmut run 'markdown_it.rules_inline.emphasis.x__postProcess__mutmut_97',,,,,,
+Mfcf87d459ba40d48,specified,markdown_it/rules_block/html_block.py,html_block,65,ARITHMETIC,    nextLine = startLine + 1,    nextLine = startLine - 1,"--- markdown_it/rules_block/html_block.py
++++ markdown_it/rules_block/html_block.py
+@@ -29,7 +29,7 @@
+         # true if this sequence can be a terminator, false otherwise
+         return html_seq[2]
+
+-    nextLine = startLine + 1
++    nextLine = startLine - 1
+
+     # If we are here - we detected HTML block.
+     # Let's roll down till block end.
+",mutmut show 'markdown_it.rules_block.html_block.x_html_block__mutmut_38',mutmut tests-for-mutant 'markdown_it.rules_block.html_block.x_html_block__mutmut_38',mutmut run 'markdown_it.rules_block.html_block.x_html_block__mutmut_38',,,,,,
+Mfd1cfc8814b08d23,specified,markdown_it/rules_block/html_block.py,html_block,48,CONSTANT_REPLACEMENT,        return False,        return True,"--- markdown_it/rules_block/html_block.py
++++ markdown_it/rules_block/html_block.py
+@@ -12,7 +12,7 @@
+         return False
+
+     if state.src[pos] != ""<"":
+-        return False
++        return True
+
+     lineText = state.src[pos:maximum]
+",mutmut show 'markdown_it.rules_block.html_block.x_html_block__mutmut_27',mutmut tests-for-mutant 'markdown_it.rules_block.html_block.x_html_block__mutmut_27',mutmut run 'markdown_it.rules_block.html_block.x_html_block__mutmut_27',,,,,,

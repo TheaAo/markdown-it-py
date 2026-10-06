@@ -1,0 +1,9 @@
+{
+  "full_sut_catalog_hash": "7fcb259b73f4fb355bda23c85806a17362ab815663479afec4fdc0a3b0d53b8d",
+  "task_relevant_catalog_hash": "a3077bad6aafde5755c3e195bcc5ab6792feefaad955695311f65068caa673f3",
+  "full_raw_mutants": 7520,
+  "task_relevant_mutants": 5051,
+  "specified_mutants": 5045,
+  "extended_only_mutants": 6,
+  "out_of_scope_mutants": 2469
+}

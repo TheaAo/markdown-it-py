@@ -1,0 +1,201 @@
+{
+  "mutant_id": "Mb627fbf729f1ad61",
+  "catalog_hash": "a3077bad6aafde5755c3e195bcc5ab6792feefaad955695311f65068caa673f3",
+  "python_version": "3.11.6 (v3.11.6:8b6ee5ba3b, Oct  2 2023, 11:18:21) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "exhaustive_finite_set_size": 32,
+  "all_ascii_predicate_cases_imply_unicode_predicate": true,
+  "rows": [
+    {
+      "codepoint": 33,
+      "character": "!",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 34,
+      "character": "\"",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 35,
+      "character": "#",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 36,
+      "character": "$",
+      "unicode_category": "Sc",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 37,
+      "character": "%",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 38,
+      "character": "&",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 39,
+      "character": "'",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 40,
+      "character": "(",
+      "unicode_category": "Ps",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 41,
+      "character": ")",
+      "unicode_category": "Pe",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 42,
+      "character": "*",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 43,
+      "character": "+",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 44,
+      "character": ",",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 45,
+      "character": "-",
+      "unicode_category": "Pd",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 46,
+      "character": ".",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 47,
+      "character": "/",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 58,
+      "character": ":",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 59,
+      "character": ";",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 60,
+      "character": "<",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 61,
+      "character": "=",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 62,
+      "character": ">",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 63,
+      "character": "?",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 64,
+      "character": "@",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 91,
+      "character": "[",
+      "unicode_category": "Ps",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 92,
+      "character": "\\",
+      "unicode_category": "Po",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 93,
+      "character": "]",
+      "unicode_category": "Pe",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 94,
+      "character": "^",
+      "unicode_category": "Sk",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 95,
+      "character": "_",
+      "unicode_category": "Pc",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 96,
+      "character": "`",
+      "unicode_category": "Sk",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 123,
+      "character": "{",
+      "unicode_category": "Ps",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 124,
+      "character": "|",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 125,
+      "character": "}",
+      "unicode_category": "Pe",
+      "isPunctChar": true
+    },
+    {
+      "codepoint": 126,
+      "character": "~",
+      "unicode_category": "Sm",
+      "isPunctChar": true
+    }
+  ]
+}

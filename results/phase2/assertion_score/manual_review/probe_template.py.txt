@@ -1,0 +1,22 @@
+import pytest
+from markdown_it import MarkdownIt
+MODE = {mode!r}
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_call(item):
+    patch = pytest.MonkeyPatch()
+    if MODE == 'skip_core':
+        patch.setattr(MarkdownIt, 'parse', lambda self, src, env=None: [])
+    elif MODE == 'skip_normalize':
+        original = MarkdownIt.parse
+        def changed(self, src, env=None):
+            self.core.ruler.at('normalize', lambda state: None)
+            return original(self, src, env)
+        patch.setattr(MarkdownIt, 'parse', changed)
+    elif MODE == 'wrong_render':
+        patch.setattr(MarkdownIt, 'render', lambda self, src, env=None: 'INTENTIONALLY WRONG OUTPUT\n')
+    elif MODE == 'empty_render':
+        patch.setattr(MarkdownIt, 'render', lambda self, src, env=None: '')
+    try:
+        yield
+    finally:
+        patch.undo()

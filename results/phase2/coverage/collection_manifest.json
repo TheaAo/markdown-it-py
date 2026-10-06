@@ -1,0 +1,370 @@
+{
+  "schema_version": "phase2-coverage-v1",
+  "generated_at": "2026-10-04T22:33:24.752154+00:00",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "collector_commit": "ce13191131b7be51609e1b829f256aedbde09620",
+  "collector_sha256": {
+    "scripts/metric_collection_phase2/collect_coverage.py": "8beffb7bb694434ffde41f591304b70bdba7bfbe9a688f1e4e4b00506230b532",
+    "scripts/metric_collection_phase1/collect_coverage.py": "c1b96784fc5d3c466b4d79804fd4155b2d48e2f7ef36258ec740f905aebbe16f"
+  },
+  "error_rate_manifest_sha256": "236b78d84f5ace84f0eda180f16318b33c885cc47bc8b7f9d99cbe4441a90e36",
+  "python_executable": "/tmp/phase2-tox/py311/bin/python",
+  "source": "markdown_it",
+  "project_tests_only": {
+    "statement": {
+      "covered": 3402,
+      "total": 3622,
+      "percent": 93.92600773053562
+    },
+    "branch": {
+      "covered": 1222,
+      "total": 1394,
+      "percent": 87.66140602582496
+    },
+    "provenance": {
+      "python": "3.11.6",
+      "pytest": "9.1.1",
+      "coverage": "7.16.2",
+      "markdown_it_path": "markdown_it/__init__.py"
+    }
+  },
+  "combined_method": "coverage line/arc union of pristine baseline tests and valid participant instances",
+  "participants": [
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2559,
+            "total": 3622,
+            "percent": 70.6515737161789
+          },
+          "branch": {
+            "covered": 843,
+            "total": 1394,
+            "percent": 60.47345767575323
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2568,
+            "total": 3622,
+            "percent": 70.90005521811153
+          },
+          "branch": {
+            "covered": 845,
+            "total": 1394,
+            "percent": 60.61692969870875
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "participant_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2568,
+            "total": 3622,
+            "percent": 70.90005521811153
+          },
+          "branch": {
+            "covered": 845,
+            "total": 1394,
+            "percent": 60.61692969870875
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2565,
+            "total": 3622,
+            "percent": 70.81722805080067
+          },
+          "branch": {
+            "covered": 845,
+            "total": 1394,
+            "percent": 60.61692969870875
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3469,
+            "total": 3622,
+            "percent": 95.77581446714522
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2569,
+            "total": 3622,
+            "percent": 70.92766427388183
+          },
+          "branch": {
+            "covered": 846,
+            "total": 1394,
+            "percent": 60.68866571018652
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "valid_tests_included": 8,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2561,
+            "total": 3622,
+            "percent": 70.7067918277195
+          },
+          "branch": {
+            "covered": 845,
+            "total": 1394,
+            "percent": 60.61692969870875
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3469,
+            "total": 3622,
+            "percent": 95.77581446714522
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "valid_tests_included": 8,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2566,
+            "total": 3622,
+            "percent": 70.84483710657096
+          },
+          "branch": {
+            "covered": 846,
+            "total": 1394,
+            "percent": 60.68866571018652
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "valid_tests_included": 7,
+        "invalid_tests_excluded": 0,
+        "participant_tests_only": {
+          "statement": {
+            "covered": 2568,
+            "total": 3622,
+            "percent": 70.90005521811153
+          },
+          "branch": {
+            "covered": 845,
+            "total": 1394,
+            "percent": 60.61692969870875
+          },
+          "provenance": {
+            "python": "3.11.6",
+            "pytest": "9.1.1",
+            "coverage": "7.16.2",
+            "markdown_it_path": "markdown_it/__init__.py"
+          }
+        },
+        "all_tests_combined": {
+          "statement": {
+            "covered": 3472,
+            "total": 3622,
+            "percent": 95.85864163445609
+          },
+          "branch": {
+            "covered": 1281,
+            "total": 1394,
+            "percent": 91.89383070301291
+          }
+        }
+      }
+    }
+  ]
+}

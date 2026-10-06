@@ -2,8 +2,11 @@ import csv
 import json
 from pathlib import Path
 
-from scripts.collect_test_smells import FORMAL_SMELLS
-from scripts.summarize_test_smells import TEST_SMELL_COLUMNS, summarize_test_smells
+from scripts.metric_collection_phase1.collect_test_smells import FORMAL_SMELLS
+from scripts.metric_collection_phase1.summarize_test_smells import (
+    TEST_SMELL_COLUMNS,
+    summarize_test_smells,
+)
 
 
 def test_summary_writes_one_focused_row_per_participant(tmp_path: Path) -> None:

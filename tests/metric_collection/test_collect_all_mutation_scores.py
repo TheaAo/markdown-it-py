@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from scripts.metric_collection.collect_all_mutation_scores import (
+from scripts.metric_collection_phase1.collect_all_mutation_scores import (
     _archive_existing_result,
 )
 

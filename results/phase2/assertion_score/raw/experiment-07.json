@@ -1,0 +1,381 @@
+{
+  "participant_id": "experiment-07",
+  "participant_number": 7,
+  "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+  "phase1_group": "AI",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "error_rate_raw_sha256": "6aa2da7320f964036669d8d63ac0e57c62564b4fad99a073298c9e1b52eaaaaa",
+  "metrics": {
+    "summary": {
+      "total_source_tests": 7,
+      "invalid_test_count": 0,
+      "eligible_test_count": 7,
+      "non_trivial_test_count": 7,
+      "trivial_test_count": 0,
+      "assertionless_test_count": 0,
+      "uncertain_test_count": 0,
+      "partially_valid_test_count": 0,
+      "assertion_score": 1.0
+    },
+    "test_cases": [
+      {
+        "source_test": "test_file",
+        "generated_nodeids": [
+          "tests/task/phase1/task.py::test_file"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 32,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/phase1/task.py",
+        "source_id": "tests/task/phase1/task.py::test_file",
+        "task_group": "maintenance"
+      },
+      {
+        "source_test": "test_spec",
+        "generated_nodeids": [
+          "tests/task/phase1/task.py::test_spec"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 1,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 61,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/phase1/task.py",
+        "source_id": "tests/task/phase1/task.py::test_spec",
+        "task_group": "maintenance"
+      },
+      {
+        "source_test": "test_core_after",
+        "generated_nodeids": [
+          "tests/task/phase1/task.py::test_core_after"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 3,
+        "non_trivial_assertion_count": 1,
+        "evidence": [
+          {
+            "line": 96,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 99,
+            "oracle_type": "assert",
+            "classification": "uncertain",
+            "reason": "SUT was executed, but data dependency to this assertion is unclear"
+          },
+          {
+            "line": 100,
+            "oracle_type": "assert",
+            "classification": "uncertain",
+            "reason": "SUT was executed, but data dependency to this assertion is unclear"
+          }
+        ],
+        "source_file": "tests/task/phase1/task.py",
+        "source_id": "tests/task/phase1/task.py::test_core_after",
+        "task_group": "maintenance"
+      },
+      {
+        "source_test": "test_parse_fail",
+        "generated_nodeids": [
+          "tests/task/phase1/task.py::test_parse_fail"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 2,
+        "non_trivial_assertion_count": 2,
+        "evidence": [
+          {
+            "line": 109,
+            "oracle_type": "pytest_context",
+            "classification": "non_trivial",
+            "reason": "expected exception or warning is produced by markdown_it execution"
+          },
+          {
+            "line": 111,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/phase1/task.py",
+        "source_id": "tests/task/phase1/task.py::test_parse_fail",
+        "task_group": "retained_legacy"
+      },
+      {
+        "source_test": "test_non_utf8",
+        "generated_nodeids": [
+          "tests/task/phase1/task.py::test_non_utf8"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 4,
+        "non_trivial_assertion_count": 4,
+        "evidence": [
+          {
+            "line": 127,
+            "oracle_type": "pytest_context",
+            "classification": "non_trivial",
+            "reason": "expected exception or warning is produced by markdown_it execution"
+          },
+          {
+            "line": 131,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 132,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 133,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/phase1/task.py",
+        "source_id": "tests/task/phase1/task.py::test_non_utf8",
+        "task_group": "maintenance"
+      },
+      {
+        "source_test": "test_make_fence_after",
+        "generated_nodeids": [
+          "tests/task/task2.py::test_make_fence_after"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 8,
+        "non_trivial_assertion_count": 8,
+        "evidence": [
+          {
+            "line": 17,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 18,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 19,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 20,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 23,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 24,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 25,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 26,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/task2.py",
+        "source_id": "tests/task/task2.py::test_make_fence_after",
+        "task_group": "new_generation"
+      },
+      {
+        "source_test": "test_make_fence_at",
+        "generated_nodeids": [
+          "tests/task/task2.py::test_make_fence_at"
+        ],
+        "generated_test_count": 1,
+        "valid_instance_count": 1,
+        "total_instance_count": 1,
+        "validity": "fully_valid",
+        "classification": "non_trivial",
+        "assertion_count": 5,
+        "non_trivial_assertion_count": 5,
+        "evidence": [
+          {
+            "line": 41,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 42,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 43,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 44,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          },
+          {
+            "line": 47,
+            "oracle_type": "assert",
+            "classification": "non_trivial",
+            "reason": "asserted value has a backward dependency on markdown_it"
+          }
+        ],
+        "source_file": "tests/task/task2.py",
+        "source_id": "tests/task/task2.py::test_make_fence_at",
+        "task_group": "new_generation"
+      }
+    ],
+    "by_file": {
+      "tests/task/phase1/task.py": {
+        "total_source_tests": 5,
+        "invalid_test_count": 0,
+        "eligible_test_count": 5,
+        "non_trivial_test_count": 5,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "tests/task/task2.py": {
+        "total_source_tests": 2,
+        "invalid_test_count": 0,
+        "eligible_test_count": 2,
+        "non_trivial_test_count": 2,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      }
+    },
+    "by_task_group": {
+      "maintenance": {
+        "total_source_tests": 4,
+        "invalid_test_count": 0,
+        "eligible_test_count": 4,
+        "non_trivial_test_count": 4,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "new_generation": {
+        "total_source_tests": 2,
+        "invalid_test_count": 0,
+        "eligible_test_count": 2,
+        "non_trivial_test_count": 2,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "retained_legacy": {
+        "total_source_tests": 1,
+        "invalid_test_count": 0,
+        "eligible_test_count": 1,
+        "non_trivial_test_count": 1,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "additional": {
+        "total_source_tests": 0,
+        "invalid_test_count": 0,
+        "eligible_test_count": 0,
+        "non_trivial_test_count": 0,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": null
+      }
+    },
+    "valid_nodeids": [
+      "tests/task/phase1/task.py::test_file",
+      "tests/task/phase1/task.py::test_spec",
+      "tests/task/phase1/task.py::test_core_after",
+      "tests/task/phase1/task.py::test_parse_fail",
+      "tests/task/phase1/task.py::test_non_utf8",
+      "tests/task/task2.py::test_make_fence_after",
+      "tests/task/task2.py::test_make_fence_at"
+    ],
+    "artifact_sha256": {
+      "tests/task/phase1/materials/commonmark.json": "d431b29d97b6f73e69d547109cf5081578fac931e72afe95639ebe766c1b2a20",
+      "tests/task/phase1/materials/spec.md": "257c41ad946f7a1414a499aca402a1aa8fdac3678532266611348c1cf54f4b80",
+      "tests/task/phase1/materials/test_file.html": "a1940dfab0df03b20947d464f9814f8f5c7a7bcb3f9247f186049dc5f3c9a429",
+      "tests/task/phase1/task.py": "8d8a7f22a50422d27d7b4e7d033b8d09d3affa11e0d382b8e9c561b7e5c5fbfa",
+      "tests/task/task2.py": "00646b0bc9ee7adee751a2f9bae592b2b2181969be4642c2270d29ac0c7bacce"
+    },
+    "missing_expected_tests": {},
+    "uncertain_source_ids": []
+  }
+}

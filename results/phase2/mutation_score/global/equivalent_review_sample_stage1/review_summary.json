@@ -1,0 +1,17 @@
+{
+  "catalog_hash": "a3077bad6aafde5755c3e195bcc5ab6792feefaad955695311f65068caa673f3",
+  "review_artifact_hash": "3b8f98569e8d358dbda933f4dbf890145699e06f949d655864bb182ec32bd6e4",
+  "reviewed_catalog_artifact_hash": "2acc00da490621d552e62a05b2c0fa1f2175eebad70896440511b5c504274dec",
+  "reviewed_mutants": 100,
+  "final_status_counts": {
+    "non_equivalent": 84,
+    "confirmed_equivalent": 16
+  },
+  "method": "single_reviewer_source_analysis_with_executable_witnesses",
+  "independent_secondary_review": false,
+  "secondary_reviewed_mutants": 0,
+  "reviewer_agreement": null,
+  "primary_decisions_sha256": "bf1932c1bb10c78b713c611ee203e105aa95b39707a9c0215c309702e8b3b636",
+  "semantic_witnesses_sha256": "e68ceea259276554e1bda97c796d889cf2393204d4d1dac62e6b3ee51d3693f5",
+  "limitation": "Equivalent decisions have no independent secondary review; probe agreement alone was never used as an equivalence proof."
+}

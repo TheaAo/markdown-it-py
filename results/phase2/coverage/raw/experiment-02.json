@@ -1,0 +1,123 @@
+{
+  "participant_id": "experiment-02",
+  "participant_number": 2,
+  "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+  "phase1_group": "AI",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "error_rate_raw_sha256": "133e172bf63a42505346fc99604c128302cb288895e2ea9c15411eefb74c271d",
+  "valid_nodeids": [
+    "tests/task/phase1/task.py::test_file",
+    "tests/task/phase1/task.py::test_spec",
+    "tests/task/phase1/task.py::test_core_after",
+    "tests/task/phase1/task.py::test_parse_fail",
+    "tests/task/phase1/task.py::test_non_utf8",
+    "tests/task/task2.py::test_make_fence_after",
+    "tests/task/task2.py::test_make_fence_at"
+  ],
+  "valid_tests_included": 7,
+  "invalid_tests_excluded": 0,
+  "missing_expected_tests": {},
+  "participant_tests_only": {
+    "statement": {
+      "covered": 2559,
+      "total": 3622,
+      "percent": 70.6515737161789
+    },
+    "branch": {
+      "covered": 843,
+      "total": 1394,
+      "percent": 60.47345767575323
+    },
+    "provenance": {
+      "python": "3.11.6",
+      "pytest": "9.1.1",
+      "coverage": "7.16.2",
+      "markdown_it_path": "markdown_it/__init__.py"
+    }
+  },
+  "all_tests_combined": {
+    "statement": {
+      "covered": 3472,
+      "total": 3622,
+      "percent": 95.85864163445609
+    },
+    "branch": {
+      "covered": 1281,
+      "total": 1394,
+      "percent": 91.89383070301291
+    }
+  },
+  "group_nodeids": {
+    "maintenance": [
+      "tests/task/phase1/task.py::test_file",
+      "tests/task/phase1/task.py::test_spec",
+      "tests/task/phase1/task.py::test_core_after",
+      "tests/task/phase1/task.py::test_non_utf8"
+    ],
+    "new_generation": [
+      "tests/task/task2.py::test_make_fence_after",
+      "tests/task/task2.py::test_make_fence_at"
+    ],
+    "retained_legacy": [
+      "tests/task/phase1/task.py::test_parse_fail"
+    ],
+    "additional": []
+  },
+  "group_coverage": {
+    "maintenance": {
+      "statement": {
+        "covered": 2550,
+        "total": 3622,
+        "percent": 70.40309221424627
+      },
+      "branch": {
+        "covered": 842,
+        "total": 1394,
+        "percent": 60.40172166427546
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    },
+    "new_generation": {
+      "statement": {
+        "covered": 1224,
+        "total": 3622,
+        "percent": 33.793484262838206
+      },
+      "branch": {
+        "covered": 198,
+        "total": 1394,
+        "percent": 14.203730272596843
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    },
+    "retained_legacy": {
+      "statement": {
+        "covered": 724,
+        "total": 3622,
+        "percent": 19.98895637769188
+      },
+      "branch": {
+        "covered": 2,
+        "total": 1394,
+        "percent": 0.1434720229555237
+      },
+      "provenance": {
+        "python": "3.11.6",
+        "pytest": "9.1.1",
+        "coverage": "7.16.2",
+        "markdown_it_path": "markdown_it/__init__.py"
+      }
+    },
+    "additional": null
+  }
+}

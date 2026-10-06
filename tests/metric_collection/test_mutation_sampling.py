@@ -5,21 +5,24 @@ from typing import Any
 
 import pytest
 
-from scripts.metric_collection.analyze_sampling_pilot import (
+from scripts.metric_collection_phase1.analyze_sampling_pilot import (
     DEFAULT_THRESHOLDS,
     adjusted_r_squared,
     analyze_sampling,
     kendall_tau_b,
     spearman_rho,
 )
-from scripts.metric_collection.classify_mutation_operators import (
+from scripts.metric_collection_phase1.classify_mutation_operators import (
     classify_operator_family,
 )
-from scripts.metric_collection.mutation_common import (
+from scripts.metric_collection_phase1.mutation_common import (
     catalog_hash,
     weighted_mutation_summary,
 )
-from scripts.metric_collection.sample_mutant_catalog import sample_catalog, write_sample
+from scripts.metric_collection_phase1.sample_mutant_catalog import (
+    sample_catalog,
+    write_sample,
+)
 
 
 def _catalog(size: int = 60) -> dict[str, Any]:

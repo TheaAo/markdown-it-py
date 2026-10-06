@@ -5,10 +5,6 @@
 - Collect Phase 2 execution time from frozen valid participant instances using
   the Phase 1 timer, with original paths and auditable repeated measurements.
 
-- Add staged stratified equivalent-mutant review sampling, targeted secondary
-  quality control, and design-weighted Mutation Score estimates with
-  finite-population intervals.
-
 ## 4.0.0 - 2024-08-10
 
 This primarily drops support for Python 3.9, adds support for Python 3.13,

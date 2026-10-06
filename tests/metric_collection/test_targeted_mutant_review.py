@@ -6,8 +6,11 @@ from typing import Any
 
 import pytest
 
-from scripts.metric_collection.mutation_common import canonical_json, catalog_hash
-from scripts.metric_collection.targeted_mutant_review import (
+from scripts.metric_collection_phase1.mutation_common import (
+    canonical_json,
+    catalog_hash,
+)
+from scripts.metric_collection_phase1.targeted_mutant_review import (
     apply_targeted_reviews,
     main,
     prepare_secondary_review,

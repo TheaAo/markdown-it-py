@@ -143,9 +143,12 @@ __pycache__/
 .DS_Store
 
 docs/api/
-!/results/coverage/
-!/results/coverage/coverage.csv
-/results/mutation_score/
+!/results/phase1/coverage/
+!/results/phase1/coverage/coverage.csv
+!/results/phase2/coverage/
+!/results/phase2/coverage/**
+/results/phase1/mutation_score/
+/results/phase2/mutation_score/
 
 uv.lock
 /reference/

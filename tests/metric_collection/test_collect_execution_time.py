@@ -5,7 +5,7 @@ import subprocess
 
 import pytest
 
-from scripts.collect_execution_time import (
+from scripts.metric_collection_phase1.collect_execution_time import (
     TimedRun,
     _controlled_environment,
     _summarize,
@@ -55,10 +55,10 @@ def test_timed_pytest_records_complete_process_duration(
 ) -> None:
     moments = iter((1_000_000_000, 3_500_000_000))
     monkeypatch.setattr(
-        "scripts.collect_execution_time.time.perf_counter_ns", lambda: next(moments)
+        "scripts.metric_collection_phase1.collect_execution_time.time.perf_counter_ns", lambda: next(moments)
     )
     monkeypatch.setattr(
-        "scripts.collect_execution_time.subprocess.run",
+        "scripts.metric_collection_phase1.collect_execution_time.subprocess.run",
         lambda *args, **kwargs: subprocess.CompletedProcess(args[0], 0, "passed"),
     )
 

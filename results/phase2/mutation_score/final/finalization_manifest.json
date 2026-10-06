@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "finished_at": "2026-10-05T14:14:34.947245+00:00",
+  "primary_scope": "specified",
+  "method": "equivalent-adjusted stratified estimate",
+  "review_method": "single_reviewer_source_analysis_with_executable_witnesses",
+  "independent_secondary_review": false,
+  "final_run_max_children": 1,
+  "review_directory": "global/equivalent_review_sample_stage1",
+  "finalizer_sha256": "f21ce281ac9a5bed893aeaba961367ffd9cba22edb297f080f1428eb15de1e48",
+  "all_participant_timeout_mutants": 175,
+  "timeout_policy": "exclude from each eligible denominator; no semantic equivalence claim",
+  "formal_manifest_sha256": "c7e61203af54703462eea84e8ac5373c5364af351c43153abc541dd63b7a431b",
+  "review_summary_sha256": "e2c62461896049b83c952e2ee8545d350a6a3d11133cf903ecac2ba86a4d21a7",
+  "final_csv_sha256": "f56a0131c62377067169b34f01485b125b6857fd5948497a8af46a60fe1bd29e",
+  "estimates_sha256": "c130291be39c8bb60a6f1b2a21f7468ca8724c7364a8632ca71507c596a49cdd"
+}

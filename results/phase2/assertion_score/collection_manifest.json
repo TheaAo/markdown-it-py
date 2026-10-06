@@ -1,0 +1,278 @@
+{
+  "schema_version": "phase2-assertion-score-v1",
+  "generated_at": "2026-10-05T07:48:35.479540+00:00",
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "collector_commit": "9d39bfe224124c3c9e0b77d8aae32436f4648fa3",
+  "collector_sha256": {
+    "scripts/metric_collection_phase2/collect_assertion_score.py": "7651b618bebc0d99a55a05a64135e26b98184e8219651e28deba6adaa4194deb",
+    "scripts/metric_collection_phase1/collect_assertion_score.py": "0048fdb5ddadc5bc1fb175d519083c467f48846cf561ca17fce276f535dc53cd",
+    "scripts/metric_collection_phase1/collect_error_rates.py": "a55ed8976c762e24c839f63829265033517506f4ffb231b0f88eeae3f425a7ab",
+    "scripts/metric_collection_phase2/collect_coverage.py": "8beffb7bb694434ffde41f591304b70bdba7bfbe9a688f1e4e4b00506230b532"
+  },
+  "error_rate_manifest_sha256": "236b78d84f5ace84f0eda180f16318b33c885cc47bc8b7f9d99cbe4441a90e36",
+  "python_version": "3.11.6",
+  "count_basis": "source file plus function; at least one valid pytest instance is eligible",
+  "participants": [
+    {
+      "participant_id": "experiment-02",
+      "participant_number": 2,
+      "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-02.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 1.0,
+        "uncertain_functions_reviewed": 0
+      }
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_number": 3,
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-03.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 6,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 1,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.8571428571428571
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 0.8571428571428571,
+        "uncertain_functions_reviewed": 1
+      }
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_number": 4,
+      "participant_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-04.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 1.0,
+        "uncertain_functions_reviewed": 0
+      }
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_number": 5,
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-05.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 6,
+        "trivial_test_count": 1,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.8571428571428571
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 6,
+        "trivial_test_count": 1,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.8571428571428571,
+        "automated_assertion_score": 0.8571428571428571,
+        "uncertain_functions_reviewed": 0
+      }
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_number": 7,
+      "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-07.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 1.0,
+        "uncertain_functions_reviewed": 0
+      }
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-08.json",
+      "summary": {
+        "total_source_tests": 8,
+        "invalid_test_count": 0,
+        "eligible_test_count": 8,
+        "non_trivial_test_count": 5,
+        "trivial_test_count": 1,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 2,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.625
+      },
+      "final_summary": {
+        "total_source_tests": 8,
+        "invalid_test_count": 0,
+        "eligible_test_count": 8,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 1,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.875,
+        "automated_assertion_score": 0.625,
+        "uncertain_functions_reviewed": 2
+      }
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_number": 9,
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "phase1_group": "Manual",
+      "status": "collected",
+      "output_file": "raw/experiment-09.json",
+      "summary": {
+        "total_source_tests": 8,
+        "invalid_test_count": 0,
+        "eligible_test_count": 8,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 1,
+        "partially_valid_test_count": 0,
+        "assertion_score": 0.875
+      },
+      "final_summary": {
+        "total_source_tests": 8,
+        "invalid_test_count": 0,
+        "eligible_test_count": 8,
+        "non_trivial_test_count": 8,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 0.875,
+        "uncertain_functions_reviewed": 1
+      }
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_number": 12,
+      "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+      "phase1_group": "AI",
+      "status": "collected",
+      "output_file": "raw/experiment-12.json",
+      "summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0
+      },
+      "final_summary": {
+        "total_source_tests": 7,
+        "invalid_test_count": 0,
+        "eligible_test_count": 7,
+        "non_trivial_test_count": 7,
+        "trivial_test_count": 0,
+        "assertionless_test_count": 0,
+        "uncertain_test_count": 0,
+        "partially_valid_test_count": 0,
+        "assertion_score": 1.0,
+        "automated_assertion_score": 1.0,
+        "uncertain_functions_reviewed": 0
+      }
+    }
+  ],
+  "final_export": {
+    "adjudications_sha256": "2796727d85a6ddf658941a5c6d850542940340e166116d22642704417ebe3acc",
+    "reviewed_function_count": 4,
+    "summary_source": "final_summary; original summary and raw evidence are automated"
+  }
+}

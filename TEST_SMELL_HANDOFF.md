@@ -1,3 +1,7 @@
+> Phase 1 archive: script and result paths below describe the original run.
+> Current locations are `scripts/metric_collection_phase1/` and `results/phase1/`.
+> See `docs/metric_collection_phase2/COLLECTION_PLAN.md` for Phase 2.
+
 # Test Smell Metric Implementation Handoff
 
 ## Read first

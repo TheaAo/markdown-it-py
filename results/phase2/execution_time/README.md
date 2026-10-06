@@ -9,6 +9,8 @@ files, including participant-modified external test files where applicable.
   `56852ac8de04e216b48ab9b34445027216ba5a47`, with recorded SHA-256 hashes.
 - `formal/`: the latest complete collection, manifest, raw observations and
   `summary/execution_time.csv`. Earlier formal data was replaced at user request.
+- `new-run/`: an additional complete run generated separately; it does not
+  replace `formal/`.
 - `quality_review.json`: current dispersion, CV flags and verification counts.
 - `environment.json`: interpreter, package versions and machine details.
 - `diagnostics/`: temporary-copy investigations of participant 05. These are
@@ -67,3 +69,7 @@ The Phase 2 adapter and shared timer/CSV regression tests passed 12 tests via to
 Ruff and strict mypy with imported modules skipped passed. Full imported-module
 checking encounters a pre-existing duplicate-module mapping in Phase 1 fallback
 imports.
+
+The Phase 1 engine imports now use `scripts/metric_collection_phase1/` after
+merging the Phase 2 directory migration. Saved collection manifests preserve the
+original source paths and hashes from collection time; they are not rewritten.

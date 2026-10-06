@@ -1,0 +1,9 @@
+........                                                                 [100%]
+=============================== warnings summary ===============================
+../../../../../../tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464
+  /private/tmp/phase2-tox/py311/lib/python3.11/site-packages/_pytest/config/__init__.py:1464: PytestConfigWarning: Unknown config option: timeout
+  
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+8 passed, 1 warning in 0.11s

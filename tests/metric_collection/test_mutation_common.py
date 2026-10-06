@@ -3,21 +3,20 @@ from pathlib import Path
 
 import pytest
 
-from scripts.metric_collection.apply_mutant_reviews import apply_reviews
-from scripts.metric_collection.build_mutant_catalog import _absolute_source_line
-from scripts.metric_collection.mutation_common import (
+from scripts.metric_collection_phase1.apply_mutant_reviews import apply_reviews
+from scripts.metric_collection_phase1.build_mutant_catalog import _absolute_source_line
+from scripts.metric_collection_phase1.mutation_common import (
     catalog_hash,
-    changed_line_from_diff,
     changed_code,
+    changed_line_from_diff,
     function_from_mutant_name,
-    load_catalog,
     layered_mutation_summary,
+    load_catalog,
     mutation_summary,
     parse_mutmut_results,
     source_line_from_diff,
     stable_mutant_id,
 )
-
 
 DIFF = """--- markdown_it/example.py
 +++ markdown_it/example.py

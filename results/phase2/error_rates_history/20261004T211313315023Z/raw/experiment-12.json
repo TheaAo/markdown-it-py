@@ -1,0 +1,157 @@
+{
+  "participant_id": "experiment-12",
+  "participant_number": 12,
+  "branch": "origin/experiment-12-phase2",
+  "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+  "phase1_commit": "83b06fc9d3e628a0154e52f0cec2172c7ec60d00",
+  "phase1_group": "AI",
+  "phase2_group": "AI",
+  "protected_changes": [],
+  "baseline_commit": "b7668ef31865cb96259ac27fd535bbd68a02500c",
+  "metrics": {
+    "suite_level": {
+      "collectable": true,
+      "pytest_returncode": 0,
+      "collection_errors": [],
+      "test_paths": [
+        "tests/task/phase1/task.py",
+        "tests/task/task2.py"
+      ]
+    },
+    "provenance": {
+      "python_version": "3.11.6",
+      "pytest_version": "9.1.1",
+      "markdown_it_path": "markdown_it/__init__.py"
+    },
+    "artifact_sha256": {
+      "tests/task/phase1/materials/commonmark.json": "d431b29d97b6f73e69d547109cf5081578fac931e72afe95639ebe766c1b2a20",
+      "tests/task/phase1/materials/spec.md": "257c41ad946f7a1414a499aca402a1aa8fdac3678532266611348c1cf54f4b80",
+      "tests/task/phase1/materials/test_file.html": "a1940dfab0df03b20947d464f9814f8f5c7a7bcb3f9247f186049dc5f3c9a429",
+      "tests/task/phase1/task.py": "0aabeb16b5e6c8dfec28ff84680071dcad34110cea227c4119512f88485b8eb1",
+      "tests/task/task2.py": "29b55694b6b0e78c1545e57037882efc0698b6da49be98ae161f418938ea6738"
+    },
+    "source_test_declarations": {
+      "tests/task/phase1/task.py": [
+        "test_file",
+        "test_spec",
+        "test_core_after",
+        "test_parse_fail",
+        "test_non_utf8"
+      ],
+      "tests/task/task2.py": [
+        "test_make_fence_after",
+        "test_make_fence_at"
+      ]
+    },
+    "missing_expected_tests": {},
+    "case_level": {
+      "total_generated_test_cases": 7,
+      "syntax_error_count": 0,
+      "runtime_error_count": 0,
+      "function_error_count": 0,
+      "valid_test_count": 7,
+      "syntax_error_rate": 0.0,
+      "runtime_error_rate": 0.0,
+      "function_error_rate": 0.0,
+      "overall_error_rate": 0.0,
+      "test_cases": [
+        {
+          "nodeid": "tests/task/phase1/task.py::test_file",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_file",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/phase1/task.py::test_spec",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_spec",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/phase1/task.py::test_core_after",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_core_after",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/phase1/task.py::test_parse_fail",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_parse_fail",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/phase1/task.py::test_non_utf8",
+          "source_file": "tests/task/phase1/task.py",
+          "source_test": "test_non_utf8",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/task2.py::test_make_fence_after",
+          "source_file": "tests/task/task2.py",
+          "source_test": "test_make_fence_after",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        },
+        {
+          "nodeid": "tests/task/task2.py::test_make_fence_at",
+          "source_file": "tests/task/task2.py",
+          "source_test": "test_make_fence_at",
+          "classification": "valid",
+          "reason": "passed on frozen Phase 2 SUT",
+          "returncode": 0,
+          "count_basis": "pytest_instance"
+        }
+      ]
+    },
+    "by_file": {
+      "tests/task/phase1/task.py": {
+        "total_generated_test_cases": 5,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 5,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "overall_error_rate": 0.0
+      },
+      "tests/task/task2.py": {
+        "total_generated_test_cases": 2,
+        "syntax_error_count": 0,
+        "runtime_error_count": 0,
+        "function_error_count": 0,
+        "valid_test_count": 2,
+        "syntax_error_rate": 0.0,
+        "runtime_error_rate": 0.0,
+        "function_error_rate": 0.0,
+        "overall_error_rate": 0.0
+      }
+    },
+    "valid_nodeids": [
+      "tests/task/phase1/task.py::test_file",
+      "tests/task/phase1/task.py::test_spec",
+      "tests/task/phase1/task.py::test_core_after",
+      "tests/task/phase1/task.py::test_parse_fail",
+      "tests/task/phase1/task.py::test_non_utf8",
+      "tests/task/task2.py::test_make_fence_after",
+      "tests/task/task2.py::test_make_fence_at"
+    ]
+  }
+}

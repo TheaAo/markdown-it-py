@@ -1,0 +1,9 @@
+participant_number,status,valid_tests_included,invalid_tests_excluded,participant_statement_coverage,participant_branch_coverage,combined_statement_coverage,combined_branch_coverage
+2,collected,7,0,0.706516,0.604735,0.958586,0.918938
+3,collected,7,0,0.709001,0.606169,0.958586,0.918938
+4,collected,7,0,0.709001,0.606169,0.958586,0.918938
+5,collected,7,0,0.708172,0.606169,0.957758,0.918938
+7,collected,7,0,0.709277,0.606887,0.958586,0.918938
+8,collected,8,0,0.707068,0.606169,0.957758,0.918938
+9,collected,8,0,0.708448,0.606887,0.958586,0.918938
+12,collected,7,0,0.709001,0.606169,0.958586,0.918938

@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from scripts.collect_execution_time import TimedRun
+from scripts.metric_collection_phase1.collect_execution_time import TimedRun
 from scripts.metric_collection_phase2 import collect_execution_times as collector
 
 

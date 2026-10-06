@@ -1,0 +1,157 @@
+{
+  "scope": "Frozen participant task source; complete valid-pool paths are in error-rate artifacts",
+  "records": [
+    {
+      "participant_id": "experiment-02",
+      "participant_commit": "fac1b898b29a1b6eb2d451797fd9a271b8eb2767",
+      "task_source_sha256": "dad389c117745aaa317675d572978379a14c60574496ff48be4540570e5c63a7",
+      "calls": [
+        {
+          "source_line": 108,
+          "call": "file_path.write_bytes(\n\t\tb\"Valid ASCII\\nInvalid byte: \" + bytes([0xFF, 0xFE]) + b\"\\n\"\n\t)"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-03",
+      "participant_commit": "28c93f7b0c1b4869d77d2ebc302a5352ec961259",
+      "task_source_sha256": "5cdd0e1b0491d30f2cc209d93cc37cd04794e9d9ae7b8604c2e4800cfeaea2c6",
+      "calls": [
+        {
+          "source_line": 120,
+          "call": "path.write_bytes(b\"# title\\n\\ninvalid UTF-8: \\xff\\n\")"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-04",
+      "participant_commit": "01e109baf16c9cf5a32b476bcf02a1f00abcc1a5",
+      "task_source_sha256": "057ef29a7d07150f6c656213cf34b93479a07396318d1bfdfd280cd8df63b9b0",
+      "calls": [
+        {
+          "source_line": 23,
+          "call": "open(materials / \"spec.md\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 25,
+          "call": "open(materials / \"test_file.html\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 43,
+          "call": "open(materials / \"commonmark.json\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 103,
+          "call": "path.write_bytes(b\"# invalid UTF-8: \\xff\\n\")"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-05",
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "task_source_sha256": "1cda3a50d587e37dc5535682e59b2fe3df872f813a217139e92f0a92025647c4",
+      "calls": [
+        {
+          "source_line": 25,
+          "call": "open(file_path, \"r\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 34,
+          "call": "open(file_path2, \"r\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 49,
+          "call": "open(file_path, 'r', encoding='utf-8')"
+        },
+        {
+          "source_line": 92,
+          "call": "path.write_text(\"a b c\")"
+        },
+        {
+          "source_line": 105,
+          "call": "md_file.write_bytes(b\"# invalid utf-8\\n\\xff\")"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-07",
+      "participant_commit": "ca6fbfd357b23b3826757599bfad0febfdee15b5",
+      "task_source_sha256": "8d8a7f22a50422d27d7b4e7d033b8d09d3affa11e0d382b8e9c561b7e5c5fbfa",
+      "calls": [
+        {
+          "source_line": 50,
+          "call": "spec_file.open(encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 123,
+          "call": "tmp_file.write(b\"\\xff\\xfeHello, world!\\n\")"
+        },
+        {
+          "source_line": 135,
+          "call": "pathlib.Path(tmp_file_path).unlink()"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-08",
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "task_source_sha256": "6aee932b7350621cb3e75f8c1438f03f56981272cde1c3f0b3603a6944410b4e",
+      "calls": [
+        {
+          "source_line": 25,
+          "call": "open(\"tests/task/phase1/materials/spec.md\",\"r\", encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 34,
+          "call": "Path(\"output.html\").write_text(html_text, encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 37,
+          "call": "open('output.html', encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 37,
+          "call": "open('tests/task/phase1/materials/test_file.html', encoding=\"utf-8\")"
+        },
+        {
+          "source_line": 61,
+          "call": "open('tests/task/phase1/materials/commonmark.json', encoding=\"utf-8\")"
+        }
+      ],
+      "decision": "serial_only_fixed_output_html"
+    },
+    {
+      "participant_id": "experiment-09",
+      "participant_commit": "0447bbf695fcf909a221322f59a919e5ecd9ce23",
+      "task_source_sha256": "990f252a00a03e6705fcc12fb2e01ee734e1b267055e837e9ec74bf16b4326db",
+      "calls": [
+        {
+          "source_line": 89,
+          "call": "path.write_bytes(b\"valid markdown\\xff\\n\")"
+        },
+        {
+          "source_line": 103,
+          "call": "path.write_text(\"a b c\")"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    },
+    {
+      "participant_id": "experiment-12",
+      "participant_commit": "ffcc0b22bed9ec813c45d14ca2fab76ab826fe6c",
+      "task_source_sha256": "0aabeb16b5e6c8dfec28ff84680071dcad34110cea227c4119512f88485b8eb1",
+      "calls": [
+        {
+          "source_line": 168,
+          "call": "p.write_bytes(payload)"
+        }
+      ],
+      "decision": "read_only_or_independent_temporary_paths"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.068" timestamp="2026-10-05T00:33:04.211791+02:00" hostname="ZiyudeMacBook-Air.local"><testcase classname="tests.task.phase1.task" name="test_parse_fail" time="0.006" /></testsuite></testsuites>

@@ -1,0 +1,9 @@
+participant_number,status,total_source_tests,invalid_test_count,eligible_test_count,non_trivial_test_count,trivial_test_count,assertionless_test_count,uncertain_test_count,partially_valid_test_count,assertion_score,automated_assertion_score,uncertain_functions_reviewed
+2,collected,7,0,7,7,0,0,0,0,1.000000,1.000000,0
+3,collected,7,0,7,7,0,0,0,0,1.000000,0.857143,1
+4,collected,7,0,7,7,0,0,0,0,1.000000,1.000000,0
+5,collected,7,0,7,6,1,0,0,0,0.857143,0.857143,0
+7,collected,7,0,7,7,0,0,0,0,1.000000,1.000000,0
+8,collected,8,0,8,7,1,0,0,0,0.875000,0.625000,2
+9,collected,8,0,8,8,0,0,0,0,1.000000,0.875000,1
+12,collected,7,0,7,7,0,0,0,0,1.000000,1.000000,0

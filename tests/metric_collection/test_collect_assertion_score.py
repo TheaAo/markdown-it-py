@@ -3,12 +3,12 @@ from pathlib import Path
 
 import pytest
 
-from scripts.metric_collection.collect_assertion_score import (
+from scripts.metric_collection_phase1.collect_assertion_score import (
     _error_results_from_json,
     _report_from_results,
     collect_assertion_score,
 )
-from scripts.metric_collection.collect_error_rates import (
+from scripts.metric_collection_phase1.collect_error_rates import (
     TestCaseResult as ErrorTestCaseResult,
 )
 
