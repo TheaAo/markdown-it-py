@@ -14,6 +14,10 @@ or declare submissions valid. Resolve inventory findings before metric collectio
 Reuse engines from `scripts/metric_collection_phase1/`; keep Phase 2-specific
 submission mapping, task scopes and orchestration here.
 
+`collect_test_smells.py` consumes frozen error-rate evidence and reuses the Phase 1
+AST smell rules without executing participant tests. Full-suite and task-scope
+outputs are described in [TEST_SMELLS.md](../../docs/metric_collection_phase2/TEST_SMELLS.md).
+
 Error-rate collection is implemented in `collect_error_rates.py` and accepts only
 standard `experiment-xx-phase2` branches. See
 [`ERROR_RATES.md`](../../docs/metric_collection_phase2/ERROR_RATES.md) for counting,
