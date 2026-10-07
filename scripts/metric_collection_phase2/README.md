@@ -1,9 +1,14 @@
 # Phase 2 metric collection
 
+Current status (2026-10-07): all primary metrics and six efficiency ratios have
+been collected for eight participants. Assertion review is resolved; remaining analysis work is listed
+in [collection status](../../docs/metric_collection_phase2/COLLECTION_STATUS.md).
+The commands below describe reproduction; completed frozen runs need not be repeated.
+
 Implementation and collection order:
 [`COLLECTION_PLAN.md`](../../docs/metric_collection_phase2/COLLECTION_PLAN.md).
 
-Start by inspecting locally available submissions:
+For a new collection, start by inspecting locally available submissions:
 
 ```bash
 python scripts/metric_collection_phase2/inventory_submissions.py
@@ -57,12 +62,12 @@ measures in ascending participant-number order without a full-cohort warmup pass
 Each participant retains one baseline, three warmups and fifteen measurements.
 Only the fifteen measurements contribute to summaries. The manifest records
 execution order and protocol; global warmup fields are empty for this protocol.
-See `results/phase2/execution_time/README.md` for results and comparability limits.
+See [timing results](../../results/phase2/execution_time/README.md) for results and comparability limits.
 
 ## Efficiency
 
 `collect_efficiency.py` derives the six generation/execution efficiencies from
 frozen scores and explicitly selected times, without rerunning tests. The default
 execution input is the researcher-selected latest run now stored in `formal/`.
-See `results/phase2/efficiency/README.md` for units, denominator choice, provenance
+See [efficiency results](../../results/phase2/efficiency/README.md) for units, denominator choice, provenance
 and conditional mutation interval limitations.

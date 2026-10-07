@@ -1,0 +1,37 @@
+{
+  "scope": "Researcher confirmation of the two automated trivial classifications; scores and prior four uncertain-case adjudications unchanged",
+  "reviews": [
+    {
+      "participant_number": 5,
+      "participant_commit": "18fd41b1b12246ff35950dd17fac7de826da9cd9",
+      "source_id": "tests/task/phase1/task.py::test_parse_fail",
+      "automated_classification": "trivial",
+      "reviewed_classification": "trivial",
+      "reviewer": "Researcher (explicit confirmation in project conversation)",
+      "reviewed_at": "2026-10-07T20:07:55.714483+00:00",
+      "reason": "Researcher explicitly confirmed the existing automated trivial classification on 2026-10-07; score unchanged.",
+      "source_line_numbers": [
+        93
+      ]
+    },
+    {
+      "participant_number": 8,
+      "participant_commit": "3716b54f5db80f79364d900d529d6e44543b1ff9",
+      "source_id": "tests/task/task2.py::test_default_fence_exists",
+      "automated_classification": "trivial",
+      "reviewed_classification": "trivial",
+      "reviewer": "Researcher (explicit confirmation in project conversation)",
+      "reviewed_at": "2026-10-07T20:07:55.714807+00:00",
+      "reason": "Researcher explicitly confirmed the existing automated trivial classification on 2026-10-07; score unchanged.",
+      "source_line_numbers": [
+        14
+      ]
+    }
+  ],
+  "evidence_sha256": {
+    "review_candidates.csv": "b14113c69a31adc2ce19ef4b22e708cbdaea7ef9f903a16a6a7ee0ff950883bf",
+    "assertion_score.csv": "789b4c7060f183d4d9548e201e5b8ab28602e68bfa97f7fcd5e967a2e623f1fb",
+    "collection_manifest.json": "f05878070a08b98ca2c5f108d10c52d5cd7eca56fb6e29ff1e1f1f5aba2ed046",
+    "manual_review/adjudications.json": "2796727d85a6ddf658941a5c6d850542940340e166116d22642704417ebe3acc"
+  }
+}

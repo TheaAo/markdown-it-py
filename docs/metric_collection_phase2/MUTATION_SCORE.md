@@ -1,5 +1,13 @@
 # Phase 2 mutation collection
 
+Current status (2026-10-07): eight-participant finalization is complete. The
+corrected task-relevant catalog contains 5,051 mutants; the 100-mutant review sample
+has 16 confirmed equivalent and 84 non-equivalent decisions. Review used one Codex
+source reviewer without independent secondary review. See
+[collection status](COLLECTION_STATUS.md). Intermediate records below retain
+their historical scope.
+
+
 ## Frozen inputs and reuse
 
 The eight participant commits and 58 valid instances come from the final frozen
@@ -39,7 +47,7 @@ not imported into the Phase 2 output tree.
 5. If pilot execution succeeds, full task-relevant execution for all eight frozen
    submissions. The final participant run uses one worker child, timeout multiplier 5,
    constant 0.5 seconds, one retry of timeouts and independent kill confirmation.
-6. Global aggregation and equivalent-mutant assessment remain necessary for the
+6. Global aggregation and equivalent-mutant assessment produce the
    final adjusted Mutation Score. Survivors are not automatically equivalent;
    timeout and infrastructure failures must not be silently counted as valid kills.
 
@@ -70,7 +78,7 @@ by Git, as in Phase 1; scripts and documentation are tracked separately.
 
 ```bash
 python scripts/metric_collection_phase2/finalize_mutation_score.py --prepare-review
-# Complete the independent review and adjudication files before this command:
+# Apply completed source-review decisions using the recorded review method:
 python scripts/metric_collection_phase2/finalize_mutation_score.py
 ```
 
@@ -104,7 +112,7 @@ by estimation details and a source-hash manifest in `final/`. Specified is the
 primary scope; extended-only and combined scopes remain supplementary. These are
 equivalence-adjusted estimates, not an exact census of equivalent mutants.
 
-## Started on 2026-10-05
+## Initial launch on 2026-10-05 (historical)
 
 Reference preflight passed all 675 cases. The bounded dry-run completed with 288
 raw mutants, 227 task-relevant mutants (224 specified and 3 extended-only), no
@@ -113,8 +121,8 @@ contains a legacy Phase 1 participant-count budget estimate; that estimate is no
 the Phase 2 eight-person execution budget.
 
 Full-SUT two-generation catalog collection and the waiting pilot/formal coordinator
-were started. Current live stage status must be read from the generated JSON;
-this document does not establish completed participant collection or final scores.
+were started at that time. This launch record precedes the completed finalization
+described below; use the final manifest and CSV for current results.
 
 ## Verified source-mapping correction
 
@@ -154,7 +162,7 @@ before using them in a cross-phase Mutation Score comparison.
 Participant 08's frozen `test_file` writes a fixed `output.html`. Parallel mutant
 processes in the same working directory can overwrite this file. All of 08's
 parallel outcomes were invalidated and archived under
-`history/parallel_file_race_v1/`; the complete corrected 5,051-mutant catalog is
+`history/parallel_file_race_v1/`; the complete corrected 5,051-mutant catalog was
 rerun serially, including timeout retries and independent kill confirmation.
 The other seven participants use independent temporary files and their matching
 observations remain reusable. The correction and proof-cache filtering are in

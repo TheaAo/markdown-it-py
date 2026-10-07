@@ -1,4 +1,7 @@
-# 二阶段数据采集初始方案
+# 二阶段数据采集方案与复用说明
+
+更新日期：2026-10-07。主要指标已完成八人采集；当前结果与待收尾事项见
+[采集进度](COLLECTION_STATUS.md)。本文保留采集顺序及初始迁移记录，供复现使用。
 
 ## 研究依据与范围
 
@@ -63,18 +66,21 @@ coverage 需对每组及完整套件分别测量，组间覆盖集合可能重�
 ```text
 scripts/
   metric_collection_phase1/   # 原采集目录以及散落根目录的计时/smell脚本和协议
-  metric_collection_phase2/   # 二阶段编排与适配层，目前仅提交清单脚本
+  metric_collection_phase2/   # 二阶段编排与适配层，复用一阶段采集引擎
   profiler.py                # 上游开发工具，保持原路径
   build_fuzzers.py
 results/
   phase1/                    # 原结果、问卷、汇总表；文件内容保持原样
   phase2/
     inventory/               # 本地提交盘点，尚非正式采集结果
-    generation_time.csv      # 二阶段耗时及秒数换算
+    error_rates/, coverage/, assertion_score/, mutation_score/
+    test_smells/, execution_time/, efficiency/
+    generation_time/         # 八人正式耗时及秒数换算
+    generation_time.csv      # 保留十六人布局的原始耗时表
     Post-experiment Survey (Phase 2).csv # 二阶段原始问卷导出
 docs/
   metric_collection/         # 一阶段方法与历史协议
-  metric_collection_phase2/  # 本方案
+  metric_collection_phase2/  # 进度、方案及各指标方法
 tests/
   metric_collection/         # 一阶段回归测试（已更新导入）
   metric_collection_phase2/  # 二阶段适配测试
@@ -84,7 +90,8 @@ tests/
 原始 JSON/CSV、哈希、采集时间和协议中的历史路径不改写；相对 `output_file` 仍可
 在迁移后的 manifest 目录解析。历史绝对路径仅作溯源，消费者不能依赖其存在。
 根目录 HANDOFF 文档加迁移说明，正文保持历史原貌。
-一二阶段 mutation 大型工作数据仍由 Git 忽略。134 个已跟踪的结果文件逐个核对
+大型 mutation 历史工作数据由 Git 忽略；二阶段正式结果及最终复核证据已跟踪。
+初始目录迁移时，134 个已跟踪的结果文件逐个核对
 与原 HEAD 内容一致；未跟踪的 mutation 工作目录同样整体移动，没有重算。
 
 ## 采集顺序与每一步的完成条件
@@ -94,8 +101,8 @@ tests/
    根据缺失、分支别名、历史关系和 SUT 差异核验最终映射；不根据编号猜测分组。
    当前二阶段名单以研究者确认及耗时/问卷交叉核对的八人为准；一阶段剩余八人
    不纳入二阶段正式采集。预期标准分支 `experiment-NN-phase2`，
-   当前本地另见拼写为 `origin/experimen-09-phase2` 的 ref，需明确映射。
-   `experiment-base-phase2` 只是候选 SUT 基线，确认后才冻结为采集协议。
+   正式采集已使用八人的标准分支；09 号拼写不同的历史 ref 未作为替代。
+   SUT baseline 和参与者提交已冻结在各指标 manifest 中。
 2. **建立二阶段测试清单及有效测试池。** 保持两个源文件及材料目录结构，逐文件
    错误分类，记录文件路径、函数名、参数化实例 nodeid、分类原因和源文件哈希。
    缺文件、未提交、缺函数、收集失败及零有效测试分别记录，不能用 0 分代替缺失。
@@ -120,7 +127,8 @@ tests/
    仅在时长为正且指标可用时计算效率。输出完整套件表、任务分组表和配对长表，
    保留 phase1_group、phase2_group、使用历史、资历、任务范围和工具版本。
 
-优先开发 1–3，随后 4–5，最后 6–7。先选择少量真实提交跑通完整流程，再批量处理。
+上述顺序为采集依赖与复现建议；主要指标已完成，无需重复执行已冻结的采集。
+断言复核已收尾；当前待完成问卷缺失处理和论文分析，详见进度页。
 一阶段保留 AI/手工比较；二阶段作描述性维护/扩展分析，按一阶段来源组探索差异。
 阶段间以八名继续参加者配对并考虑资历、流失、任务范围和 SUT
 变化。跨阶段 coverage/mutation 分母不同，原始分数差只能作为描述，不能直接解释
@@ -132,14 +140,15 @@ tests/
 | --- | --- | --- |
 | `collect_error_rates.py` | 分块、语法/运行/功能错误分类、实例级结果 | 多文件编排、目录保留、一次缓存有效性结果 |
 | `collect_coverage.py` | coverage JSON 解析、有效实例筛选、两种覆盖范围 | 接收既有有效池、两个文件联合测量及任务范围 |
-| `collect_assertion_score.py` | AST 依赖传播、异常/capsys 断言、partial-valid | `_report_from_results` 已支持 `expected_tests`，公开入口需可配置，不复制分析器 |
+| `collect_assertion_score.py` | AST 依赖传播、异常/capsys 断言、partial-valid | `_report_from_results` 已支持 `expected_tests`，二阶段适配器传入实际函数集合，不复制分析器 |
 | `collect_all_branches.py` | Git/JSON 辅助函数、保护路径核验 | 单 TASK_PATH、固定参与者/排除名单及五函数验证器需配置化；暂不直接运行于二阶段 |
 | `collect_test_smells*.py`, `detect_test_smells_ast.py` | detector 与读取错误率证据的流程 | 五函数集合改为清单驱动，使用文件+函数身份 |
 | `collect_execution_time.py`, `execution_timing_protocol.json` | 计时器及重复测量统计 | 支持两个文件、接收有效池，避免再次错误分类 |
 | mutation catalog/cache/review/summarize 脚本 | 生成、执行确认、等价抽样、加权估计及审计 | 二阶段 workload/材料路径/catalog；阶段和完整输入哈希隔离缓存 |
 | summarize 脚本 | 表格字段、比例校验、输出函数 | 加 phase/task_scope，assertion 验证器取消固定五函数假设 |
 
-二阶段目录只写适配与编排；当前 inventory 已直接复用一阶段 Git/JSON 辅助函数。
+二阶段目录负责适配与编排；各指标复用一阶段引擎或辅助函数，效率由冻结结果
+直接计算。inventory 复用一阶段 Git/JSON 辅助函数。
 当第二个消费者实际需要适配时，再把对应引擎提取到 `scripts/metric_collection_common/`
 并保留一阶段薄入口。不提前复制整套脚本，也不为尚未使用的抽象大规模重构。
 长期保存有效池及 provenance，coverage/计时/mutation 使用同一份实例选择；缓存键
@@ -156,10 +165,12 @@ python scripts/metric_collection_phase2/inventory_submissions.py
 该命令仅查看本地 Git refs，不 fetch、不创建 worktree、不运行参与者测试。
 `pending_submission_review` 表示文件及保护路径初检通过，不代表已经提交完成、
 任务满足要求或测试有效。返回成功只说明盘点完成，所有异常仍保存在清单中。
-已重新执行 error rate 采集，当前八人均完成，共 57 个有效 pytest 实例，分类错误率
-均为 0。08 号仍缺少 `test_parse_fail` 和 `test_non_utf8`，缺失项单独记录。详见
-[`ERROR_RATES.md`](ERROR_RATES.md)。正式采集只接受 `experiment-xx-phase2` 标准分支，
-不使用拼写不同的分支替代。其余指标尚未采集。
+正式采集已完成八人的错误率、coverage、assertion、mutation、smell、耗时和六项
+效率。有效池为 58 个 pytest 实例，分类错误率均为 0；08 号迁移到
+`tests/test_cli.py` 的 `test_non_utf8` 已纳入，未实现的 `test_parse_fail` 单独记录。
+详见 [采集进度](COLLECTION_STATUS.md)及 [错误率方法](ERROR_RATES.md)。
+
+### 初始盘点（历史预检）
 
 首次本地盘点：5 个 `pending_submission_review`、1 个 `missing_task_file`、
 10 个 `missing_branch`。`experiment-02-phase2` 缺少标准路径下的旧测试文件，
@@ -182,10 +193,9 @@ python scripts/metric_collection_phase2/inventory_submissions.py
 
 秒数以 CSV 数值保存，可直接供后续统计脚本使用。问卷导出内容保持不变。
 
-验证：`tox -e py311 -- tests/metric_collection tests/metric_collection_phase2`
-通过 162 项测试，10 个迁移 CLI 的 `--help` 通过；新增二阶段代码的 Ruff 和
-严格 mypy 检查通过。以相同 Ruff 版本对照原 HEAD，既有一阶段 lint 诊断从
-114 项降至 79 项，没有新增诊断；未宣称全仓库 pre-commit 通过。
+初始迁移验证曾运行 `tox -e py311 -- tests/metric_collection tests/metric_collection_phase2`，
+通过 162 项测试；该数字仅描述当时的迁移验证。各指标采集及验证记录以对应方法
+文档和 manifest 为准。本次整理仅修改文档，不重算指标、不改写冻结证据。
 
 ## 其他可优化位置
 

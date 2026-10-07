@@ -1,7 +1,7 @@
 # 二阶段 Assertion Score 源码复核
 
 复核日期：2026-10-05。复核者：Codex，依据冻结提交源码和临时副本中的针对性执行验证。
-本次只裁定自动分析器标记的四个 `uncertain`，不修改参与者代码或自动采集结果。
+2026-10-05 的源码复核只裁定自动分析器标记的四个 `uncertain`，不修改参与者代码或自动采集结果。
 
 自动分类的共同触发条件是：分析器已检测到 SUT 执行，但断言表达式未被静态
 依赖分析关联到 SUT。`uncertain` 是分析器未能解析依赖，不是断言无效的结论。
@@ -47,5 +47,15 @@
 | 08 | 5/8 = 0.625000 | 7/8 = 0.875000 |
 | 09 | 7/8 = 0.875000 | 8/8 = 1.000000 |
 
-其余参与者分数不变。剩余两个自动 `trivial` 分类不在本次四项裁定范围内，
-`review_candidates.csv` 保留其待复核状态。全体自动 `uncertain` 已完成本次源码复核。
+其余参与者分数不变。全体自动 `uncertain` 已完成上述源码复核。
+
+## 研究者确认两项 trivial（2026-10-07）
+
+研究者明确确认 05 号 `tests/task/phase1/task.py::test_parse_fail` 和 08 号
+`tests/task/task2.py::test_default_fence_exists` 为 `trivial`，维持自动分类。
+`review_candidates.csv` 已将两项标为 `confirmed_by_researcher`；六项候选均已结案。
+05 号仍为 6/7，08 号仍为 7/8，全体为 56 项 non-trivial、2 项 trivial、0 项 uncertain。
+
+新增 `manual_review/trivial_confirmations.json` 记录确认来源、时间、冻结提交、
+源函数及证据哈希；历史四项裁定、探针和 manifest 保持原样。此次确认来自研究者，
+没有新增 Codex 执行探针或独立二次源码复核。

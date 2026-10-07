@@ -1,5 +1,12 @@
 # Phase 2 Error Rate
 
+Current status (2026-10-07): all eight participants are collected, with 58 valid
+pytest instances and zero classified errors. Participant 08's relocated non-UTF8
+test is included; its unimplemented `test_parse_fail` is a separately recorded
+omission. Earlier dated collections below are historical evidence. See
+[collection status](COLLECTION_STATUS.md).
+
+
 ## Scope and execution
 
 The cohort is 02, 03, 04, 05, 07, 08, 09 and 12, all using Copilot. Only
@@ -94,7 +101,7 @@ interpreter were unchanged. Participant 08's commit is
 `3716b54f5db80f79364d900d529d6e44543b1ff9`; participant 09's commit is
 `0447bbf695fcf909a221322f59a919e5ecd9ce23`. The other six commits are unchanged.
 
-The current `results/phase2/error_rates/` dataset contains 57 executed pytest
+The historical task-directory-only recollection contained 57 executed pytest
 instances, all valid, with zero syntax, runtime and function errors. Seven
 participants have seven instances each; participant 09 has eight. Participant 08
 now has three legacy tests and four new-file tests, including two additional
@@ -103,8 +110,8 @@ absent from `tests/task/phase1/task.py`. Missing functions are recorded separate
 and do not change the error-rate denominator.
 
 The prior partial collection was moved without changing any file contents to
-`results/phase2/error_rates_history/20261004T200617050523Z/`. The current results
-were checked against their frozen Git artifacts and collector hashes before
+`results/phase2/error_rates_history/20261004T200617050523Z/`. That recollection
+was checked against their frozen Git artifacts and collector hashes before
 replacing the active dataset.
 
 ## External-file scope correction on 2026-10-04
