@@ -1,0 +1,17 @@
+metric,label,available_n,ai_n,manual_n,missing_participant_ids
+specified_estimated_adjusted_mutation_score,Estimated adjusted mutation score,14,6,8,
+mutation_generation_efficiency_per_second,Mutation generation efficiency (score per second),14,6,8,
+test_smell_density,Test smell density,12,6,6,"4,6"
+syntax_error_rate,Syntax error rate,14,6,8,
+runtime_error_rate,Runtime error rate,14,6,8,
+function_error_rate,Function error rate,14,6,8,
+participant_statement_coverage,Statement coverage,12,6,6,"4,6"
+participant_branch_coverage,Branch coverage,12,6,6,"4,6"
+assertion_score,Assertion score,12,6,6,"4,6"
+generation_time_seconds,Generation time (seconds),14,6,8,
+execution_time_seconds,Execution time (seconds),12,6,6,"4,6"
+statement_generation_efficiency_per_second,Statement generation efficiency (coverage per second),12,6,6,"4,6"
+branch_generation_efficiency_per_second,Branch generation efficiency (coverage per second),12,6,6,"4,6"
+statement_execution_efficiency_per_second,Statement execution efficiency (coverage per second),12,6,6,"4,6"
+branch_execution_efficiency_per_second,Branch execution efficiency (coverage per second),12,6,6,"4,6"
+mutation_execution_efficiency_per_second,Mutation execution efficiency (score per second),12,6,6,"4,6"

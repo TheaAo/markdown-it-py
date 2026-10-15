@@ -1,0 +1,4 @@
+metric,n_ai,n_manual,mean_ai,mean_manual,mean_difference_ai_minus_manual,bootstrap_ci95_lower,bootstrap_ci95_upper,cliffs_delta,exact_permutation_p_value,permutation_allocations,label,scale,higher_is_better,holm_adjusted_p_value
+specified_estimated_adjusted_mutation_score,6,8,0.6908526021888003,0.34838153588521914,0.34247106630358115,0.16058877972463245,0.5314425540444451,1.0,0.008658008658008658,3003,Estimated adjusted mutation score,proportion,True,0.012987012987012988
+mutation_generation_efficiency_per_second,6,8,0.0003571606663333333,8.0952589125e-05,0.0002762080772083333,0.00019693701226041661,0.00035772788895416664,1.0,0.000333000333000333,3003,Mutation generation efficiency (score per second),rate,True,0.000999000999000999
+test_smell_density,6,6,0.033333,0.126984,-0.09365100000000001,-0.161905,-0.03650833333333334,-0.9166666666666666,0.006493506493506494,924,Test smell density,proportion,False,0.012987012987012988

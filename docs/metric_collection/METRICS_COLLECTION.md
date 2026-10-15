@@ -213,6 +213,13 @@ denominator but not the numerator. Raw JSON records each source test's
 assertion classification, source line, oracle type, and reason. Review all
 `uncertain` cases manually before final statistical analysis.
 
+On 2026-10-05, the user resolved Phase 1 participant 8's `test_file` assertion as
+`non_trivial`. Its eligible-test denominator remains 1, the non-trivial count is
+now 1, the uncertain count is 0, and Assertion Score is 1.0. The raw participant
+JSON retains the original automatic classification alongside the manual review;
+`results/phase1/assertion_score/manual_review.csv` records the decision. The final
+analysis no longer requires an assertion lower/upper sensitivity scenario.
+
 ## Test Smell
 
 The fixed protocol analyzes seven smells: Assertion Roulette, Magic Number Test,
