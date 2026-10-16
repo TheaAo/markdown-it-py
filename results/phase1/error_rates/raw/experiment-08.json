@@ -78,11 +78,18 @@
     "total_source_tests": 5,
     "invalid_test_count": 4,
     "eligible_test_count": 1,
-    "non_trivial_test_count": 0,
+    "non_trivial_test_count": 1,
     "trivial_test_count": 0,
     "assertionless_test_count": 0,
-    "uncertain_test_count": 1,
-    "assertion_score": 0.0,
+    "uncertain_test_count": 0,
+    "assertion_score": 1.0,
+    "manual_review": {
+      "date": "2026-10-05",
+      "source_test": "test_file",
+      "original_classification": "uncertain",
+      "resolved_classification": "non_trivial",
+      "authority": "User confirmed this is a reasonable assertion."
+    },
     "test_cases": [
       {
         "source_test": "test_file",
@@ -93,15 +100,17 @@
         "valid_instance_count": 1,
         "total_instance_count": 1,
         "validity": "fully_valid",
-        "classification": "uncertain",
+        "classification": "non_trivial",
         "assertion_count": 1,
-        "non_trivial_assertion_count": 0,
+        "non_trivial_assertion_count": 1,
         "evidence": [
           {
             "line": 39,
             "oracle_type": "assert",
-            "classification": "uncertain",
-            "reason": "SUT was executed, but data dependency to this assertion is unclear"
+            "classification": "non_trivial",
+            "original_classification": "uncertain",
+            "original_reason": "SUT was executed, but data dependency to this assertion is unclear",
+            "reason": "Manual review: user confirmed this oracle is a reasonable non-trivial assertion on 2026-10-05."
           }
         ]
       },

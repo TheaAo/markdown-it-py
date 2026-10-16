@@ -844,12 +844,12 @@
           "total_source_tests": 5,
           "eligible_test_count": 1,
           "invalid_test_count": 4,
-          "non_trivial_test_count": 0,
+          "non_trivial_test_count": 1,
           "trivial_test_count": 0,
           "assertionless_test_count": 0,
-          "uncertain_test_count": 1,
+          "uncertain_test_count": 0,
           "test_statuses": {
-            "test_file": "uncertain",
+            "test_file": "non_trivial",
             "test_spec": "invalid",
             "test_core_after": "invalid",
             "test_parse_fail": "invalid",
@@ -857,7 +857,10 @@
           },
           "test_provenance": {
             "test_file": {
-              "classification": "uncertain",
+              "classification": "non_trivial",
+              "original_classification": "uncertain",
+              "review_date": "2026-10-05",
+              "review_authority": "User confirmed this is a reasonable assertion.",
               "generated_nodeids": [
                 "tests/task/task.py::test_file"
               ],
@@ -896,7 +899,7 @@
               "validity": "invalid"
             }
           },
-          "score": 0.0
+          "score": 1.0
         }
       }
     },

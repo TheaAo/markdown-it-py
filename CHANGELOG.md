@@ -5,6 +5,13 @@
 - Collect Phase 2 test smell density with frozen Phase 1 rules and organize
   supplemental task summaries under `summary/by_task/`.
 
+- Separate research collectors and results by phase, and add a Phase 2 submission
+  inventory and collection plan.
+
+- Add staged stratified equivalent-mutant review sampling, targeted secondary
+  quality control, and design-weighted Mutation Score estimates with
+  finite-population intervals.
+
 ## 4.0.0 - 2024-08-10
 
 This primarily drops support for Python 3.9, adds support for Python 3.13,
