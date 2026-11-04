@@ -1,4 +1,4 @@
-"""Plot participant background distributions as stacked bar charts."""
+"""Plot participant programming experience and proficiency distributions."""
 
 from __future__ import annotations
 
@@ -20,18 +20,26 @@ DIMENSIONS = (
     ("Python proficiency", "How would you rate your overall proficiency in Python development?"),
     ("Software testing proficiency", "How would you rate your overall proficiency in software testing?"),
     ("Unit-test writing proficiency", "How would you rate your overall proficiency in writing unit tests?"),
-    ("pytest experience", "How would you rate your experience in pytest?"),
-    ("GitHub Copilot experience", "How would you rate your experience in using Github Copilot?"),
+    ("pytest proficiency", "How would you rate your experience in pytest?"),
+    ("GitHub Copilot proficiency", "How would you rate your experience in using Github Copilot?"),
 )
 PROGRAMMING_EXPERIENCE_ORDER = ("1_2 years", "3-5 years", "5-10 years")
 PROFICIENCY_ORDER = ("0", "1", "2", "3", "4", "5")
+PROFICIENCY_LABELS = {
+    "0": "No experience",
+    "1": "Beginner (Understand basic syntax and write simple Python code with guidance)",
+    "2": "Junior (Have written simple scripts or code independently)",
+    "3": "Intermediate (Comfortable with standard libraries, OOP, and idiomatic Python)",
+    "4": "Advanced (Strong understanding of advanced features, best practices, and performance optimizations)",
+    "5": "Expert (Extensive experience, including complex system architecture or low-level design)",
+}
 COLORS = {
-    "0": "#D1D5DB",
-    "1": "#FDE68A",
-    "2": "#FDBA74",
-    "3": "#93C5FD",
-    "4": "#60A5FA",
-    "5": "#2563EB",
+    "0": "#E5E7EB",
+    "1": "#DBEAFE",
+    "2": "#93C5FD",
+    "3": "#60A5FA",
+    "4": "#2563EB",
+    "5": "#1E3A8A",
     "1_2 years": "#FDE68A",
     "3-5 years": "#93C5FD",
     "5-10 years": "#2563EB",
@@ -66,12 +74,49 @@ def _ordered_levels(counts: Counter[str], dimension: str) -> list[str]:
     return [level for level in order if counts[level]]
 
 
-def plot_background(rows: list[dict[str, str]], title: str, output_path: Path) -> None:
-    """Create a horizontal stacked bar chart for a participant subset."""
+def plot_programming_experience(
+    rows: list[dict[str, str]], title: str, output_path: Path
+) -> None:
+    """Create a pie chart for programming experience in a participant subset."""
 
-    figure, axis = plt.subplots(figsize=(12, 6.8))
-    y_positions = list(range(len(DIMENSIONS)))
-    for y_position, (dimension, column) in zip(y_positions, DIMENSIONS):
+    counts = _counts(rows, DIMENSIONS[0][1])
+    levels = _ordered_levels(counts, "Programming experience")
+    values = [counts[level] for level in levels]
+    labels = [f"{level} (n={counts[level]})" for level in levels]
+
+    figure, axis = plt.subplots(figsize=(8, 6.8))
+    axis.pie(
+        values,
+        labels=None,
+        colors=[COLORS[level] for level in levels],
+        autopct="%1.0f%%",
+        startangle=90,
+        wedgeprops={"edgecolor": "white", "linewidth": 1},
+    )
+    axis.legend(
+        labels,
+        title="Programming experience",
+        frameon=False,
+        loc="lower center",
+        bbox_to_anchor=(0.5, -0.12),
+        ncol=1,
+    )
+    axis.set_title(title)
+    figure.tight_layout(rect=(0, 0.12, 1, 1))
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    figure.savefig(output_path, dpi=300, bbox_inches="tight")
+    plt.close(figure)
+
+
+def plot_proficiency(
+    rows: list[dict[str, str]], title: str, output_path: Path
+) -> None:
+    """Create a horizontal stacked bar chart for proficiency dimensions."""
+
+    figure, axis = plt.subplots(figsize=(12, 8.5))
+    proficiency_dimensions = DIMENSIONS[1:]
+    y_positions = list(range(len(proficiency_dimensions)))
+    for y_position, (dimension, column) in zip(y_positions, proficiency_dimensions):
         counts = _counts(rows, column)
         left = 0
         for level in _ordered_levels(counts, dimension):
@@ -91,43 +136,31 @@ def plot_background(rows: list[dict[str, str]], title: str, output_path: Path) -
                 ha="center",
                 va="center",
                 fontsize=10,
-                color="white" if level in {"4", "5", "5-10 years"} else "#111827",
+                color="white" if level in {"4", "5"} else "#111827",
                 fontweight="bold",
             )
             left += count
 
     handles = [plt.Rectangle((0, 0), 1, 1, color=COLORS[level]) for level in PROFICIENCY_ORDER]
-    labels = list(PROFICIENCY_ORDER)
-    handles.extend(plt.Rectangle((0, 0), 1, 1, color=COLORS[level]) for level in PROGRAMMING_EXPERIENCE_ORDER)
-    labels.extend(PROGRAMMING_EXPERIENCE_ORDER)
+    labels = [PROFICIENCY_LABELS[level] for level in PROFICIENCY_ORDER]
     axis.legend(
         handles,
         labels,
-        title="Response level",
-        ncol=3,
+        title="Response levels",
+        ncol=1,
         frameon=False,
-        loc="upper right",
-        bbox_to_anchor=(1, -0.08),
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.2),
     )
-    axis.text(
-        0,
-        -0.12,
-        "Proficiency scale: 1 = Very Basic; 5 = Proficient. "
-        "0 = No experience / Not applicable.",
-        transform=axis.transAxes,
-        ha="left",
-        va="top",
-        fontsize=10,
-    )
-    axis.set_yticks(y_positions, [dimension for dimension, _ in DIMENSIONS])
+    axis.set_yticks(y_positions, [dimension for dimension, _ in proficiency_dimensions])
     axis.invert_yaxis()
-    axis.set_xlabel("Number of participants")
+    axis.set_xlabel("Number of participants", labelpad=8)
     axis.set_title(title)
     axis.set_xlim(0, len(rows))
     axis.set_xticks(range(len(rows) + 1))
     axis.grid(axis="x", linestyle="--", alpha=0.35)
     axis.set_axisbelow(True)
-    figure.tight_layout(rect=(0, 0.18, 1, 1))
+    figure.tight_layout(rect=(0, 0.3, 1, 1))
     output_path.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(output_path, dpi=300, bbox_inches="tight")
     plt.close(figure)
@@ -143,15 +176,25 @@ def main(input_path: Path, output_dir: Path) -> None:
         if participant.participated_in_phase2
     }
     phase2_rows = [row for row in rows if int(row["No"]) in phase2_numbers]
-    plot_background(
+    plot_programming_experience(
         rows,
-        "Participant Background Composition (All Participants)",
-        output_dir / "participant_background_all.png",
+        "Programming Experience (All Participants)",
+        output_dir / "participant_programming_experience_all.png",
     )
-    plot_background(
+    plot_programming_experience(
         phase2_rows,
-        "Participant Background Composition (Phase 2 Participants)",
-        output_dir / "participant_background_phase2.png",
+        "Programming Experience (Phase 2 Participants)",
+        output_dir / "participant_programming_experience_phase2.png",
+    )
+    plot_proficiency(
+        rows,
+        "Participant Proficiency (All Participants)",
+        output_dir / "participant_proficiency_all.png",
+    )
+    plot_proficiency(
+        phase2_rows,
+        "Participant Proficiency (Phase 2 Participants)",
+        output_dir / "participant_proficiency_phase2.png",
     )
 
 
