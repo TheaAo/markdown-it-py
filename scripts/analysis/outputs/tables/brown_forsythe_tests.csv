@@ -1,0 +1,9 @@
+phase,metric,first_group,second_group,n_first,n_second,statistic,df1,df2,p_value
+Phase 1,statement_coverage,Manual,AI,7,6,4.877449657661439,1,11,0.04934821787883909
+Phase 1,branch_coverage,Manual,AI,7,6,10.885837394344795,1,11,0.00708591655347577
+Phase 1,mutation_score,Manual,AI,7,6,8.787060942290463,1,11,0.012875960408389585
+Phase 1,assertion_score,Manual,AI,7,6,8.870974213560332,1,11,0.012554967239849982
+Phase 2,statement_coverage,Manual-AI,AI-AI,4,4,0.04408474924977776,1,6,0.8406441950059216
+Phase 2,branch_coverage,Manual-AI,AI-AI,4,4,0.8564595692787297,1,6,0.39043558546954477
+Phase 2,mutation_score,Manual-AI,AI-AI,4,4,0.12252115718197557,1,6,0.7382757351939352
+Phase 2,assertion_score,Manual-AI,AI-AI,4,4,225.00336003942417,1,6,5.529998022565197e-06
