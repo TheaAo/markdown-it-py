@@ -30,7 +30,7 @@ PROFICIENCY_LABELS = {
     "1": "Beginner (Understand basic syntax and write simple Python code with guidance)",
     "2": "Junior (Have written simple scripts or code independently)",
     "3": "Intermediate (Comfortable with standard libraries, OOP, and idiomatic Python)",
-    "4": "Advanced (Strong understanding of advanced features, best practices, and performance optimizations)",
+    "4": "Advanced (Strong understanding of advanced features, best practices, and performance \n optimizations)",
     "5": "Expert (Extensive experience, including complex system architecture or low-level design)",
 }
 COLORS = {
@@ -158,61 +158,128 @@ def plot_programming_experience_across_phases(
     plt.close(figure)
 
 
-def plot_proficiency(
-    rows: list[dict[str, str]], title: str, output_path: Path
+def plot_proficiency_across_phases(
+    all_rows: list[dict[str, str]],
+    phase2_rows: list[dict[str, str]],
+    output_path: Path,
 ) -> None:
-    """Create a horizontal stacked bar chart for proficiency dimensions."""
+    """Create a single-coordinate stacked-bar chart for both phases."""
 
-    figure, axis = plt.subplots(figsize=(12, 8.5))
     proficiency_dimensions = DIMENSIONS[1:]
-    y_positions = list(range(len(proficiency_dimensions)))
-    for y_position, (dimension, column) in zip(y_positions, proficiency_dimensions):
-        counts = _counts(rows, column)
-        left = 0
-        for level in _ordered_levels(counts, dimension):
-            count = counts[level]
-            axis.barh(
-                y_position,
-                count,
-                left=left,
-                color=COLORS[level],
-                edgecolor="white",
-                linewidth=1,
-            )
-            axis.text(
-                left + count / 2,
-                y_position,
-                str(count),
-                ha="center",
-                va="center",
-                fontsize=10,
-                color="white" if level in {"4", "5"} else "#111827",
-                fontweight="bold",
-            )
-            left += count
+    figure, axis = plt.subplots(figsize=(11, 12.0))
 
-    handles = [plt.Rectangle((0, 0), 1, 1, color=COLORS[level]) for level in PROFICIENCY_ORDER]
+    y_positions = [position for group in range(len(proficiency_dimensions)) for position in (group * 2.5, group * 2.5 + 1)]
+    phase_rows = (("Phase 1", all_rows), ("Phase 2", phase2_rows))
+
+    for group_index, (dimension, column) in enumerate(proficiency_dimensions):
+        group_y_positions = (
+            y_positions[group_index * 2],
+            y_positions[group_index * 2 + 1],
+        )
+        for y_position, (_, rows) in zip(group_y_positions, phase_rows):
+            counts = _counts(rows, column)
+            left = 0
+            for level in PROFICIENCY_ORDER:
+                count = counts[level]
+                if count == 0:
+                    continue
+                axis.barh(
+                    y_position,
+                    count,
+                    left=left,
+                    height=1.0,
+                    color=COLORS[level],
+                    edgecolor="white",
+                    linewidth=1,
+                )
+                axis.text(
+                    left + count / 2,
+                    y_position,
+                    str(count),
+                    ha="center",
+                    va="center",
+                    fontsize=16,
+                    color="white" if level in {"4", "5"} else "#111827",
+                    fontweight="bold",
+                )
+                left += count
+
+    tick_labels = [
+        phase_label
+        for _ in proficiency_dimensions
+        for phase_label in ("Phase 1", "Phase 2")
+    ]
+    axis.set_yticks(y_positions, tick_labels)
+    axis.invert_yaxis()
+    axis.tick_params(axis="y", labelsize=13)
+    axis.tick_params(axis="x", labelsize=14)
+    axis.set_xlabel("Number of participants", fontsize=17, labelpad=10)
+
+    dimension_labels = (
+        "Python\nproficiency",
+        "Software testing\nproficiency",
+        "Unit-test writing\nproficiency",
+        "pytest\nproficiency",
+        "GitHub Copilot\nproficiency",
+    )
+    for group_index, label in enumerate(dimension_labels):
+        center = (y_positions[group_index * 2] + y_positions[group_index * 2 + 1]) / 2
+        axis.text(
+            -0.15,
+            center,
+            label,
+            transform=axis.get_yaxis_transform(),
+            ha="right",
+            va="center",
+            fontsize=15,
+            linespacing=1.15,
+        )
+
+    handles = [
+        plt.Rectangle((0, 0), 1, 1, color=COLORS[level])
+        for level in PROFICIENCY_ORDER
+    ]
     labels = [PROFICIENCY_LABELS[level] for level in PROFICIENCY_ORDER]
-    axis.legend(
+    legend = axis.legend(
         handles,
         labels,
-        title="Response levels",
         ncol=1,
         frameon=False,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.2),
+        bbox_to_anchor=(0.5, -0.12),
+        handlelength=1.5,
+        handletextpad=0.6,
+        labelspacing=0.20,
     )
-    axis.set_yticks(y_positions, [dimension for dimension, _ in proficiency_dimensions])
-    axis.invert_yaxis()
-    axis.set_xlabel("Number of participants", labelpad=8)
-    axis.set_title(title)
-    axis.set_xlim(0, len(rows))
-    axis.set_xticks(range(len(rows) + 1))
+    for text in legend.get_texts():
+        text.set_fontsize(15)
+
+    max_participants = max(len(all_rows), len(phase2_rows))
+    axis.set_xlim(0, max(len(all_rows), len(phase2_rows)))
+    axis.set_xticks(range(max_participants + 1))
     axis.grid(axis="x", linestyle="--", alpha=0.35)
     axis.set_axisbelow(True)
-    figure.tight_layout(rect=(0, 0.3, 1, 1))
+    axis.set_title(
+        "Technical Proficiency of Participants Across Both Phases",
+        fontsize=20,
+        pad=32,
+    )
+    axis.text(
+        0.5,
+        1.05,
+        f"Phase 1 (n = {len(all_rows)}), Phase 2 (n = {len(phase2_rows)})",
+        transform=axis.transAxes,
+        ha="center",
+        va="bottom",
+        fontsize=14,
+        style="italic",
+    )
+
+    figure.subplots_adjust(left=0.27, right=0.98, bottom=0.43, top=0.78)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(output_path, dpi=300, bbox_inches="tight")
+    figure.savefig(output_path.with_suffix(".svg"), bbox_inches="tight")
+    figure.savefig(output_path.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(figure)
 
 
@@ -231,15 +298,10 @@ def main(input_path: Path, output_dir: Path) -> None:
         phase2_rows,
         output_dir / "participant_programming_experience_across_phases.png",
     )
-    plot_proficiency(
+    plot_proficiency_across_phases(
         rows,
-        "Participant Proficiency (All Participants)",
-        output_dir / "participant_proficiency_all.png",
-    )
-    plot_proficiency(
         phase2_rows,
-        "Participant Proficiency (Phase 2 Participants)",
-        output_dir / "participant_proficiency_phase2.png",
+        output_dir / "participant_proficiency_across_phases.png",
     )
 
 
