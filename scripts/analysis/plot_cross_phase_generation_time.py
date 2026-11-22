@@ -115,15 +115,6 @@ def time_y_limits(values: list[float]) -> tuple[float, float]:
     return (0.0, maximum + padding)
 
 
-def format_time_axis(value: float, _position: object) -> str:
-    """Format seconds as a compact minute label."""
-
-    minutes = value / 60
-    if abs(minutes - round(minutes)) < 1e-9:
-        return f"{round(minutes):d}"
-    return f"{minutes:.1f}"
-
-
 def plot_cross_phase_generation_time(
     phase1_path: Path,
     phase2_path: Path,
@@ -188,8 +179,7 @@ def plot_cross_phase_generation_time(
     axis.set_ylim(*time_y_limits(all_times))
     axis.yaxis.set_major_locator(MultipleLocator(600))
     axis.yaxis.set_minor_locator(MultipleLocator(300))
-    axis.yaxis.set_major_formatter(format_time_axis)
-    axis.set_ylabel("Generation Time (minutes)", fontsize=16)
+    axis.set_ylabel("Generation Time (s)", fontsize=16)
     axis.set_xlabel("", fontsize=16)
     axis.set_title("Generation Time", fontsize=18)
     axis.grid(axis="y", which="major", linestyle="-", linewidth=0.7, alpha=0.30)
