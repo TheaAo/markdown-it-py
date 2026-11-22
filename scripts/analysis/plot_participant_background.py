@@ -74,37 +74,87 @@ def _ordered_levels(counts: Counter[str], dimension: str) -> list[str]:
     return [level for level in order if counts[level]]
 
 
-def plot_programming_experience(
-    rows: list[dict[str, str]], title: str, output_path: Path
+def plot_programming_experience_across_phases(
+    phase1_rows: list[dict[str, str]],
+    phase2_rows: list[dict[str, str]],
+    output_path: Path,
 ) -> None:
-    """Create a pie chart for programming experience in a participant subset."""
+    """Create a grouped stacked-bar chart comparing both phases."""
 
-    counts = _counts(rows, DIMENSIONS[0][1])
-    levels = _ordered_levels(counts, "Programming experience")
-    values = [counts[level] for level in levels]
-    labels = [f"{level} (n={counts[level]})" for level in levels]
-
-    figure, axis = plt.subplots(figsize=(8, 6.8))
-    axis.pie(
-        values,
-        labels=None,
-        colors=[COLORS[level] for level in levels],
-        autopct="%1.0f%%",
-        startangle=90,
-        wedgeprops={"edgecolor": "white", "linewidth": 1},
+    phase_rows = (
+        ("Phase 1", phase1_rows),
+        ("Phase 2", phase2_rows),
     )
-    axis.legend(
+    figure, axis = plt.subplots(figsize=(12, 6.0))
+
+    y_positions = list(range(len(phase_rows)))
+    for y_position, (_, rows) in zip(y_positions, phase_rows):
+        counts = _counts(rows, DIMENSIONS[0][1])
+        left = 0
+        for level in PROGRAMMING_EXPERIENCE_ORDER:
+            count = counts[level]
+            if count == 0:
+                continue
+            axis.barh(
+                y_position,
+                count,
+                left=left,
+                height=0.55,
+                color=COLORS[level],
+                edgecolor="white",
+                linewidth=1,
+            )
+            axis.text(
+                left + count / 2,
+                y_position,
+                f"{count}",
+                ha="center",
+                va="center",
+                fontsize=16,
+                color="#111827",
+                fontweight="bold",
+            )
+            left += count
+
+    experience_labels = {
+        "1_2 years": "1–2 years",
+        "3-5 years": "3–5 years",
+        "5-10 years": "5–10 years",
+    }
+    handles = [
+        plt.Rectangle((0, 0), 1, 1, color=COLORS[level])
+        for level in PROGRAMMING_EXPERIENCE_ORDER
+    ]
+    labels = [experience_labels[level] for level in PROGRAMMING_EXPERIENCE_ORDER]
+    legend = axis.legend(
+        handles,
         labels,
-        title="Programming experience",
+        ncol=3,
         frameon=False,
-        loc="lower center",
-        bbox_to_anchor=(0.5, -0.12),
-        ncol=1,
+        loc="upper center",
+        bbox_to_anchor=(0.5, -0.18),
     )
-    axis.set_title(title)
-    figure.tight_layout(rect=(0, 0.12, 1, 1))
+    for text in legend.get_texts():
+        text.set_fontsize(15)
+
+    axis.set_yticks(y_positions, [title for title, _ in phase_rows])
+    axis.invert_yaxis()
+    axis.tick_params(axis="both", labelsize=16)
+    axis.set_xlabel("Number of participants", labelpad=8, fontsize=18)
+    axis.set_title(
+        "Programming Experience of Participants Across Both Phases",
+        fontsize=20,
+        pad=12,
+    )
+    axis.set_xlim(0, max(len(rows) for _, rows in phase_rows))
+    axis.set_xticks(range(max(len(rows) for _, rows in phase_rows) + 1))
+    axis.grid(axis="x", linestyle="--", alpha=0.35)
+    axis.set_axisbelow(True)
+    figure.tight_layout(rect=(0, 0.16, 1, 1))
     output_path.parent.mkdir(parents=True, exist_ok=True)
     figure.savefig(output_path, dpi=300, bbox_inches="tight")
+    figure.savefig(output_path.with_suffix(".svg"), bbox_inches="tight")
+    figure.savefig(output_path.with_suffix(".pdf"), bbox_inches="tight")
     plt.close(figure)
 
 
@@ -176,15 +226,10 @@ def main(input_path: Path, output_dir: Path) -> None:
         if participant.participated_in_phase2
     }
     phase2_rows = [row for row in rows if int(row["No"]) in phase2_numbers]
-    plot_programming_experience(
+    plot_programming_experience_across_phases(
         rows,
-        "Programming Experience (All Participants)",
-        output_dir / "participant_programming_experience_all.png",
-    )
-    plot_programming_experience(
         phase2_rows,
-        "Programming Experience (Phase 2 Participants)",
-        output_dir / "participant_programming_experience_phase2.png",
+        output_dir / "participant_programming_experience_across_phases.png",
     )
     plot_proficiency(
         rows,
