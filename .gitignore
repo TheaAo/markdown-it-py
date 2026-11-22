@@ -133,6 +133,9 @@ dmypy.json
 benchmark/extra/
 node_modules/
 coverage/
+!/scripts/analysis/coverage/
+/scripts/analysis/coverage/*
+!/scripts/analysis/coverage/plot_cross_phase_coverage.py
 demo/
 apidoc/
 *.log
