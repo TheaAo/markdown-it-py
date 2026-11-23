@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import statistics
 import sys
 from pathlib import Path
 
@@ -43,6 +44,7 @@ def read_phase1_efficiency(path: Path) -> dict[int, dict[str, float | str]]:
     required = {
         "participant_number",
         "status",
+        "valid_tests_included",
         *(column for column, _ in EFFICIENCY_METRICS),
     }
 
@@ -57,7 +59,7 @@ def read_phase1_efficiency(path: Path) -> dict[int, dict[str, float | str]]:
                 continue
 
             participant = int(row["participant_number"])
-            if participant == 6:
+            if int(row["valid_tests_included"]) == 0:
                 continue
             participant_metadata = PARTICIPANTS_BY_NUMBER.get(participant)
             if participant_metadata is None:
@@ -98,6 +100,7 @@ def read_phase2_efficiency(path: Path) -> dict[int, dict[str, float | str]]:
     required = {
         "participant_number",
         "efficiency_status",
+        "valid_tests_included",
         *(column for column, _ in EFFICIENCY_METRICS),
     }
 
@@ -112,6 +115,8 @@ def read_phase2_efficiency(path: Path) -> dict[int, dict[str, float | str]]:
                 continue
 
             participant = int(row["participant_number"])
+            if int(row["valid_tests_included"]) == 0:
+                continue
             participant_metadata = PARTICIPANTS_BY_NUMBER.get(participant)
             if participant_metadata is None or not participant_metadata.participated_in_phase2:
                 continue
@@ -176,6 +181,60 @@ def efficiency_y_limits(values: list[float]) -> tuple[float, float]:
     return (0.0, maximum * 1.12)
 
 
+def find_excluded_participants(path: Path) -> list[tuple[int, int]]:
+    """Return collected participants with no valid tests."""
+
+    excluded: list[tuple[int, int]] = []
+    with path.open(newline="", encoding="utf-8-sig") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            status_column = (
+                "status"
+                if "status" in (reader.fieldnames or ())
+                else "efficiency_status"
+            )
+            collected_status = "collected"
+            if row[status_column].strip() != collected_status:
+                continue
+            valid_test_count = int(row["valid_tests_included"])
+            if valid_test_count == 0:
+                excluded.append((int(row["participant_number"]), valid_test_count))
+    return excluded
+
+
+def print_group_statistics(
+    phase_name: str,
+    values: dict[int, dict[str, float | str]],
+) -> None:
+    """Print mean, median, and sample SD in percent per millisecond."""
+
+    print(f"\n{phase_name} execution-efficiency statistics (%/ms)")
+    print("| Group | n | Metric | Mean | Median | SD |")
+    print("|---|---:|---|---:|---:|---:|")
+
+    for sequence in ("Manual → AI", "AI → AI"):
+        group = "Manual" if sequence == "Manual → AI" else "AI"
+        participants = [
+            participant_values
+            for participant_values in values.values()
+            if participant_values["sequence"] == sequence
+        ]
+        for metric, full_label in EFFICIENCY_METRICS:
+            metric_values = [
+                float(participant_values[metric]) / 10
+                for participant_values in participants
+                if metric in participant_values
+            ]
+            if not metric_values:
+                continue
+            print(
+                f"| {group} | {len(metric_values)} | {full_label} | "
+                f"{statistics.mean(metric_values):.9f} | "
+                f"{statistics.median(metric_values):.9f} | "
+                f"{statistics.stdev(metric_values):.9f} |"
+            )
+
+
 def plot_cross_phase_execution_efficiency(
     phase1_path: Path,
     phase2_path: Path,
@@ -186,6 +245,33 @@ def plot_cross_phase_execution_efficiency(
     phase1 = read_phase1_efficiency(phase1_path)
     phase2 = read_phase2_efficiency(phase2_path)
     participant_offsets = build_participant_x_offsets()
+
+    excluded_phase1 = find_excluded_participants(phase1_path)
+    excluded_phase2 = find_excluded_participants(phase2_path)
+    print(
+        "Excluded Phase 1 participants with no valid tests: "
+        + (
+            ", ".join(
+                f"{participant} (valid_tests_included={count})"
+                for participant, count in excluded_phase1
+            )
+            if excluded_phase1
+            else "none"
+        )
+    )
+    print(
+        "Excluded Phase 2 participants with no valid tests: "
+        + (
+            ", ".join(
+                f"{participant} (valid_tests_included={count})"
+                for participant, count in excluded_phase2
+            )
+            if excluded_phase2
+            else "none"
+        )
+    )
+    print_group_statistics("Phase 1", phase1)
+    print_group_statistics("Phase 2", phase2)
 
     figure, axes = plt.subplots(1, 3, figsize=(11.2, 4.2), sharey=False)
 
